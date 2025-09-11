@@ -12,6 +12,7 @@ import {
   ContactModal 
 } from "@/components"
 import { Toaster } from "sonner"
+import { motion } from "framer-motion"
 
 function App() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false)
@@ -22,8 +23,32 @@ function App() {
     setIsContactModalOpen(true)
   }
 
+  const pageVariants = {
+    initial: { opacity: 0 },
+    animate: { 
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    },
+    exit: { 
+      opacity: 0,
+      transition: {
+        duration: 0.3,
+        ease: "easeIn"
+      }
+    }
+  }
+
   return (
-    <div className="min-h-screen bg-background">
+    <motion.div 
+      className="min-h-screen bg-background"
+      variants={pageVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
       <Header onContactClick={openContactModal} />
       <Hero onContactClick={openContactModal} />
       <ProductDescription />
@@ -41,7 +66,7 @@ function App() {
       />
       
       <Toaster richColors position="top-right" />
-    </div>
+    </motion.div>
   )
 }
 

@@ -6,6 +6,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Card, CardContent } from "@/components/ui/card"
 import { Phone, Envelope, Building, User, CheckCircle } from "@phosphor-icons/react"
 import { toast } from "sonner"
+import { motion, AnimatePresence } from "framer-motion"
 
 interface ContactModalProps {
   open: boolean
@@ -68,21 +69,85 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
     }
   }
 
+  const successVariants = {
+    hidden: { opacity: 0, scale: 0.8, y: 20 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    }
+  }
+
+  const iconVariants = {
+    hidden: { scale: 0, rotate: -180 },
+    visible: {
+      scale: 1,
+      rotate: 0,
+      transition: {
+        duration: 0.6,
+        delay: 0.2,
+        ease: "backOut"
+      }
+    }
+  }
+
+  const formVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.1
+      }
+    }
+  }
+
+  const fieldVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.4,
+        ease: "easeOut"
+      }
+    }
+  }
+
+  const buttonVariants = {
+    hover: { scale: 1.02, transition: { duration: 0.2 } },
+    tap: { scale: 0.98, transition: { duration: 0.1 } }
+  }
+
   if (isSubmitted) {
     return (
       <Dialog open={open} onOpenChange={onOpenChange}>
         <DialogContent className="sm:max-w-md">
-          <div className="text-center py-8">
-            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <motion.div 
+            className="text-center py-8"
+            variants={successVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.div 
+              className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"
+              variants={iconVariants}
+              initial="hidden"
+              animate="visible"
+            >
               <CheckCircle size={32} className="text-green-600" />
-            </div>
+            </motion.div>
             <DialogTitle className="text-xl font-bold text-green-700 mb-2">
               Заявку отримано!
             </DialogTitle>
             <DialogDescription className="text-muted-foreground">
               Ми зв'яжемося з вами протягом години для обговорення деталей.
             </DialogDescription>
-          </div>
+          </motion.div>
         </DialogContent>
       </Dialog>
     )
@@ -102,9 +167,15 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
 
         <Card className="border-border/50">
           <CardContent className="p-6">
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <motion.form 
+              onSubmit={handleSubmit} 
+              className="space-y-4"
+              variants={formVariants}
+              initial="hidden"
+              animate="visible"
+            >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
+                <motion.div className="space-y-2" variants={fieldVariants}>
                   <Label htmlFor="phone" className="text-sm font-medium flex items-center">
                     <Phone size={16} className="mr-2 text-primary" />
                     Телефон *
@@ -115,12 +186,12 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
                     placeholder="+380 XX XXX XX XX"
                     value={formData.phone}
                     onChange={(e) => handleInputChange("phone", e.target.value)}
-                    className="border-border/50 focus:border-primary"
+                    className="border-border/50 focus:border-primary transition-colors duration-300"
                     required
                   />
-                </div>
+                </motion.div>
 
-                <div className="space-y-2">
+                <motion.div className="space-y-2" variants={fieldVariants}>
                   <Label htmlFor="email" className="text-sm font-medium flex items-center">
                     <Envelope size={16} className="mr-2 text-primary" />
                     Email *
@@ -131,13 +202,13 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
                     placeholder="email@company.com"
                     value={formData.email}
                     onChange={(e) => handleInputChange("email", e.target.value)}
-                    className="border-border/50 focus:border-primary"
+                    className="border-border/50 focus:border-primary transition-colors duration-300"
                     required
                   />
-                </div>
+                </motion.div>
               </div>
 
-              <div className="space-y-2">
+              <motion.div className="space-y-2" variants={fieldVariants}>
                 <Label htmlFor="fullName" className="text-sm font-medium flex items-center">
                   <User size={16} className="mr-2 text-primary" />
                   ПІБ
@@ -148,11 +219,11 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
                   placeholder="Ваше повне ім'я"
                   value={formData.fullName}
                   onChange={(e) => handleInputChange("fullName", e.target.value)}
-                  className="border-border/50 focus:border-primary"
+                  className="border-border/50 focus:border-primary transition-colors duration-300"
                 />
-              </div>
+              </motion.div>
 
-              <div className="space-y-2">
+              <motion.div className="space-y-2" variants={fieldVariants}>
                 <Label htmlFor="company" className="text-sm font-medium flex items-center">
                   <Building size={16} className="mr-2 text-primary" />
                   Назва компанії
@@ -163,35 +234,76 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
                   placeholder="ТОВ 'Ваша компанія'"
                   value={formData.company}
                   onChange={(e) => handleInputChange("company", e.target.value)}
-                  className="border-border/50 focus:border-primary"
+                  className="border-border/50 focus:border-primary transition-colors duration-300"
                 />
-              </div>
+              </motion.div>
 
-              <div className="pt-4 flex flex-col sm:flex-row gap-3">
-                <Button
-                  type="submit"
-                  className="flex-1 font-medium tracking-wide cursor-pointer"
-                  disabled={isSubmitting}
+              <motion.div 
+                className="pt-4 flex flex-col sm:flex-row gap-3"
+                variants={fieldVariants}
+              >
+                <motion.div
+                  className="flex-1"
+                  variants={buttonVariants}
+                  whileHover="hover"
+                  whileTap="tap"
                 >
-                  {isSubmitting ? "Відправляємо..." : "Відправити заявку"}
-                </Button>
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={() => onOpenChange(false)}
-                  className="flex-1 font-medium cursor-pointer"
-                  disabled={isSubmitting}
+                  <Button
+                    type="submit"
+                    className="w-full font-medium tracking-wide cursor-pointer"
+                    disabled={isSubmitting}
+                  >
+                    <AnimatePresence mode="wait">
+                      {isSubmitting ? (
+                        <motion.span
+                          key="submitting"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                        >
+                          Відправляємо...
+                        </motion.span>
+                      ) : (
+                        <motion.span
+                          key="submit"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                        >
+                          Відправити заявку
+                        </motion.span>
+                      )}
+                    </AnimatePresence>
+                  </Button>
+                </motion.div>
+                <motion.div
+                  className="flex-1"
+                  variants={buttonVariants}
+                  whileHover="hover"
+                  whileTap="tap"
                 >
-                  Скасувати
-                </Button>
-              </div>
-            </form>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => onOpenChange(false)}
+                    className="w-full font-medium cursor-pointer"
+                    disabled={isSubmitting}
+                  >
+                    Скасувати
+                  </Button>
+                </motion.div>
+              </motion.div>
+            </motion.form>
 
-            <div className="mt-4 pt-4 border-t border-border/30">
+            <motion.div 
+              className="mt-4 pt-4 border-t border-border/30"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1, transition: { delay: 0.8, duration: 0.3 } }}
+            >
               <p className="text-xs text-muted-foreground text-center">
                 * - обов'язкові поля для заповнення
               </p>
-            </div>
+            </motion.div>
           </CardContent>
         </Card>
       </DialogContent>

@@ -1,6 +1,10 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { motion } from "framer-motion"
+import { useInView } from "@/hooks/useInView"
 
 export default function FAQ() {
+  const [ref, isInView] = useInView({ threshold: 0.1 })
+
   const faqItems = [
     {
       question: "Чи підходить для всіх версій 1С:Enterprise?",
@@ -24,26 +28,81 @@ export default function FAQ() {
     }
   ]
 
+  const headerVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  }
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.3
+      }
+    }
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    }
+  }
+
   return (
-    <section id="faq" className="py-20">
+    <section id="faq" className="py-20" ref={ref}>
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <motion.div 
+          className="text-center mb-16"
+          variants={headerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
           <h2 className="text-3xl font-bold text-foreground mb-4">Часто задавані питання</h2>
           <p className="text-lg text-muted-foreground">Відповіді на найпопулярніші питання</p>
-        </div>
+        </motion.div>
+
         <div className="max-w-3xl mx-auto">
-          <Accordion type="single" collapsible>
-            {faqItems.map((item, index) => (
-              <AccordionItem key={index} value={`item-${index}`}>
-                <AccordionTrigger className="text-left font-medium cursor-pointer">
-                  {item.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
-                  {item.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
+            <Accordion type="single" collapsible>
+              {faqItems.map((item, index) => (
+                <motion.div key={index} variants={itemVariants}>
+                  <AccordionItem value={`item-${index}`} className="border-border/50">
+                    <AccordionTrigger className="text-left font-medium cursor-pointer hover:text-primary transition-colors duration-200">
+                      {item.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        {item.answer}
+                      </motion.div>
+                    </AccordionContent>
+                  </AccordionItem>
+                </motion.div>
+              ))}
+            </Accordion>
+          </motion.div>
         </div>
       </div>
     </section>
