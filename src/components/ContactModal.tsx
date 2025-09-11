@@ -45,13 +45,16 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
     setIsSubmitting(true)
     
     try {
+      // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1500))
       
+      // Here you would normally send the data to your API endpoint
       console.log("Submitting form data:", { ...formData, service: defaultService })
       
       setIsSubmitted(true)
       toast.success("Заявку успішно відправлено! Ми зв'яжемося з вами найближчим часом.")
       
+      // Reset form after successful submission
       setTimeout(() => {
         setFormData({ phone: "", email: "", company: "", fullName: "" })
         setIsSubmitted(false)
@@ -167,7 +170,7 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
               <div className="pt-4 flex flex-col sm:flex-row gap-3">
                 <Button
                   type="submit"
-                  className="flex-1 font-medium tracking-wide"
+                  className="flex-1 font-medium tracking-wide cursor-pointer"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? "Відправляємо..." : "Відправити заявку"}
@@ -176,7 +179,7 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
                   type="button"
                   variant="outline"
                   onClick={() => onOpenChange(false)}
-                  className="flex-1 font-medium"
+                  className="flex-1 font-medium cursor-pointer"
                   disabled={isSubmitting}
                 >
                   Скасувати
