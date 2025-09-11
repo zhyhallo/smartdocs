@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Phone } from "@phosphor-icons/react"
 import { motion } from "framer-motion"
 import { useInView } from "@/hooks/useInView"
+import { OwlMascot } from "@/components"
 
 interface CTAProps {
   onContactClick: (service: string) => void
@@ -56,8 +57,42 @@ export default function CTA({ onContactClick }: CTAProps) {
   }
 
   return (
-    <section className="py-20 bg-primary/5" ref={ref}>
-      <div className="container mx-auto px-4">
+    <section className="py-20 bg-primary/5 relative overflow-hidden" ref={ref}>
+      {/* Decorative owls for CTA section */}
+      <div className="absolute inset-0 pointer-events-none">
+        <motion.div
+          className="absolute top-16 left-1/4 opacity-5"
+          animate={{
+            rotate: [0, 10, 0],
+            y: [-5, 5, -5]
+          }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        >
+          <OwlMascot size="sm" animated={false} />
+        </motion.div>
+        
+        <motion.div
+          className="absolute bottom-20 right-1/4 opacity-5"
+          animate={{
+            rotate: [0, -8, 0],
+            y: [3, -3, 3]
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1.5
+          }}
+        >
+          <OwlMascot size="sm" animated={false} />
+        </motion.div>
+      </div>
+
+      <div className="container mx-auto px-4 relative">
         <motion.div 
           className="text-center max-w-2xl mx-auto"
           variants={containerVariants}

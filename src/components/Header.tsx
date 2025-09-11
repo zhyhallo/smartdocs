@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { Menu, X } from "@phosphor-icons/react"
 import { motion, AnimatePresence } from "framer-motion"
+import { OwlMascot } from "@/components"
 
 interface HeaderProps {
   onContactClick: (service: string) => void
@@ -98,11 +99,14 @@ export default function Header({ onContactClick }: HeaderProps) {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <motion.div 
-            className="text-xl font-bold text-primary cursor-pointer"
+            className="flex items-center space-x-3 cursor-pointer"
             variants={logoVariants}
             whileHover="hover"
           >
-            ModulSoft
+            <OwlMascot size="sm" animated={false} />
+            <div className="text-xl font-bold text-primary">
+              ModulSoft
+            </div>
           </motion.div>
           
           {/* Desktop Navigation */}

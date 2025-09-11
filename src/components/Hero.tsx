@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { motion } from "framer-motion"
+import { OwlMascot } from "@/components"
 
 interface HeroProps {
   onContactClick: (service: string) => void
@@ -55,56 +56,107 @@ export default function Hero({ onContactClick }: HeroProps) {
   return (
     <section className="py-20 bg-gradient-to-b from-secondary/30 to-background overflow-hidden">
       <div className="container mx-auto px-4">
-        <motion.div 
-          className="max-w-4xl mx-auto text-center"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <motion.div variants={itemVariants}>
-            <Badge variant="secondary" className="mb-6">
-              Готове рішення для 1С:Enterprise
-            </Badge>
-          </motion.div>
-          
-          <motion.h1 
-            className="text-4xl md:text-6xl font-bold text-foreground mb-6 tracking-tight"
-            variants={itemVariants}
-          >
-            Driver POSNET / Thermal
-            <motion.span 
-              className="block text-primary"
-              variants={itemVariants}
-            >
-              для 1С:Enterprise
-            </motion.span>
-          </motion.h1>
-          
-          <motion.p 
-            className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed"
-            variants={itemVariants}
-          >
-            Професійна зовнішня компонента для інтеграції з фіскальними реєстраторами POSNET та Thermal. 
-            Надійність, стабільність і повна техпідтримка.
-          </motion.p>
-          
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left side - Content */}
           <motion.div 
-            className="flex justify-center"
-            variants={buttonVariants}
+            className="max-w-2xl"
+            variants={containerVariants}
             initial="hidden"
             animate="visible"
-            whileHover="hover"
-            whileTap="tap"
           >
-            <Button 
-              size="lg" 
-              className="text-lg px-8 py-4 cursor-pointer"
-              onClick={() => onContactClick("Купити Driver POSNET")}
+            <motion.div variants={itemVariants}>
+              <Badge variant="secondary" className="mb-6">
+                Готове рішення для 1С:Enterprise
+              </Badge>
+            </motion.div>
+            
+            <motion.h1 
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 tracking-tight"
+              variants={itemVariants}
             >
-              Купити зараз - 1500 zł
-            </Button>
+              Driver POSNET / Thermal
+              <motion.span 
+                className="block text-primary"
+                variants={itemVariants}
+              >
+                для 1С:Enterprise
+              </motion.span>
+            </motion.h1>
+            
+            <motion.p 
+              className="text-xl text-muted-foreground mb-8 leading-relaxed"
+              variants={itemVariants}
+            >
+              Професійна зовнішня компонента для інтеграції з фіскальними реєстраторами POSNET та Thermal. 
+              Надійність, стабільність і повна техпідтримка.
+            </motion.p>
+            
+            <motion.div 
+              className="flex justify-start"
+              variants={buttonVariants}
+              initial="hidden"
+              animate="visible"
+              whileHover="hover"
+              whileTap="tap"
+            >
+              <Button 
+                size="lg" 
+                className="text-lg px-8 py-4 cursor-pointer"
+                onClick={() => onContactClick("Купити Driver POSNET")}
+              >
+                Купити зараз - 1500 zł
+              </Button>
+            </motion.div>
           </motion.div>
-        </motion.div>
+
+          {/* Right side - Owl Mascot */}
+          <motion.div 
+            className="flex justify-center lg:justify-end"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+          >
+            <div className="relative">
+              <OwlMascot size="xl" className="drop-shadow-2xl" />
+              
+              {/* Floating badge near owl */}
+              <motion.div
+                className="absolute -top-4 -right-4 bg-accent text-accent-foreground px-3 py-1 rounded-full text-sm font-medium shadow-lg"
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1.2, duration: 0.5, type: "spring" }}
+              >
+                16+ років досвіду
+              </motion.div>
+              
+              {/* Floating elements around owl */}
+              <motion.div
+                className="absolute -left-8 top-16 w-4 h-4 bg-primary/20 rounded-full"
+                animate={{
+                  scale: [1, 1.2, 1],
+                  opacity: [0.3, 0.6, 0.3]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  delay: 0.5
+                }}
+              />
+              <motion.div
+                className="absolute -right-6 bottom-20 w-3 h-3 bg-accent/30 rounded-full"
+                animate={{
+                  scale: [1, 1.3, 1],
+                  opacity: [0.4, 0.7, 0.4]
+                }}
+                transition={{
+                  duration: 2.5,
+                  repeat: Infinity,
+                  delay: 1
+                }}
+              />
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   )

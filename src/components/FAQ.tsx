@@ -1,6 +1,7 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { motion } from "framer-motion"
 import { useInView } from "@/hooks/useInView"
+import { OwlMascot } from "@/components"
 
 export default function FAQ() {
   const [ref, isInView] = useInView({ threshold: 0.1 })
@@ -66,42 +67,98 @@ export default function FAQ() {
   return (
     <section id="faq" className="py-20" ref={ref}>
       <div className="container mx-auto px-4">
-        <motion.div 
-          className="text-center mb-16"
-          variants={headerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-        >
-          <h2 className="text-3xl font-bold text-foreground mb-4">Часто задавані питання</h2>
-          <p className="text-lg text-muted-foreground">Відповіді на найпопулярніші питання</p>
-        </motion.div>
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
+          {/* Left side - FAQ content */}
+          <div>
+            <motion.div 
+              className="mb-12"
+              variants={headerVariants}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+            >
+              <h2 className="text-3xl font-bold text-foreground mb-4">Часто задавані питання</h2>
+              <p className="text-lg text-muted-foreground">Відповіді на найпопулярніші питання</p>
+            </motion.div>
 
-        <div className="max-w-3xl mx-auto">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+            >
+              <Accordion type="single" collapsible>
+                {faqItems.map((item, index) => (
+                  <motion.div key={index} variants={itemVariants}>
+                    <AccordionItem value={`item-${index}`} className="border-border/50">
+                      <AccordionTrigger className="text-left font-medium cursor-pointer hover:text-primary transition-colors duration-200">
+                        {item.question}
+                      </AccordionTrigger>
+                      <AccordionContent className="text-muted-foreground">
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          {item.answer}
+                        </motion.div>
+                      </AccordionContent>
+                    </AccordionItem>
+                  </motion.div>
+                ))}
+              </Accordion>
+            </motion.div>
+          </div>
+
+          {/* Right side - Owl with question mark */}
+          <motion.div 
+            className="flex justify-center lg:justify-end"
+            initial={{ opacity: 0, x: 50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <Accordion type="single" collapsible>
-              {faqItems.map((item, index) => (
-                <motion.div key={index} variants={itemVariants}>
-                  <AccordionItem value={`item-${index}`} className="border-border/50">
-                    <AccordionTrigger className="text-left font-medium cursor-pointer hover:text-primary transition-colors duration-200">
-                      {item.question}
-                    </AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        {item.answer}
-                      </motion.div>
-                    </AccordionContent>
-                  </AccordionItem>
-                </motion.div>
-              ))}
-            </Accordion>
+            <div className="relative">
+              <OwlMascot size="lg" />
+              
+              {/* Question mark bubble */}
+              <motion.div
+                className="absolute -top-2 -right-6 bg-primary text-primary-foreground w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold shadow-lg"
+                initial={{ scale: 0, rotate: -180 }}
+                animate={isInView ? { scale: 1, rotate: 0 } : { scale: 0, rotate: -180 }}
+                transition={{ 
+                  delay: 1, 
+                  duration: 0.6, 
+                  type: "spring",
+                  bounce: 0.6
+                }}
+              >
+                ?
+              </motion.div>
+              
+              {/* Floating dots around owl */}
+              <motion.div
+                className="absolute top-8 left-4 w-2 h-2 bg-accent rounded-full"
+                animate={{
+                  scale: [1, 1.2, 1],
+                  opacity: [0.4, 0.8, 0.4]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  delay: 0.5
+                }}
+              />
+              <motion.div
+                className="absolute bottom-12 right-2 w-3 h-3 bg-primary/40 rounded-full"
+                animate={{
+                  scale: [1, 1.3, 1],
+                  opacity: [0.3, 0.7, 0.3]
+                }}
+                transition={{
+                  duration: 2.5,
+                  repeat: Infinity,
+                  delay: 1
+                }}
+              />
+            </div>
           </motion.div>
         </div>
       </div>

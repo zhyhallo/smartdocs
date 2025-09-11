@@ -9,6 +9,7 @@ import {
 } from "@phosphor-icons/react"
 import { motion } from "framer-motion"
 import { useInView } from "@/hooks/useInView"
+import { OwlMascot } from "@/components"
 
 export default function Features() {
   const [ref, isInView] = useInView({ threshold: 0.1 })
@@ -96,8 +97,42 @@ export default function Features() {
   }
 
   return (
-    <section id="features" className="py-20 bg-secondary/20" ref={ref}>
-      <div className="container mx-auto px-4">
+    <section id="features" className="py-20 bg-secondary/20 relative overflow-hidden" ref={ref}>
+      {/* Decorative floating owls */}
+      <div className="absolute inset-0 pointer-events-none">
+        <motion.div
+          className="absolute top-20 right-10 opacity-10"
+          animate={{
+            y: [-10, 10, -10],
+            rotate: [-5, 5, -5]
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        >
+          <OwlMascot size="md" animated={false} />
+        </motion.div>
+        
+        <motion.div
+          className="absolute bottom-32 left-10 opacity-10"
+          animate={{
+            y: [10, -10, 10],
+            rotate: [3, -3, 3]
+          }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2
+          }}
+        >
+          <OwlMascot size="sm" animated={false} />
+        </motion.div>
+      </div>
+
+      <div className="container mx-auto px-4 relative">
         <motion.div 
           className="text-center mb-16"
           variants={headerVariants}
