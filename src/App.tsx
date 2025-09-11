@@ -13,7 +13,6 @@ import {
   Clock, 
   Users, 
   Phone, 
-  Envelope,
   Check,
   Menu,
   X
@@ -154,21 +153,13 @@ function App() {
               Професійна зовнішня компонента для інтеграції з фіскальними реєстраторами POSNET та Thermal. 
               Надійність, стабільність і повна техпідтримка.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex justify-center">
               <Button 
                 size="lg" 
                 className="text-lg px-8 py-4"
                 onClick={() => openContactModal("Купити Driver POSNET")}
               >
                 Купити зараз - 1500 зл
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="text-lg px-8 py-4"
-                onClick={() => openContactModal("Отримати демо")}
-              >
-                Отримати демо
               </Button>
             </div>
           </div>
@@ -349,7 +340,7 @@ function App() {
             <p className="text-lg text-muted-foreground mb-8">
               Зв'яжіться з нами для детальної консультації або замовлення компонента
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex justify-center">
               <Button 
                 size="lg" 
                 className="text-lg px-8 py-4"
@@ -357,15 +348,6 @@ function App() {
               >
                 <Phone className="mr-2" size={20} />
                 Замовити дзвінок
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="text-lg px-8 py-4"
-                onClick={() => openContactModal("Написати листа")}
-              >
-                <Envelope className="mr-2" size={20} />
-                Написати листа
               </Button>
             </div>
           </div>
