@@ -109,7 +109,7 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
               <div className="absolute md:relative top-1/2 right-0 md:top-1/2 md:right-auto flex justify-center items-center transform -translate-y-1/2 md:transform md:-translate-y-1/2">
                 <div className="ml-4 md:ml-8 lg:ml-12">
                   <OwlAnalyst 
-                    size="lg" 
+                    size="md" 
                     animated={true} 
                     withTerminal={false}
                     className="filter invert" 
