@@ -1,4 +1,5 @@
 import { motion } from "framer-motion"
+import { POSTerminal } from "@/components"
 
 interface OwlProgressProps {
   progress: number // 0-100
@@ -63,8 +64,15 @@ export default function OwlProgress({
   }
 
   return (
-    <div className={`flex flex-col items-center justify-center ${className}`}>
-      <div className={`relative ${sizeClasses[size]}`}>
+    <div className={`flex flex-col items-center justify-center space-y-2 ${className}`}>
+      <div className="flex items-center space-x-3">
+        {/* POS Terminal */}
+        <div className="flex-shrink-0">
+          <POSTerminal size="xs" animated={true} />
+        </div>
+        
+        {/* Owl Progress Circle */}
+        <div className={`relative ${sizeClasses[size]}`}>
         {/* Progress Circle */}
         <svg className="transform -rotate-90 w-full h-full">
           {/* Background circle */}
@@ -148,6 +156,7 @@ export default function OwlProgress({
             </div>
           </div>
         </motion.div>
+        </div>
       </div>
 
       {/* Progress percentage */}

@@ -1,4 +1,5 @@
 import { motion } from "framer-motion"
+import { POSTerminal } from "@/components"
 
 interface OwlSpinnerProps {
   size?: "sm" | "md" | "lg"
@@ -46,7 +47,13 @@ export default function OwlSpinner({ size = "md", className = "" }: OwlSpinnerPr
   }
 
   return (
-    <div className={`flex items-center justify-center ${className}`}>
+    <div className={`flex items-center justify-center space-x-2 ${className}`}>
+      {/* POS Terminal */}
+      <div className="flex-shrink-0">
+        <POSTerminal size="xs" animated={true} />
+      </div>
+      
+      {/* Owl Spinner */}
       <motion.div
         className={`relative ${sizeClasses[size]} flex items-center justify-center`}
         variants={spinnerVariants}

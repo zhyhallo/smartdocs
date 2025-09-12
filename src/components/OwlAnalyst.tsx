@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion"
 import { useState, useEffect } from "react"
+import { POSTerminal } from "@/components"
 
 interface OwlAnalystProps {
   size?: "sm" | "md" | "lg" | "xl"
@@ -278,8 +279,16 @@ export default function OwlAnalyst({
 
   if (!animated) {
     return (
-      <div className={`${sizeClasses[size]} ${className}`}>
-        <OwlSVG />
+      <div className={`${sizeClasses[size]} ${className} flex items-center space-x-3`}>
+        <div className="flex-shrink-0">
+          <POSTerminal 
+            size={size === "xl" ? "md" : size === "lg" ? "sm" : "xs"} 
+            animated={false}
+          />
+        </div>
+        <div className="flex-shrink-0">
+          <OwlSVG />
+        </div>
       </div>
     )
   }
@@ -292,7 +301,7 @@ export default function OwlAnalyst({
         isClicked ? ["animate", "excited"] :
         ["animate", "float"]
       }
-      className={`${sizeClasses[size]} ${className} cursor-pointer select-none owl-container relative`}
+      className={`${sizeClasses[size]} ${className} cursor-pointer select-none owl-container relative flex items-center space-x-3`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => {
@@ -305,7 +314,18 @@ export default function OwlAnalyst({
       role="button"
       aria-label="Interactive owl analyst mascot"
     >
-      <OwlSVG />
+      {/* POS Terminal positioned to the left */}
+      <div className="flex-shrink-0">
+        <POSTerminal 
+          size={size === "xl" ? "md" : size === "lg" ? "sm" : "xs"} 
+          animated={animated && (isHovered || isClicked)}
+        />
+      </div>
+      
+      {/* Owl positioned to the right */}
+      <div className="flex-shrink-0">
+        <OwlSVG />
+      </div>
       
       {/* Glow effect */}
       <div className="owl-glow-effect" />

@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion"
 import { useState } from "react"
+import { POSTerminal } from "@/components"
 
 interface OwlMascotProps {
   size?: "sm" | "md" | "lg" | "xl"
@@ -445,11 +446,22 @@ export default function OwlMascot({ size = "md", className = "", animated = true
       initial="initial"
       animate={["animate", "float"]}
       whileHover="hover"
-      className="cursor-pointer"
+      className="cursor-pointer relative flex items-center space-x-4"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <OwlSVG />
+      {/* POS Terminal positioned to the left */}
+      <div className="flex-shrink-0">
+        <POSTerminal 
+          size={size === "xl" ? "md" : size === "lg" ? "sm" : "xs"} 
+          animated={animated && isHovered}
+        />
+      </div>
+      
+      {/* Owl positioned to the right */}
+      <div className="flex-shrink-0">
+        <OwlSVG />
+      </div>
       
       {/* Additional Floating Hearts on Hover */}
       <AnimatePresence>
@@ -458,11 +470,11 @@ export default function OwlMascot({ size = "md", className = "", animated = true
             {[...Array(5)].map((_, i) => (
               <motion.div
                 key={`heart-${i}`}
-                className="absolute text-accent"
+                className="absolute text-accent pointer-events-none"
                 initial={{ 
                   opacity: 0, 
                   scale: 0,
-                  x: Math.random() * 40 - 20,
+                  x: Math.random() * 60 - 30,
                   y: Math.random() * 40 - 20
                 }}
                 animate={{
