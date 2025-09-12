@@ -34,7 +34,7 @@ export default function Header({ onContactClick }: HeaderProps) {
   const menuItemVariants = {
     hover: {
       scale: 1.05,
-      color: "var(--primary)",
+      color: "oklch(0.65 0.18 220)", // Use accent blue color directly
       transition: { duration: 0.2 }
     }
   }
@@ -115,7 +115,7 @@ export default function Header({ onContactClick }: HeaderProps) {
               <motion.a 
                 key={index}
                 href={item.href} 
-                className="text-foreground hover:text-primary transition-colors cursor-pointer"
+                className="text-foreground transition-colors cursor-pointer hover:text-accent"
                 variants={menuItemVariants}
                 whileHover="hover"
               >
@@ -125,7 +125,7 @@ export default function Header({ onContactClick }: HeaderProps) {
             <div className="flex items-center space-x-4">
               <motion.a 
                 href="tel:+48123456789" 
-                className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+                className="text-muted-foreground transition-colors cursor-pointer hover:text-accent"
                 whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
               >
                 +48 123 456 789
@@ -183,7 +183,7 @@ export default function Header({ onContactClick }: HeaderProps) {
                   <motion.a 
                     key={index}
                     href={item.href} 
-                    className="text-foreground hover:text-primary transition-colors cursor-pointer"
+                    className="text-foreground transition-colors cursor-pointer hover:text-accent"
                     custom={index}
                     variants={mobileItemVariants}
                     initial="hidden"
