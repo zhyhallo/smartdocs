@@ -139,18 +139,64 @@
     position: relative;
     overflow: visible;
   }
-  
+
   .owl-container:hover .owl-sparkle {
     animation: sparkle 2s ease-in-out infinite;
   }
-  
+
+  .owl-container:hover .owl-pulse {
+    animation: pulse-glow 1.5s ease-in-out infinite;
+  }
+
+  .owl-container:hover .owl-bounce {
+    animation: gentle-bounce 0.6s ease-in-out;
+  }
+
+  .owl-container:hover .owl-wiggle {
+    animation: owl-wiggle 1s ease-in-out infinite;
+  }
+
+  .owl-container:hover .owl-zoom {
+    animation: zoom-in-out 2s ease-in-out infinite;
+  }
+
   @keyframes sparkle {
     0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
     25% { opacity: 1; transform: scale(1) rotate(90deg); }
     50% { opacity: 0.7; transform: scale(1.2) rotate(180deg); }
     75% { opacity: 1; transform: scale(0.8) rotate(270deg); }
   }
-  
+
+  @keyframes pulse-glow {
+    0%, 100% { 
+      box-shadow: 0 0 5px oklch(0.65 0.18 220 / 0.3);
+      transform: scale(1);
+    }
+    50% { 
+      box-shadow: 0 0 20px oklch(0.65 0.18 220 / 0.6);
+      transform: scale(1.05);
+    }
+  }
+
+  @keyframes gentle-bounce {
+    0%, 100% { transform: translateY(0); }
+    25% { transform: translateY(-3px); }
+    50% { transform: translateY(-5px); }
+    75% { transform: translateY(-2px); }
+  }
+
+  @keyframes owl-wiggle {
+    0%, 100% { transform: rotate(0deg) translateX(0); }
+    25% { transform: rotate(-2deg) translateX(-1px); }
+    50% { transform: rotate(2deg) translateX(1px); }
+    75% { transform: rotate(-1deg) translateX(-0.5px); }
+  }
+
+  @keyframes zoom-in-out {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+
   .owl-glow-effect {
     position: absolute;
     top: 50%;
@@ -158,12 +204,12 @@
     transform: translate(-50%, -50%);
     width: 120%;
     height: 120%;
-    background: radial-gradient(circle, oklch(0.65 0.18 220 / 0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, oklch(0.65 0.18 220 / 0.15) 0%, transparent 70%);
     border-radius: 50%;
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
   }
-  
+
   .owl-container:hover .owl-glow-effect {
     opacity: 1;
   }

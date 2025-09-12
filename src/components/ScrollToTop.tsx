@@ -112,7 +112,7 @@ export default function ScrollToTop() {
     <AnimatePresence>
       {isVisible && (
         <motion.button
-          className="fixed bottom-6 right-6 z-50 bg-primary/90 scroll-to-top-button rounded-full p-4 shadow-lg hover:shadow-xl cursor-pointer border border-primary/20"
+          className="fixed bottom-6 right-6 z-50 bg-accent/90 scroll-to-top-button rounded-full p-3 shadow-lg hover:shadow-xl cursor-pointer border border-accent/20"
           variants={buttonVariants}
           initial="hidden"
           animate={isFlying ? "flying" : "visible"}
@@ -128,12 +128,45 @@ export default function ScrollToTop() {
             initial="normal"
             animate={isFlying ? "flying" : "normal"}
             whileHover="hover"
+            className="owl-container"
           >
-            <OwlMascot 
-              size="sm" 
-              animated={true}
-              className="w-12 h-12 filter brightness-0 invert"
-            />
+            {/* Glow effect background */}
+            <div className="owl-glow-effect" />
+            
+            <div className="owl-bounce owl-wiggle owl-pulse">
+              <OwlMascot 
+                size="sm" 
+                animated={true}
+                className="w-12 h-12 owl-zoom"
+              />
+            </div>
+            
+            {/* Sparkle effects around the owl */}
+            {isFlying && (
+              <>
+                {[...Array(6)].map((_, i) => (
+                  <motion.div
+                    key={`owl-sparkle-${i}`}
+                    className="absolute w-1 h-1 bg-primary rounded-full owl-sparkle"
+                    style={{
+                      left: `${20 + Math.cos(i * 60 * Math.PI / 180) * 25}px`,
+                      top: `${20 + Math.sin(i * 60 * Math.PI / 180) * 25}px`,
+                    }}
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{
+                      opacity: [0, 1, 0],
+                      scale: [0, 1.5, 0],
+                      rotate: [0, 180, 360]
+                    }}
+                    transition={{
+                      duration: 1.5,
+                      delay: i * 0.1,
+                      ease: "easeOut"
+                    }}
+                  />
+                ))}
+              </>
+            )}
           </motion.div>
           
           {/* Enhanced floating particles effect on flying */}
