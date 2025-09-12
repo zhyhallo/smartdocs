@@ -121,21 +121,6 @@
     --tw-bg-color: inherit;
   }
   
-  /* Scroll to top button enhancements */
-  .scroll-to-top-button {
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    background: rgba(255, 255, 255, 0.9) !important;
-  }
-  
-  .scroll-to-top-button:hover {
-    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.25);
-    background: rgba(255, 255, 255, 0.95) !important;
-    transform: translateY(-2px) scale(1.05);
-  }
-  
   /* Enhanced owl hover effects - simplified */
   .owl-container {
     position: relative;
