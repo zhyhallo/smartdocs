@@ -109,7 +109,7 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
               <div className="absolute md:relative top-0 right-0 md:top-auto md:right-auto flex justify-center items-start pt-2 md:pt-4 lg:pt-6">
                 <div className="ml-4 md:ml-8 lg:ml-12">
                   <OwlAnalyst 
-                    size="md" 
+                    size="lg" 
                     animated={true} 
                     withTerminal={false}
                     className="filter invert" 
@@ -124,8 +124,6 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
         
         {/* Bottom Section */}
         <div className="text-center space-y-3">
-          <div className="flex flex-col md:flex-row justify-center items-center gap-4">
-            <p className="text-background/60 text-sm">
               © 2024 ModulSoft. Всі права захищені.
             </p>
             <button 
