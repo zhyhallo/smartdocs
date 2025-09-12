@@ -124,8 +124,9 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
         
         {/* Bottom Section */}
         <div className="text-center space-y-3">
+            <div>
               © 2024 ModulSoft. Всі права захищені.
-            </p>
+            </div>
             <button 
               onClick={onPrivacyClick}
               className="text-background/80 hover:text-background transition-all duration-300 text-sm cursor-pointer underline underline-offset-4 decoration-1 hover:decoration-2"
