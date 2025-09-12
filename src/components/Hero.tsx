@@ -60,10 +60,10 @@ export default function Hero({ onContactClick }: HeroProps) {
       <FloatingElements density="low" theme="tech" />
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
           {/* Left side - Content */}
           <motion.div 
-            className="max-w-2xl"
+            className="max-w-2xl lg:max-w-xl xl:max-w-2xl"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
@@ -115,14 +115,14 @@ export default function Hero({ onContactClick }: HeroProps) {
 
           {/* Right side - Owl Mascot */}
           <motion.div 
-            className="flex justify-center lg:justify-end"
+            className="flex justify-center lg:justify-end lg:pr-4 xl:pr-8"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
           >
-            <div className="relative">
+            <div className="relative lg:ml-auto lg:max-w-fit">
               <OwlAnalyst 
-                size="lg" 
+                size="md" 
                 className="drop-shadow-2xl" 
               />
               

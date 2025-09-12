@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import { POSTerminal } from "@/components"
 
 interface OwlAnalystProps {
-  size?: "sm" | "md" | "lg" | "xl"
+  size?: "xs" | "sm" | "md" | "lg" | "xl"
   className?: string
   animated?: boolean
 }
@@ -21,22 +21,34 @@ export default function OwlAnalyst({
   const [isHovered, setIsHovered] = useState(false)
   const [isBlinking, setIsBlinking] = useState(false)
   const [isClicked, setIsClicked] = useState(false)
+  const [isLookingAround, setIsLookingAround] = useState(false)
 
-  // Blink animation timer
+  // Blink animation timer - increased randomness
   useEffect(() => {
     const blinkTimer = setInterval(() => {
       setIsBlinking(true)
-      setTimeout(() => setIsBlinking(false), 300)
-    }, 4000 + Math.random() * 2000) // Add some randomness
+      setTimeout(() => setIsBlinking(false), 200)
+    }, 5000 + Math.random() * 3000) // 5-8 seconds between blinks
 
     return () => clearInterval(blinkTimer)
   }, [])
+
+  // Look around animation timer
+  useEffect(() => {
+    const lookTimer = setInterval(() => {
+      setIsLookingAround(true)
+      setTimeout(() => setIsLookingAround(false), 2000)
+    }, 7000 + Math.random() * 5000) // 7-12 seconds between look-arounds
+
+    return () => clearInterval(lookTimer)
+  }, [])
   
   const sizeClasses = {
-    sm: "w-16 h-16",
-    md: "w-26 h-26", 
-    lg: "w-32 h-32",
-    xl: "w-40 h-40"
+    xs: "w-4 h-4 sm:w-6 sm:h-6",        // Mobile: smaller, Desktop: larger
+    sm: "w-6 h-6 sm:w-8 sm:h-8",        // 50% smaller on mobile
+    md: "w-8 h-8 sm:w-10 sm:h-10",      // 50% smaller on mobile
+    lg: "w-10 h-10 sm:w-12 sm:h-12",    // 50% smaller on mobile 
+    xl: "w-12 h-12 sm:w-16 sm:h-16"     // 50% smaller on mobile
   }
 
   const owlVariants = {
@@ -144,7 +156,7 @@ export default function OwlAnalyst({
       {/* Owl Head with turn animation */}
       <motion.g
         variants={headTurnVariants}
-        animate={isHovered ? "curious" : "normal"}
+        animate={isLookingAround ? "curious" : isHovered ? "curious" : "normal"}
         style={{ transformOrigin: "60px 50px" }}
       >
         <circle
@@ -279,10 +291,10 @@ export default function OwlAnalyst({
 
   if (!animated) {
     return (
-      <div className={`${sizeClasses[size]} ${className} flex items-center space-x-2`}>
-        <div className="flex-shrink-0 mr-1">
+      <div className={`${sizeClasses[size]} ${className} flex items-center space-x-3`}>
+        <div className="flex-shrink-0 mr-2">
           <POSTerminal 
-            size={size === "xl" ? "sm" : size === "lg" ? "xs" : "xs"} 
+            size={size === "xl" ? "md" : size === "lg" ? "sm" : size === "md" ? "sm" : "xs"} 
             animated={false}
           />
         </div>
@@ -301,7 +313,7 @@ export default function OwlAnalyst({
         isClicked ? ["animate", "excited"] :
         ["animate", "float"]
       }
-      className={`${sizeClasses[size]} ${className} cursor-pointer select-none owl-container relative flex items-center space-x-2`}
+      className={`${sizeClasses[size]} ${className} cursor-pointer select-none owl-container relative flex items-center space-x-3`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => {
@@ -315,9 +327,9 @@ export default function OwlAnalyst({
       aria-label="Interactive owl analyst mascot"
     >
       {/* POS Terminal positioned to the left */}
-      <div className="flex-shrink-0 mr-1">
+      <div className="flex-shrink-0 mr-3">
         <POSTerminal 
-          size={size === "xl" ? "sm" : size === "lg" ? "xs" : "xs"} 
+          size={size === "xl" ? "md" : size === "lg" ? "sm" : size === "md" ? "sm" : "xs"} 
           animated={animated && (isHovered || isClicked)}
         />
       </div>

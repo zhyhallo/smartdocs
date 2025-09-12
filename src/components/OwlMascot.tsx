@@ -3,7 +3,7 @@ import { useState } from "react"
 import { POSTerminal } from "@/components"
 
 interface OwlMascotProps {
-  size?: "sm" | "md" | "lg" | "xl"
+  size?: "xs" | "sm" | "md" | "lg" | "xl"
   className?: string
   animated?: boolean
 }
@@ -13,10 +13,11 @@ export default function OwlMascot({ size = "md", className = "", animated = true
   const [showSparkles, setShowSparkles] = useState(false)
   
   const sizeClasses = {
-    sm: "w-10 h-10",
-    md: "w-16 h-16", 
-    lg: "w-20 h-20",
-    xl: "w-26 h-26"
+    xs: "w-3 h-3 sm:w-4 sm:h-4",        // Mobile: smaller, Desktop: larger
+    sm: "w-4 h-4 sm:w-6 sm:h-6",        // 50% smaller on mobile
+    md: "w-6 h-6 sm:w-10 sm:h-10",      // 50% smaller on mobile
+    lg: "w-8 h-8 sm:w-12 sm:h-12",      // 50% smaller on mobile 
+    xl: "w-10 h-10 sm:w-16 sm:h-16"     // 50% smaller on mobile
   }
 
   const owlVariants = {
@@ -451,9 +452,9 @@ export default function OwlMascot({ size = "md", className = "", animated = true
       onMouseLeave={handleMouseLeave}
     >
       {/* POS Terminal positioned to the left */}
-      <div className="flex-shrink-0 mr-2">
+      <div className="flex-shrink-0 mr-3">
         <POSTerminal 
-          size={size === "xl" ? "xs" : size === "lg" ? "xs" : size === "md" ? "xs" : "xs"} 
+          size={size === "xl" ? "md" : size === "lg" ? "sm" : size === "md" ? "sm" : "xs"} 
           animated={animated && isHovered}
         />
       </div>

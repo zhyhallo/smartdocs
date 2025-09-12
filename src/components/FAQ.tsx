@@ -1,7 +1,7 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { motion } from "framer-motion"
 import { useInView } from "@/hooks/useInView"
-import { OwlAnalyst } from "@/components"
+import { OwlIcon } from "@/components"
 
 export default function FAQ() {
   const [ref, isInView] = useInView({ threshold: 0.1 })
@@ -66,7 +66,7 @@ export default function FAQ() {
 
   return (
     <section id="faq" className="py-20" ref={ref}>
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 max-w-7xl">
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Left side - FAQ content */}
           <div>
@@ -108,15 +108,15 @@ export default function FAQ() {
             </motion.div>
           </div>
 
-          {/* Right side - Owl with question mark */}
+          {/* Right side - Small Owl Icon with question mark */}
           <motion.div 
-            className="flex justify-center lg:justify-end"
+            className="flex justify-center lg:justify-end lg:pr-4 xl:pr-8"
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <div className="relative">
-              <OwlAnalyst size="lg" interactionContext="faq" />
+            <div className="relative lg:ml-auto lg:max-w-fit">
+              <OwlIcon size="md" animated={isInView} />
               
               {/* Question mark bubble */}
               <motion.div

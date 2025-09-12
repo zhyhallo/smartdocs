@@ -1,4 +1,5 @@
 import { motion } from "framer-motion"
+import { useState, useEffect } from "react"
 
 interface POSTerminalProps {
   size?: "xs" | "sm" | "md"
@@ -11,10 +12,27 @@ export default function POSTerminal({
   className = "", 
   animated = true 
 }: POSTerminalProps) {
+  const [displayNumbers, setDisplayNumbers] = useState(['1234', '567', '890', '123'])
+
+  // Generate running numbers effect
+  useEffect(() => {
+    if (!animated) return
+    
+    const interval = setInterval(() => {
+      setDisplayNumbers([
+        Math.floor(Math.random() * 9999).toString().padStart(4, '0'),
+        Math.floor(Math.random() * 999).toString().padStart(3, '0'),
+        Math.floor(Math.random() * 999).toString().padStart(3, '0'),
+        Math.floor(Math.random() * 999).toString().padStart(3, '0')
+      ])
+    }, 2000)
+
+    return () => clearInterval(interval)
+  }, [animated])
   const sizeClasses = {
-    xs: "w-4 h-5",
-    sm: "w-6 h-8", 
-    md: "w-8 h-10"
+    xs: "w-4 h-5 sm:w-8 sm:h-10",       // Mobile: smaller, Desktop: 2x bigger
+    sm: "w-6 h-8 sm:w-12 sm:h-16",      // Mobile: smaller, Desktop: 2x bigger
+    md: "w-8 h-10 sm:w-16 sm:h-20"      // Mobile: smaller, Desktop: 2x bigger
   }
 
   const terminalVariants = {
@@ -114,15 +132,23 @@ export default function POSTerminal({
         animate={animated ? "active" : "normal"}
       />
       
-      {/* Screen Lines (display data) */}
+      {/* Screen Lines (display data) - animated numbers */}
       <motion.g
         variants={screenVariants}
         animate={animated ? "active" : "normal"}
       >
-        <rect x="8" y="6" width="16" height="1" fill="oklch(0.15 0.08 240)" opacity="0.7" />
-        <rect x="8" y="9" width="12" height="1" fill="oklch(0.15 0.08 240)" opacity="0.7" />
-        <rect x="8" y="12" width="14" height="1" fill="oklch(0.15 0.08 240)" opacity="0.7" />
-        <rect x="8" y="15" width="10" height="1" fill="oklch(0.15 0.08 240)" opacity="0.7" />
+        <text x="8" y="8" fontSize="1.5" fill="oklch(0.15 0.08 240)" opacity="0.8" fontFamily="monospace">
+          {displayNumbers[0]}
+        </text>
+        <text x="8" y="11" fontSize="1.2" fill="oklch(0.15 0.08 240)" opacity="0.7" fontFamily="monospace">
+          {displayNumbers[1]}
+        </text>
+        <text x="8" y="14" fontSize="1.2" fill="oklch(0.15 0.08 240)" opacity="0.7" fontFamily="monospace">
+          {displayNumbers[2]}
+        </text>
+        <text x="8" y="17" fontSize="1" fill="oklch(0.15 0.08 240)" opacity="0.6" fontFamily="monospace">
+          {displayNumbers[3]}
+        </text>
       </motion.g>
       
       {/* Power LED */}

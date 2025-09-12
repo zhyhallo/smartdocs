@@ -118,9 +118,8 @@ export default function Features() {
           }}
         >
           <OwlAnalyst 
-            size="md" 
+            size="sm" 
             animated={false} 
-            terminalPosition="left" 
             interactionContext="features"
           />
         </motion.div>
@@ -140,9 +139,8 @@ export default function Features() {
           }}
         >
           <OwlAnalyst 
-            size="sm" 
+            size="xs" 
             animated={false} 
-            terminalPosition="right" 
             interactionContext="features"
           />
         </motion.div>
