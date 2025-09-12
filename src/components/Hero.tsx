@@ -121,7 +121,11 @@ export default function Hero({ onContactClick }: HeroProps) {
             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
           >
             <div className="relative">
-              <OwlAnalyst size="xl" className="drop-shadow-2xl" />
+              <OwlAnalyst 
+                size="xl" 
+                className="drop-shadow-2xl" 
+                interactionContext="hero"
+              />
               
               {/* Floating badge near owl */}
               <motion.div

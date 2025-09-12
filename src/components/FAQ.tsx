@@ -116,7 +116,7 @@ export default function FAQ() {
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             <div className="relative">
-              <OwlAnalyst size="lg" />
+              <OwlAnalyst size="lg" interactionContext="faq" />
               
               {/* Question mark bubble */}
               <motion.div

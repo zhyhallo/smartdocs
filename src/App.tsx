@@ -4,17 +4,21 @@ import {
   Hero, 
   ProductDescription, 
   Features, 
+  InteractiveTerminalDemo,
+  InteractiveSystemOverview,
   Pricing, 
   SocialProof, 
   FAQ, 
   CTA, 
   Footer, 
   ContactModal,
-  ScrollToTop 
+  ScrollToTop,
+  InteractiveSection
 } from "@/components"
 import { Toaster } from "sonner"
 import { motion } from "framer-motion"
 import { useSmoothScroll } from "@/hooks/useSmoothScroll"
+import { InteractionProvider } from "@/hooks/useInteractionContext"
 
 function App() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false)
@@ -47,41 +51,73 @@ function App() {
   }
 
   return (
-    <motion.div 
-      className="min-h-screen bg-background"
-      variants={pageVariants}
-      initial="initial"
-      animate="animate"
-      exit="exit"
-    >
-      <Header onContactClick={openContactModal} />
-      <Hero onContactClick={openContactModal} />
-      <div id="product">
-        <ProductDescription />
-      </div>
-      <div id="features">
-        <Features />
-      </div>
-      <div id="pricing">
-        <Pricing onContactClick={openContactModal} />
-      </div>
-      <SocialProof />
-      <div id="faq">
-        <FAQ />
-      </div>
-      <CTA onContactClick={openContactModal} />
-      <Footer />
-      
-      <ContactModal 
-        open={isContactModalOpen}
-        onOpenChange={setIsContactModalOpen}
-        defaultService={contactService}
-      />
-      
-      <ScrollToTop />
-      
-      <Toaster richColors position="top-right" />
-    </motion.div>
+    <InteractionProvider>
+      <motion.div 
+        className="min-h-screen bg-background"
+        variants={pageVariants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+      >
+        <Header onContactClick={openContactModal} />
+        
+        <InteractiveSection sectionId="hero" triggerOnView triggerOnHover>
+          <Hero onContactClick={openContactModal} />
+        </InteractiveSection>
+        
+        <div id="product">
+          <InteractiveSection sectionId="product" triggerOnView>
+            <ProductDescription />
+          </InteractiveSection>
+        </div>
+        
+        <div id="features">
+          <InteractiveSection sectionId="features" triggerOnView>
+            <Features />
+          </InteractiveSection>
+        </div>
+        
+        <InteractiveSection sectionId="demo" triggerOnView>
+          <InteractiveTerminalDemo />
+        </InteractiveSection>
+        
+        <InteractiveSection sectionId="system-overview" triggerOnView>
+          <InteractiveSystemOverview />
+        </InteractiveSection>
+        
+        <div id="pricing">
+          <InteractiveSection sectionId="pricing" triggerOnView>
+            <Pricing onContactClick={openContactModal} />
+          </InteractiveSection>
+        </div>
+        
+        <InteractiveSection sectionId="social-proof" triggerOnView>
+          <SocialProof />
+        </InteractiveSection>
+        
+        <div id="faq">
+          <InteractiveSection sectionId="faq" triggerOnView>
+            <FAQ />
+          </InteractiveSection>
+        </div>
+        
+        <InteractiveSection sectionId="cta" triggerOnView>
+          <CTA onContactClick={openContactModal} />
+        </InteractiveSection>
+        
+        <Footer />
+        
+        <ContactModal 
+          open={isContactModalOpen}
+          onOpenChange={setIsContactModalOpen}
+          defaultService={contactService}
+        />
+        
+        <ScrollToTop />
+        
+        <Toaster richColors position="top-right" />
+      </motion.div>
+    </InteractionProvider>
   )
 }
 

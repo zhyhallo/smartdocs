@@ -117,7 +117,12 @@ export default function Features() {
             ease: "easeInOut"
           }}
         >
-          <OwlAnalyst size="md" animated={false} terminalPosition="left" />
+          <OwlAnalyst 
+            size="md" 
+            animated={false} 
+            terminalPosition="left" 
+            interactionContext="features"
+          />
         </motion.div>
         
         <motion.div
@@ -134,7 +139,12 @@ export default function Features() {
             delay: 2
           }}
         >
-          <OwlAnalyst size="sm" animated={false} terminalPosition="right" />
+          <OwlAnalyst 
+            size="sm" 
+            animated={false} 
+            terminalPosition="right" 
+            interactionContext="features"
+          />
         </motion.div>
         
         {/* Additional floating tech elements */}

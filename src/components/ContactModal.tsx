@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
@@ -7,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Phone, Envelope, Building, User, CheckCircle } from "@phosphor-icons/react"
 import { toast } from "sonner"
 import { motion, AnimatePresence } from "framer-motion"
-import { OwlLoader } from "@/components"
+import { OwlLoader, InteractiveButton, InteractiveInput } from "@/components"
 
 interface ContactModalProps {
   open: boolean
@@ -181,13 +180,15 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
                     <Phone size={16} className="mr-2 text-primary" />
                     Телефон *
                   </Label>
-                  <Input
+                  <InteractiveInput
                     id="phone"
                     type="tel"
                     placeholder="+380 XX XXX XX XX"
                     value={formData.phone}
                     onChange={(e) => handleInputChange("phone", e.target.value)}
                     className="border-border/50 focus:border-primary transition-colors duration-300"
+                    sectionContext="contact-form"
+                    interactionData={{ field: "phone" }}
                     required
                   />
                 </motion.div>
@@ -197,13 +198,15 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
                     <Envelope size={16} className="mr-2 text-primary" />
                     Email *
                   </Label>
-                  <Input
+                  <InteractiveInput
                     id="email"
                     type="email"
                     placeholder="email@company.com"
                     value={formData.email}
                     onChange={(e) => handleInputChange("email", e.target.value)}
                     className="border-border/50 focus:border-primary transition-colors duration-300"
+                    sectionContext="contact-form"
+                    interactionData={{ field: "email" }}
                     required
                   />
                 </motion.div>
@@ -214,13 +217,15 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
                   <User size={16} className="mr-2 text-primary" />
                   ПІБ
                 </Label>
-                <Input
+                <InteractiveInput
                   id="fullName"
                   type="text"
                   placeholder="Ваше повне ім'я"
                   value={formData.fullName}
                   onChange={(e) => handleInputChange("fullName", e.target.value)}
                   className="border-border/50 focus:border-primary transition-colors duration-300"
+                  sectionContext="contact-form"
+                  interactionData={{ field: "fullName" }}
                 />
               </motion.div>
 
@@ -229,13 +234,15 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
                   <Building size={16} className="mr-2 text-primary" />
                   Назва компанії
                 </Label>
-                <Input
+                <InteractiveInput
                   id="company"
                   type="text"
                   placeholder="ТОВ 'Ваша компанія'"
                   value={formData.company}
                   onChange={(e) => handleInputChange("company", e.target.value)}
                   className="border-border/50 focus:border-primary transition-colors duration-300"
+                  sectionContext="contact-form"
+                  interactionData={{ field: "company" }}
                 />
               </motion.div>
 
@@ -249,10 +256,12 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
                   whileHover="hover"
                   whileTap="tap"
                 >
-                  <Button
+                  <InteractiveButton
                     type="submit"
                     className="w-full font-medium tracking-wide cursor-pointer"
                     disabled={isSubmitting}
+                    sectionContext="contact-form"
+                    interactionData={{ action: "submit", service: defaultService }}
                   >
                     <AnimatePresence mode="wait">
                       {isSubmitting ? (
@@ -277,7 +286,7 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
                         </motion.span>
                       )}
                     </AnimatePresence>
-                  </Button>
+                  </InteractiveButton>
                 </motion.div>
                 <motion.div
                   className="flex-1"
@@ -285,15 +294,17 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
                   whileHover="hover"
                   whileTap="tap"
                 >
-                  <Button
+                  <InteractiveButton
                     type="button"
                     variant="outline"
                     onClick={() => onOpenChange(false)}
                     className="w-full font-medium cursor-pointer"
                     disabled={isSubmitting}
+                    sectionContext="contact-form"
+                    interactionData={{ action: "cancel" }}
                   >
                     Скасувати
-                  </Button>
+                  </InteractiveButton>
                 </motion.div>
               </motion.div>
             </motion.form>

@@ -77,7 +77,7 @@ export default function CTA({ onContactClick }: CTAProps) {
             ease: "easeInOut"
           }}
         >
-          <OwlAnalyst size="sm" animated={false} terminalPosition="left" />
+          <OwlAnalyst size="sm" animated={false} terminalPosition="left" interactionContext="cta" />
         </motion.div>
         
         <motion.div
@@ -94,7 +94,7 @@ export default function CTA({ onContactClick }: CTAProps) {
             delay: 2
           }}
         >
-          <OwlAnalyst size="sm" animated={false} terminalPosition="right" />
+          <OwlAnalyst size="sm" animated={false} terminalPosition="right" interactionContext="cta" />
         </motion.div>
         
         {/* Additional floating call-to-action elements */}

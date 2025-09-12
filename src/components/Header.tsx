@@ -106,7 +106,7 @@ export default function Header({ onContactClick }: HeaderProps) {
             variants={logoVariants}
             whileHover="hover"
           >
-            <OwlAnalyst size="sm" animated={false} />
+            <OwlAnalyst size="sm" animated={false} interactionContext="header" />
             <div className="text-xl font-bold text-primary">
               ModulSoft
             </div>

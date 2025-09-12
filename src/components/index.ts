@@ -18,3 +18,9 @@ export { default as OwlProgress } from './OwlProgress'
 export { default as LoadingState } from './LoadingState'
 export { default as ParallaxBackground } from './ParallaxBackground'
 export { default as FloatingElements } from './FloatingElements'
+export { default as InteractiveTerminalDemo } from './InteractiveTerminalDemo'
+export { default as InteractiveSystemOverview } from './InteractiveSystemOverview'
+
+// Interactive components
+export { InteractiveSection, withInteractiveSection } from './InteractiveSection'
+export { InteractiveButton, InteractiveInput } from './InteractiveComponents'
