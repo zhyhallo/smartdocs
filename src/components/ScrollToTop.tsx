@@ -168,7 +168,7 @@ export default function ScrollToTop() {
         {/* Reduced Owl SVG - smaller for better proportions */}
         <svg
           viewBox="0 0 60 60"
-          className="w-6 h-6 sm:w-8 sm:h-8"
+          className="w-4 h-4 sm:w-5 sm:h-5"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >

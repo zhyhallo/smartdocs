@@ -23,6 +23,7 @@ export { default as LoadingState } from './LoadingState'
 export { default as ParallaxBackground } from './ParallaxBackground'
 export { default as FloatingElements } from './FloatingElements'
 export { default as POSTerminal } from './POSTerminal'
+export { default as SizeOptimizationSummary } from './SizeOptimizationSummary'
 
 // Interactive components
 export { InteractiveSection, withInteractiveSection } from './InteractiveSection'

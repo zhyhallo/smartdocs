@@ -18,9 +18,9 @@ export default function OwlIcon({
   const [isHovered, setIsHovered] = useState(false)
 
   const sizeClasses = {
-    xs: "w-2 h-2 sm:w-3 sm:h-3",       // Optimized: 40% smaller
-    sm: "w-3 h-3 sm:w-4 sm:h-4",       // Optimized: 40% smaller
-    md: "w-4 h-4 sm:w-5 sm:h-5"        // Optimized: 40% smaller
+    xs: "w-1.5 h-1.5 sm:w-2 sm:h-2",     // Further optimized: 60% smaller
+    sm: "w-2 h-2 sm:w-2.5 sm:h-2.5",     // Further optimized: 60% smaller
+    md: "w-3 h-3 sm:w-3 sm:h-3"          // Further optimized: 60% smaller
   }
 
   const owlVariants = {

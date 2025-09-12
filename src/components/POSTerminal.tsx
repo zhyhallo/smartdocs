@@ -30,9 +30,9 @@ export default function POSTerminal({
     return () => clearInterval(interval)
   }, [animated])
   const sizeClasses = {
-    xs: "w-3 h-4 sm:w-6 sm:h-8",        // Larger terminal: 50% bigger
-    sm: "w-5 h-7 sm:w-8 sm:h-11",       // Larger terminal: 50% bigger  
-    md: "w-6 h-8 sm:w-10 sm:h-14"       // Larger terminal: 50% bigger
+    xs: "w-2 h-2.5 sm:w-3 sm:h-4",       // Properly sized terminal: smaller than owl
+    sm: "w-3 h-4 sm:w-4 sm:h-5",         // Properly sized terminal: smaller than owl  
+    md: "w-4 h-5 sm:w-5 sm:h-6"          // Properly sized terminal: smaller than owl
   }
 
   const terminalVariants = {

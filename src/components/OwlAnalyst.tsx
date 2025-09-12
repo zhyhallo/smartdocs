@@ -14,7 +14,7 @@ type InteractionEvent = {
 }
 
 export default function OwlAnalyst({ 
-  size = "lg", 
+  size = "md", 
   className = "", 
   animated = true
 }: OwlAnalystProps) {
@@ -44,11 +44,11 @@ export default function OwlAnalyst({
   }, [])
   
   const sizeClasses = {
-    xs: "w-3 h-3 sm:w-4 sm:h-4",        // Optimized: 40% smaller
-    sm: "w-4 h-4 sm:w-5 sm:h-5",        // Optimized: 40% smaller
-    md: "w-5 h-5 sm:w-6 sm:h-6",        // Optimized: 40% smaller
-    lg: "w-6 h-6 sm:w-7 sm:h-7",        // Optimized: 40% smaller 
-    xl: "w-7 h-7 sm:w-9 sm:h-9"         // Optimized: 40% smaller
+    xs: "w-2 h-2 sm:w-2 sm:h-2",        // Further optimized: 60% smaller
+    sm: "w-3 h-3 sm:w-3 sm:h-3",        // Further optimized: 60% smaller
+    md: "w-4 h-4 sm:w-4 sm:h-4",        // Further optimized: 60% smaller
+    lg: "w-5 h-5 sm:w-5 sm:h-5",        // Further optimized: 60% smaller
+    xl: "w-6 h-6 sm:w-6 sm:h-6"         // Further optimized: 60% smaller
   }
 
   const owlVariants = {
@@ -291,10 +291,10 @@ export default function OwlAnalyst({
 
   if (!animated) {
     return (
-      <div className={`${sizeClasses[size]} ${className} flex items-center space-x-2`}>
+      <div className={`${sizeClasses[size]} ${className} flex items-center space-x-1 sm:space-x-2 max-w-fit`}>
         <div className="flex-shrink-0 mr-1">
           <POSTerminal 
-            size={size === "xl" ? "md" : size === "lg" ? "md" : size === "md" ? "sm" : "sm"} 
+            size={size === "xl" ? "sm" : size === "lg" ? "sm" : "xs"} 
             animated={false}
           />
         </div>
@@ -313,7 +313,7 @@ export default function OwlAnalyst({
         isClicked ? ["animate", "excited"] :
         ["animate", "float"]
       }
-      className={`${sizeClasses[size]} ${className} cursor-pointer select-none owl-container relative flex items-center space-x-2`}
+      className={`${sizeClasses[size]} ${className} cursor-pointer select-none owl-container relative flex items-center space-x-1 sm:space-x-2 max-w-fit`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => {
@@ -327,9 +327,9 @@ export default function OwlAnalyst({
       aria-label="Interactive owl analyst mascot"
     >
       {/* POS Terminal positioned to the left */}
-      <div className="flex-shrink-0 mr-2">
+      <div className="flex-shrink-0 mr-1 sm:mr-2">
         <POSTerminal 
-          size={size === "xl" ? "md" : size === "lg" ? "md" : size === "md" ? "sm" : "sm"} 
+          size={size === "xl" ? "sm" : size === "lg" ? "sm" : "xs"} 
           animated={animated && (isHovered || isClicked)}
         />
       </div>
