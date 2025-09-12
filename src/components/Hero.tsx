@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { motion } from "framer-motion"
-import { OwlMascot, ParallaxBackground, FloatingElements } from "@/components"
+import { OwlAnalyst, ParallaxBackground, FloatingElements } from "@/components"
 
 interface HeroProps {
   onContactClick: (service: string) => void
@@ -121,7 +121,7 @@ export default function Hero({ onContactClick }: HeroProps) {
             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
           >
             <div className="relative">
-              <OwlMascot size="xl" className="drop-shadow-2xl" />
+              <OwlAnalyst size="xl" className="drop-shadow-2xl" />
               
               {/* Floating badge near owl */}
               <motion.div

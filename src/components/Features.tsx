@@ -9,7 +9,7 @@ import {
 } from "@phosphor-icons/react"
 import { motion } from "framer-motion"
 import { useInView } from "@/hooks/useInView"
-import { OwlMascot, ParallaxBackground, FloatingElements } from "@/components"
+import { OwlAnalyst, ParallaxBackground, FloatingElements } from "@/components"
 
 export default function Features() {
   const [ref, isInView] = useInView({ threshold: 0.1 })
@@ -117,7 +117,7 @@ export default function Features() {
             ease: "easeInOut"
           }}
         >
-          <OwlMascot size="md" animated={false} />
+          <OwlAnalyst size="md" animated={false} terminalPosition="left" />
         </motion.div>
         
         <motion.div
@@ -134,7 +134,7 @@ export default function Features() {
             delay: 2
           }}
         >
-          <OwlMascot size="sm" animated={false} />
+          <OwlAnalyst size="sm" animated={false} terminalPosition="right" />
         </motion.div>
         
         {/* Additional floating tech elements */}

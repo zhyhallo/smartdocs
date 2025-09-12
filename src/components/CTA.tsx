@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Phone } from "@phosphor-icons/react"
 import { motion } from "framer-motion"
 import { useInView } from "@/hooks/useInView"
-import { OwlMascot, ParallaxBackground, FloatingElements } from "@/components"
+import { OwlAnalyst, ParallaxBackground, FloatingElements } from "@/components"
 
 interface CTAProps {
   onContactClick: (service: string) => void
@@ -77,7 +77,7 @@ export default function CTA({ onContactClick }: CTAProps) {
             ease: "easeInOut"
           }}
         >
-          <OwlMascot size="sm" animated={false} />
+          <OwlAnalyst size="sm" animated={false} terminalPosition="left" />
         </motion.div>
         
         <motion.div
@@ -94,7 +94,7 @@ export default function CTA({ onContactClick }: CTAProps) {
             delay: 2
           }}
         >
-          <OwlMascot size="sm" animated={false} />
+          <OwlAnalyst size="sm" animated={false} terminalPosition="right" />
         </motion.div>
         
         {/* Additional floating call-to-action elements */}
