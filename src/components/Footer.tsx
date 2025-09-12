@@ -69,9 +69,9 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
               </div>
               
               {/* Owl positioned between navigation and contacts with proper spacing */}
-              <div className="flex justify-center items-start pt-8 md:pt-0 px-4 md:px-8">
+              <div className="flex justify-center items-center pt-4 md:pt-0 px-6 md:px-10 lg:px-12">
                 <OwlAnalyst 
-                  size="lg" 
+                  size="md" 
                   animated={true} 
                   withTerminal={false}
                   className="filter invert" 
