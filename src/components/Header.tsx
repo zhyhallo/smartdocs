@@ -2,7 +2,6 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { motion, AnimatePresence } from "framer-motion"
-import { OwlAnalyst } from "@/components"
 
 interface HeaderProps {
   onContactClick: (service: string) => void
@@ -108,7 +107,6 @@ export default function Header({ onContactClick, onContactsClick }: HeaderProps)
             variants={logoVariants}
             whileHover="hover"
           >
-            <OwlAnalyst size="xs" animated={false} interactionContext="header" />
             <div className="text-xl font-bold text-primary">
               ModulSoft
             </div>
