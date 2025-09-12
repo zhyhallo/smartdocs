@@ -108,7 +108,7 @@ export default function FAQ() {
             </motion.div>
           </div>
 
-          {/* Right side - Question mark with Owl to the left */}
+          {/* Right side - Owl with Question mark */}
           <motion.div 
             className="flex justify-center lg:justify-end lg:pr-8 xl:pr-12 mt-8 lg:mt-0"
             initial={{ opacity: 0, x: 50 }}
@@ -116,6 +116,30 @@ export default function FAQ() {
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             <div className="relative lg:ml-auto lg:max-w-fit flex items-center gap-6">
+              {/* Owl to the left of question mark */}
+              <motion.div
+                className="flex-shrink-0"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+              >
+                <OwlIcon size="md" animated={true} showTerminal={false} />
+              </motion.div>
+
+              {/* Large Question Mark */}
+              <motion.div
+                className="text-8xl lg:text-9xl font-bold text-primary/20 select-none"
+                animate={{
+                  rotate: [0, 2, -2, 0],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
+                ?
+              </motion.div>
                             
               {/* Floating dots around the composition */}
               <motion.div
