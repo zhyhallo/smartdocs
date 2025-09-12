@@ -29,7 +29,7 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
 
           {/* Navigation and Contact Info layout with centered owl */}
           <div className="md:col-span-12 lg:col-span-8">
-            <div className="flex flex-col md:flex-row items-start justify-between gap-8 md:gap-12">
+            <div className="flex flex-col md:flex-row items-start justify-between gap-6 md:gap-8">
               
               {/* Navigation Section */}
               <div className="text-center md:text-left flex-1">
@@ -68,18 +68,8 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
                 </nav>
               </div>
               
-              {/* Owl positioned between navigation and contacts with proper spacing */}
-              <div className="flex justify-center items-center pt-4 md:pt-0 px-6 md:px-10 lg:px-12">
-                <OwlAnalyst 
-                  size="md" 
-                  animated={true} 
-                  withTerminal={false}
-                  className="filter invert" 
-                />
-              </div>
-
-              {/* Contact Info Section */}
-              <div className="text-center md:text-left flex-1">
+              {/* Contact Info Section - moved closer to navigation */}
+              <div className="text-center md:text-left flex-1 md:ml-4 lg:ml-6">
                 <h3 className="text-lg font-bold text-background mb-4">Наші контакти</h3>
                 <div className="space-y-4 text-sm leading-relaxed">
                   <div className="space-y-2">
@@ -113,6 +103,16 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
                     </p>
                   </div>
                 </div>
+              </div>
+
+              {/* Owl positioned on the right with balanced spacing */}
+              <div className="flex justify-center items-center pt-4 md:pt-0 px-4 md:px-6 lg:px-8">
+                <OwlAnalyst 
+                  size="md" 
+                  animated={true} 
+                  withTerminal={false}
+                  className="filter invert" 
+                />
               </div>
             </div>
           </div>
