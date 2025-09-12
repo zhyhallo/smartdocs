@@ -73,7 +73,7 @@
   
   /* Menu item hover effects */
   .menu-item-hover:hover {
-    color: #00aaff !important;
+    color: var(--accent) !important;
     transform: scale(1.05);
     transition: all 0.3s ease-in-out;
   }
@@ -85,13 +85,13 @@
   }
   
   .burger-line:hover {
-    background-color: #00aaff !important;
+    background-color: var(--accent) !important;
     transform: scaleX(1.05);
   }
   
   /* Icon hover effects */
   .icon-hover:hover {
-    color: #00aaff !important;
+    color: var(--accent) !important;
     transform: scale(1.05);
     transition: all 0.2s ease-in-out;
   }
