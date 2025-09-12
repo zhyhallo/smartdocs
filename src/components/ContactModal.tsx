@@ -7,6 +7,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Phone, Envelope, Building, User, CheckCircle } from "@phosphor-icons/react"
 import { toast } from "sonner"
 import { motion, AnimatePresence } from "framer-motion"
+import { OwlLoader } from "@/components"
 
 interface ContactModalProps {
   open: boolean
@@ -255,14 +256,16 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
                   >
                     <AnimatePresence mode="wait">
                       {isSubmitting ? (
-                        <motion.span
+                        <motion.div
                           key="submitting"
+                          className="flex items-center gap-2"
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           exit={{ opacity: 0 }}
                         >
-                          Відправляємо...
-                        </motion.span>
+                          <OwlLoader size="sm" />
+                          <span>Відправляємо...</span>
+                        </motion.div>
                       ) : (
                         <motion.span
                           key="submit"

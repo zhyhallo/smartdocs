@@ -87,21 +87,23 @@ export default function ScrollToTop() {
       }
     },
     hover: {
-      rotate: [0, -5, 5, 0],
-      scale: 1.1,
+      rotate: [0, -8, 8, -5, 5, 0],
+      scale: [1, 1.15, 1.1, 1.12, 1.08, 1.1],
+      y: [0, -3, -1, -4, -2, -1],
       transition: {
-        duration: 0.6,
+        duration: 1.2,
         ease: "easeInOut",
-        times: [0, 0.33, 0.66, 1]
+        times: [0, 0.2, 0.4, 0.6, 0.8, 1]
       }
     },
     flying: {
-      rotate: [0, -10, 10, -5, 5, 0],
-      y: [-2, -8, -4, -10, -6, -2],
+      rotate: [0, -15, 15, -10, 10, -5, 5, 0],
+      y: [-2, -12, -8, -15, -10, -8, -5, -2],
+      scale: [1, 1.2, 1.1, 1.25, 1.15, 1.1, 1.05, 1],
       transition: {
-        duration: 0.8,
+        duration: 1.2,
         ease: "easeOut",
-        times: [0, 0.2, 0.4, 0.6, 0.8, 1]
+        times: [0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1]
       }
     }
   }
@@ -129,19 +131,21 @@ export default function ScrollToTop() {
           >
             <OwlMascot 
               size="sm" 
-              animated={false}
+              animated={true}
               className="w-12 h-12 filter brightness-0 invert"
             />
           </motion.div>
           
-          {/* Floating particles effect on flying */}
+          {/* Enhanced floating particles effect on flying */}
           <AnimatePresence>
             {isFlying && (
               <>
-                {[...Array(6)].map((_, i) => (
+                {[...Array(12)].map((_, i) => (
                   <motion.div
                     key={i}
-                    className="absolute w-1 h-1 bg-accent rounded-full"
+                    className={`absolute w-1 h-1 rounded-full ${
+                      i % 3 === 0 ? 'bg-accent' : i % 3 === 1 ? 'bg-primary' : 'bg-secondary'
+                    }`}
                     initial={{
                       x: 0,
                       y: 0,
@@ -149,19 +153,45 @@ export default function ScrollToTop() {
                       scale: 1
                     }}
                     animate={{
-                      x: (Math.random() - 0.5) * 40,
-                      y: Math.random() * -30 - 10,
+                      x: (Math.random() - 0.5) * 60,
+                      y: Math.random() * -40 - 15,
+                      opacity: 0,
+                      scale: [1, 1.5, 0],
+                      rotate: Math.random() * 360
+                    }}
+                    transition={{
+                      duration: 1.2,
+                      delay: i * 0.08,
+                      ease: "easeOut"
+                    }}
+                    style={{
+                      left: `${15 + Math.random() * 30}px`,
+                      top: `${15 + Math.random() * 30}px`
+                    }}
+                  />
+                ))}
+                
+                {/* Magic trail effect */}
+                {[...Array(8)].map((_, i) => (
+                  <motion.div
+                    key={`trail-${i}`}
+                    className="absolute w-2 h-2 bg-accent/60 rounded-full"
+                    initial={{
+                      x: 24,
+                      y: 24,
+                      opacity: 0.8,
+                      scale: 1
+                    }}
+                    animate={{
+                      x: 24 + Math.sin(i * 0.8) * 20,
+                      y: 24 + Math.cos(i * 0.8) * 20,
                       opacity: 0,
                       scale: 0
                     }}
                     transition={{
                       duration: 0.8,
-                      delay: i * 0.1,
+                      delay: i * 0.05,
                       ease: "easeOut"
-                    }}
-                    style={{
-                      left: `${20 + Math.random() * 20}px`,
-                      top: `${20 + Math.random() * 20}px`
                     }}
                   />
                 ))}

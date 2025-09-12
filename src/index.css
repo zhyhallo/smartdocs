@@ -134,6 +134,40 @@
     transform: translateY(-2px) scale(1.05);
   }
   
+  /* Enhanced owl hover effects */
+  .owl-container {
+    position: relative;
+    overflow: visible;
+  }
+  
+  .owl-container:hover .owl-sparkle {
+    animation: sparkle 2s ease-in-out infinite;
+  }
+  
+  @keyframes sparkle {
+    0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+    25% { opacity: 1; transform: scale(1) rotate(90deg); }
+    50% { opacity: 0.7; transform: scale(1.2) rotate(180deg); }
+    75% { opacity: 1; transform: scale(0.8) rotate(270deg); }
+  }
+  
+  .owl-glow-effect {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle, oklch(0.65 0.18 220 / 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .owl-container:hover .owl-glow-effect {
+    opacity: 1;
+  }
+  
   /* Smooth scroll behavior for the entire page */
   html {
     scroll-behavior: smooth;
