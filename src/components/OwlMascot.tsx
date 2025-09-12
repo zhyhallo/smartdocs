@@ -13,11 +13,11 @@ export default function OwlMascot({ size = "md", className = "", animated = true
   const [showSparkles, setShowSparkles] = useState(false)
   
   const sizeClasses = {
-    xs: "w-2 h-2 sm:w-2 sm:h-2",        // Further optimized: 60% smaller
-    sm: "w-3 h-3 sm:w-3 sm:h-3",        // Further optimized: 60% smaller
-    md: "w-4 h-4 sm:w-4 sm:h-4",        // Further optimized: 60% smaller
-    lg: "w-5 h-5 sm:w-5 sm:h-5",        // Further optimized: 60% smaller
-    xl: "w-6 h-6 sm:w-6 sm:h-6"         // Further optimized: 60% smaller
+    xs: "w-1.5 h-1.5 sm:w-2 sm:h-2",    // Very small
+    sm: "w-2 h-2 sm:w-2.5 sm:h-2.5",    // Small
+    md: "w-3 h-3 sm:w-3.5 sm:h-3.5",    // Medium - reduced
+    lg: "w-4 h-4 sm:w-4.5 sm:h-4.5",    // Large - reduced
+    xl: "w-5 h-5 sm:w-5.5 sm:h-5.5"     // Extra large - reduced
   }
 
   const owlVariants = {

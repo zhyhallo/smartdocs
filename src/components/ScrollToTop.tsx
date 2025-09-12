@@ -165,10 +165,10 @@ export default function ScrollToTop() {
         variants={owlContainerVariants}
         animate={isScrolling ? "scrolling" : isHovered ? "hover" : "normal"}
       >
-        {/* Reduced Owl SVG - smaller for better proportions */}
+        {/* Enlarged Owl to the right - increased size */}
         <svg
           viewBox="0 0 60 60"
-          className="w-3 h-3 sm:w-4 sm:h-4"
+          className="w-6 h-6 sm:w-8 sm:h-8"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -366,7 +366,7 @@ export default function ScrollToTop() {
     <AnimatePresence>
       {isVisible && (
         <motion.button
-          className="fixed bottom-6 right-6 p-3 rounded-full shadow-lg backdrop-blur-sm border border-border/50 hover:shadow-xl cursor-pointer z-50"
+          className="fixed bottom-6 right-6 p-4 rounded-full shadow-lg backdrop-blur-sm border border-border/50 hover:shadow-xl cursor-pointer z-50"
           variants={buttonVariants}
           initial="hidden"
           animate="visible"
