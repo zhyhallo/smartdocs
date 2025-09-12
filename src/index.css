@@ -73,9 +73,15 @@
   
   /* Menu item hover effects */
   .menu-item-hover:hover {
-    color: var(--accent);
+    color: oklch(0.65 0.18 220) !important;
     transform: scale(1.05);
     transition: all 0.3s ease-in-out;
+  }
+  
+  /* Navigation menu links hover effects */
+  nav a:hover {
+    color: oklch(0.65 0.18 220) !important;
+    text-decoration: none !important;
   }
   
   /* Burger menu line styles */
@@ -85,13 +91,13 @@
   }
   
   .burger-line:hover {
-    background-color: var(--accent) !important;
+    background-color: oklch(0.65 0.18 220) !important;
     transform: scaleX(1.05);
   }
-  
+
   /* Icon hover effects */
   .icon-hover:hover {
-    color: var(--accent) !important;
+    color: oklch(0.65 0.18 220) !important;
     transform: scale(1.05);
     transition: all 0.2s ease-in-out;
   }

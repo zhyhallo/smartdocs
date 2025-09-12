@@ -33,7 +33,7 @@ export default function Header({ onContactClick }: HeaderProps) {
   const menuItemVariants = {
     hover: {
       scale: 1.05,
-      color: "#00aaff", // Clean blue color as requested
+      color: "oklch(0.65 0.18 220)", // Using the accent color from our theme
       transition: { duration: 0.3, ease: "easeInOut" }
     },
     tap: {
@@ -118,7 +118,7 @@ export default function Header({ onContactClick }: HeaderProps) {
               <motion.a 
                 key={index}
                 href={item.href} 
-                className="text-foreground font-medium cursor-pointer relative overflow-hidden"
+                className="text-foreground font-medium cursor-pointer relative overflow-hidden menu-item-hover"
                 variants={menuItemVariants}
                 whileHover="hover"
                 whileTap="tap"
@@ -135,7 +135,7 @@ export default function Header({ onContactClick }: HeaderProps) {
                 className="text-muted-foreground cursor-pointer"
                 whileHover={{ 
                   scale: 1.05, 
-                  color: "#00aaff",
+                  color: "oklch(0.65 0.18 220)",
                   transition: { duration: 0.3 } 
                 }}
               >
@@ -172,10 +172,10 @@ export default function Header({ onContactClick }: HeaderProps) {
                   rotate: isMobileMenuOpen ? 45 : 0,
                   y: isMobileMenuOpen ? 6 : 0,
                   width: isMobileMenuOpen ? "100%" : "100%",
-                  backgroundColor: isMobileMenuOpen ? "#00aaff" : undefined
+                  backgroundColor: isMobileMenuOpen ? "oklch(0.65 0.18 220)" : undefined
                 }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
-                whileHover={{ backgroundColor: "#00aaff" }}
+                whileHover={{ backgroundColor: "oklch(0.65 0.18 220)" }}
               />
               <motion.span
                 className="h-0.5 bg-foreground"
@@ -184,7 +184,7 @@ export default function Header({ onContactClick }: HeaderProps) {
                   scaleX: isMobileMenuOpen ? 0 : 1
                 }}
                 transition={{ duration: 0.2, ease: "easeInOut" }}
-                whileHover={{ backgroundColor: "#00aaff", scaleX: 1.1 }}
+                whileHover={{ backgroundColor: "oklch(0.65 0.18 220)", scaleX: 1.1 }}
               />
               <motion.span
                 className="h-0.5 bg-foreground origin-center"
@@ -192,10 +192,10 @@ export default function Header({ onContactClick }: HeaderProps) {
                   rotate: isMobileMenuOpen ? -45 : 0,
                   y: isMobileMenuOpen ? -6 : 0,
                   width: isMobileMenuOpen ? "100%" : "100%",
-                  backgroundColor: isMobileMenuOpen ? "#00aaff" : undefined
+                  backgroundColor: isMobileMenuOpen ? "oklch(0.65 0.18 220)" : undefined
                 }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
-                whileHover={{ backgroundColor: "#00aaff" }}
+                whileHover={{ backgroundColor: "oklch(0.65 0.18 220)" }}
               />
             </div>
           </motion.button>
@@ -216,13 +216,13 @@ export default function Header({ onContactClick }: HeaderProps) {
                   <motion.a 
                     key={index}
                     href={item.href} 
-                    className="text-foreground font-medium cursor-pointer block py-2"
+                    className="text-foreground font-medium cursor-pointer block py-2 menu-item-hover"
                     custom={index}
                     variants={mobileItemVariants}
                     initial="hidden"
                     animate="visible"
                     whileHover={{ 
-                      color: "#00aaff",
+                      color: "oklch(0.65 0.18 220)",
                       transition: { duration: 0.3, ease: "easeInOut" }
                     }}
                     whileTap={{
