@@ -9,16 +9,16 @@ interface FooterProps {
 
 export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }: FooterProps) {
   return (
-    <footer className="py-16 bg-foreground text-background">
+    <footer className="py-12 bg-foreground text-background">
       <div className="container mx-auto px-6 max-w-7xl">
         {/* Top Section */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 mb-10">
           {/* Company Info */}
           <div className="text-center md:text-left md:col-span-12 lg:col-span-4">
-            <div className="flex items-center justify-center md:justify-start space-x-3 mb-6">
+            <div className="flex items-center justify-center md:justify-start space-x-3 mb-4">
               <div className="text-3xl font-bold tracking-tight">ModulSoft</div>
             </div>
-            <p className="text-background/80 mb-6 text-lg leading-relaxed">
+            <p className="text-background/80 mb-4 text-lg leading-relaxed">
               Професійні рішення для автоматизації бізнесу
             </p>
             <p className="text-background/70 text-sm leading-relaxed max-w-md">
@@ -27,11 +27,12 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
             </p>
           </div>
 
-          {/* Navigation, Owl, and Contact Info - centered layout */}
+          {/* Navigation and Contact Info layout with centered owl */}
           <div className="md:col-span-12 lg:col-span-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-              {/* Navigation */}
-              <div className="text-center md:text-left">
+            <div className="flex flex-col md:flex-row items-start justify-between gap-8 md:gap-12">
+              
+              {/* Navigation Section */}
+              <div className="text-center md:text-left flex-1">
                 <h3 className="text-lg font-bold text-background mb-4">Навігація</h3>
                 <nav className="space-y-3">
                   <button 
@@ -67,20 +68,18 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
                 </nav>
               </div>
               
-              {/* Centered Owl */}
-              <div className="flex justify-center items-center">
-                <div className="flex justify-center">
-                  <OwlAnalyst 
-                    size="md" 
-                    animated={true} 
-                    withTerminal={false}
-                    className="filter invert" 
-                  />
-                </div>
+              {/* Owl positioned between navigation and contacts with proper spacing */}
+              <div className="flex justify-center items-start pt-8 md:pt-0 px-4 md:px-8">
+                <OwlAnalyst 
+                  size="lg" 
+                  animated={true} 
+                  withTerminal={false}
+                  className="filter invert" 
+                />
               </div>
 
-              {/* Contact Info */}
-              <div className="text-center md:text-left">
+              {/* Contact Info Section */}
+              <div className="text-center md:text-left flex-1">
                 <h3 className="text-lg font-bold text-background mb-4">Наші контакти</h3>
                 <div className="space-y-4 text-sm leading-relaxed">
                   <div className="space-y-2">
@@ -119,11 +118,11 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
           </div>
         </div>
         
-        <Separator className="bg-background/20 mb-8" />
+        <Separator className="bg-background/20 mb-6" />
         
         {/* Bottom Section */}
-        <div className="text-center space-y-4">
-          <div className="flex flex-col md:flex-row justify-center items-center gap-6">
+        <div className="text-center space-y-3">
+          <div className="flex flex-col md:flex-row justify-center items-center gap-4">
             <p className="text-background/60 text-sm">
               © 2024 ModulSoft. Всі права захищені.
             </p>
