@@ -4,7 +4,6 @@ import {
   Hero, 
   ProductDescription, 
   Features, 
-  InteractiveSystemOverview,
   Pricing, 
   SocialProof, 
   FAQ, 
@@ -139,10 +138,6 @@ function App() {
             <Features />
           </InteractiveSection>
         </div>
-        
-        <InteractiveSection sectionId="system-overview" triggerOnView>
-          <InteractiveSystemOverview />
-        </InteractiveSection>
         
         <div id="pricing">
           <InteractiveSection sectionId="pricing" triggerOnView>
