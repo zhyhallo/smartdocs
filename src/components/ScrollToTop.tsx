@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { OwlMascot } from "@/components"
+import { ArrowUp } from "@phosphor-icons/react"
 
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false)
-  const [isFlying, setIsFlying] = useState(false)
+  const [isScrolling, setIsScrolling] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,7 +17,7 @@ export default function ScrollToTop() {
   }, [])
 
   const scrollToTop = () => {
-    setIsFlying(true)
+    setIsScrolling(true)
     
     // Smooth scroll to top
     window.scrollTo({
@@ -25,9 +25,9 @@ export default function ScrollToTop() {
       behavior: 'smooth'
     })
     
-    // Reset flying state after animation
+    // Reset scrolling state after animation
     setTimeout(() => {
-      setIsFlying(false)
+      setIsScrolling(false)
     }, 800)
   }
 
@@ -67,9 +67,9 @@ export default function ScrollToTop() {
         duration: 0.1
       }
     },
-    flying: {
-      y: -100,
-      scale: 1.2,
+    scrolling: {
+      y: -10,
+      scale: 1.1,
       transition: {
         duration: 0.8,
         ease: "easeOut"
@@ -77,45 +77,57 @@ export default function ScrollToTop() {
     }
   }
 
-  const owlVariants = {
+  const arrowVariants = {
     normal: {
-      rotate: 0,
-      scale: 1,
+      y: 0,
       transition: {
         duration: 0.3,
         ease: "easeInOut"
       }
     },
     hover: {
-      rotate: [0, -8, 8, -5, 5, 0],
-      scale: [1, 1.15, 1.1, 1.12, 1.08, 1.1],
-      y: [0, -3, -1, -4, -2, -1],
+      y: [0, -3, 0],
       transition: {
-        duration: 1.2,
-        ease: "easeInOut",
-        times: [0, 0.2, 0.4, 0.6, 0.8, 1]
+        duration: 0.6,
+        repeat: Infinity,
+        ease: "easeInOut"
       }
     },
-    flying: {
-      rotate: [0, -15, 15, -10, 10, -5, 5, 0],
-      y: [-2, -12, -8, -15, -10, -8, -5, -2],
-      scale: [1, 1.2, 1.1, 1.25, 1.15, 1.1, 1.05, 1],
+    scrolling: {
+      y: [0, -8, -4, -12, -6, -10, -3, 0],
+      scale: [1, 1.2, 1.1, 1.3, 1.15, 1.25, 1.05, 1],
       transition: {
-        duration: 1.2,
+        duration: 0.8,
         ease: "easeOut",
         times: [0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1]
       }
     }
   }
 
+  const UpArrowIcon = () => (
+    <motion.div
+      variants={arrowVariants}
+      initial="normal"
+      animate={isScrolling ? "scrolling" : "normal"}
+      whileHover="hover"
+      className="flex items-center justify-center"
+    >
+      <ArrowUp 
+        size={24} 
+        weight="bold"
+        className="text-primary"
+      />
+    </motion.div>
+  )
+
   return (
     <AnimatePresence>
       {isVisible && (
         <motion.button
-          className="fixed bottom-6 right-6 z-50 bg-accent/90 scroll-to-top-button rounded-full p-3 shadow-lg hover:shadow-xl cursor-pointer border border-accent/20"
+          className="fixed bottom-6 right-6 z-50 bg-white/90 backdrop-blur-sm scroll-to-top-button rounded-full p-3 shadow-lg hover:shadow-xl cursor-pointer border border-border/20"
           variants={buttonVariants}
           initial="hidden"
-          animate={isFlying ? "flying" : "visible"}
+          animate={isScrolling ? "scrolling" : "visible"}
           exit="hidden"
           whileHover="hover"
           whileTap="tap"
@@ -123,106 +135,87 @@ export default function ScrollToTop() {
           aria-label="Прокрутити до верху"
           title="Повернутися до верху"
         >
-          <motion.div
-            variants={owlVariants}
-            initial="normal"
-            animate={isFlying ? "flying" : "normal"}
-            whileHover="hover"
-            className="owl-container"
-          >
-            {/* Glow effect background */}
-            <div className="owl-glow-effect" />
-            
-            <div className="owl-bounce owl-wiggle owl-pulse">
-              <OwlMascot 
-                size="sm" 
-                animated={true}
-                className="w-12 h-12 owl-zoom"
-              />
-            </div>
-            
-            {/* Sparkle effects around the owl */}
-            {isFlying && (
+          <UpArrowIcon />
+          
+          {/* Floating arrow effects on scroll */}
+          <AnimatePresence>
+            {isScrolling && (
               <>
-                {[...Array(6)].map((_, i) => (
+                {/* Multiple floating arrows */}
+                {[...Array(4)].map((_, i) => (
                   <motion.div
-                    key={`owl-sparkle-${i}`}
-                    className="absolute w-1 h-1 bg-primary rounded-full owl-sparkle"
-                    style={{
-                      left: `${20 + Math.cos(i * 60 * Math.PI / 180) * 25}px`,
-                      top: `${20 + Math.sin(i * 60 * Math.PI / 180) * 25}px`,
+                    key={`arrow-${i}`}
+                    className="absolute inset-0 flex items-center justify-center"
+                    initial={{
+                      opacity: 0,
+                      y: 0,
+                      scale: 1
                     }}
-                    initial={{ opacity: 0, scale: 0 }}
                     animate={{
-                      opacity: [0, 1, 0],
-                      scale: [0, 1.5, 0],
-                      rotate: [0, 180, 360]
+                      opacity: [0, 1, 0.5, 0],
+                      y: [0, -20, -35, -50],
+                      scale: [1, 1.2, 0.8, 0.5]
                     }}
                     transition={{
-                      duration: 1.5,
+                      duration: 1,
+                      delay: i * 0.15,
+                      ease: "easeOut"
+                    }}
+                  >
+                    <ArrowUp 
+                      size={20} 
+                      weight="bold"
+                      className="text-accent"
+                    />
+                  </motion.div>
+                ))}
+                
+                {/* Trail effect */}
+                {[...Array(6)].map((_, i) => (
+                  <motion.div
+                    key={`trail-${i}`}
+                    className="absolute w-1 h-1 bg-primary rounded-full"
+                    initial={{
+                      x: 12,
+                      y: 20,
+                      opacity: 0.8,
+                      scale: 1
+                    }}
+                    animate={{
+                      x: 12 + Math.sin(i * 0.5) * 8,
+                      y: [20, 0, -10, -25],
+                      opacity: 0,
+                      scale: [1, 1.5, 1, 0]
+                    }}
+                    transition={{
+                      duration: 0.8,
                       delay: i * 0.1,
                       ease: "easeOut"
                     }}
                   />
                 ))}
-              </>
-            )}
-          </motion.div>
-          
-          {/* Enhanced floating particles effect on flying */}
-          <AnimatePresence>
-            {isFlying && (
-              <>
-                {[...Array(12)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    className={`absolute w-1 h-1 rounded-full ${
-                      i % 3 === 0 ? 'bg-accent' : i % 3 === 1 ? 'bg-primary' : 'bg-secondary'
-                    }`}
-                    initial={{
-                      x: 0,
-                      y: 0,
-                      opacity: 1,
-                      scale: 1
-                    }}
-                    animate={{
-                      x: (Math.random() - 0.5) * 60,
-                      y: Math.random() * -40 - 15,
-                      opacity: 0,
-                      scale: [1, 1.5, 0],
-                      rotate: Math.random() * 360
-                    }}
-                    transition={{
-                      duration: 1.2,
-                      delay: i * 0.08,
-                      ease: "easeOut"
-                    }}
-                    style={{
-                      left: `${15 + Math.random() * 30}px`,
-                      top: `${15 + Math.random() * 30}px`
-                    }}
-                  />
-                ))}
                 
-                {/* Magic trail effect */}
+                {/* Upward motion lines */}
                 {[...Array(8)].map((_, i) => (
                   <motion.div
-                    key={`trail-${i}`}
-                    className="absolute w-2 h-2 bg-accent/60 rounded-full"
+                    key={`motion-line-${i}`}
+                    className="absolute w-0.5 bg-accent/60 rounded-full"
+                    style={{
+                      left: `${8 + i * 2}px`,
+                      height: '2px',
+                    }}
                     initial={{
-                      x: 24,
-                      y: 24,
-                      opacity: 0.8,
-                      scale: 1
+                      y: 15,
+                      opacity: 0,
+                      scaleY: 1
                     }}
                     animate={{
-                      x: 24 + Math.sin(i * 0.8) * 20,
-                      y: 24 + Math.cos(i * 0.8) * 20,
-                      opacity: 0,
-                      scale: 0
+                      y: -25,
+                      opacity: [0, 1, 0],
+                      scaleY: [1, 3, 1]
                     }}
                     transition={{
-                      duration: 0.8,
+                      duration: 0.6,
                       delay: i * 0.05,
                       ease: "easeOut"
                     }}
