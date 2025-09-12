@@ -105,8 +105,8 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
                 </div>
               </div>
 
-              {/* Owl positioned with perfect balance between navigation and contact info */}
-              <div className="absolute md:relative top-0 right-0 md:top-auto md:right-auto flex justify-center items-start pt-2 md:pt-4 lg:pt-6">
+              {/* Owl positioned and vertically centered within footer */}
+              <div className="absolute md:relative top-1/2 right-0 md:top-1/2 md:right-auto flex justify-center items-center transform -translate-y-1/2 md:transform md:-translate-y-1/2">
                 <div className="ml-4 md:ml-8 lg:ml-12">
                   <OwlAnalyst 
                     size="lg" 
