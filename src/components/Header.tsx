@@ -6,9 +6,10 @@ import { OwlAnalyst } from "@/components"
 
 interface HeaderProps {
   onContactClick: (service: string) => void
+  onContactsClick?: () => void
 }
 
-export default function Header({ onContactClick }: HeaderProps) {
+export default function Header({ onContactClick, onContactsClick }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const headerVariants = {
@@ -89,7 +90,8 @@ export default function Header({ onContactClick }: HeaderProps) {
     { href: "#product", label: "Продукт" },
     { href: "#features", label: "Функції" },
     { href: "#pricing", label: "Ціна" },
-    { href: "#faq", label: "FAQ" }
+    { href: "#faq", label: "FAQ" },
+    { href: null, label: "Контакти", onClick: onContactsClick }
   ]
 
   return (
@@ -115,23 +117,36 @@ export default function Header({ onContactClick }: HeaderProps) {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             {menuItems.map((item, index) => (
-              <motion.a 
-                key={index}
-                href={item.href} 
-                className="text-foreground font-medium cursor-pointer relative overflow-hidden menu-item-hover"
-                variants={menuItemVariants}
-                whileHover="hover"
-                whileTap="tap"
-                style={{
-                  textDecoration: "none"
-                }}
-              >
-                {item.label}
-              </motion.a>
+              item.href ? (
+                <motion.a 
+                  key={index}
+                  href={item.href} 
+                  className="text-foreground font-medium cursor-pointer relative overflow-hidden menu-item-hover"
+                  variants={menuItemVariants}
+                  whileHover="hover"
+                  whileTap="tap"
+                  style={{
+                    textDecoration: "none"
+                  }}
+                >
+                  {item.label}
+                </motion.a>
+              ) : (
+                <motion.button
+                  key={index}
+                  onClick={item.onClick}
+                  className="text-foreground font-medium cursor-pointer relative overflow-hidden menu-item-hover bg-transparent border-none"
+                  variants={menuItemVariants}
+                  whileHover="hover"
+                  whileTap="tap"
+                >
+                  {item.label}
+                </motion.button>
+              )
             ))}
             <div className="flex items-center space-x-4">
               <motion.a 
-                href="tel:+48123456789" 
+                href="tel:+380931776504" 
                 className="text-muted-foreground cursor-pointer"
                 whileHover={{ 
                   scale: 1.05, 
@@ -139,7 +154,7 @@ export default function Header({ onContactClick }: HeaderProps) {
                   transition: { duration: 0.3 } 
                 }}
               >
-                +48 123 456 789
+                +38 (093) 177-65-04
               </motion.a>
               <motion.div
                 variants={buttonVariants}
@@ -213,32 +228,57 @@ export default function Header({ onContactClick }: HeaderProps) {
             >
               <div className="flex flex-col space-y-3">
                 {menuItems.map((item, index) => (
-                  <motion.a 
-                    key={index}
-                    href={item.href} 
-                    className="text-foreground font-medium cursor-pointer block py-2 menu-item-hover"
-                    custom={index}
-                    variants={mobileItemVariants}
-                    initial="hidden"
-                    animate="visible"
-                    whileHover={{ 
-                      color: "oklch(0.65 0.18 220)",
-                      transition: { duration: 0.3, ease: "easeInOut" }
-                    }}
-                    whileTap={{
-                      scale: 0.98,
-                      transition: { duration: 0.1 }
-                    }}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    style={{
-                      textDecoration: "none"
-                    }}
-                  >
-                    {item.label}
-                  </motion.a>
+                  item.href ? (
+                    <motion.a 
+                      key={index}
+                      href={item.href} 
+                      className="text-foreground font-medium cursor-pointer block py-2 menu-item-hover"
+                      custom={index}
+                      variants={mobileItemVariants}
+                      initial="hidden"
+                      animate="visible"
+                      whileHover={{ 
+                        color: "oklch(0.65 0.18 220)",
+                        transition: { duration: 0.3, ease: "easeInOut" }
+                      }}
+                      whileTap={{
+                        scale: 0.98,
+                        transition: { duration: 0.1 }
+                      }}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      style={{
+                        textDecoration: "none"
+                      }}
+                    >
+                      {item.label}
+                    </motion.a>
+                  ) : (
+                    <motion.button
+                      key={index}
+                      onClick={() => {
+                        item.onClick?.()
+                        setIsMobileMenuOpen(false)
+                      }}
+                      className="text-foreground font-medium cursor-pointer block py-2 menu-item-hover bg-transparent border-none text-left"
+                      custom={index}
+                      variants={mobileItemVariants}
+                      initial="hidden"
+                      animate="visible"
+                      whileHover={{ 
+                        color: "oklch(0.65 0.18 220)",
+                        transition: { duration: 0.3, ease: "easeInOut" }
+                      }}
+                      whileTap={{
+                        scale: 0.98,
+                        transition: { duration: 0.1 }
+                      }}
+                    >
+                      {item.label}
+                    </motion.button>
+                  )
                 ))}
                 <motion.div
-                  custom={4}
+                  custom={5}
                   variants={mobileItemVariants}
                   initial="hidden"
                   animate="visible"
@@ -246,17 +286,17 @@ export default function Header({ onContactClick }: HeaderProps) {
                   <Separator />
                 </motion.div>
                 <motion.a 
-                  href="tel:+48123456789" 
+                  href="tel:+380931776504" 
                   className="text-muted-foreground cursor-pointer"
-                  custom={5}
+                  custom={6}
                   variants={mobileItemVariants}
                   initial="hidden"
                   animate="visible"
                 >
-                  +48 123 456 789
+                  +38 (093) 177-65-04
                 </motion.a>
                 <motion.div
-                  custom={6}
+                  custom={7}
                   variants={mobileItemVariants}
                   initial="hidden"
                   animate="visible"

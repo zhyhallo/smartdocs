@@ -1,9 +1,10 @@
 import { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Checkbox } from "@/components/ui/checkbox"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Card, CardContent } from "@/components/ui/card"
-import { Phone, Envelope, Building, User, CheckCircle } from "@phosphor-icons/react"
+import { Phone, Envelope, Building, User, CheckCircle, Shield } from "@phosphor-icons/react"
 import { toast } from "sonner"
 import { motion, AnimatePresence } from "framer-motion"
 import { OwlLoader, InteractiveButton, InteractiveInput } from "@/components"
@@ -12,6 +13,7 @@ interface ContactModalProps {
   open: boolean
   onOpenChange: (open: boolean) => void
   defaultService?: string
+  onPrivacyClick?: () => void
 }
 
 interface FormData {
@@ -19,19 +21,21 @@ interface FormData {
   email: string
   company: string
   fullName: string
+  privacyAccepted: boolean
 }
 
-export default function ContactModal({ open, onOpenChange, defaultService = "Консультація" }: ContactModalProps) {
+export default function ContactModal({ open, onOpenChange, defaultService = "Консультація", onPrivacyClick }: ContactModalProps) {
   const [formData, setFormData] = useState<FormData>({
     phone: "",
     email: "",
     company: "",
-    fullName: ""
+    fullName: "",
+    privacyAccepted: false
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
 
-  const handleInputChange = (field: keyof FormData, value: string) => {
+  const handleInputChange = (field: keyof FormData, value: string | boolean) => {
     setFormData(prev => ({ ...prev, [field]: value }))
   }
 
@@ -40,6 +44,11 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
     
     if (!formData.phone || !formData.email) {
       toast.error("Будь ласка, заповніть обов'язкові поля (телефон та email)")
+      return
+    }
+
+    if (!formData.privacyAccepted) {
+      toast.error("Необхідно підтвердити згоду на обробку персональних даних")
       return
     }
 
@@ -57,7 +66,7 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
       
       // Reset form after successful submission
       setTimeout(() => {
-        setFormData({ phone: "", email: "", company: "", fullName: "" })
+        setFormData({ phone: "", email: "", company: "", fullName: "", privacyAccepted: false })
         setIsSubmitted(false)
         onOpenChange(false)
       }, 2000)
@@ -246,6 +255,37 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
                 />
               </motion.div>
 
+              {/* Privacy Policy Checkbox */}
+              <motion.div className="space-y-3" variants={fieldVariants}>
+                <div className="flex items-start space-x-3">
+                  <Checkbox
+                    id="privacy-consent"
+                    checked={formData.privacyAccepted}
+                    onCheckedChange={(checked) => handleInputChange("privacyAccepted", checked as boolean)}
+                    className="mt-0.5"
+                  />
+                  <div className="flex-1">
+                    <Label 
+                      htmlFor="privacy-consent" 
+                      className="text-sm text-foreground leading-relaxed cursor-pointer flex items-start"
+                    >
+                      <Shield size={16} className="mr-2 text-primary flex-shrink-0 mt-0.5" />
+                      <span>
+                        Я погоджуюсь на обробку персональних даних згідно з{" "}
+                        <button
+                          type="button"
+                          onClick={onPrivacyClick}
+                          className="text-accent hover:underline cursor-pointer font-medium"
+                        >
+                          Політикою конфіденційності
+                        </button>
+                        {" "}*
+                      </span>
+                    </Label>
+                  </div>
+                </div>
+              </motion.div>
+
               <motion.div 
                 className="pt-4 flex flex-col sm:flex-row gap-3"
                 variants={fieldVariants}
@@ -316,6 +356,9 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
             >
               <p className="text-xs text-muted-foreground text-center">
                 * - обов'язкові поля для заповнення
+              </p>
+              <p className="text-xs text-muted-foreground text-center mt-1">
+                Ваші персональні дані захищені відповідно до GDPR та законодавства України
               </p>
             </motion.div>
           </CardContent>

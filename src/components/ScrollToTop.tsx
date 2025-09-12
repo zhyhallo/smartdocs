@@ -153,155 +153,201 @@ export default function ScrollToTop() {
 
   const OwlAnalystScrollButton = () => (
     <div className="relative flex items-center justify-center">
-      {/* Main owl and terminal container */}
+      {/* Enlarged Owl without terminal */}
       <motion.div 
-        className="relative flex items-center gap-2"
+        className="relative"
         variants={owlContainerVariants}
         animate={isScrolling ? "scrolling" : isHovered ? "hover" : "normal"}
       >
-        {/* Owl SVG */}
+        {/* Enlarged Owl SVG */}
         <svg
           viewBox="0 0 60 60"
-          className="w-8 h-8 flex-shrink-0"
+          className="w-12 h-12"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
+          {/* Sparkles Effect on Hover */}
+          <AnimatePresence>
+            {isHovered && (
+              <>
+                {[...Array(6)].map((_, i) => (
+                  <motion.circle
+                    key={`sparkle-${i}`}
+                    cx={20 + (i * 6)}
+                    cy={10 + (i % 2) * 8}
+                    r="1"
+                    fill="oklch(0.85 0.15 220)"
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{
+                      opacity: [0, 1, 0],
+                      scale: [0, 1.2, 0],
+                      y: [0, -8, -16]
+                    }}
+                    exit={{ opacity: 0, scale: 0 }}
+                    transition={{
+                      duration: 1.5,
+                      delay: i * 0.1,
+                      ease: "easeOut"
+                    }}
+                  />
+                ))}
+              </>
+            )}
+          </AnimatePresence>
+
           {/* Owl Body */}
           <ellipse
             cx="30"
-            cy="38"
-            rx="14"
-            ry="18"
+            cy="40"
+            rx="16"
+            ry="20"
             fill="oklch(0.55 0.22 240)"
-            className="drop-shadow-sm"
+            className="drop-shadow-md"
           />
           
           {/* Owl Head */}
-          <circle
+          <motion.circle
             cx="30"
             cy="25"
-            r="15"
+            r="18"
             fill="oklch(0.65 0.18 220)"
-            className="drop-shadow-sm"
+            className="drop-shadow-md"
+            animate={isHovered ? {
+              scale: [1, 1.05, 1],
+              rotate: [0, -2, 2, 0]
+            } : {}}
+            transition={{ duration: 0.8 }}
+          />
+          
+          {/* Animated Ear Tufts */}
+          <motion.path
+            d="M20 12 L22 4 L28 10 Z"
+            fill="oklch(0.55 0.22 240)"
+            animate={isHovered ? {
+              rotate: [0, -8, 8, 0],
+              scale: [1, 1.1, 1]
+            } : {}}
+            transition={{ duration: 0.6 }}
+          />
+          <motion.path
+            d="M40 12 L38 4 L32 10 Z"
+            fill="oklch(0.55 0.22 240)"
+            animate={isHovered ? {
+              rotate: [0, 8, -8, 0],
+              scale: [1, 1.1, 1]
+            } : {}}
+            transition={{ duration: 0.6, delay: 0.1 }}
           />
           
           {/* Eyes */}
-          <circle cx="26" cy="22" r="4" fill="white" />
-          <circle cx="34" cy="22" r="4" fill="white" />
-          <circle cx="26" cy="22" r="2.5" fill="oklch(0.15 0.08 240)" />
-          <circle cx="34" cy="22" r="2.5" fill="oklch(0.15 0.08 240)" />
-          <circle cx="27" cy="21" r="1" fill="white" opacity="0.8" />
-          <circle cx="35" cy="21" r="1" fill="white" opacity="0.8" />
+          <motion.g
+            animate={isHovered ? {
+              scale: [1, 1.1, 1]
+            } : {}}
+            transition={{ duration: 0.5 }}
+          >
+            <circle cx="25" cy="22" r="5" fill="white" />
+            <circle cx="35" cy="22" r="5" fill="white" />
+            <circle cx="25" cy="22" r="3.5" fill="oklch(0.15 0.08 240)" />
+            <circle cx="35" cy="22" r="3.5" fill="oklch(0.15 0.08 240)" />
+            <circle cx="26" cy="20" r="1.5" fill="white" opacity="0.9" />
+            <circle cx="36" cy="20" r="1.5" fill="white" opacity="0.9" />
+          </motion.g>
           
-          {/* Glasses */}
-          <g opacity="0.7">
-            <circle cx="26" cy="22" r="5" fill="none" stroke="oklch(0.25 0.08 240)" strokeWidth="0.8" />
-            <circle cx="34" cy="22" r="5" fill="none" stroke="oklch(0.25 0.08 240)" strokeWidth="0.8" />
-            <line x1="31" y1="22" x2="29" y2="22" stroke="oklch(0.25 0.08 240)" strokeWidth="0.8" />
-          </g>
+          {/* Animated Glasses */}
+          <motion.g 
+            opacity="0.7"
+            animate={isHovered ? {
+              opacity: [0.7, 1, 0.7]
+            } : {}}
+            transition={{ duration: 1.2, repeat: isHovered ? Infinity : 0 }}
+          >
+            <circle cx="25" cy="22" r="6" fill="none" stroke="oklch(0.25 0.08 240)" strokeWidth="1" />
+            <circle cx="35" cy="22" r="6" fill="none" stroke="oklch(0.25 0.08 240)" strokeWidth="1" />
+            <line x1="31" y1="22" x2="29" y2="22" stroke="oklch(0.25 0.08 240)" strokeWidth="1" />
+          </motion.g>
           
           {/* Beak */}
-          <path
-            d="M30 26 L27 30 L33 30 Z"
+          <motion.path
+            d="M30 28 L26 33 L34 33 Z"
             fill="oklch(0.75 0.15 60)"
+            animate={isHovered ? {
+              scale: [1, 1.1, 1],
+              rotate: [0, -3, 3, 0]
+            } : {}}
+            transition={{ duration: 0.8 }}
           />
           
-          {/* Wings */}
-          <ellipse cx="22" cy="33" rx="4" ry="9" fill="oklch(0.45 0.20 240)" />
-          <ellipse cx="38" cy="33" rx="4" ry="9" fill="oklch(0.45 0.20 240)" />
+          {/* Animated Wings */}
+          <motion.ellipse
+            cx="18"
+            cy="35"
+            rx="5"
+            ry="12"
+            fill="oklch(0.45 0.20 240)"
+            animate={isHovered ? {
+              rotate: [0, -15, 10, -10, 0],
+              y: [0, -1, 0]
+            } : {}}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
+            style={{ transformOrigin: "18px 32px" }}
+          />
+          <motion.ellipse
+            cx="42"
+            cy="35"
+            rx="5"
+            ry="12"
+            fill="oklch(0.45 0.20 240)"
+            animate={isHovered ? {
+              rotate: [0, 15, -10, 10, 0],
+              y: [0, -1, 0]
+            } : {}}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
+            style={{ transformOrigin: "42px 32px" }}
+          />
+          
+          {/* Chest Pattern */}
+          <motion.ellipse
+            cx="30"
+            cy="36"
+            rx="8"
+            ry="6"
+            fill="oklch(0.75 0.12 220)"
+            opacity="0.7"
+            animate={isHovered ? {
+              scale: [1, 1.05, 1],
+              opacity: [0.7, 0.9, 0.7]
+            } : {}}
+            transition={{ duration: 1.5, repeat: isHovered ? Infinity : 0 }}
+          />
+          
+          {/* Feet */}
+          <ellipse cx="26" cy="55" r="3" fill="oklch(0.75 0.15 60)" />
+          <ellipse cx="34" cy="55" r="3" fill="oklch(0.75 0.15 60)" />
         </svg>
-
-        {/* Mini Terminal */}
-        <motion.div
-          variants={terminalVariants}
-          animate={isScrolling ? "scrolling" : isHovered ? "hover" : "normal"}
-        >
-          <svg
-            viewBox="0 0 32 24"
-            className="w-6 h-5"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            {/* Terminal body */}
-            <rect
-              x="2"
-              y="8"
-              width="28"
-              height="14"
-              rx="2"
-              fill="oklch(0.25 0.08 240)"
-              className="drop-shadow-sm"
-            />
-            
-            {/* Terminal screen */}
-            <rect
-              x="3"
-              y="3"
-              width="26"
-              height="16"
-              rx="1.5"
-              fill="oklch(0.15 0.05 240)"
-            />
-            
-            {/* Terminal base */}
-            <rect
-              x="14"
-              y="19"
-              width="4"
-              height="2"
-              fill="oklch(0.35 0.08 240)"
-            />
-            
-            {/* Screen glow */}
-            <rect
-              x="3"
-              y="3"
-              width="26"
-              height="16"
-              rx="1.5"
-              fill="url(#miniGlow)"
-              opacity="0.4"
-            />
-            
-            {/* Data lines */}
-            <g className="text-accent" fontSize="2" fontFamily="monospace">
-              <rect x="5" y="6" width="8" height="1" fill="oklch(0.65 0.18 220)" opacity="0.8" />
-              <rect x="5" y="9" width="12" height="1" fill="oklch(0.65 0.18 220)" opacity="0.6" />
-              <rect x="5" y="12" width="6" height="1" fill="oklch(0.65 0.18 220)" opacity="0.7" />
-            </g>
-            
-            <defs>
-              <linearGradient id="miniGlow" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style={{ stopColor: "oklch(0.65 0.18 220)", stopOpacity: 0.2 }} />
-                <stop offset="100%" style={{ stopColor: "oklch(0.65 0.18 220)", stopOpacity: 0.1 }} />
-              </linearGradient>
-            </defs>
-          </svg>
-        </motion.div>
       </motion.div>
       
       {/* Animated up arrow on hover */}
       <AnimatePresence>
         {isHovered && (
           <motion.div
-            className="absolute -top-6 left-1/2 transform -translate-x-1/2"
+            className="absolute -top-8 left-1/2 transform -translate-x-1/2"
             variants={arrowVariants}
             initial="hidden"
             animate={["visible", "animate"]}
             exit="hidden"
           >
             <svg
-              width="16"
-              height="16"
+              width="20"
+              height="20"
               viewBox="0 0 24 24"
               fill="none"
-              className="text-accent"
+              className="text-accent drop-shadow-lg"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
                 d="M12 4L6 10H10V20H14V10H18L12 4Z"
                 fill="currentColor"
-                className="drop-shadow-sm"
               />
             </svg>
           </motion.div>
