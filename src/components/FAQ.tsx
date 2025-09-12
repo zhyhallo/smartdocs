@@ -1,7 +1,7 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { motion } from "framer-motion"
 import { useInView } from "@/hooks/useInView"
-import { OwlIcon } from "@/components"
+import { OwlAnalyst } from "@/components"
 
 export default function FAQ() {
   const [ref, isInView] = useInView({ threshold: 0.1 })
@@ -130,7 +130,7 @@ export default function FAQ() {
                 animate={isInView ? { opacity: 1, scale: 1, x: 0 } : { opacity: 0, scale: 0.8, x: -20 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
-                <OwlIcon size="sm" animated={true} showTerminal={true} />
+                <OwlAnalyst size="sm" animated={true} showTerminal={false} />
                 
                 {/* Thought bubble connecting owl to question mark */}
                 <motion.div

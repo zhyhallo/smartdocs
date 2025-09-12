@@ -331,15 +331,6 @@ export default function OwlAnalyst({
       aria-label="Interactive owl analyst mascot"
     >
       {/* POS Terminal positioned to the left - only show if withTerminal is true */}
-      {withTerminal && (
-        <div className="flex-shrink-0 mr-1 sm:mr-2">
-          <POSTerminal 
-            size={size === "xl" ? "sm" : size === "lg" ? "sm" : "xs"} 
-            animated={animated && (isHovered || isClicked)}
-          />
-        </div>
-      )}
-      
       {/* Owl positioned to the right */}
       <div className="flex-shrink-0">
         <OwlSVG />

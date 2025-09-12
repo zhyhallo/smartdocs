@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { POSTerminal } from "@/components"
+
 
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false)
@@ -154,11 +154,8 @@ export default function ScrollToTop() {
 
   const OwlAnalystScrollButton = () => (
     <div className="relative flex items-center justify-center space-x-1">
-      {/* POS Terminal to the left - increased size */}
-      <div className="flex-shrink-0 mr-2">
-        <POSTerminal size="xs" animated={isHovered || isScrolling} />
-      </div>
-      
+
+    
       {/* Enlarged Owl to the right */}
       <motion.div 
         className="relative flex-shrink-0"
