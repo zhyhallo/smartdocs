@@ -110,13 +110,13 @@ export default function FAQ() {
 
           {/* Right side - Small Owl Icon with question mark */}
           <motion.div 
-            className="flex justify-center lg:justify-end lg:pr-4 xl:pr-8"
+            className="flex justify-center lg:justify-end lg:pr-8 xl:pr-12 mt-8 lg:mt-0"
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             <div className="relative lg:ml-auto lg:max-w-fit">
-              <OwlIcon size="md" animated={isInView} />
+              <OwlIcon size="sm" animated={isInView} />
               
               {/* Question mark bubble */}
               <motion.div

@@ -18,9 +18,9 @@ export default function OwlIcon({
   const [isHovered, setIsHovered] = useState(false)
 
   const sizeClasses = {
-    xs: "w-3 h-3 sm:w-4 sm:h-4",
-    sm: "w-4 h-4 sm:w-6 sm:h-6", 
-    md: "w-6 h-6 sm:w-8 sm:h-8"
+    xs: "w-2 h-2 sm:w-3 sm:h-3",       // Optimized: 40% smaller
+    sm: "w-3 h-3 sm:w-4 sm:h-4",       // Optimized: 40% smaller
+    md: "w-4 h-4 sm:w-5 sm:h-5"        // Optimized: 40% smaller
   }
 
   const owlVariants = {
@@ -155,8 +155,8 @@ export default function OwlIcon({
       onMouseLeave={() => setIsHovered(false)}
     >
       {showTerminal && (
-        <div className="flex-shrink-0">
-          <POSTerminal size="xs" animated={isHovered} />
+        <div className="flex-shrink-0 mr-1">
+          <POSTerminal size="sm" animated={isHovered} />
         </div>
       )}
       <div className="flex-shrink-0">

@@ -113,22 +113,22 @@ export default function Hero({ onContactClick }: HeroProps) {
             </motion.div>
           </motion.div>
 
-          {/* Right side - Owl Mascot */}
+        {/* Right side - Owl Mascot */}
           <motion.div 
-            className="flex justify-center lg:justify-end lg:pr-4 xl:pr-8"
+            className="flex justify-center lg:justify-end lg:pr-8 xl:pr-12"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
           >
             <div className="relative lg:ml-auto lg:max-w-fit">
               <OwlAnalyst 
-                size="md" 
+                size="sm" 
                 className="drop-shadow-2xl" 
               />
               
               {/* Floating badge near owl */}
               <motion.div
-                className="absolute -top-4 -right-4 bg-accent text-accent-foreground px-3 py-1 rounded-full text-sm font-medium shadow-lg"
+                className="absolute -top-2 -right-6 bg-accent text-accent-foreground px-2 py-1 rounded-full text-xs font-medium shadow-lg"
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.2, duration: 0.5, type: "spring" }}
@@ -138,11 +138,11 @@ export default function Hero({ onContactClick }: HeroProps) {
               
               {/* Enhanced floating elements around owl with parallax */}
               <motion.div
-                className="absolute -left-8 top-16 w-4 h-4 bg-primary/20 rounded-full"
+                className="absolute -left-6 top-12 w-3 h-3 bg-primary/20 rounded-full"
                 animate={{
                   scale: [1, 1.2, 1],
                   opacity: [0.3, 0.6, 0.3],
-                  y: [0, -10, 0]
+                  y: [0, -8, 0]
                 }}
                 transition={{
                   duration: 3,
@@ -151,11 +151,11 @@ export default function Hero({ onContactClick }: HeroProps) {
                 }}
               />
               <motion.div
-                className="absolute -right-6 bottom-20 w-3 h-3 bg-accent/30 rounded-full"
+                className="absolute -right-4 bottom-16 w-2 h-2 bg-accent/30 rounded-full"
                 animate={{
                   scale: [1, 1.3, 1],
                   opacity: [0.4, 0.7, 0.4],
-                  x: [0, 5, 0]
+                  x: [0, 4, 0]
                 }}
                 transition={{
                   duration: 2.5,
@@ -166,7 +166,7 @@ export default function Hero({ onContactClick }: HeroProps) {
               
               {/* Additional floating tech elements */}
               <motion.div
-                className="absolute top-8 left-12 text-xs text-primary/30 font-mono"
+                className="absolute top-6 left-8 text-xs text-primary/30 font-mono"
                 animate={{
                   opacity: [0.2, 0.5, 0.2],
                   rotate: [0, 10, 0]

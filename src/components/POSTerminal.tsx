@@ -30,9 +30,9 @@ export default function POSTerminal({
     return () => clearInterval(interval)
   }, [animated])
   const sizeClasses = {
-    xs: "w-4 h-5 sm:w-8 sm:h-10",       // Mobile: smaller, Desktop: 2x bigger
-    sm: "w-6 h-8 sm:w-12 sm:h-16",      // Mobile: smaller, Desktop: 2x bigger
-    md: "w-8 h-10 sm:w-16 sm:h-20"      // Mobile: smaller, Desktop: 2x bigger
+    xs: "w-3 h-4 sm:w-6 sm:h-8",        // Larger terminal: 50% bigger
+    sm: "w-5 h-7 sm:w-8 sm:h-11",       // Larger terminal: 50% bigger  
+    md: "w-6 h-8 sm:w-10 sm:h-14"       // Larger terminal: 50% bigger
   }
 
   const terminalVariants = {
