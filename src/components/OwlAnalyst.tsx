@@ -376,22 +376,18 @@ export default function OwlAnalyst({
           className="drop-shadow-lg"
         />
         
-        {/* Screen */}
-        <motion.rect
+        {/* Screen with subtle glow */}
+        <rect
           x="10"
           y="15"
           width="80"
           height="45"
           rx="3"
           fill="oklch(0.15 0.05 240)"
-          animate={{
-            boxShadow: [
-              "0 0 8px oklch(0.65 0.18 220 / 0.3)",
-              "0 0 12px oklch(0.65 0.18 220 / 0.5)",
-              "0 0 8px oklch(0.65 0.18 220 / 0.3)"
-            ]
+          className="drop-shadow-sm"
+          style={{
+            filter: "drop-shadow(0 0 4px oklch(0.65 0.18 220 / 0.2))"
           }}
-          transition={{ duration: 2, repeat: Infinity }}
         />
         
         {/* Simple Power Button */}
@@ -402,16 +398,13 @@ export default function OwlAnalyst({
           fill="oklch(0.35 0.08 240)"
         />
         
-        {/* Power LED */}
-        <motion.circle
+        {/* Power LED - Simplified */}
+        <circle
           cx="85"
           cy="65"
           r="1"
           fill="oklch(0.65 0.18 220)"
-          animate={{
-            opacity: [0.5, 1, 0.5]
-          }}
-          transition={{ duration: 1.5, repeat: Infinity }}
+          opacity="0.8"
         />
         
         {/* Stand - Simplified */}
@@ -424,29 +417,13 @@ export default function OwlAnalyst({
         />
       </svg>
       
-      {/* Simple Data display */}
-      <motion.div
-        className="absolute top-2 left-3 right-3 text-[10px] font-mono text-accent space-y-0.5"
-        animate={{
-          opacity: [0.7, 1, 0.7]
-        }}
-        transition={{ 
-          duration: 2, 
-          repeat: Infinity 
-        }}
-      >
-        <motion.div
-          key={currentData.total}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.3 }}
-          className="truncate"
-        >
+      {/* Simple Data display - Static */}
+      <div className="absolute top-2 left-3 right-3 text-[10px] font-mono text-accent space-y-0.5">
+        <div className="truncate">
           ₴{currentData.total}
-        </motion.div>
+        </div>
         
-        <motion.div
-          key={currentData.status}
+        <div
           className={`text-[8px] truncate ${
             currentData.status === "ACTIVE" ? "text-green-400" : 
             currentData.status === "PROCESSING" ? "text-yellow-400" :
@@ -454,8 +431,8 @@ export default function OwlAnalyst({
           }`}
         >
           {currentData.status}
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </motion.div>
   )
 
@@ -463,7 +440,7 @@ export default function OwlAnalyst({
 
   if (!animated) {
     return (
-      <div className={`flex items-center gap-4 ${containerClass} ${sizeClasses[size]} ${className}`}>
+      <div className={`flex items-center gap-2 ${containerClass} ${sizeClasses[size]} ${className}`}>
         <TerminalSVG />
         <OwlSVG />
       </div>
@@ -479,7 +456,7 @@ export default function OwlAnalyst({
         isInteracting ? ["animate", "excited"] :
         ["animate", "float"]
       }
-      className={`flex items-center gap-4 ${containerClass} ${sizeClasses[size]} ${className} cursor-pointer select-none`}
+      className={`flex items-center gap-2 ${containerClass} ${sizeClasses[size]} ${className} cursor-pointer select-none`}
       onMouseEnter={() => handleHover(true)}
       onMouseLeave={() => handleHover(false)}
       onClick={handleClick}
