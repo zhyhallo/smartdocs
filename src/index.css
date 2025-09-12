@@ -47,6 +47,29 @@
   ::-webkit-scrollbar-thumb:hover {
     background: oklch(0.45 0.22 240);
   }
+  
+  /* Override any default link colors */
+  a {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+  
+  a:hover {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+  
+  a:visited {
+    color: inherit !important;
+  }
+  
+  a:link {
+    color: inherit !important;
+  }
+  
+  a:active {
+    color: inherit !important;
+  }
 }
 
 :root {

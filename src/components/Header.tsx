@@ -35,7 +35,11 @@ export default function Header({ onContactClick }: HeaderProps) {
     hover: {
       scale: 1.05,
       color: "oklch(0.65 0.18 220)", // Use accent blue color directly
-      transition: { duration: 0.2 }
+      transition: { duration: 0.2, ease: "easeInOut" }
+    },
+    tap: {
+      scale: 0.98,
+      transition: { duration: 0.1 }
     }
   }
 
@@ -115,9 +119,13 @@ export default function Header({ onContactClick }: HeaderProps) {
               <motion.a 
                 key={index}
                 href={item.href} 
-                className="text-foreground cursor-pointer"
+                className="text-foreground font-medium cursor-pointer relative overflow-hidden"
                 variants={menuItemVariants}
                 whileHover="hover"
+                whileTap="tap"
+                style={{
+                  textDecoration: "none"
+                }}
               >
                 {item.label}
               </motion.a>
@@ -187,16 +195,23 @@ export default function Header({ onContactClick }: HeaderProps) {
                   <motion.a 
                     key={index}
                     href={item.href} 
-                    className="text-foreground cursor-pointer"
+                    className="text-foreground font-medium cursor-pointer block py-2"
                     custom={index}
                     variants={mobileItemVariants}
                     initial="hidden"
                     animate="visible"
                     whileHover={{ 
                       color: "oklch(0.65 0.18 220)",
-                      transition: { duration: 0.2 }
+                      transition: { duration: 0.2, ease: "easeInOut" }
+                    }}
+                    whileTap={{
+                      scale: 0.98,
+                      transition: { duration: 0.1 }
                     }}
                     onClick={() => setIsMobileMenuOpen(false)}
+                    style={{
+                      textDecoration: "none"
+                    }}
                   >
                     {item.label}
                   </motion.a>
