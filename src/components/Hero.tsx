@@ -122,7 +122,7 @@ export default function Hero({ onContactClick }: HeroProps) {
           >
             <div className="relative">
               <OwlAnalyst 
-                size="xl" 
+                size="lg" 
                 className="drop-shadow-2xl" 
               />
               

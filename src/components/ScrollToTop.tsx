@@ -153,9 +153,9 @@ export default function ScrollToTop() {
   }
 
   const OwlAnalystScrollButton = () => (
-    <div className="relative flex items-center justify-center space-x-2">
+    <div className="relative flex items-center justify-center space-x-1">
       {/* POS Terminal to the left */}
-      <div className="flex-shrink-0">
+      <div className="flex-shrink-0 mr-1">
         <POSTerminal size="xs" animated={isHovered || isScrolling} />
       </div>
       
@@ -168,7 +168,7 @@ export default function ScrollToTop() {
         {/* Enlarged Owl SVG */}
         <svg
           viewBox="0 0 60 60"
-          className="w-12 h-12"
+          className="w-10 h-10"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >

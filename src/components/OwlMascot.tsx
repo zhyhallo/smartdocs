@@ -13,10 +13,10 @@ export default function OwlMascot({ size = "md", className = "", animated = true
   const [showSparkles, setShowSparkles] = useState(false)
   
   const sizeClasses = {
-    sm: "w-12 h-12",
-    md: "w-18 h-18", 
-    lg: "w-24 h-24",
-    xl: "w-32 h-32"
+    sm: "w-10 h-10",
+    md: "w-16 h-16", 
+    lg: "w-20 h-20",
+    xl: "w-26 h-26"
   }
 
   const owlVariants = {
@@ -446,14 +446,14 @@ export default function OwlMascot({ size = "md", className = "", animated = true
       initial="initial"
       animate={["animate", "float"]}
       whileHover="hover"
-      className="cursor-pointer relative flex items-center space-x-4"
+      className="cursor-pointer relative flex items-center space-x-1"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       {/* POS Terminal positioned to the left */}
-      <div className="flex-shrink-0">
+      <div className="flex-shrink-0 mr-2">
         <POSTerminal 
-          size={size === "xl" ? "sm" : size === "lg" ? "xs" : "xs"} 
+          size={size === "xl" ? "xs" : size === "lg" ? "xs" : size === "md" ? "xs" : "xs"} 
           animated={animated && isHovered}
         />
       </div>

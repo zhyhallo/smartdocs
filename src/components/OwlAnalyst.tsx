@@ -33,10 +33,10 @@ export default function OwlAnalyst({
   }, [])
   
   const sizeClasses = {
-    sm: "w-20 h-20",
-    md: "w-32 h-32", 
-    lg: "w-40 h-40",
-    xl: "w-48 h-48"
+    sm: "w-16 h-16",
+    md: "w-26 h-26", 
+    lg: "w-32 h-32",
+    xl: "w-40 h-40"
   }
 
   const owlVariants = {
@@ -279,10 +279,10 @@ export default function OwlAnalyst({
 
   if (!animated) {
     return (
-      <div className={`${sizeClasses[size]} ${className} flex items-center space-x-3`}>
-        <div className="flex-shrink-0">
+      <div className={`${sizeClasses[size]} ${className} flex items-center space-x-2`}>
+        <div className="flex-shrink-0 mr-1">
           <POSTerminal 
-            size={size === "xl" ? "md" : size === "lg" ? "sm" : "xs"} 
+            size={size === "xl" ? "sm" : size === "lg" ? "xs" : "xs"} 
             animated={false}
           />
         </div>
@@ -301,7 +301,7 @@ export default function OwlAnalyst({
         isClicked ? ["animate", "excited"] :
         ["animate", "float"]
       }
-      className={`${sizeClasses[size]} ${className} cursor-pointer select-none owl-container relative flex items-center space-x-3`}
+      className={`${sizeClasses[size]} ${className} cursor-pointer select-none owl-container relative flex items-center space-x-2`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => {
@@ -315,9 +315,9 @@ export default function OwlAnalyst({
       aria-label="Interactive owl analyst mascot"
     >
       {/* POS Terminal positioned to the left */}
-      <div className="flex-shrink-0">
+      <div className="flex-shrink-0 mr-1">
         <POSTerminal 
-          size={size === "xl" ? "md" : size === "lg" ? "sm" : "xs"} 
+          size={size === "xl" ? "sm" : size === "lg" ? "xs" : "xs"} 
           animated={animated && (isHovered || isClicked)}
         />
       </div>
