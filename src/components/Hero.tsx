@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { motion } from "framer-motion"
-import { OwlMascot } from "@/components"
+import { OwlMascot, ParallaxBackground, FloatingElements } from "@/components"
 
 interface HeroProps {
   onContactClick: (service: string) => void
@@ -54,8 +54,12 @@ export default function Hero({ onContactClick }: HeroProps) {
   }
 
   return (
-    <section className="py-20 bg-gradient-to-b from-secondary/30 to-background overflow-hidden">
-      <div className="container mx-auto px-4">
+    <section className="relative py-20 bg-gradient-to-b from-secondary/30 to-background overflow-hidden">
+      {/* Parallax Background Elements */}
+      <ParallaxBackground variant="dots" intensity="light" />
+      <FloatingElements density="low" theme="tech" />
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left side - Content */}
           <motion.div 
@@ -129,15 +133,16 @@ export default function Hero({ onContactClick }: HeroProps) {
                 16+ років досвіду
               </motion.div>
               
-              {/* Floating elements around owl */}
+              {/* Enhanced floating elements around owl with parallax */}
               <motion.div
                 className="absolute -left-8 top-16 w-4 h-4 bg-primary/20 rounded-full"
                 animate={{
                   scale: [1, 1.2, 1],
-                  opacity: [0.3, 0.6, 0.3]
+                  opacity: [0.3, 0.6, 0.3],
+                  y: [0, -10, 0]
                 }}
                 transition={{
-                  duration: 2,
+                  duration: 3,
                   repeat: Infinity,
                   delay: 0.5
                 }}
@@ -146,7 +151,8 @@ export default function Hero({ onContactClick }: HeroProps) {
                 className="absolute -right-6 bottom-20 w-3 h-3 bg-accent/30 rounded-full"
                 animate={{
                   scale: [1, 1.3, 1],
-                  opacity: [0.4, 0.7, 0.4]
+                  opacity: [0.4, 0.7, 0.4],
+                  x: [0, 5, 0]
                 }}
                 transition={{
                   duration: 2.5,
@@ -154,6 +160,22 @@ export default function Hero({ onContactClick }: HeroProps) {
                   delay: 1
                 }}
               />
+              
+              {/* Additional floating tech elements */}
+              <motion.div
+                className="absolute top-8 left-12 text-xs text-primary/30 font-mono"
+                animate={{
+                  opacity: [0.2, 0.5, 0.2],
+                  rotate: [0, 10, 0]
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  delay: 2
+                }}
+              >
+                {"</>"} 
+              </motion.div>
             </div>
           </motion.div>
         </div>

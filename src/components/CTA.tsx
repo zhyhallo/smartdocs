@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Phone } from "@phosphor-icons/react"
 import { motion } from "framer-motion"
 import { useInView } from "@/hooks/useInView"
-import { OwlMascot } from "@/components"
+import { OwlMascot, ParallaxBackground, FloatingElements } from "@/components"
 
 interface CTAProps {
   onContactClick: (service: string) => void
@@ -58,16 +58,21 @@ export default function CTA({ onContactClick }: CTAProps) {
 
   return (
     <section className="py-20 bg-primary/5 relative overflow-hidden" ref={ref}>
-      {/* Decorative owls for CTA section */}
+      {/* Parallax Background Elements */}
+      <ParallaxBackground variant="waves" intensity="medium" />
+      <FloatingElements density="high" theme="abstract" />
+      
+      {/* Enhanced decorative owls for CTA section */}
       <div className="absolute inset-0 pointer-events-none">
         <motion.div
           className="absolute top-16 left-1/4 opacity-5"
           animate={{
-            rotate: [0, 10, 0],
-            y: [-5, 5, -5]
+            rotate: [0, 15, -15, 0],
+            y: [-8, 8, -8],
+            scale: [1, 1.1, 0.9, 1]
           }}
           transition={{
-            duration: 3,
+            duration: 5,
             repeat: Infinity,
             ease: "easeInOut"
           }}
@@ -78,21 +83,58 @@ export default function CTA({ onContactClick }: CTAProps) {
         <motion.div
           className="absolute bottom-20 right-1/4 opacity-5"
           animate={{
-            rotate: [0, -8, 0],
-            y: [3, -3, 3]
+            rotate: [0, -12, 12, 0],
+            y: [5, -5, 5],
+            x: [-3, 3, -3]
           }}
           transition={{
-            duration: 4,
+            duration: 6,
             repeat: Infinity,
             ease: "easeInOut",
-            delay: 1.5
+            delay: 2
           }}
         >
           <OwlMascot size="sm" animated={false} />
         </motion.div>
+        
+        {/* Additional floating call-to-action elements */}
+        <motion.div
+          className="absolute top-1/3 right-16 text-primary/10 text-2xl"
+          animate={{
+            rotate: [0, 360],
+            scale: [1, 1.2, 1],
+            opacity: [0.1, 0.3, 0.1]
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        >
+          📞
+        </motion.div>
+        
+        <motion.div
+          className="absolute top-20 left-12 opacity-10"
+          animate={{
+            y: [-20, 20, -20],
+            rotate: [0, 10, -10, 0],
+            scale: [0.8, 1.2, 0.8]
+          }}
+          transition={{
+            duration: 7,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1
+          }}
+        >
+          <div className="w-16 h-16 border-3 border-accent rounded-full flex items-center justify-center">
+            <Phone size={24} className="text-accent" />
+          </div>
+        </motion.div>
       </div>
 
-      <div className="container mx-auto px-4 relative">
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div 
           className="text-center max-w-2xl mx-auto"
           variants={containerVariants}
@@ -102,6 +144,10 @@ export default function CTA({ onContactClick }: CTAProps) {
           <motion.h2 
             className="text-3xl font-bold text-foreground mb-4"
             variants={itemVariants}
+            whileHover={{
+              scale: 1.02,
+              transition: { duration: 0.2 }
+            }}
           >
             Готові до інтеграції з POSNET?
           </motion.h2>
@@ -123,17 +169,106 @@ export default function CTA({ onContactClick }: CTAProps) {
           >
             <Button 
               size="lg" 
-              className="text-lg px-8 py-4 cursor-pointer"
+              className="text-lg px-8 py-4 cursor-pointer relative overflow-hidden group"
               onClick={() => onContactClick("Купити Driver POSNET")}
             >
+              {/* Button highlight effect */}
               <motion.div
-                className="mr-2"
-                whileHover={{ rotate: 10, transition: { duration: 0.2 } }}
+                className="absolute inset-0 bg-white/20 rounded-md"
+                initial={{ scale: 0, opacity: 0 }}
+                whileHover={{
+                  scale: 1,
+                  opacity: 1,
+                  transition: { duration: 0.3, ease: "easeOut" }
+                }}
+              />
+              
+              {/* Animated phone icon */}
+              <motion.div
+                className="mr-2 relative z-10"
+                whileHover={{ 
+                  rotate: [0, -10, 10, 0],
+                  scale: 1.1,
+                  transition: { duration: 0.4 } 
+                }}
+                animate={{
+                  y: [0, -2, 0]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
               >
                 <Phone size={20} />
               </motion.div>
-              Замовити дзвінок
+              
+              <span className="relative z-10">Замовити дзвінок</span>
+              
+              {/* Ripple effect on hover */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
+                initial={{ x: '-100%' }}
+                whileHover={{
+                  x: '100%',
+                  transition: { duration: 0.6, ease: "easeInOut" }
+                }}
+              />
             </Button>
+          </motion.div>
+          
+          {/* Additional subtle call-to-action hints */}
+          <motion.div 
+            className="mt-8 flex justify-center space-x-8 opacity-30"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? {
+              opacity: 0.3,
+              y: 0,
+              transition: { delay: 1, duration: 0.6 }
+            } : { opacity: 0, y: 20 }}
+          >
+            <motion.div
+              animate={{
+                scale: [1, 1.1, 1],
+                opacity: [0.3, 0.6, 0.3]
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                delay: 0
+              }}
+              className="text-xs text-muted-foreground"
+            >
+              ✓ Швидке впровадження
+            </motion.div>
+            <motion.div
+              animate={{
+                scale: [1, 1.1, 1],
+                opacity: [0.3, 0.6, 0.3]
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                delay: 1
+              }}
+              className="text-xs text-muted-foreground"
+            >
+              ✓ Експертна підтримка  
+            </motion.div>
+            <motion.div
+              animate={{
+                scale: [1, 1.1, 1],
+                opacity: [0.3, 0.6, 0.3]
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                delay: 2
+              }}
+              className="text-xs text-muted-foreground"
+            >
+              ✓ Гарантія якості
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>

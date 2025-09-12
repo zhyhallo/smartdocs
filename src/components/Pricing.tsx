@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Check } from "@phosphor-icons/react"
 import { motion } from "framer-motion"
 import { useInView } from "@/hooks/useInView"
+import { ParallaxBackground, FloatingElements } from "@/components"
 
 interface PricingProps {
   onContactClick: (service: string) => void
@@ -94,8 +95,65 @@ export default function Pricing({ onContactClick }: PricingProps) {
   ]
 
   return (
-    <section id="pricing" className="py-20" ref={ref}>
-      <div className="container mx-auto px-4">
+    <section id="pricing" className="py-20 relative overflow-hidden" ref={ref}>
+      {/* Parallax Background Elements */}
+      <ParallaxBackground variant="circles" intensity="medium" />
+      <FloatingElements density="low" theme="business" />
+      
+      {/* Additional floating currency symbols with enhanced parallax */}
+      <div className="absolute inset-0 pointer-events-none">
+        <motion.div
+          className="absolute top-20 left-20 text-6xl text-primary/10 font-bold"
+          animate={{
+            rotate: [0, 15, -15, 0],
+            scale: [1, 1.1, 0.9, 1],
+            y: [-10, 10, -10]
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        >
+          zł
+        </motion.div>
+        
+        <motion.div
+          className="absolute bottom-32 right-16 text-4xl text-accent/10 font-bold"
+          animate={{
+            rotate: [0, -20, 20, 0],
+            scale: [0.8, 1.2, 0.8],
+            x: [-5, 5, -5]
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2
+          }}
+        >
+          1500
+        </motion.div>
+        
+        <motion.div
+          className="absolute top-1/2 right-20 opacity-5"
+          animate={{
+            rotate: [0, 360],
+            scale: [1, 1.3, 1]
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        >
+          <div className="w-16 h-16 border-4 border-primary rounded-full flex items-center justify-center">
+            <Check size={24} className="text-primary" />
+          </div>
+        </motion.div>
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div 
           className="text-center mb-16"
           variants={headerVariants}
@@ -116,15 +174,32 @@ export default function Pricing({ onContactClick }: PricingProps) {
               transition: { duration: 0.3 }
             }}
           >
-            <Card className="border-primary/50 shadow-xl hover:shadow-2xl transition-shadow duration-300">
-              <CardContent className="p-8 text-center">
+            <Card className="border-primary/50 shadow-xl hover:shadow-2xl transition-shadow duration-300 relative overflow-hidden">
+              {/* Card background effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5"></div>
+              <div className="absolute -top-20 -right-20 w-40 h-40 bg-primary/5 rounded-full"></div>
+              <div className="absolute -bottom-16 -left-16 w-32 h-32 bg-accent/5 rounded-full"></div>
+              
+              <CardContent className="p-8 text-center relative z-10">
                 <motion.div 
                   className="mb-6"
                   variants={priceVariants}
                   initial="hidden"
                   animate={isInView ? "visible" : "hidden"}
                 >
-                  <div className="text-4xl font-bold text-primary mb-2">1500 zł</div>
+                  <motion.div 
+                    className="text-4xl font-bold text-primary mb-2"
+                    animate={{
+                      scale: [1, 1.02, 1]
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    1500 zł
+                  </motion.div>
                   <div className="text-muted-foreground">разовий платіж</div>
                 </motion.div>
 
@@ -137,6 +212,10 @@ export default function Pricing({ onContactClick }: PricingProps) {
                       variants={listItemVariants}
                       initial="hidden"
                       animate={isInView ? "visible" : "hidden"}
+                      whileHover={{
+                        x: 5,
+                        transition: { duration: 0.2 }
+                      }}
                     >
                       <motion.div
                         initial={{ scale: 0, rotate: -180 }}
@@ -149,6 +228,11 @@ export default function Pricing({ onContactClick }: PricingProps) {
                             ease: "backOut"
                           }
                         } : { scale: 0, rotate: -180 }}
+                        whileHover={{
+                          scale: 1.2,
+                          rotate: 360,
+                          transition: { duration: 0.3 }
+                        }}
                       >
                         <Check className="text-primary mr-3" size={20} />
                       </motion.div>
@@ -165,11 +249,19 @@ export default function Pricing({ onContactClick }: PricingProps) {
                   whileTap="tap"
                 >
                   <Button 
-                    className="w-full text-lg py-6 cursor-pointer" 
+                    className="w-full text-lg py-6 cursor-pointer relative overflow-hidden" 
                     size="lg"
                     onClick={() => onContactClick("Купити Driver POSNET - 1500 zł")}
                   >
-                    Купити зараз
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                      initial={{ x: '-100%' }}
+                      whileHover={{
+                        x: '100%',
+                        transition: { duration: 0.6, ease: "easeInOut" }
+                      }}
+                    />
+                    <span className="relative z-10">Купити зараз</span>
                   </Button>
                 </motion.div>
 
