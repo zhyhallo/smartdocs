@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
-import { Menu, X } from "@phosphor-icons/react"
 import { motion, AnimatePresence } from "framer-motion"
 import { OwlMascot } from "@/components"
 
@@ -34,8 +33,8 @@ export default function Header({ onContactClick }: HeaderProps) {
   const menuItemVariants = {
     hover: {
       scale: 1.05,
-      color: "oklch(0.65 0.18 220)", // Use accent blue color directly
-      transition: { duration: 0.2, ease: "easeInOut" }
+      color: "#00aaff", // Clean blue color as requested
+      transition: { duration: 0.3, ease: "easeInOut" }
     },
     tap: {
       scale: 0.98,
@@ -136,8 +135,8 @@ export default function Header({ onContactClick }: HeaderProps) {
                 className="text-muted-foreground cursor-pointer"
                 whileHover={{ 
                   scale: 1.05, 
-                  color: "oklch(0.65 0.18 220)",
-                  transition: { duration: 0.2 } 
+                  color: "#00aaff",
+                  transition: { duration: 0.3 } 
                 }}
               >
                 +48 123 456 789
@@ -162,21 +161,43 @@ export default function Header({ onContactClick }: HeaderProps) {
           {/* Mobile Menu Button */}
           <motion.button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 cursor-pointer"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
+            className="md:hidden p-2 cursor-pointer relative"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={isMobileMenuOpen ? "close" : "open"}
-                initial={{ rotate: -90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: 90, opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-              </motion.div>
-            </AnimatePresence>
+            <div className="w-6 h-6 flex flex-col justify-center space-y-1">
+              <motion.span
+                className="h-0.5 bg-foreground origin-center"
+                animate={{
+                  rotate: isMobileMenuOpen ? 45 : 0,
+                  y: isMobileMenuOpen ? 6 : 0,
+                  width: isMobileMenuOpen ? "100%" : "100%",
+                  backgroundColor: isMobileMenuOpen ? "#00aaff" : undefined
+                }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                whileHover={{ backgroundColor: "#00aaff" }}
+              />
+              <motion.span
+                className="h-0.5 bg-foreground"
+                animate={{
+                  opacity: isMobileMenuOpen ? 0 : 1,
+                  scaleX: isMobileMenuOpen ? 0 : 1
+                }}
+                transition={{ duration: 0.2, ease: "easeInOut" }}
+                whileHover={{ backgroundColor: "#00aaff", scaleX: 1.1 }}
+              />
+              <motion.span
+                className="h-0.5 bg-foreground origin-center"
+                animate={{
+                  rotate: isMobileMenuOpen ? -45 : 0,
+                  y: isMobileMenuOpen ? -6 : 0,
+                  width: isMobileMenuOpen ? "100%" : "100%",
+                  backgroundColor: isMobileMenuOpen ? "#00aaff" : undefined
+                }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                whileHover={{ backgroundColor: "#00aaff" }}
+              />
+            </div>
           </motion.button>
         </div>
 
@@ -201,8 +222,8 @@ export default function Header({ onContactClick }: HeaderProps) {
                     initial="hidden"
                     animate="visible"
                     whileHover={{ 
-                      color: "oklch(0.65 0.18 220)",
-                      transition: { duration: 0.2, ease: "easeInOut" }
+                      color: "#00aaff",
+                      transition: { duration: 0.3, ease: "easeInOut" }
                     }}
                     whileTap={{
                       scale: 0.98,

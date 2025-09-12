@@ -48,7 +48,7 @@
     background: oklch(0.45 0.22 240);
   }
   
-  /* Override any default link colors */
+  /* Override any default link colors and prevent unwanted color changes */
   a {
     color: inherit !important;
     text-decoration: none !important;
@@ -69,6 +69,42 @@
   
   a:active {
     color: inherit !important;
+  }
+  
+  /* Menu item hover effects */
+  .menu-item-hover:hover {
+    color: #00aaff !important;
+    transform: scale(1.05);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Burger menu line styles */
+  .burger-line {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center;
+  }
+  
+  .burger-line:hover {
+    background-color: #00aaff !important;
+    transform: scaleX(1.05);
+  }
+  
+  /* Icon hover effects */
+  .icon-hover:hover {
+    color: #00aaff !important;
+    transform: scale(1.05);
+    transition: all 0.2s ease-in-out;
+  }
+  
+  /* Prevent any accidental green color application */
+  * {
+    --tw-text-opacity: 1 !important;
+  }
+  
+  /* Override any system colors that might cause issues */
+  *:not(.text-green-500):not(.text-green-600):not(.text-green-700):not(.bg-green-500):not(.bg-green-600):not(.bg-green-700) {
+    --tw-text-color: inherit;
+    --tw-bg-color: inherit;
   }
 }
 
