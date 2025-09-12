@@ -33,10 +33,10 @@ export default function OwlAnalyst({
   }, [])
   
   const sizeClasses = {
-    sm: "w-32 h-32",
-    md: "w-48 h-48", 
-    lg: "w-64 h-64",
-    xl: "w-80 h-80"
+    sm: "w-20 h-20",
+    md: "w-32 h-32", 
+    lg: "w-40 h-40",
+    xl: "w-48 h-48"
   }
 
   const owlVariants = {
