@@ -27,12 +27,12 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
             </p>
           </div>
 
-          {/* Navigation and Contact Info layout with centered owl */}
+          {/* Navigation and Contact Info layout with perfectly positioned owl */}
           <div className="md:col-span-12 lg:col-span-8">
-            <div className="flex flex-col md:flex-row items-start justify-between gap-6 md:gap-8">
+            <div className="relative flex flex-col md:flex-row items-start justify-start gap-8 md:gap-12 lg:gap-16">
               
               {/* Navigation Section */}
-              <div className="text-center md:text-left flex-1">
+              <div className="text-center md:text-left">
                 <h3 className="text-lg font-bold text-background mb-4">Навігація</h3>
                 <nav className="space-y-3">
                   <button 
@@ -68,8 +68,8 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
                 </nav>
               </div>
               
-              {/* Contact Info Section - moved closer to navigation */}
-              <div className="text-center md:text-left flex-1 md:ml-4 lg:ml-6">
+              {/* Contact Info Section - positioned closer to navigation */}
+              <div className="text-center md:text-left">
                 <h3 className="text-lg font-bold text-background mb-4">Наші контакти</h3>
                 <div className="space-y-4 text-sm leading-relaxed">
                   <div className="space-y-2">
@@ -105,14 +105,16 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
                 </div>
               </div>
 
-              {/* Owl positioned on the right with balanced spacing */}
-              <div className="flex justify-center items-center pt-4 md:pt-0 px-4 md:px-6 lg:px-8">
-                <OwlAnalyst 
-                  size="md" 
-                  animated={true} 
-                  withTerminal={false}
-                  className="filter invert" 
-                />
+              {/* Owl positioned with perfect balance between navigation and contact info */}
+              <div className="absolute md:relative top-0 right-0 md:top-auto md:right-auto flex justify-center items-start pt-2 md:pt-4 lg:pt-6">
+                <div className="ml-4 md:ml-8 lg:ml-12">
+                  <OwlAnalyst 
+                    size="md" 
+                    animated={true} 
+                    withTerminal={false}
+                    className="filter invert" 
+                  />
+                </div>
               </div>
             </div>
           </div>
