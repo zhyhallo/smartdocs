@@ -16,7 +16,7 @@ export default function OwlAnalyst({
   size = "md", 
   className = "", 
   animated = true,
-  terminalPosition = "right",
+  terminalPosition = "left",
   interactionContext = "general",
   onInteraction
 }: OwlAnalystProps) {
@@ -85,10 +85,10 @@ export default function OwlAnalyst({
   }, [])
   
   const sizeClasses = {
-    sm: "w-32 h-20",
-    md: "w-48 h-28", 
-    lg: "w-64 h-36",
-    xl: "w-80 h-44"
+    sm: "w-28 h-16",
+    md: "w-36 h-20", 
+    lg: "w-48 h-24",
+    xl: "w-60 h-28"
   }
 
   const owlVariants = {
@@ -189,7 +189,7 @@ export default function OwlAnalyst({
   const OwlSVG = () => (
     <svg
       viewBox="0 0 120 120"
-      className="w-20 h-20 flex-shrink-0"
+      className="w-16 h-16 flex-shrink-0"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -360,182 +360,112 @@ export default function OwlAnalyst({
       whileHover="hover"
     >
       <svg
-        viewBox="0 0 140 100"
-        className="w-28 h-20 flex-shrink-0"
+        viewBox="0 0 100 80"
+        className="w-20 h-16 flex-shrink-0"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* Terminal Base */}
+        {/* Terminal Body - Simplified */}
         <rect
-          x="10"
-          y="45"
-          width="120"
-          height="45"
-          rx="4"
+          x="5"
+          y="10"
+          width="90"
+          height="60"
+          rx="6"
           fill="oklch(0.25 0.08 240)"
           className="drop-shadow-lg"
         />
         
-        {/* Terminal Screen */}
+        {/* Screen */}
         <motion.rect
-          x="15"
+          x="10"
           y="15"
-          width="110"
-          height="70"
+          width="80"
+          height="45"
           rx="3"
           fill="oklch(0.15 0.05 240)"
-          className="drop-shadow-md"
           animate={{
             boxShadow: [
-              "0 0 10px oklch(0.65 0.18 220 / 0.3)",
-              "0 0 15px oklch(0.65 0.18 220 / 0.5)",
-              "0 0 10px oklch(0.65 0.18 220 / 0.3)"
+              "0 0 8px oklch(0.65 0.18 220 / 0.3)",
+              "0 0 12px oklch(0.65 0.18 220 / 0.5)",
+              "0 0 8px oklch(0.65 0.18 220 / 0.3)"
             ]
           }}
           transition={{ duration: 2, repeat: Infinity }}
         />
         
-        {/* Screen glow effect */}
-        <motion.rect
-          x="15"
-          y="15"
-          width="110"
-          height="70"
-          rx="3"
-          fill="url(#screenGlow)"
+        {/* Simple Power Button */}
+        <circle
+          cx="85"
+          cy="65"
+          r="3"
+          fill="oklch(0.35 0.08 240)"
+        />
+        
+        {/* Power LED */}
+        <motion.circle
+          cx="85"
+          cy="65"
+          r="1"
+          fill="oklch(0.65 0.18 220)"
           animate={{
-            opacity: [0.3, 0.6, 0.3]
+            opacity: [0.5, 1, 0.5]
           }}
           transition={{ duration: 1.5, repeat: Infinity }}
         />
         
-        {/* Terminal Stand */}
+        {/* Stand - Simplified */}
         <rect
-          x="60"
-          y="85"
+          x="40"
+          y="70"
           width="20"
-          height="8"
+          height="6"
           fill="oklch(0.35 0.08 240)"
         />
-        <rect
-          x="50"
-          y="93"
-          width="40"
-          height="4"
-          rx="2"
-          fill="oklch(0.35 0.08 240)"
-        />
-        
-        {/* Gradient definitions */}
-        <defs>
-          <linearGradient id="screenGlow" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style={{ stopColor: "oklch(0.65 0.18 220)", stopOpacity: 0.1 }} />
-            <stop offset="50%" style={{ stopColor: "oklch(0.65 0.18 220)", stopOpacity: 0.3 }} />
-            <stop offset="100%" style={{ stopColor: "oklch(0.65 0.18 220)", stopOpacity: 0.1 }} />
-          </linearGradient>
-        </defs>
       </svg>
       
-      {/* Data display overlay */}
+      {/* Simple Data display */}
       <motion.div
-        className="absolute top-4 left-6 right-6 text-xs font-mono text-accent space-y-1"
+        className="absolute top-2 left-3 right-3 text-[10px] font-mono text-accent space-y-0.5"
         animate={{
-          opacity: isInteracting ? [0.8, 1, 0.8] : [0.7, 0.9, 0.7]
+          opacity: [0.7, 1, 0.7]
         }}
         transition={{ 
-          duration: isInteracting ? 1 : 2, 
+          duration: 2, 
           repeat: Infinity 
         }}
       >
         <motion.div
           key={currentData.total}
-          initial={{ opacity: 0, x: 5 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
+          className="truncate"
         >
-          TOTAL: ₴{currentData.total}
+          ₴{currentData.total}
         </motion.div>
         
         <motion.div
-          key={currentData.transactions}
-          initial={{ opacity: 0, x: 5 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.3, delay: 0.1 }}
-        >
-          TX: {currentData.transactions}
-        </motion.div>
-        
-        {/* Enhanced status display */}
-        <motion.div
-          className="flex justify-between text-[10px]"
-          key={`${currentData.status}-${currentData.time}`}
-          initial={{ opacity: 0, x: 5 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.3, delay: 0.2 }}
-        >
-          <span className={
+          key={currentData.status}
+          className={`text-[8px] truncate ${
             currentData.status === "ACTIVE" ? "text-green-400" : 
             currentData.status === "PROCESSING" ? "text-yellow-400" :
-            currentData.status === "ANALYZING" ? "text-blue-400" :
             "text-gray-400"
-          }>
-            {currentData.status}
-          </span>
-          <span>{currentData.time}</span>
+          }`}
+        >
+          {currentData.status}
         </motion.div>
-
-        {/* Operation display */}
-        {currentData.operation && (
-          <motion.div
-            className="text-[9px] text-muted-foreground truncate"
-            key={currentData.operation}
-            initial={{ opacity: 0, y: 5 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.3 }}
-          >
-            {currentData.operation}
-          </motion.div>
-        )}
-
-        {/* Progress bar for processing states */}
-        {currentData.progress && (
-          <motion.div
-            className="w-full bg-border rounded-full h-1 overflow-hidden"
-            initial={{ opacity: 0, scaleX: 0 }}
-            animate={{ opacity: 1, scaleX: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          >
-            <motion.div
-              className="h-full bg-accent"
-              initial={{ width: "0%" }}
-              animate={{ width: `${currentData.progress}%` }}
-              transition={{ duration: 1, ease: "easeInOut" }}
-            />
-          </motion.div>
-        )}
-
-        {/* Cash register type indicator */}
-        {currentData.cashRegisterType && (
-          <motion.div
-            className="text-[8px] text-accent/70 font-bold"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3, delay: 0.5 }}
-          >
-            {currentData.cashRegisterType}
-          </motion.div>
-        )}
       </motion.div>
     </motion.div>
   )
 
-  const containerClass = terminalPosition === "left" ? "flex-row-reverse" : "flex-row"
+  const containerClass = terminalPosition === "left" ? "flex-row" : "flex-row-reverse"
 
   if (!animated) {
     return (
       <div className={`flex items-center gap-4 ${containerClass} ${sizeClasses[size]} ${className}`}>
-        <OwlSVG />
         <TerminalSVG />
+        <OwlSVG />
       </div>
     )
   }
@@ -559,71 +489,55 @@ export default function OwlAnalyst({
       role="button"
       aria-label="Interactive financial terminal with owl analyst"
     >
-      <OwlSVG />
       <TerminalSVG />
+      <OwlSVG />
       
-      {/* Enhanced interaction sparkles */}
+      {/* Simple interaction sparkles */}
       <AnimatePresence>
         {(isHovered || isInteracting) && (
           <>
-            {[...Array(isInteracting ? 8 : 6)].map((_, i) => (
+            {[...Array(3)].map((_, i) => (
               <motion.div
                 key={`sparkle-${i}`}
                 className="absolute text-accent pointer-events-none text-sm"
                 style={{
-                  left: `${20 + Math.random() * 60}%`,
-                  top: `${10 + Math.random() * 60}%`,
+                  left: `${30 + Math.random() * 40}%`,
+                  top: `${20 + Math.random() * 40}%`,
                 }}
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{
                   opacity: [0, 1, 0],
-                  scale: [0, 1.5, 0],
-                  y: [0, -30],
-                  x: [(Math.random() - 0.5) * 20],
-                  rotate: [0, 360]
+                  scale: [0, 1, 0],
+                  y: [0, -15],
                 }}
                 exit={{ opacity: 0 }}
                 transition={{
-                  duration: isInteracting ? 1.2 : 1.8,
-                  delay: i * (isInteracting ? 0.1 : 0.2),
+                  duration: 1.5,
+                  delay: i * 0.3,
                   ease: "easeOut"
                 }}
               >
-                {isInteracting ? "💎" : "✨"}
+                ✨
               </motion.div>
             ))}
-            
-            {/* Processing indicator */}
-            {isInteracting && currentData.progress && (
-              <motion.div
-                className="absolute top-0 right-0 text-xs text-accent font-mono bg-background/80 px-1 py-0.5 rounded"
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3 }}
-              >
-                {currentData.progress}%
-              </motion.div>
-            )}
           </>
         )}
       </AnimatePresence>
       
-      {/* Interaction glow effect */}
+      {/* Simple interaction glow effect */}
       <AnimatePresence>
         {(isInteracting || isClicked) && (
           <motion.div
-            className="absolute inset-0 pointer-events-none"
-            initial={{ opacity: 0, scale: 0.8 }}
+            className="absolute inset-0 pointer-events-none rounded-full"
+            initial={{ opacity: 0, scale: 0.9 }}
             animate={{
-              opacity: [0, 0.3, 0],
-              scale: [0.8, 1.2, 1.4],
+              opacity: [0, 0.2, 0],
+              scale: [0.9, 1.1, 1.2],
             }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 2, ease: "easeOut" }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
             style={{
-              background: "radial-gradient(circle, oklch(0.65 0.18 220 / 0.2) 0%, transparent 70%)",
-              borderRadius: "50%",
+              background: "radial-gradient(circle, oklch(0.65 0.18 220 / 0.15) 0%, transparent 60%)",
             }}
           />
         )}
