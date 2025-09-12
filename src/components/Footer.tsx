@@ -16,7 +16,7 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
           {/* Company Info */}
           <div className="text-center md:text-left">
             <div className="flex items-center justify-center md:justify-start space-x-3 mb-4">
-              <OwlAnalyst size="sm" animated={false} className="filter invert" interactionContext="footer" />
+              <OwlAnalyst size="sm" animated={false} className="filter invert" />
               <div className="text-2xl font-bold">ModulSoft</div>
             </div>
             <p className="text-background/80 mb-4">

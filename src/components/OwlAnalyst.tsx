@@ -1,78 +1,25 @@
 import { motion, AnimatePresence } from "framer-motion"
-import { useState, useEffect, useId } from "react"
-import { useInteractiveTerminal, type InteractionEvent } from "@/hooks/useInteractiveTerminal"
-import { useInteractionContext } from "@/hooks/useInteractionContext"
+import { useState, useEffect } from "react"
 
 interface OwlAnalystProps {
   size?: "sm" | "md" | "lg" | "xl"
   className?: string
   animated?: boolean
-  terminalPosition?: "left" | "right"
-  interactionContext?: string
-  onInteraction?: (interaction: InteractionEvent) => void
+}
+
+type InteractionEvent = {
+  type: string
+  section?: string
 }
 
 export default function OwlAnalyst({ 
-  size = "md", 
+  size = "lg", 
   className = "", 
-  animated = true,
-  terminalPosition = "left",
-  interactionContext = "general",
-  onInteraction
+  animated = true
 }: OwlAnalystProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [isBlinking, setIsBlinking] = useState(false)
   const [isClicked, setIsClicked] = useState(false)
-  const terminalId = useId()
-  
-  // Use the interactive terminal hook
-  const { data: currentData, isInteracting, handleInteraction } = useInteractiveTerminal(2500)
-  
-  // Connect to global interaction system
-  const { registerTerminal, unregisterTerminal, triggerGlobalInteraction } = useInteractionContext()
-  
-  // Register this terminal with the global interaction system
-  useEffect(() => {
-    registerTerminal(terminalId, handleInteraction)
-    return () => unregisterTerminal(terminalId)
-  }, [terminalId, registerTerminal, unregisterTerminal, handleInteraction])
-  
-  // Generate random financial data for fallback (keeping existing function for compatibility)
-  function generateRandomData() {
-    return {
-      total: currentData.total,
-      transactions: currentData.transactions,
-      status: currentData.status,
-      time: currentData.time
-    }
-  }
-
-  // Handle various interactions
-  const handleHover = (isHovering: boolean) => {
-    setIsHovered(isHovering)
-    if (isHovering) {
-      const interaction: InteractionEvent = {
-        type: "hover",
-        section: interactionContext
-      }
-      handleInteraction(interaction)
-      triggerGlobalInteraction(interaction)
-      onInteraction?.(interaction)
-    }
-  }
-
-  const handleClick = () => {
-    setIsClicked(true)
-    setTimeout(() => setIsClicked(false), 500)
-    
-    const interaction: InteractionEvent = {
-      type: "click",
-      section: interactionContext
-    }
-    handleInteraction(interaction)
-    triggerGlobalInteraction(interaction)
-    onInteraction?.(interaction)
-  }
 
   // Blink animation timer
   useEffect(() => {
@@ -85,10 +32,10 @@ export default function OwlAnalyst({
   }, [])
   
   const sizeClasses = {
-    sm: "w-28 h-16",
-    md: "w-36 h-20", 
-    lg: "w-48 h-24",
-    xl: "w-60 h-28"
+    sm: "w-32 h-32",
+    md: "w-48 h-48", 
+    lg: "w-64 h-64",
+    xl: "w-80 h-80"
   }
 
   const owlVariants = {
@@ -103,9 +50,9 @@ export default function OwlAnalyst({
       }
     },
     float: {
-      y: [0, -3, 0],
+      y: [0, -5, 0],
       transition: {
-        duration: isInteracting ? 2 : 3,
+        duration: 3,
         repeat: Infinity,
         ease: "easeInOut"
       }
@@ -120,32 +67,14 @@ export default function OwlAnalyst({
     }
   }
 
-  const terminalVariants = {
-    initial: { opacity: 0, scale: 0.95, x: terminalPosition === "left" ? -10 : 10 },
-    animate: {
-      opacity: 1,
-      scale: 1,
-      x: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut",
-        delay: 0.2
-      }
-    },
-    hover: {
-      scale: 1.05,
-      transition: { duration: 0.3 }
-    }
-  }
-
   const headTurnVariants = {
     normal: {
       rotate: 0,
       transition: { duration: 0.5, ease: "easeInOut" }
     },
-    lookAtTerminal: {
-      rotate: terminalPosition === "left" ? -15 : 15,
-      transition: { duration: 0.8, ease: "easeInOut" }
+    curious: {
+      rotate: [0, -8, 8, -5, 0],
+      transition: { duration: 2, ease: "easeInOut" }
     }
   }
 
@@ -166,11 +95,11 @@ export default function OwlAnalyst({
       y: 0,
       transition: { duration: 0.3 }
     },
-    typing: {
+    active: {
       rotate: [0, -10, 5, -8, 3, 0],
       y: [0, -1, -2, -1, 0],
       transition: {
-        duration: isInteracting ? 0.8 : 1.2,
+        duration: 1.2,
         repeat: Infinity,
         ease: "easeInOut"
       }
@@ -189,7 +118,7 @@ export default function OwlAnalyst({
   const OwlSVG = () => (
     <svg
       viewBox="0 0 120 120"
-      className="w-16 h-16 flex-shrink-0"
+      className="w-full h-full"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -203,7 +132,6 @@ export default function OwlAnalyst({
         className="drop-shadow-sm"
         animate={
           isClicked ? { scale: [1, 0.95, 1.02, 1] } :
-          isInteracting ? { scale: [1, 1.02, 1] } : 
           isHovered ? { scale: [1, 1.02, 1] } : {}
         }
         transition={{ 
@@ -215,7 +143,7 @@ export default function OwlAnalyst({
       {/* Owl Head with turn animation */}
       <motion.g
         variants={headTurnVariants}
-        animate={isHovered ? "lookAtTerminal" : "normal"}
+        animate={isHovered ? "curious" : "normal"}
         style={{ transformOrigin: "60px 50px" }}
       >
         <circle
@@ -270,14 +198,13 @@ export default function OwlAnalyst({
         <motion.g 
           opacity="0.7"
           animate={
-            isInteracting ? { 
+            isHovered ? { 
               opacity: [0.7, 1, 0.7],
               scale: [1, 1.05, 1]
-            } : 
-            isHovered ? { opacity: [0.7, 1, 0.7] } : {}
+            } : {}
           }
           transition={{ 
-            duration: isInteracting ? 1 : 1.5, 
+            duration: 1.5, 
             repeat: Infinity 
           }}
         >
@@ -285,8 +212,8 @@ export default function OwlAnalyst({
           <circle cx="68" cy="45" r="10" fill="none" stroke="oklch(0.25 0.08 240)" strokeWidth="1.5" />
           <line x1="62" y1="45" x2="58" y2="45" stroke="oklch(0.25 0.08 240)" strokeWidth="1.5" />
           
-          {/* Lens reflection effect when processing */}
-          {isInteracting && (
+          {/* Lens reflection effect when hovered */}
+          {isHovered && (
             <motion.g
               initial={{ opacity: 0 }}
               animate={{ opacity: [0, 0.6, 0] }}
@@ -305,7 +232,7 @@ export default function OwlAnalyst({
         />
       </motion.g>
       
-      {/* Animated Wings - simulate typing */}
+      {/* Animated Wings */}
       <motion.ellipse
         cx="45"
         cy="65"
@@ -315,8 +242,7 @@ export default function OwlAnalyst({
         variants={wingVariants}
         animate={
           isClicked ? "excited" :
-          isInteracting ? "typing" : 
-          isHovered ? "typing" : "rest"
+          isHovered ? "active" : "rest"
         }
         style={{ transformOrigin: "45px 62px" }}
       />
@@ -329,8 +255,7 @@ export default function OwlAnalyst({
         variants={wingVariants}
         animate={
           isClicked ? "excited" :
-          isInteracting ? "typing" : 
-          isHovered ? "typing" : "rest"
+          isHovered ? "active" : "rest"
         }
         style={{ transformOrigin: "75px 62px" }}
       />
@@ -351,97 +276,9 @@ export default function OwlAnalyst({
     </svg>
   )
 
-  const TerminalSVG = () => (
-    <motion.div
-      className="relative"
-      variants={terminalVariants}
-      initial="initial"
-      animate="animate"
-      whileHover="hover"
-    >
-      <svg
-        viewBox="0 0 100 80"
-        className="w-20 h-16 flex-shrink-0"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        {/* Terminal Body - Simplified */}
-        <rect
-          x="5"
-          y="10"
-          width="90"
-          height="60"
-          rx="6"
-          fill="oklch(0.25 0.08 240)"
-          className="drop-shadow-lg"
-        />
-        
-        {/* Screen with subtle glow */}
-        <rect
-          x="10"
-          y="15"
-          width="80"
-          height="45"
-          rx="3"
-          fill="oklch(0.15 0.05 240)"
-          className="drop-shadow-sm"
-          style={{
-            filter: "drop-shadow(0 0 4px oklch(0.65 0.18 220 / 0.2))"
-          }}
-        />
-        
-        {/* Simple Power Button */}
-        <circle
-          cx="85"
-          cy="65"
-          r="3"
-          fill="oklch(0.35 0.08 240)"
-        />
-        
-        {/* Power LED - Simplified */}
-        <circle
-          cx="85"
-          cy="65"
-          r="1"
-          fill="oklch(0.65 0.18 220)"
-          opacity="0.8"
-        />
-        
-        {/* Stand - Simplified */}
-        <rect
-          x="40"
-          y="70"
-          width="20"
-          height="6"
-          fill="oklch(0.35 0.08 240)"
-        />
-      </svg>
-      
-      {/* Simple Data display - Static */}
-      <div className="absolute top-2 left-3 right-3 text-[10px] font-mono text-accent space-y-0.5">
-        <div className="truncate">
-          ₴{currentData.total}
-        </div>
-        
-        <div
-          className={`text-[8px] truncate ${
-            currentData.status === "ACTIVE" ? "text-green-400" : 
-            currentData.status === "PROCESSING" ? "text-yellow-400" :
-            "text-gray-400"
-          }`}
-        >
-          {currentData.status}
-        </div>
-      </div>
-    </motion.div>
-  )
-
-  const containerClass = terminalPosition === "left" ? "flex-row" : "flex-row-reverse"
-
   if (!animated) {
     return (
-      <div className={`flex items-center gap-2 ${containerClass} ${sizeClasses[size]} ${className}`}>
-        <TerminalSVG />
+      <div className={`${sizeClasses[size]} ${className}`}>
         <OwlSVG />
       </div>
     )
@@ -453,68 +290,106 @@ export default function OwlAnalyst({
       initial="initial"
       animate={
         isClicked ? ["animate", "excited"] :
-        isInteracting ? ["animate", "excited"] :
         ["animate", "float"]
       }
-      className={`flex items-center gap-2 ${containerClass} ${sizeClasses[size]} ${className} cursor-pointer select-none`}
-      onMouseEnter={() => handleHover(true)}
-      onMouseLeave={() => handleHover(false)}
-      onClick={handleClick}
-      onFocus={() => handleHover(true)}
-      onBlur={() => handleHover(false)}
+      className={`${sizeClasses[size]} ${className} cursor-pointer select-none owl-container relative`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onClick={() => {
+        setIsClicked(true)
+        setTimeout(() => setIsClicked(false), 500)
+      }}
+      onFocus={() => setIsHovered(true)}
+      onBlur={() => setIsHovered(false)}
       tabIndex={0}
       role="button"
-      aria-label="Interactive financial terminal with owl analyst"
+      aria-label="Interactive owl analyst mascot"
     >
-      <TerminalSVG />
       <OwlSVG />
       
-      {/* Simple interaction sparkles */}
+      {/* Glow effect */}
+      <div className="owl-glow-effect" />
+      
+      {/* Enhanced interaction sparkles */}
       <AnimatePresence>
-        {(isHovered || isInteracting) && (
+        {isHovered && (
           <>
-            {[...Array(3)].map((_, i) => (
+            {[...Array(5)].map((_, i) => (
               <motion.div
                 key={`sparkle-${i}`}
-                className="absolute text-accent pointer-events-none text-sm"
+                className="absolute text-accent pointer-events-none owl-sparkle"
                 style={{
-                  left: `${30 + Math.random() * 40}%`,
-                  top: `${20 + Math.random() * 40}%`,
+                  left: `${20 + Math.random() * 60}%`,
+                  top: `${10 + Math.random() * 60}%`,
+                  fontSize: `${12 + Math.random() * 8}px`
                 }}
-                initial={{ opacity: 0, scale: 0 }}
+                initial={{ opacity: 0, scale: 0, rotate: 0 }}
                 animate={{
                   opacity: [0, 1, 0],
-                  scale: [0, 1, 0],
-                  y: [0, -15],
+                  scale: [0, 1.2, 0],
+                  rotate: [0, 360],
+                  y: [0, -20],
                 }}
                 exit={{ opacity: 0 }}
                 transition={{
-                  duration: 1.5,
-                  delay: i * 0.3,
+                  duration: 2,
+                  delay: i * 0.2,
                   ease: "easeOut"
                 }}
               >
                 ✨
               </motion.div>
             ))}
+            
+            {/* Additional magical particles */}
+            {[...Array(3)].map((_, i) => (
+              <motion.div
+                key={`particle-${i}`}
+                className="absolute pointer-events-none"
+                style={{
+                  left: `${30 + Math.random() * 40}%`,
+                  top: `${30 + Math.random() * 40}%`,
+                }}
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{
+                  opacity: [0, 0.8, 0],
+                  scale: [0, 1, 0],
+                  x: [0, (Math.random() - 0.5) * 30],
+                  y: [0, -15 - Math.random() * 15],
+                }}
+                exit={{ opacity: 0 }}
+                transition={{
+                  duration: 1.5,
+                  delay: i * 0.4,
+                  ease: "easeOut"
+                }}
+              >
+                <div 
+                  className="w-1 h-1 rounded-full bg-accent"
+                  style={{
+                    boxShadow: "0 0 4px oklch(0.65 0.18 220)"
+                  }}
+                />
+              </motion.div>
+            ))}
           </>
         )}
       </AnimatePresence>
       
-      {/* Simple interaction glow effect */}
+      {/* Pulse effect for clicks */}
       <AnimatePresence>
-        {(isInteracting || isClicked) && (
+        {isClicked && (
           <motion.div
-            className="absolute inset-0 pointer-events-none rounded-full"
+            className="absolute inset-0 pointer-events-none rounded-full owl-pulse"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{
-              opacity: [0, 0.2, 0],
-              scale: [0.9, 1.1, 1.2],
+              opacity: [0, 0.3, 0],
+              scale: [0.9, 1.2, 1.4],
             }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
+            transition={{ duration: 1, ease: "easeOut" }}
             style={{
-              background: "radial-gradient(circle, oklch(0.65 0.18 220 / 0.15) 0%, transparent 60%)",
+              background: "radial-gradient(circle, oklch(0.65 0.18 220 / 0.2) 0%, transparent 70%)",
             }}
           />
         )}

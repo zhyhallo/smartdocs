@@ -124,7 +124,6 @@ export default function Hero({ onContactClick }: HeroProps) {
               <OwlAnalyst 
                 size="xl" 
                 className="drop-shadow-2xl" 
-                interactionContext="hero"
               />
               
               {/* Floating badge near owl */}
