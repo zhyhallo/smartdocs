@@ -2,9 +2,11 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { motion } from "framer-motion"
 import { useInView } from "@/hooks/useInView"
 import { OwlIcon } from "@/components"
+import { useRef } from "react"
 
 export default function FAQ() {
-  const [ref, isInView] = useInView({ threshold: 0.1 })
+  const ref = useRef<HTMLElement>(null)
+  const [, isInView] = useInView({ threshold: 0.1 })
 
   const faqItems = [
     {
@@ -65,8 +67,8 @@ export default function FAQ() {
   }
 
   return (
-    <section id="faq" className="py-20" ref={ref}>
-      <div className="container mx-auto px-4 max-w-7xl">
+    <section id="faq" className="py-20">
+      <div ref={ref} className="container mx-auto px-4 max-w-7xl">
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Left side - FAQ content */}
           <div>
@@ -123,7 +125,7 @@ export default function FAQ() {
                 animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
-                <OwlIcon size="md" animated={true} showTerminal={false} />
+                <OwlIcon size="xs" animated={true} showTerminal={false} />
               </motion.div>
 
               {/* Large Question Mark */}
