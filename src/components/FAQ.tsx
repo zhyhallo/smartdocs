@@ -116,26 +116,7 @@ export default function FAQ() {
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             <div className="relative lg:ml-auto lg:max-w-fit flex items-center gap-6">
-              {/* Owl positioned to the left */}
-              <div className="relative">
-                <OwlIcon size="sm" animated={isInView} />
-              </div>
-              
-              {/* Question mark bubble */}
-              <motion.div
-                className="bg-primary text-primary-foreground w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold shadow-lg"
-                initial={{ scale: 0, rotate: -180 }}
-                animate={isInView ? { scale: 1, rotate: 0 } : { scale: 0, rotate: -180 }}
-                transition={{ 
-                  delay: 1, 
-                  duration: 0.6, 
-                  type: "spring",
-                  bounce: 0.6
-                }}
-              >
-                ?
-              </motion.div>
-              
+                            
               {/* Floating dots around the composition */}
               <motion.div
                 className="absolute -top-4 left-8 w-2 h-2 bg-accent rounded-full"
