@@ -156,7 +156,7 @@ export default function ScrollToTop() {
     <div className="relative flex items-center justify-center space-x-1">
       {/* POS Terminal to the left - increased size */}
       <div className="flex-shrink-0 mr-2">
-        <POSTerminal size="sm" animated={isHovered || isScrolling} />
+        <POSTerminal size="xs" animated={isHovered || isScrolling} />
       </div>
       
       {/* Enlarged Owl to the right */}
@@ -168,7 +168,7 @@ export default function ScrollToTop() {
         {/* Reduced Owl SVG - smaller for better proportions */}
         <svg
           viewBox="0 0 60 60"
-          className="w-4 h-4 sm:w-5 sm:h-5"
+          className="w-3 h-3 sm:w-4 sm:h-4"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >

@@ -44,11 +44,11 @@ export default function OwlAnalyst({
   }, [])
   
   const sizeClasses = {
-    xs: "w-2 h-2 sm:w-2 sm:h-2",        // Further optimized: 60% smaller
-    sm: "w-3 h-3 sm:w-3 sm:h-3",        // Further optimized: 60% smaller
-    md: "w-4 h-4 sm:w-4 sm:h-4",        // Further optimized: 60% smaller
-    lg: "w-5 h-5 sm:w-5 sm:h-5",        // Further optimized: 60% smaller
-    xl: "w-6 h-6 sm:w-6 sm:h-6"         // Further optimized: 60% smaller
+    xs: "w-4 h-4 sm:w-5 sm:h-5",        // Header/Footer optimized size
+    sm: "w-6 h-6 sm:w-7 sm:h-7",        // Small section icons
+    md: "w-8 h-8 sm:w-10 sm:h-10",      // Medium sections
+    lg: "w-12 h-12 sm:w-14 sm:h-14",    // Large sections
+    xl: "w-16 h-16 sm:w-18 sm:h-18"     // Hero section
   }
 
   const owlVariants = {
