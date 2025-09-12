@@ -78,10 +78,18 @@
     transition: all 0.3s ease-in-out;
   }
   
-  /* Navigation menu links hover effects */
-  nav a:hover {
+  /* Navigation menu links hover effects - specific targeting */
+  nav a:hover,
+  nav a:focus {
     color: oklch(0.65 0.18 220) !important;
     text-decoration: none !important;
+    transform: scale(1.05);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Remove any unwanted hover colors */
+  nav a:hover:not(.menu-item-hover) {
+    color: oklch(0.65 0.18 220) !important;
   }
   
   /* Burger menu line styles */
@@ -111,6 +119,29 @@
   *:not(.text-green-500):not(.text-green-600):not(.text-green-700):not(.bg-green-500):not(.bg-green-600):not(.bg-green-700) {
     --tw-text-color: inherit;
     --tw-bg-color: inherit;
+  }
+  
+  /* Scroll to top button enhancements */
+  .scroll-to-top-button {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  }
+  
+  .scroll-to-top-button:hover {
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.3);
+    transform: translateY(-2px) scale(1.05);
+  }
+  
+  /* Smooth scroll behavior for the entire page */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Improve scroll performance */
+  * {
+    scroll-margin-top: 80px; /* Offset for fixed header */
   }
 }
 

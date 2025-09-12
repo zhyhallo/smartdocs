@@ -9,14 +9,19 @@ import {
   FAQ, 
   CTA, 
   Footer, 
-  ContactModal 
+  ContactModal,
+  ScrollToTop 
 } from "@/components"
 import { Toaster } from "sonner"
 import { motion } from "framer-motion"
+import { useSmoothScroll } from "@/hooks/useSmoothScroll"
 
 function App() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false)
   const [contactService, setContactService] = useState("Консультація")
+
+  // Enable smooth scrolling for anchor links with offset for fixed header
+  useSmoothScroll({ offset: 80, duration: 800 })
 
   const openContactModal = (service: string = "Консультація") => {
     setContactService(service)
@@ -51,11 +56,19 @@ function App() {
     >
       <Header onContactClick={openContactModal} />
       <Hero onContactClick={openContactModal} />
-      <ProductDescription />
-      <Features />
-      <Pricing onContactClick={openContactModal} />
+      <div id="product">
+        <ProductDescription />
+      </div>
+      <div id="features">
+        <Features />
+      </div>
+      <div id="pricing">
+        <Pricing onContactClick={openContactModal} />
+      </div>
       <SocialProof />
-      <FAQ />
+      <div id="faq">
+        <FAQ />
+      </div>
       <CTA onContactClick={openContactModal} />
       <Footer />
       
@@ -64,6 +77,8 @@ function App() {
         onOpenChange={setIsContactModalOpen}
         defaultService={contactService}
       />
+      
+      <ScrollToTop />
       
       <Toaster richColors position="top-right" />
     </motion.div>
