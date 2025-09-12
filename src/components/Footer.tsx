@@ -12,11 +12,10 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
     <footer className="py-12 bg-foreground text-background">
       <div className="container mx-auto px-4 max-w-6xl">
         {/* Top Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Company Info */}
-          <div className="text-center md:text-left">
+          <div className="text-center md:text-left md:col-span-1">
             <div className="flex items-center justify-center md:justify-start space-x-3 mb-4">
-              <OwlAnalyst size="xs" animated={false} className="filter invert" />
               <div className="text-2xl font-bold">ModulSoft</div>
             </div>
             <p className="text-background/80 mb-4">
@@ -29,7 +28,7 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
           </div>
 
           {/* Navigation Links */}
-          <div className="text-center">
+          <div className="text-center md:text-left">
             <h3 className="text-lg font-bold text-background mb-4">Навігація</h3>
             <nav className="space-y-2">
               <button 
@@ -63,6 +62,11 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
                 Контакти
               </button>
             </nav>
+          </div>
+
+          {/* Owl positioned to the right of navigation */}
+          <div className="flex justify-center md:justify-start items-start pt-8">
+            <OwlAnalyst size="sm" animated={true} className="filter invert" />
           </div>
 
           {/* Contact Info */}
