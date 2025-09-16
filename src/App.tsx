@@ -23,7 +23,7 @@ const ContactPage = lazy(() => import("@/components/ContactPage"))
 const PrivacyPolicy = lazy(() => import("@/components/PrivacyPolicy"))
 const CookieConsent = lazy(() => import("@/components/CookieConsent"))
 const ZadarmaWidget = lazy(() => import("@/components/ZadarmaWidget"))
-const DirectCallWidget = lazy(() => import("@/components/DirectCallWidget"))
+
 
 type CurrentView = "home" | "contacts" | "privacy"
 
@@ -200,42 +200,6 @@ function App() {
               rightOffset: 20,
               className: "zadarma-corporate-theme"
             }}
-          />
-        </Suspense>
-        
-        {/* Development helper button */}
-        {process.env.NODE_ENV === 'development' && (
-          <div className="fixed top-4 right-4 z-[10001] flex gap-2">
-            <button
-              onClick={() => {
-                const widget = document.querySelector('#z-callback-widget-button, .z-callback-widget-button, [id*="zadarma"], [class*="zadarma"]') as HTMLElement
-                if (widget) {
-                  widget.click()
-                  console.log('✅ Clicked Zadarma widget')
-                } else {
-                  console.warn('❌ Widget not found')
-                }
-              }}
-              className="bg-primary text-primary-foreground px-3 py-1 rounded text-sm hover:bg-accent"
-            >
-              Test Widget
-            </button>
-            <button
-              onClick={() => {
-                console.log('Zadarma widgets on page:', 
-                  document.querySelectorAll('#z-callback-widget-button, .z-callback-widget-button, [id*="zadarma"], [class*="zadarma"], [id*="callback"], [class*="callback"]'))
-              }}
-              className="bg-secondary text-secondary-foreground px-3 py-1 rounded text-sm hover:bg-muted"
-            >
-              Debug
-            </button>
-          </div>
-        )}
-        
-        {/* Fallback call widget */}
-        <Suspense fallback={null}>
-          <DirectCallWidget 
-            onContactClick={openContactModal}
           />
         </Suspense>
         
