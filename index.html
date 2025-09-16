@@ -26,95 +26,13 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     
-    <!-- Load Zadarma widget with enhanced loading -->
+    <!-- Load Zadarma widget configuration (for backend integration) -->
     <script type="text/javascript">
-        (function() {
-            // Widget configuration
-            window.ZCallbackWidgetLinkId = 'edec1cbf8a1f75508f534464a2b4fa55';
-            window.ZCallbackWidgetDomain = 'my.zadarma.com';
-            
-            let loadAttempts = 0;
-            const maxAttempts = 3;
-            let isLoading = false;
-            
-            function loadZadarmaWidget() {
-                // Prevent double loading and multiple instances
-                if (isLoading || window.ZCallbackWidget || document.querySelector('[src*="zadarma"]')) {
-                    console.log('✅ Zadarma widget already loaded or loading');
-                    return;
-                }
-                
-                isLoading = true;
-                loadAttempts++;
-                console.log(`🔄 Loading Zadarma widget (attempt ${loadAttempts}/${maxAttempts})...`);
-                
-                const script = document.createElement('script');
-                script.type = 'text/javascript';
-                script.charset = 'utf-8';
-                script.async = true;
-                script.src = `https://${window.ZCallbackWidgetDomain}/callbackWidget/js/main.min.js?v=1.15.4&t=${Date.now()}`;
-                
-                script.onload = function() {
-                    console.log('✅ Zadarma widget script loaded successfully');
-                    isLoading = false;
-                    
-                    // Wait for widget to initialize and hide duplicates
-                    setTimeout(() => {
-                        const widgets = document.querySelectorAll(
-                            '#z-callback-widget-button, .z-callback-widget-button, [id*="zadarma"], [class*="zadarma"], [id*="callback"], [class*="callback"]'
-                        );
-                        
-                        if (widgets.length > 0) {
-                            console.log(`✅ Found ${widgets.length} Zadarma widget(s), keeping only the first one`);
-                            
-                            // Hide all but first widget
-                            widgets.forEach((widget, index) => {
-                                if (index > 0) {
-                                    widget.style.display = 'none !important';
-                                }
-                            });
-                        } else {
-                            console.warn('⚠️ Zadarma widget script loaded but widget not found');
-                        }
-                    }, 1000);
-                };
-                
-                script.onerror = function() {
-                    console.warn(`❌ Failed to load Zadarma widget script (attempt ${loadAttempts})`);
-                    isLoading = false;
-                    
-                    // Retry loading if we haven't reached max attempts
-                    if (loadAttempts < maxAttempts) {
-                        setTimeout(loadZadarmaWidget, 2000 * loadAttempts);
-                    } else {
-                        console.error('❌ Failed to load Zadarma widget after all attempts');
-                    }
-                };
-                
-                // Add to head for better loading
-                document.head.appendChild(script);
-            }
-            
-            // Multiple loading strategies
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', loadZadarmaWidget);
-            } else if (document.readyState === 'interactive') {
-                setTimeout(loadZadarmaWidget, 100);
-            } else {
-                loadZadarmaWidget();
-            }
-            
-            // Backup loading after window fully loads
-            window.addEventListener('load', function() {
-                setTimeout(function() {
-                    if (!document.querySelector('[id*="callback"], [class*="callback"], [id*="zadarma"], [class*="zadarma"]')) {
-                        console.log('🔄 Backup attempt: Retrying Zadarma widget load...');
-                        loadZadarmaWidget();
-                    }
-                }, 3000);
-            });
-            
-        })();
+        // Configuration for potential backend integration
+        window.ZCallbackWidgetLinkId = 'edec1cbf8a1f75508f534464a2b4fa55';
+        window.ZCallbackWidgetDomain = 'my.zadarma.com';
+        
+        console.log('📞 Zadarma configuration loaded - using custom modal widget');
     </script>
 </body>
 

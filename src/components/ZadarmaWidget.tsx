@@ -1,5 +1,7 @@
-import { useEffect, useState, useCallback } from "react"
+import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
+import ZadarmaModal from "./ZadarmaModal"
+import { Phone } from "@phosphor-icons/react"
 
 interface ZadarmaWidgetProps {
   /** Configuration options for the Zadarma widget */
@@ -14,8 +16,8 @@ interface ZadarmaWidgetProps {
 }
 
 /**
- * ZadarmaWidget component provides enhanced integration and customization
- * for the Zadarma callback widget with corporate blue-white theme styling
+ * Custom Zadarma Widget with modal integration
+ * Replaces the default Zadarma widget with our own modal implementation
  */
 export default function ZadarmaWidget({ config = {} }: ZadarmaWidgetProps) {
   const {
@@ -24,181 +26,41 @@ export default function ZadarmaWidget({ config = {} }: ZadarmaWidgetProps) {
     className = ""
   } = config
 
-  const [widgetStatus, setWidgetStatus] = useState<'loading' | 'found' | 'not-found'>('loading')
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
-  // Function to apply dynamic positioning and additional customizations
-  const customizeWidget = useCallback(() => {
-    const selectors = [
-      '#z-callback-widget-button',
-      '.z-callback-widget-button',
-      '[id*="zadarma"]',
-      '[class*="zadarma"]',
-      '[id*="callback"]',
-      '[class*="callback"]'
-    ]
-    
-    const foundWidgets: HTMLElement[] = []
-    
-    // Find all widget elements
-    for (const selector of selectors) {
-      const elements = document.querySelectorAll(selector) as NodeListOf<HTMLElement>
-      elements.forEach(el => {
-        if (el && !foundWidgets.includes(el)) {
-          foundWidgets.push(el)
-        }
-      })
-    }
-
-    if (foundWidgets.length > 0) {
-      console.log(`✅ Found ${foundWidgets.length} Zadarma widget(s), keeping only the first one`)
-      setWidgetStatus('found')
-      
-      // Keep only the first widget, hide others
-      foundWidgets.forEach((widget, index) => {
-        if (index === 0) {
-          // Customize the first widget
-          widget.style.cssText = `
-            position: fixed !important;
-            bottom: ${bottomOffset}px !important;
-            right: ${rightOffset}px !important;
-            z-index: 9998 !important;
-            background: oklch(0.55 0.22 240) !important;
-            border: 2px solid oklch(0.65 0.18 220) !important;
-            border-radius: 50% !important;
-            box-shadow: 0 4px 20px oklch(0.55 0.22 240 / 0.3) !important;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-            width: 60px !important;
-            height: 60px !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            cursor: pointer !important;
-          `
-          
-          if (className) {
-            widget.classList.add(className)
-          }
-
-          // Add corporate branding enhancement
-          widget.setAttribute('title', 'Замовити зворотний дзвінок')
-          widget.setAttribute('aria-label', 'Кнопка замовлення зворотнього дзвінка від ModulSoft')
-
-          // Apply additional hover effects
-          const handleMouseEnter = () => {
-            widget.style.transform = 'scale(1.05)'
-            widget.style.background = 'oklch(0.65 0.18 220) !important'
-            widget.style.boxShadow = '0 6px 25px oklch(0.65 0.18 220 / 0.4) !important'
-          }
-
-          const handleMouseLeave = () => {
-            widget.style.transform = 'scale(1)'
-            widget.style.background = 'oklch(0.55 0.22 240) !important'
-            widget.style.boxShadow = '0 4px 20px oklch(0.55 0.22 240 / 0.3) !important'
-          }
-
-          // Remove existing event listeners to avoid duplicates
-          widget.removeEventListener('mouseenter', handleMouseEnter)
-          widget.removeEventListener('mouseleave', handleMouseLeave)
-          
-          // Add new event listeners
-          widget.addEventListener('mouseenter', handleMouseEnter)
-          widget.addEventListener('mouseleave', handleMouseLeave)
-        } else {
-          // Hide duplicate widgets
-          widget.style.display = 'none !important'
-          console.log(`🚫 Hiding duplicate widget #${index + 1}`)
-        }
-      })
-
-      return true
-    }
-    
-    return false
-  }, [bottomOffset, rightOffset, className])
-
+  // Hide original Zadarma widgets to prevent duplicates
   useEffect(() => {
-    let cleanupFunctions: (() => void)[] = []
-    let checkInterval: NodeJS.Timeout | null = null
-
-    // Check for widget multiple times with increasing delays
-    const checkForWidget = (attempt = 1, maxAttempts = 30) => {
-      console.log(`🔍 Looking for Zadarma widget (attempt ${attempt}/${maxAttempts})`)
+    const hideOriginalWidgets = () => {
+      // Find all possible Zadarma widget elements
+      const selectors = [
+        '#z-callback-widget-button',
+        '.z-callback-widget-button',
+        '[id*="zadarma"]:not([class*="sr-only"])',
+        '[class*="zadarma"]:not([class*="sr-only"])',
+        '[id*="callback"]:not([class*="sr-only"])',
+        '[class*="callback"]:not([class*="sr-only"])'
+      ]
       
-      if (customizeWidget()) {
-        if (checkInterval) {
-          clearInterval(checkInterval)
-          checkInterval = null
-        }
-        return // Found and customized
-      }
-
-      if (attempt < maxAttempts) {
-        const delay = Math.min(attempt * 500, 5000) // Increase delay up to 5 seconds
-        setTimeout(() => checkForWidget(attempt + 1, maxAttempts), delay)
-      } else {
-        console.warn('❌ Zadarma widget not found after all attempts')
-        setWidgetStatus('not-found')
-        if (checkInterval) {
-          clearInterval(checkInterval)
-          checkInterval = null
-        }
-      }
+      selectors.forEach(selector => {
+        const elements = document.querySelectorAll(selector)
+        elements.forEach((element: Element) => {
+          if (element instanceof HTMLElement) {
+            // Hide original widget completely
+            element.style.cssText = 'display: none !important; visibility: hidden !important;'
+            console.log('🚫 Hidden original Zadarma widget:', selector)
+          }
+        })
+      })
     }
 
-    // Initial check
-    checkForWidget()
+    // Hide widgets immediately
+    hideOriginalWidgets()
 
-    // Continuous checking every 3 seconds for the first minute
-    checkInterval = setInterval(() => {
-      if (widgetStatus === 'loading') {
-        customizeWidget()
-      }
-    }, 3000)
-
-    // Stop checking after 1 minute
-    setTimeout(() => {
-      if (checkInterval) {
-        clearInterval(checkInterval)
-        checkInterval = null
-      }
-    }, 60000)
-
-    // Set up observers to catch the widget when it loads
-    const observer = new MutationObserver((mutations) => {
-      let shouldCheck = false
-      
-      mutations.forEach((mutation) => {
-        if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-          const addedNodes = Array.from(mutation.addedNodes)
-          const hasWidgetNode = addedNodes.some(node => {
-            if (node.nodeType !== Node.ELEMENT_NODE) return false
-            
-            const element = node as Element
-            const id = element.id?.toLowerCase() || ''
-            const className = element.className?.toString().toLowerCase() || ''
-            const tagName = element.tagName?.toLowerCase() || ''
-            
-            return id.includes('callback') || id.includes('widget') || id.includes('zadarma') ||
-                   className.includes('callback') || className.includes('widget') || className.includes('zadarma') ||
-                   tagName === 'iframe' ||
-                   element.querySelector('[id*="callback"], [id*="widget"], [id*="zadarma"]') !== null
-          })
-          
-          if (hasWidgetNode) {
-            shouldCheck = true
-          }
-        }
-      })
-      
-      if (shouldCheck && widgetStatus === 'loading') {
-        setTimeout(() => {
-          console.log('🔄 DOM changed, checking for widget again...')
-          customizeWidget()
-        }, 100)
-      }
+    // Set up observer to catch dynamically added widgets
+    const observer = new MutationObserver(() => {
+      hideOriginalWidgets()
     })
 
-    // Observe document body for widget insertion
     if (document.body) {
       observer.observe(document.body, {
         childList: true,
@@ -206,69 +68,77 @@ export default function ZadarmaWidget({ config = {} }: ZadarmaWidgetProps) {
       })
     }
 
-    cleanupFunctions.push(() => observer.disconnect())
-    cleanupFunctions.push(() => {
-      if (checkInterval) {
-        clearInterval(checkInterval)
-      }
-    })
+    // Also check periodically for the first 30 seconds
+    const checkInterval = setInterval(hideOriginalWidgets, 1000)
+    setTimeout(() => clearInterval(checkInterval), 30000)
 
-    // Cleanup all functions when component unmounts
     return () => {
-      cleanupFunctions.forEach(cleanup => cleanup())
+      observer.disconnect()
+      clearInterval(checkInterval)
     }
-  }, [customizeWidget, widgetStatus])
+  }, [])
 
-  // This component doesn't render anything visible - it just manages the widget customization
+  const handleOpenModal = () => {
+    setIsModalOpen(true)
+  }
+
   return (
-    <motion.div
-      className="sr-only"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.3 }}
-      aria-hidden="true"
-    >
-      <span>
-        Zadarma Widget Manager - Status: {widgetStatus}
-        {process.env.NODE_ENV === 'development' && (
-          <span className="ml-2 text-xs">
-            ({widgetStatus === 'loading' && 'Шукаємо віджет...'}
-            {widgetStatus === 'found' && 'Віджет знайдено ✅'}
-            {widgetStatus === 'not-found' && 'Віджет не знайдено ❌'})
-          </span>
-        )}
-      </span>
-    </motion.div>
+    <>
+      {/* Custom widget button */}
+      <motion.button
+        className={`fixed z-[9999] flex items-center justify-center w-[60px] h-[60px] rounded-full bg-primary border-2 border-accent shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer ${className}`}
+        style={{
+          bottom: `${bottomOffset}px`,
+          right: `${rightOffset}px`,
+        }}
+        onClick={handleOpenModal}
+        whileHover={{ 
+          scale: 1.05,
+          backgroundColor: "oklch(0.65 0.18 220)"
+        }}
+        whileTap={{ scale: 0.95 }}
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.3 }}
+        title="Замовити зворотний дзвінок"
+        aria-label="Кнопка замовлення зворотнього дзвінка від ModulSoft"
+      >
+        <Phone size={24} className="text-primary-foreground" />
+      </motion.button>
+
+      {/* Modal for callback form */}
+      <ZadarmaModal 
+        open={isModalOpen}
+        onOpenChange={setIsModalOpen}
+      />
+    </>
   )
 }
 
 /**
- * Hook for programmatic control of the Zadarma widget
+ * Hook for programmatic control of the custom Zadarma widget
  */
 export function useZadarmaWidget() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
   const openWidget = () => {
-    const widgetButton = document.getElementById('z-callback-widget-button') ||
-                        document.querySelector('.z-callback-widget-button') as HTMLElement ||
-                        document.querySelector('[id*="zadarma"]') as HTMLElement ||
-                        document.querySelector('[class*="zadarma"]') as HTMLElement
-    
-    if (widgetButton) {
-      widgetButton.click()
-      console.log('✅ Zadarma widget opened')
-    } else {
-      console.warn('❌ Zadarma widget not found')
-    }
+    setIsModalOpen(true)
+    console.log('✅ Custom Zadarma modal opened')
+  }
+
+  const closeWidget = () => {
+    setIsModalOpen(false)
+    console.log('✅ Custom Zadarma modal closed')
   }
 
   const isWidgetAvailable = () => {
-    return !!(document.getElementById('z-callback-widget-button') ||
-              document.querySelector('.z-callback-widget-button') ||
-              document.querySelector('[id*="zadarma"]') ||
-              document.querySelector('[class*="zadarma"]'))
+    return true // Our custom widget is always available
   }
 
   return {
     openWidget,
-    isWidgetAvailable
+    closeWidget,
+    isWidgetAvailable,
+    isModalOpen
   }
 }

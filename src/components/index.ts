@@ -14,6 +14,7 @@ export { default as ContactModal } from './ContactModal'
 export { default as ContactPage } from './ContactPage'
 export { default as PrivacyPolicy } from './PrivacyPolicy'
 export { default as CookieConsent } from './CookieConsent'
+export { default as ZadarmaModal } from './ZadarmaModal'
 
 // UI enhancements
 export { default as OwlMascot } from './OwlMascot'
