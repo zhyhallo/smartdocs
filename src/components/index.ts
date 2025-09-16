@@ -26,7 +26,13 @@ export { default as POSTerminal } from './POSTerminal'
 export { default as SizeOptimizationSummary } from './SizeOptimizationSummary'
 export { default as OptimizedOwlShowcase } from './OptimizedOwlShowcase'
 export { default as ZadarmaWidget } from './ZadarmaWidget'
+export { default as AnimatedFormField } from './AnimatedFormField'
+export { default as FormValidationDemo } from './FormValidationDemo'
+export { default as FormAnimationShowcase } from './FormAnimationShowcase'
 
 // Interactive components
 export { InteractiveSection, withInteractiveSection } from './InteractiveSection'
 export { InteractiveButton, InteractiveInput } from './InteractiveComponents'
+
+// Form validation components
+export { ValidationSummary, useFormValidation, FloatingValidation } from './FormValidationComponents'

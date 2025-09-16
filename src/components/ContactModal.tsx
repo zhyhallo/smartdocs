@@ -1,5 +1,4 @@
-import { useState } from "react"
-import { Input } from "@/components/ui/input"
+import { useState, useEffect } from "react"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
@@ -7,7 +6,9 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Phone, Envelope, Building, User, CheckCircle, Shield } from "@phosphor-icons/react"
 import { toast } from "sonner"
 import { motion, AnimatePresence } from "framer-motion"
-import { OwlLoader, InteractiveButton, InteractiveInput } from "@/components"
+import { OwlLoader, InteractiveButton } from "@/components"
+import AnimatedFormField from "@/components/AnimatedFormField"
+import { ValidationSummary, useFormValidation } from "@/components/FormValidationComponents"
 
 interface ContactModalProps {
   open: boolean
@@ -16,38 +17,48 @@ interface ContactModalProps {
   onPrivacyClick?: () => void
 }
 
-interface FormData {
-  phone: string
-  email: string
-  company: string
-  fullName: string
-  privacyAccepted: boolean
-}
-
 export default function ContactModal({ open, onOpenChange, defaultService = "Консультація", onPrivacyClick }: ContactModalProps) {
-  const [formData, setFormData] = useState<FormData>({
-    phone: "",
-    email: "",
-    company: "",
-    fullName: "",
-    privacyAccepted: false
-  })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [privacyAccepted, setPrivacyAccepted] = useState(false)
 
-  const handleInputChange = (field: keyof FormData, value: string | boolean) => {
-    setFormData(prev => ({ ...prev, [field]: value }))
+  // Form validation configuration
+  const validationConfig = {
+    phone: {
+      required: true,
+      phone: true,
+      minLength: 10
+    },
+    email: {
+      required: true,
+      email: true
+    },
+    fullName: {
+      minLength: 2,
+      maxLength: 50
+    },
+    company: {
+      maxLength: 100
+    }
   }
+
+  const { 
+    validationState, 
+    updateField, 
+    isFormValid,
+    resetForm 
+  } = useFormValidation(['phone', 'email', 'fullName', 'company'], validationConfig)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
-    if (!formData.phone || !formData.email) {
-      toast.error("Будь ласка, заповніть обов'язкові поля (телефон та email)")
+    // Check if required fields are valid
+    if (!validationState.phone.isValid || !validationState.email.isValid) {
+      toast.error("Будь ласка, заповніть обов'язкові поля правильно")
       return
     }
 
-    if (!formData.privacyAccepted) {
+    if (!privacyAccepted) {
       toast.error("Необхідно підтвердити згоду на обробку персональних даних")
       return
     }
@@ -56,20 +67,30 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
     
     try {
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500))
+      await new Promise(resolve => setTimeout(resolve, 2000))
       
-      // Here you would normally send the data to your API endpoint
-      console.log("Submitting form data:", { ...formData, service: defaultService })
+      // Collect form data
+      const formData = {
+        phone: validationState.phone.value,
+        email: validationState.email.value,
+        fullName: validationState.fullName.value,
+        company: validationState.company.value,
+        service: defaultService,
+        privacyAccepted
+      }
+      
+      console.log("Submitting form data:", formData)
       
       setIsSubmitted(true)
       toast.success("Заявку успішно відправлено! Ми зв'яжемося з вами найближчим часом.")
       
       // Reset form after successful submission
       setTimeout(() => {
-        setFormData({ phone: "", email: "", company: "", fullName: "", privacyAccepted: false })
+        resetForm()
+        setPrivacyAccepted(false)
         setIsSubmitted(false)
         onOpenChange(false)
-      }, 2000)
+      }, 2500)
       
     } catch (error) {
       toast.error("Помилка відправки заявки. Спробуйте ще раз.")
@@ -178,92 +199,93 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
           <CardContent className="p-6">
             <motion.form 
               onSubmit={handleSubmit} 
-              className="space-y-4"
+              className="space-y-6"
               variants={formVariants}
               initial="hidden"
               animate="visible"
             >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <motion.div className="space-y-2" variants={fieldVariants}>
-                  <Label htmlFor="phone" className="text-sm font-medium flex items-center">
-                    <Phone size={16} className="mr-2 text-primary" />
-                    Телефон *
-                  </Label>
-                  <InteractiveInput
+              {/* Validation Summary */}
+              <ValidationSummary 
+                validationState={validationState}
+                className="mb-4"
+              />
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <motion.div variants={fieldVariants}>
+                  <AnimatedFormField
                     id="phone"
                     type="tel"
+                    label="Телефон"
+                    icon={<Phone size={16} />}
                     placeholder="+380 XX XXX XX XX"
-                    value={formData.phone}
-                    onChange={(e) => handleInputChange("phone", e.target.value)}
-                    className="border-border/50 focus:border-primary transition-colors duration-300"
-                    sectionContext="contact-form"
-                    interactionData={{ field: "phone" }}
-                    required
+                    value={validationState.phone.value}
+                    validation={validationConfig.phone}
+                    onChange={(value, isValid, error) => updateField('phone', value, isValid, error)}
                   />
                 </motion.div>
 
-                <motion.div className="space-y-2" variants={fieldVariants}>
-                  <Label htmlFor="email" className="text-sm font-medium flex items-center">
-                    <Envelope size={16} className="mr-2 text-primary" />
-                    Email *
-                  </Label>
-                  <InteractiveInput
+                <motion.div variants={fieldVariants}>
+                  <AnimatedFormField
                     id="email"
                     type="email"
+                    label="Email"
+                    icon={<Envelope size={16} />}
                     placeholder="email@company.com"
-                    value={formData.email}
-                    onChange={(e) => handleInputChange("email", e.target.value)}
-                    className="border-border/50 focus:border-primary transition-colors duration-300"
-                    sectionContext="contact-form"
-                    interactionData={{ field: "email" }}
-                    required
+                    value={validationState.email.value}
+                    validation={validationConfig.email}
+                    onChange={(value, isValid, error) => updateField('email', value, isValid, error)}
                   />
                 </motion.div>
               </div>
 
-              <motion.div className="space-y-2" variants={fieldVariants}>
-                <Label htmlFor="fullName" className="text-sm font-medium flex items-center">
-                  <User size={16} className="mr-2 text-primary" />
-                  ПІБ
-                </Label>
-                <InteractiveInput
+              <motion.div variants={fieldVariants}>
+                <AnimatedFormField
                   id="fullName"
                   type="text"
+                  label="ПІБ"
+                  icon={<User size={16} />}
                   placeholder="Ваше повне ім'я"
-                  value={formData.fullName}
-                  onChange={(e) => handleInputChange("fullName", e.target.value)}
-                  className="border-border/50 focus:border-primary transition-colors duration-300"
-                  sectionContext="contact-form"
-                  interactionData={{ field: "fullName" }}
+                  value={validationState.fullName.value}
+                  validation={validationConfig.fullName}
+                  onChange={(value, isValid, error) => updateField('fullName', value, isValid, error)}
                 />
               </motion.div>
 
-              <motion.div className="space-y-2" variants={fieldVariants}>
-                <Label htmlFor="company" className="text-sm font-medium flex items-center">
-                  <Building size={16} className="mr-2 text-primary" />
-                  Назва компанії
-                </Label>
-                <InteractiveInput
+              <motion.div variants={fieldVariants}>
+                <AnimatedFormField
                   id="company"
                   type="text"
+                  label="Назва компанії"
+                  icon={<Building size={16} />}
                   placeholder="ТОВ 'Ваша компанія'"
-                  value={formData.company}
-                  onChange={(e) => handleInputChange("company", e.target.value)}
-                  className="border-border/50 focus:border-primary transition-colors duration-300"
-                  sectionContext="contact-form"
-                  interactionData={{ field: "company" }}
+                  value={validationState.company.value}
+                  validation={validationConfig.company}
+                  onChange={(value, isValid, error) => updateField('company', value, isValid, error)}
                 />
               </motion.div>
 
               {/* Privacy Policy Checkbox */}
               <motion.div className="space-y-3" variants={fieldVariants}>
-                <div className="flex items-start space-x-3">
-                  <Checkbox
-                    id="privacy-consent"
-                    checked={formData.privacyAccepted}
-                    onCheckedChange={(checked) => handleInputChange("privacyAccepted", checked as boolean)}
+                <motion.div 
+                  className={`flex items-start space-x-3 p-3 rounded-lg border transition-all duration-300 ${
+                    privacyAccepted 
+                      ? 'border-accent/50 bg-accent/5' 
+                      : 'border-border/50 hover:border-border'
+                  }`}
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.99 }}
+                >
+                  <motion.div
                     className="mt-0.5"
-                  />
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Checkbox
+                      id="privacy-consent"
+                      checked={privacyAccepted}
+                      onCheckedChange={(checked) => setPrivacyAccepted(checked as boolean)}
+                    />
+                  </motion.div>
                   <div className="flex-1">
                     <Label 
                       htmlFor="privacy-consent" 
@@ -272,18 +294,20 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
                       <Shield size={16} className="mr-2 text-primary flex-shrink-0 mt-0.5" />
                       <span>
                         Я погоджуюсь на обробку персональних даних згідно з{" "}
-                        <button
+                        <motion.button
                           type="button"
                           onClick={onPrivacyClick}
                           className="text-accent hover:underline cursor-pointer font-medium"
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
                         >
                           Політикою конфіденційності
-                        </button>
+                        </motion.button>
                         {" "}*
                       </span>
                     </Label>
                   </div>
-                </div>
+                </motion.div>
               </motion.div>
 
               <motion.div 
@@ -298,8 +322,12 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
                 >
                   <InteractiveButton
                     type="submit"
-                    className="w-full font-medium tracking-wide cursor-pointer"
-                    disabled={isSubmitting}
+                    className={`w-full font-medium tracking-wide cursor-pointer transition-all duration-300 ${
+                      isFormValid && privacyAccepted
+                        ? 'bg-primary hover:bg-accent'
+                        : 'opacity-60'
+                    }`}
+                    disabled={isSubmitting || !isFormValid || !privacyAccepted}
                     sectionContext="contact-form"
                     interactionData={{ action: "submit", service: defaultService }}
                   >
