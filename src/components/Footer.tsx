@@ -10,119 +10,112 @@ interface FooterProps {
 export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }: FooterProps) {
   return (
     <footer className="py-12 bg-foreground text-background">
-      <div className="container mx-auto px-6 max-w-7xl">
-        {/* Top Section */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 mb-10">
-          {/* Company Info */}
-          <div className="text-center md:text-left md:col-span-12 lg:col-span-4">
-            <div className="flex items-center justify-center md:justify-start space-x-3 mb-4">
+      <div className="container mx-auto">
+        {/* Top Section - Centered Layout */}
+        <div className="flex flex-col items-center justify-center text-center space-y-8 lg:space-y-0 lg:flex-row lg:justify-between lg:items-start lg:text-left mb-10">
+          
+          {/* Company Info - Centered on mobile, left-aligned on desktop */}
+          <div className="flex-1 max-w-sm lg:max-w-md">
+            <div className="flex items-center justify-center lg:justify-start space-x-3 mb-4">
               <div className="text-3xl font-bold tracking-tight">ModulSoft</div>
             </div>
             <p className="text-background/80 mb-4 text-lg leading-relaxed">
               Професійні рішення для автоматизації бізнесу
             </p>
-            <p className="text-background/70 text-sm leading-relaxed max-w-md">
+            <p className="text-background/70 text-sm leading-relaxed">
               Понад 16 років досвіду, більше 200 успішних впроваджень.<br />
               40+ сертифікованих спеціалістів.
             </p>
           </div>
 
-          {/* Navigation and Contact Info layout with perfectly positioned owl */}
-          <div className="md:col-span-12 lg:col-span-8">
-            <div className="relative flex flex-col md:flex-row items-start justify-start gap-8 md:gap-12 lg:gap-16">
-              
-              {/* Navigation Section */}
-              <div className="text-center md:text-left">
-                <h3 className="text-lg font-bold text-background mb-4">Навігація</h3>
-                <nav className="space-y-3">
-                  <button 
-                    onClick={onHomeClick}
-                    className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1"
-                  >
-                    Головна
-                  </button>
-                  <button 
-                    onClick={onContactsClick}
-                    className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1"
-                  >
-                    Контакти
-                  </button>
-                  <a 
-                    href="#product"
-                    className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1"
-                  >
-                    Продукт
-                  </a>
-                  <a 
-                    href="#features"
-                    className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1"
-                  >
-                    Функції
-                  </a>
-                  <a 
-                    href="#pricing"
-                    className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1"
-                  >
-                    Ціни
-                  </a>
-                </nav>
+          {/* Navigation Section - Centered */}
+          <div className="flex-shrink-0">
+            <h3 className="text-lg font-bold text-background mb-4">Навігація</h3>
+            <nav className="space-y-3">
+              <button 
+                onClick={onHomeClick}
+                className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1"
+              >
+                Головна
+              </button>
+              <button 
+                onClick={onContactsClick}
+                className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1"
+              >
+                Контакти
+              </button>
+              <a 
+                href="#product"
+                className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1"
+              >
+                Продукт
+              </a>
+              <a 
+                href="#features"
+                className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1"
+              >
+                Функції
+              </a>
+              <a 
+                href="#pricing"
+                className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1"
+              >
+                Ціни
+              </a>
+            </nav>
+          </div>
+          
+          {/* Contact Info Section - Centered */}
+          <div className="flex-1 max-w-sm lg:max-w-md">
+            <h3 className="text-lg font-bold text-background mb-4">Наші контакти</h3>
+            <div className="space-y-4 text-sm leading-relaxed">
+              <div className="space-y-2">
+                <a 
+                  href="tel:+380931776504"
+                  className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1 text-lg font-medium"
+                >
+                  +38 (093) 177-65-04
+                </a>
+                <a 
+                  href="mailto:info@modulsoft.eu"
+                  className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1"
+                >
+                  info@modulsoft.eu
+                </a>
               </div>
               
-              {/* Contact Info Section - positioned closer to navigation */}
-              <div className="text-center md:text-left">
-                <h3 className="text-lg font-bold text-background mb-4">Наші контакти</h3>
-                <div className="space-y-4 text-sm leading-relaxed">
-                  <div className="space-y-2">
-                    <a 
-                      href="tel:+380931776504"
-                      className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1 text-lg font-medium"
-                    >
-                      +38 (093) 177-65-04
-                    </a>
-                    <a 
-                      href="mailto:info@modulsoft.eu"
-                      className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1"
-                    >
-                      info@modulsoft.eu
-                    </a>
-                  </div>
-                  
-                  <div className="pt-2">
-                    <p className="text-background/70 mb-2 font-medium">Режим роботи:</p>
-                    <p className="text-background/70">
-                      Пн. - Пт.: з 8:00 до 17:00<br />
-                      Сб. - Нд.: вихідні
-                    </p>
-                  </div>
-                  
-                  <div className="pt-2">
-                    <p className="text-background/70 mb-2 font-medium">Адреса:</p>
-                    <p className="text-background/70">
-                      43025, м. Луцьк,<br />
-                      вул. Святовасилівська 4/3
-                    </p>
-                  </div>
-                </div>
+              <div className="pt-2">
+                <p className="text-background/70 mb-2 font-medium">Режим роботи:</p>
+                <p className="text-background/70">
+                  Пн. - Пт.: з 8:00 до 17:00<br />
+                  Сб. - Нд.: вихідні
+                </p>
               </div>
-
-              {/* Owl positioned and vertically centered within footer */}
-              <div className="absolute md:relative top-1/2 right-0 md:top-1/2 md:right-auto flex justify-center items-center transform -translate-y-1/2 md:transform md:-translate-y-1/2">
-                <div className="ml-4 md:ml-8 lg:ml-12">
-                  <OwlAnalyst 
-                    size="md" 
-                    animated={true} 
-                    withTerminal={false}
-                    className="filter invert" 
-                  />
-                </div>
+              
+              <div className="pt-2">
+                <p className="text-background/70 mb-2 font-medium">Адреса:</p>
+                <p className="text-background/70">
+                  43025, м. Луцьк,<br />
+                  вул. Святовасилівська 4/3
+                </p>
               </div>
             </div>
           </div>
         </div>
+
+        {/* Owl - Centered at bottom of footer content */}
+        <div className="flex justify-center items-center mb-8">
+          <OwlAnalyst 
+            size="md" 
+            animated={true} 
+            withTerminal={false}
+            className="filter invert" 
+          />
+        </div>
         
         <Separator className="bg-background/20 mb-6" />
         
-        {/* Bottom Section */}
+        {/* Bottom Section - Always centered */}
         <div className="text-center space-y-3">
           <div>
             © 2024 ModulSoft. Всі права захищені.
