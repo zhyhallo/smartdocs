@@ -23,6 +23,8 @@ const ContactPage = lazy(() => import("@/components/ContactPage"))
 const PrivacyPolicy = lazy(() => import("@/components/PrivacyPolicy"))
 const CookieConsent = lazy(() => import("@/components/CookieConsent"))
 const ZadarmaWidget = lazy(() => import("@/components/ZadarmaWidget"))
+const DirectCallWidget = lazy(() => import("@/components/DirectCallWidget"))
+const WidgetStatus = lazy(() => import("@/components/WidgetStatus"))
 
 type CurrentView = "home" | "contacts" | "privacy"
 
@@ -202,10 +204,22 @@ function App() {
           />
         </Suspense>
         
+        {/* Fallback call widget */}
+        <Suspense fallback={null}>
+          <DirectCallWidget 
+            onContactClick={openContactModal}
+          />
+        </Suspense>
+        
         <Suspense fallback={null}>
           <CookieConsent 
             onLearnMore={handlePrivacyClick}
           />
+        </Suspense>
+        
+        {/* Development widget status */}
+        <Suspense fallback={null}>
+          <WidgetStatus />
         </Suspense>
         
         <Toaster richColors position="top-right" />

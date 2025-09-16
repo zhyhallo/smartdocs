@@ -205,7 +205,11 @@
 
   /* Zadarma Widget Styling - Essential only */
   #z-callback-widget-button,
-  .z-callback-widget-button {
+  .z-callback-widget-button,
+  [id*="zadarma"],
+  [class*="zadarma"],
+  [id*="callback"],
+  [class*="callback"] {
     background: oklch(0.55 0.22 240) !important;
     border: 2px solid oklch(0.65 0.18 220) !important;
     border-radius: 50% !important;
@@ -214,10 +218,20 @@
     bottom: 120px !important;
     right: 20px !important;
     z-index: 9998 !important;
+    position: fixed !important;
+    width: 60px !important;
+    height: 60px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
   #z-callback-widget-button:hover,
-  .z-callback-widget-button:hover {
+  .z-callback-widget-button:hover,
+  [id*="zadarma"]:hover,
+  [class*="zadarma"]:hover,
+  [id*="callback"]:hover,
+  [class*="callback"]:hover {
     background: oklch(0.65 0.18 220) !important;
     transform: scale(1.05) !important;
     box-shadow: 0 6px 25px oklch(0.65 0.18 220 / 0.4) !important;
@@ -225,12 +239,15 @@
 
   /* Widget forms */
   #z-callback-widget-popup,
-  .z-callback-widget-popup {
+  .z-callback-widget-popup,
+  [id*="popup"],
+  [class*="popup"] {
     background: oklch(0.98 0.02 240) !important;
     border: 1px solid oklch(0.88 0.04 240) !important;
     border-radius: 12px !important;
     box-shadow: 0 10px 40px oklch(0.15 0.08 240 / 0.15) !important;
     font-family: 'Inter', sans-serif !important;
+    z-index: 9999 !important;
   }
 
   .z-callback-widget-header {

@@ -26,23 +26,58 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     
-    <!-- Load Zadarma widget asynchronously -->
+    <!-- Load Zadarma widget with better error handling -->
     <script type="text/javascript">
-        // Load Zadarma widget after page load to avoid blocking
-        window.addEventListener('load', function() {
-            var ZCallbackWidgetLinkId  = 'edec1cbf8a1f75508f534464a2b4fa55';
-            var ZCallbackWidgetDomain  = 'my.zadarma.com';
+        (function() {
+            var ZCallbackWidgetLinkId = 'edec1cbf8a1f75508f534464a2b4fa55';
+            var ZCallbackWidgetDomain = 'my.zadarma.com';
             
-            var lt = document.createElement('script');
-            lt.type ='text/javascript';
-            lt.charset = 'utf-8';
-            lt.async = true;
-            lt.src = 'https://' + ZCallbackWidgetDomain + '/callbackWidget/js/main.min.js?v=1.15.4';
+            function loadZadarmaWidget() {
+                // Prevent double loading
+                if (window.ZCallbackWidget || document.querySelector('[src*="zadarma"]')) {
+                    console.log('Zadarma widget already loaded or loading');
+                    return;
+                }
+                
+                console.log('Loading Zadarma widget...');
+                
+                var script = document.createElement('script');
+                script.type = 'text/javascript';
+                script.charset = 'utf-8';
+                script.async = true;
+                script.src = 'https://' + ZCallbackWidgetDomain + '/callbackWidget/js/main.min.js?v=1.15.4&t=' + Date.now();
+                
+                script.onload = function() {
+                    console.log('✅ Zadarma widget script loaded successfully');
+                };
+                
+                script.onerror = function() {
+                    console.warn('❌ Failed to load Zadarma widget script');
+                };
+                
+                // Add to head instead of before first script
+                document.head.appendChild(script);
+            }
             
-            var sc = document.getElementsByTagName('script')[0];
-            if (sc) sc.parentNode.insertBefore(lt, sc);
-            else document.documentElement.firstChild.appendChild(lt);
-        });
+            // Multiple loading strategies
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', loadZadarmaWidget);
+            } else if (document.readyState === 'interactive') {
+                setTimeout(loadZadarmaWidget, 100);
+            } else {
+                loadZadarmaWidget();
+            }
+            
+            // Backup loading after window load
+            window.addEventListener('load', function() {
+                setTimeout(function() {
+                    if (!document.querySelector('[id*="callback"], [class*="callback"], [id*="zadarma"], [class*="zadarma"]')) {
+                        console.log('Retrying Zadarma widget load...');
+                        loadZadarmaWidget();
+                    }
+                }, 2000);
+            });
+        })();
     </script>
 </body>
 

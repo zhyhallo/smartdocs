@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 
 interface ZadarmaWidgetProps {
@@ -24,16 +24,26 @@ export default function ZadarmaWidget({ config = {} }: ZadarmaWidgetProps) {
     className = ""
   } = config
 
+  const [widgetStatus, setWidgetStatus] = useState<'loading' | 'found' | 'not-found'>('loading')
+
   useEffect(() => {
+    let cleanupFunctions: (() => void)[] = []
+
     // Function to apply dynamic positioning and additional customizations
     const customizeWidget = () => {
       const widgetButton = document.getElementById('z-callback-widget-button') ||
-                          document.querySelector('.z-callback-widget-button') as HTMLElement
+                          document.querySelector('.z-callback-widget-button') as HTMLElement ||
+                          document.querySelector('[id*="zadarma"]') as HTMLElement ||
+                          document.querySelector('[class*="zadarma"]') as HTMLElement
 
       if (widgetButton) {
+        console.log('✅ Zadarma widget found and customized')
+        setWidgetStatus('found')
+        
         // Apply dynamic positioning
         widgetButton.style.bottom = `${bottomOffset}px`
         widgetButton.style.right = `${rightOffset}px`
+        widgetButton.style.zIndex = '9998'
         
         if (className) {
           widgetButton.classList.add(className)
@@ -57,35 +67,71 @@ export default function ZadarmaWidget({ config = {} }: ZadarmaWidgetProps) {
         widgetButton.addEventListener('mouseenter', handleMouseEnter)
         widgetButton.addEventListener('mouseleave', handleMouseLeave)
 
-        // Cleanup function
-        return () => {
+        // Store cleanup function
+        cleanupFunctions.push(() => {
           widgetButton.removeEventListener('mouseenter', handleMouseEnter)
           widgetButton.removeEventListener('mouseleave', handleMouseLeave)
-        }
+        })
+
+        return true
+      }
+      
+      return false
+    }
+
+    // Check for widget multiple times with increasing delays
+    const checkForWidget = (attempt = 1, maxAttempts = 20) => {
+      console.log(`🔍 Looking for Zadarma widget (attempt ${attempt}/${maxAttempts})`)
+      
+      if (customizeWidget()) {
+        return // Found and customized
+      }
+
+      if (attempt < maxAttempts) {
+        const delay = Math.min(attempt * 500, 5000) // Increase delay up to 5 seconds
+        setTimeout(() => checkForWidget(attempt + 1, maxAttempts), delay)
+      } else {
+        console.warn('❌ Zadarma widget not found after all attempts')
+        setWidgetStatus('not-found')
       }
     }
 
-    // Initial customization attempt
-    customizeWidget()
+    // Initial check
+    checkForWidget()
 
     // Set up observers to catch the widget when it loads
     const observer = new MutationObserver((mutations) => {
+      let shouldCheck = false
+      
       mutations.forEach((mutation) => {
-        if (mutation.type === 'childList') {
+        if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
           const addedNodes = Array.from(mutation.addedNodes)
-          const hasWidgetNode = addedNodes.some(node => 
-            node.nodeType === Node.ELEMENT_NODE && (
-              (node as Element).id?.includes('callback-widget') ||
-              ((node as Element).className && typeof (node as Element).className === 'string' && (node as Element).className.includes('callback-widget'))
-            )
-          )
+          const hasWidgetNode = addedNodes.some(node => {
+            if (node.nodeType !== Node.ELEMENT_NODE) return false
+            
+            const element = node as Element
+            const id = element.id?.toLowerCase() || ''
+            const className = element.className?.toString().toLowerCase() || ''
+            const tagName = element.tagName?.toLowerCase() || ''
+            
+            return id.includes('callback') || id.includes('widget') || id.includes('zadarma') ||
+                   className.includes('callback') || className.includes('widget') || className.includes('zadarma') ||
+                   tagName === 'iframe' ||
+                   element.querySelector('[id*="callback"], [id*="widget"], [id*="zadarma"]') !== null
+          })
           
           if (hasWidgetNode) {
-            // Delay to ensure widget is fully rendered
-            setTimeout(customizeWidget, 100)
+            shouldCheck = true
           }
         }
       })
+      
+      if (shouldCheck) {
+        setTimeout(() => {
+          console.log('🔄 DOM changed, checking for widget again...')
+          checkForWidget()
+        }, 100)
+      }
     })
 
     // Observe document body for widget insertion
@@ -94,9 +140,11 @@ export default function ZadarmaWidget({ config = {} }: ZadarmaWidgetProps) {
       subtree: true
     })
 
-    // Cleanup observer
+    cleanupFunctions.push(() => observer.disconnect())
+
+    // Cleanup all functions when component unmounts
     return () => {
-      observer.disconnect()
+      cleanupFunctions.forEach(cleanup => cleanup())
     }
   }, [bottomOffset, rightOffset, className])
 
@@ -109,7 +157,16 @@ export default function ZadarmaWidget({ config = {} }: ZadarmaWidgetProps) {
       transition={{ duration: 0.3 }}
       aria-hidden="true"
     >
-      <span>Zadarma Widget Manager</span>
+      <span>
+        Zadarma Widget Manager - Status: {widgetStatus}
+        {process.env.NODE_ENV === 'development' && (
+          <span className="ml-2 text-xs">
+            ({widgetStatus === 'loading' && 'Шукаємо віджет...'}
+            {widgetStatus === 'found' && 'Віджет знайдено ✅'}
+            {widgetStatus === 'not-found' && 'Віджет не знайдено ❌'})
+          </span>
+        )}
+      </span>
     </motion.div>
   )
 }

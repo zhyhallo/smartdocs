@@ -22,6 +22,8 @@ export { default as OwlLoader } from './OwlLoader'
 export { default as POSTerminal } from './POSTerminal'
 export { default as ScrollToTop } from './ScrollToTop'
 export { default as ZadarmaWidget } from './ZadarmaWidget'
+export { default as DirectCallWidget } from './DirectCallWidget'
+export { default as WidgetStatus } from './WidgetStatus'
 export { default as ParallaxBackground } from './ParallaxBackground'
 export { default as FloatingElements } from './FloatingElements'
 
