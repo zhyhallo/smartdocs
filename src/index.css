@@ -206,10 +206,10 @@
   /* Zadarma Widget Styling - Essential only */
   #z-callback-widget-button,
   .z-callback-widget-button,
-  [id*="zadarma"],
-  [class*="zadarma"],
-  [id*="callback"],
-  [class*="callback"] {
+  [id*="zadarma"]:not([class*="manager"]):not([class*="sr-only"]),
+  [class*="zadarma"]:not([class*="manager"]):not([class*="sr-only"]),
+  [id*="callback"]:not([class*="manager"]):not([class*="sr-only"]),
+  [class*="callback"]:not([class*="manager"]):not([class*="sr-only"]) {
     background: oklch(0.55 0.22 240) !important;
     border: 2px solid oklch(0.65 0.18 220) !important;
     border-radius: 50% !important;
@@ -224,24 +224,36 @@
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+    cursor: pointer !important;
   }
 
   #z-callback-widget-button:hover,
   .z-callback-widget-button:hover,
-  [id*="zadarma"]:hover,
-  [class*="zadarma"]:hover,
-  [id*="callback"]:hover,
-  [class*="callback"]:hover {
+  [id*="zadarma"]:not([class*="manager"]):not([class*="sr-only"]):hover,
+  [class*="zadarma"]:not([class*="manager"]):not([class*="sr-only"]):hover,
+  [id*="callback"]:not([class*="manager"]):not([class*="sr-only"]):hover,
+  [class*="callback"]:not([class*="manager"]):not([class*="sr-only"]):hover {
     background: oklch(0.65 0.18 220) !important;
     transform: scale(1.05) !important;
     box-shadow: 0 6px 25px oklch(0.65 0.18 220 / 0.4) !important;
   }
 
-  /* Widget forms */
+  /* Widget icon styling */
+  #z-callback-widget-button > *,
+  .z-callback-widget-button > *,
+  [id*="zadarma"] > *:not([class*="manager"]):not([class*="sr-only"]),
+  [class*="zadarma"] > *:not([class*="manager"]):not([class*="sr-only"]),
+  [id*="callback"] > *:not([class*="manager"]):not([class*="sr-only"]),
+  [class*="callback"] > *:not([class*="manager"]):not([class*="sr-only"]) {
+    color: oklch(0.98 0.02 240) !important;
+    fill: oklch(0.98 0.02 240) !important;
+  }
+
+  /* Widget forms and popups */
   #z-callback-widget-popup,
   .z-callback-widget-popup,
-  [id*="popup"],
-  [class*="popup"] {
+  [id*="popup"]:not([class*="manager"]):not([class*="sr-only"]),
+  [class*="popup"]:not([class*="manager"]):not([class*="sr-only"]) {
     background: oklch(0.98 0.02 240) !important;
     border: 1px solid oklch(0.88 0.04 240) !important;
     border-radius: 12px !important;
