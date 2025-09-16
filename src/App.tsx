@@ -134,41 +134,43 @@ function App() {
           onContactsClick={handleContactsClick}
         />
         
-        <InteractiveSection sectionId="hero" triggerOnView triggerOnHover>
-          <Hero onContactClick={openContactModal} />
-        </InteractiveSection>
-        
-        <div id="product">
-          <InteractiveSection sectionId="product" triggerOnView>
-            <ProductDescription />
+        <main className="w-full">
+          <InteractiveSection sectionId="hero" triggerOnView triggerOnHover>
+            <Hero onContactClick={openContactModal} />
           </InteractiveSection>
-        </div>
-        
-        <div id="features">
-          <InteractiveSection sectionId="features" triggerOnView>
-            <Features />
+          
+          <div id="product">
+            <InteractiveSection sectionId="product" triggerOnView>
+              <ProductDescription />
+            </InteractiveSection>
+          </div>
+          
+          <div id="features">
+            <InteractiveSection sectionId="features" triggerOnView>
+              <Features />
+            </InteractiveSection>
+          </div>
+          
+          <div id="pricing">
+            <InteractiveSection sectionId="pricing" triggerOnView>
+              <Pricing onContactClick={openContactModal} />
+            </InteractiveSection>
+          </div>
+          
+          <InteractiveSection sectionId="social-proof" triggerOnView>
+            <SocialProof />
           </InteractiveSection>
-        </div>
-        
-        <div id="pricing">
-          <InteractiveSection sectionId="pricing" triggerOnView>
-            <Pricing onContactClick={openContactModal} />
+          
+          <div id="faq">
+            <InteractiveSection sectionId="faq" triggerOnView>
+              <FAQ />
+            </InteractiveSection>
+          </div>
+          
+          <InteractiveSection sectionId="cta" triggerOnView>
+            <CTA onContactClick={openContactModal} />
           </InteractiveSection>
-        </div>
-        
-        <InteractiveSection sectionId="social-proof" triggerOnView>
-          <SocialProof />
-        </InteractiveSection>
-        
-        <div id="faq">
-          <InteractiveSection sectionId="faq" triggerOnView>
-            <FAQ />
-          </InteractiveSection>
-        </div>
-        
-        <InteractiveSection sectionId="cta" triggerOnView>
-          <CTA onContactClick={openContactModal} />
-        </InteractiveSection>
+        </main>
         
         <Footer 
           onContactsClick={handleContactsClick}

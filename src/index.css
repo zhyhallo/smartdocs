@@ -48,6 +48,69 @@
     background: oklch(0.45 0.22 240);
   }
   
+  /* Container and centering styles */
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Responsive container max-widths for proper centering */
+  @media (min-width: 640px) {
+    .container {
+      max-width: 640px;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .container {
+      max-width: 768px;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .container {
+      max-width: 1024px;
+    }
+  }
+  
+  @media (min-width: 1280px) {
+    .container {
+      max-width: 1200px;
+    }
+  }
+  
+  @media (min-width: 1536px) {
+    .container {
+      max-width: 1280px;
+    }
+  }
+  
+  /* Center all major sections */
+  section {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Hero section specific centering */
+  #hero .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Text centering utilities */
+  .text-center {
+    text-align: center;
+  }
+  
+  .mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
   /* Override any default link colors */
   a {
     color: inherit !important;

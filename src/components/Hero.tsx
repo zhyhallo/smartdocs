@@ -60,10 +60,10 @@ export default function Hero({ onContactClick }: HeroProps) {
       <FloatingElements density="low" theme="tech" />
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-8 items-center max-w-7xl mx-auto lg:max-w-6xl lg:-ml-8">
+        <div className="grid lg:grid-cols-2 gap-8 items-center max-w-7xl mx-auto">
           {/* Left side - Content */}
           <motion.div 
-            className="max-w-2xl lg:max-w-xl xl:max-w-2xl lg:-ml-4"
+            className="max-w-2xl mx-auto lg:mx-0 text-center lg:text-left"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
@@ -96,7 +96,7 @@ export default function Hero({ onContactClick }: HeroProps) {
             </motion.p>
             
             <motion.div 
-              className="flex justify-start"
+              className="flex justify-center"
               variants={buttonVariants}
               initial="hidden"
               animate="visible"
@@ -115,7 +115,7 @@ export default function Hero({ onContactClick }: HeroProps) {
 
         {/* Right side - Owl Mascot */}
           <motion.div 
-            className="flex justify-center lg:justify-start lg:-ml-12"
+            className="flex justify-center"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
