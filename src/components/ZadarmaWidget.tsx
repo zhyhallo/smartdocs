@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Phone } from "@phosphor-icons/react"
 import { motion } from "framer-motion"
 
@@ -14,48 +14,118 @@ declare global {
 }
 
 export default function ZadarmaWidget() {
-  const [isLoaded, setIsLoaded] = useState(false)
+  const [isReady, setIsReady] = useState(false)
+  const [attempts, setAttempts] = useState(0)
+  const maxAttempts = 20 // Max 10 seconds of checking
 
-  useEffect(() => {
-    // Set Zadarma configuration
-    window.ZCallbackWidgetLinkId = 'edec1cbf8a1f75508f534464a2b4fa55'
-    window.ZCallbackWidgetDomain = 'my.zadarma.com'
-
-    // Create and load the Zadarma script
-    const script = document.createElement('script')
-    script.type = 'text/javascript'
-    script.charset = 'utf-8'
-    script.async = true
-    script.src = `https://${window.ZCallbackWidgetDomain}/callbackWidget/js/main.min.js?v=1.15.4`
-    
-    script.onload = () => {
-      setIsLoaded(true)
+  const checkWidget = useCallback(() => {
+    if (window.ZCallbackWidget && typeof window.ZCallbackWidget.showWidget === 'function') {
+      setIsReady(true)
+      
       // Hide the default Zadarma widget button
       const style = document.createElement('style')
-      style.textContent = `
-        #ZCallbackWidget {
-          display: none !important;
-        }
-      `
-      document.head.appendChild(style)
+      if (!document.getElementById('zadarma-hide-style')) {
+        style.id = 'zadarma-hide-style'
+        style.textContent = `
+          #ZCallbackWidget,
+          .zcallback-widget,
+          [id*="zcallback"]:not([id*="custom"]),
+          [class*="zcallback"] {
+            display: none !important;
+          }
+          
+          /* Additional selectors for different widget versions */
+          .zadarma-widget,
+          .callback-widget,
+          [data-zadarma],
+          div[style*="position: fixed"][style*="bottom"][style*="right"] {
+            display: none !important;
+          }
+        `
+        document.head.appendChild(style)
+      }
+      return true
     }
-
-    const firstScript = document.getElementsByTagName('script')[0]
-    if (firstScript && firstScript.parentNode) {
-      firstScript.parentNode.insertBefore(script, firstScript)
-    } else {
-      document.documentElement.firstChild?.appendChild(script)
-    }
-
-    return () => {
-      // Cleanup
-      script.remove()
-    }
+    return false
   }, [])
 
+  useEffect(() => {
+    // Check if Zadarma widget is ready
+    const checkWidget = () => {
+      if (window.ZCallbackWidget && typeof window.ZCallbackWidget.showWidget === 'function') {
+        setIsReady(true)
+        
+        // Hide the default Zadarma widget button
+        const style = document.createElement('style')
+        if (!document.getElementById('zadarma-hide-style')) {
+          style.id = 'zadarma-hide-style'
+          style.textContent = `
+            #ZCallbackWidget,
+            .zcallback-widget,
+            [id*="zcallback"]:not([id*="custom"]),
+            [class*="zcallback"] {
+              display: none !important;
+            }
+            
+            /* Additional selectors for different widget versions */
+            .zadarma-widget,
+            .callback-widget,
+            [data-zadarma],
+            div[style*="position: fixed"][style*="bottom"][style*="right"] {
+              display: none !important;
+            }
+          `
+          document.head.appendChild(style)
+        }
+        return true
+      }
+      return false
+    }
+
+    // Initial check
+    if (checkWidget()) return
+
+    const intervalId = setInterval(() => {
+      setAttempts(prev => {
+        const newAttempts = prev + 1
+        
+        if (checkWidget() || newAttempts >= maxAttempts) {
+          clearInterval(intervalId)
+        }
+        
+        return newAttempts
+      })
+    }, 500)
+
+    return () => clearInterval(intervalId)
+  }, [checkWidget, maxAttempts])
+
   const handleCallbackClick = () => {
-    if (window.ZCallbackWidget && isLoaded) {
-      window.ZCallbackWidget.showWidget()
+    if (isReady && window.ZCallbackWidget) {
+      try {
+        if (typeof window.ZCallbackWidget.showWidget === 'function') {
+          window.ZCallbackWidget.showWidget()
+        } else {
+          // Alternative approach - try to trigger the widget manually
+          const event = new CustomEvent('zadarma:show')
+          window.dispatchEvent(event)
+          
+          // Or try to click the original widget if it exists but is hidden
+          const originalWidget = document.querySelector('#ZCallbackWidget, .zcallback-widget, [class*="zcallback"], .zadarma-widget') as HTMLElement
+          if (originalWidget && originalWidget.click) {
+            // Temporarily show it, click it, then hide it again
+            originalWidget.style.display = 'block'
+            originalWidget.style.visibility = 'hidden'
+            setTimeout(() => {
+              originalWidget.click()
+              originalWidget.style.display = 'none'
+              originalWidget.style.visibility = 'visible'
+            }, 100)
+          }
+        }
+      } catch (error) {
+        // Silently handle error in production
+      }
     }
   }
 
