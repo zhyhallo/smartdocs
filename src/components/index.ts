@@ -26,3 +26,4 @@ export { default as FloatingElements } from './FloatingElements'
 
 // Interactive components
 export { InteractiveSection } from './InteractiveSection'
+export { default as ZadarmaWidget } from './ZadarmaWidget'

@@ -10,7 +10,8 @@ import {
   CTA, 
   Footer, 
   ContactModal,
-  InteractiveSection
+  InteractiveSection,
+  ZadarmaWidget
 } from "@/components"
 import { Toaster } from "sonner"
 import { motion } from "framer-motion"
@@ -196,6 +197,8 @@ function App() {
             onLearnMore={handlePrivacyClick}
           />
         </Suspense>
+        
+        <ZadarmaWidget />
         
         <Toaster richColors position="top-right" />
       </motion.div>
