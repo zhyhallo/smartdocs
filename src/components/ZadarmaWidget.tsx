@@ -74,9 +74,10 @@ export default function ZadarmaWidget({ config = {} }: ZadarmaWidgetProps) {
         if (mutation.type === 'childList') {
           const addedNodes = Array.from(mutation.addedNodes)
           const hasWidgetNode = addedNodes.some(node => 
-            node.nodeType === Node.ELEMENT_NODE && 
-            (node as Element).id?.includes('callback-widget') ||
-            (node as Element).className?.includes('callback-widget')
+            node.nodeType === Node.ELEMENT_NODE && (
+              (node as Element).id?.includes('callback-widget') ||
+              ((node as Element).className && typeof (node as Element).className === 'string' && (node as Element).className.includes('callback-widget'))
+            )
           )
           
           if (hasWidgetNode) {

@@ -13,7 +13,7 @@ interface CookieConsentProps {
 
 export default function CookieConsent({ onAccept, onDecline, onLearnMore }: CookieConsentProps) {
   const [isVisible, setIsVisible] = useState(false)
-  const [cookieConsent, setCookieConsent, deleteCookieConsent] = useKV("cookie-consent", null)
+  const [cookieConsent, setCookieConsent, deleteCookieConsent] = useKV("cookie-consent", undefined as string | undefined)
   const [isAccepted, setIsAccepted] = useState(false)
 
   useEffect(() => {

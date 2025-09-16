@@ -120,7 +120,7 @@ export default function Features() {
           <OwlAnalyst 
             size="sm" 
             animated={false} 
-            interactionContext="features"
+            withTerminal={false}
           />
         </motion.div>
         
@@ -141,7 +141,7 @@ export default function Features() {
           <OwlAnalyst 
             size="xs" 
             animated={false} 
-            interactionContext="features"
+            withTerminal={false}
           />
         </motion.div>
         

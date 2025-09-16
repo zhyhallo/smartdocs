@@ -151,7 +151,7 @@ export default function InteractiveTerminalDemo() {
               <OwlAnalyst
                 size="xl"
                 animated={true}
-                interactionContext="demo-terminal"
+                withTerminal={true}
                 className="drop-shadow-2xl"
               />
               

@@ -14,7 +14,7 @@ export function useInView(options: UseInViewOptions = {}) {
   } = options
 
   const [isInView, setIsInView] = useState(false)
-  const ref = useRef<HTMLElement>(null)
+  const ref = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
     const element = ref.current

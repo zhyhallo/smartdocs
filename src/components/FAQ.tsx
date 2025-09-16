@@ -66,7 +66,7 @@ export default function FAQ() {
 
   return (
     <section id="faq" className="py-20 bg-muted/30">
-      <div ref={ref} className="container mx-auto px-4 max-w-7xl">
+      <div ref={ref as any} className="container mx-auto px-4 max-w-7xl">
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Left side - FAQ content */}
           <div>
@@ -189,7 +189,7 @@ export default function FAQ() {
                 animate={isInView ? { opacity: 1, scale: 1, x: 0 } : { opacity: 0, scale: 0.8, x: 20 }}
                 transition={{ duration: 0.6, delay: 0.7 }}
               >
-                <OwlAnalyst size="sm" animated={true} showTerminal={false} />
+                <OwlAnalyst size="sm" animated={true} withTerminal={false} />
                 
                 {/* Thought bubbles connecting question mark to owl */}
                 <motion.div

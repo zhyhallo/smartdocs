@@ -42,7 +42,7 @@ export function useAdvancedParallax(
   const ref = useRef<HTMLElement>(null)
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: options.offset || ["start end", "end start"]
+    offset: (options.offset || ["start end", "end start"]) as ["start end", "end start"]
   })
 
   const transform = useTransform(scrollYProgress, inputRange, outputRange)

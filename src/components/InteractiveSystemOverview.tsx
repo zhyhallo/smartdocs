@@ -2,9 +2,9 @@ import { motion } from "framer-motion"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { 
-  Zap, 
+  Lightning, 
   Eye,
-  MousePointer,
+  Cursor,
   Activity,
   Brain,
   Sparkle
@@ -13,7 +13,7 @@ import {
 export default function InteractiveSystemOverview() {
   const features = [
     {
-      icon: Zap,
+      icon: Lightning,
       title: "Миттєва реакція",
       description: "Термінали реагують на дії користувача менше ніж за 100мс",
       color: "text-yellow-500"
@@ -25,7 +25,7 @@ export default function InteractiveSystemOverview() {
       color: "text-blue-500"
     },
     {
-      icon: MousePointer,
+      icon: Cursor,
       title: "Інтерактивні зони",
       description: "Кожна секція має свій контекст взаємодії",
       color: "text-green-500"
