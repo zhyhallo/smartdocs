@@ -203,13 +203,13 @@
     animation: float-gentle 4s ease-in-out infinite;
   }
 
-  /* Zadarma Widget Styling - Essential only */
+  /* Zadarma Widget Styling - Single button with phone icon */
   #z-callback-widget-button,
   .z-callback-widget-button,
-  [id*="zadarma"]:not([class*="manager"]):not([class*="sr-only"]),
-  [class*="zadarma"]:not([class*="manager"]):not([class*="sr-only"]),
-  [id*="callback"]:not([class*="manager"]):not([class*="sr-only"]),
-  [class*="callback"]:not([class*="manager"]):not([class*="sr-only"]) {
+  [id*="zadarma"]:not([class*="manager"]):not([class*="sr-only"]):not([style*="display: none"]),
+  [class*="zadarma"]:not([class*="manager"]):not([class*="sr-only"]):not([style*="display: none"]),
+  [id*="callback"]:not([class*="manager"]):not([class*="sr-only"]):not([style*="display: none"]),
+  [class*="callback"]:not([class*="manager"]):not([class*="sr-only"]):not([style*="display: none"]) {
     background: oklch(0.55 0.22 240) !important;
     border: 2px solid oklch(0.65 0.18 220) !important;
     border-radius: 50% !important;
@@ -227,6 +227,20 @@
     cursor: pointer !important;
   }
 
+  /* Hide duplicate widgets - keep only one */
+  [id*="zadarma"]:not(#z-callback-widget-button):not(.z-callback-widget-button),
+  [class*="zadarma"]:not(#z-callback-widget-button):not(.z-callback-widget-button),
+  [id*="callback"]:not(#z-callback-widget-button):not(.z-callback-widget-button),
+  [class*="callback"]:not(#z-callback-widget-button):not(.z-callback-widget-button) {
+    display: none !important;
+  }
+
+  /* Show only the main widget button */
+  #z-callback-widget-button:first-of-type,
+  .z-callback-widget-button:first-of-type {
+    display: flex !important;
+  }
+
   #z-callback-widget-button:hover,
   .z-callback-widget-button:hover,
   [id*="zadarma"]:not([class*="manager"]):not([class*="sr-only"]):hover,
@@ -238,7 +252,7 @@
     box-shadow: 0 6px 25px oklch(0.65 0.18 220 / 0.4) !important;
   }
 
-  /* Widget icon styling */
+  /* Widget icon styling - phone icon */
   #z-callback-widget-button > *,
   .z-callback-widget-button > *,
   [id*="zadarma"] > *:not([class*="manager"]):not([class*="sr-only"]),
@@ -247,6 +261,40 @@
   [class*="callback"] > *:not([class*="manager"]):not([class*="sr-only"]) {
     color: oklch(0.98 0.02 240) !important;
     fill: oklch(0.98 0.02 240) !important;
+    font-size: 20px !important;
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  /* Add phone icon using CSS */
+  #z-callback-widget-button::before,
+  .z-callback-widget-button::before {
+    content: "📞" !important;
+    font-size: 24px !important;
+    line-height: 1 !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 10 !important;
+    pointer-events: none !important;
+  }
+
+  /* Hide original icons and content */
+  #z-callback-widget-button img,
+  #z-callback-widget-button svg,
+  #z-callback-widget-button span,
+  .z-callback-widget-button img,
+  .z-callback-widget-button svg,
+  .z-callback-widget-button span {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* Ensure the button is properly styled */
+  #z-callback-widget-button,
+  .z-callback-widget-button {
+    font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif !important;
   }
 
   /* Widget forms and popups */
@@ -317,6 +365,11 @@
       height: 56px !important;
     }
 
+    #z-callback-widget-button::before,
+    .z-callback-widget-button::before {
+      font-size: 20px !important;
+    }
+
     .z-callback-widget-popup,
     #z-callback-widget-popup {
       width: calc(100vw - 32px) !important;
@@ -325,6 +378,23 @@
       transform: translateX(-50%) !important;
       margin: 16px !important;
     }
+  }
+
+  /* Force hide any green or secondary widgets */
+  [style*="background: green"],
+  [style*="background-color: green"],
+  [style*="background: #00ff00"],
+  [style*="background-color: #00ff00"],
+  .green-widget,
+  .secondary-widget {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* Ensure only blue widgets are visible */
+  [style*="background: oklch(0.55 0.22 240)"] {
+    display: flex !important;
+    visibility: visible !important;
   }
 }
 

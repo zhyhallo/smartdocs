@@ -37,63 +37,78 @@ export default function ZadarmaWidget({ config = {} }: ZadarmaWidgetProps) {
       '[class*="callback"]'
     ]
     
-    let widgetButton: HTMLElement | null = null
+    const foundWidgets: HTMLElement[] = []
     
+    // Find all widget elements
     for (const selector of selectors) {
-      widgetButton = document.querySelector(selector) as HTMLElement
-      if (widgetButton) break
+      const elements = document.querySelectorAll(selector) as NodeListOf<HTMLElement>
+      elements.forEach(el => {
+        if (el && !foundWidgets.includes(el)) {
+          foundWidgets.push(el)
+        }
+      })
     }
 
-    if (widgetButton) {
-      console.log('✅ Zadarma widget found and customized')
+    if (foundWidgets.length > 0) {
+      console.log(`✅ Found ${foundWidgets.length} Zadarma widget(s), keeping only the first one`)
       setWidgetStatus('found')
       
-      // Apply dynamic positioning
-      widgetButton.style.cssText = `
-        position: fixed !important;
-        bottom: ${bottomOffset}px !important;
-        right: ${rightOffset}px !important;
-        z-index: 9998 !important;
-        background: oklch(0.55 0.22 240) !important;
-        border: 2px solid oklch(0.65 0.18 220) !important;
-        border-radius: 50% !important;
-        box-shadow: 0 4px 20px oklch(0.55 0.22 240 / 0.3) !important;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-        width: 60px !important;
-        height: 60px !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-      `
-      
-      if (className) {
-        widgetButton.classList.add(className)
-      }
+      // Keep only the first widget, hide others
+      foundWidgets.forEach((widget, index) => {
+        if (index === 0) {
+          // Customize the first widget
+          widget.style.cssText = `
+            position: fixed !important;
+            bottom: ${bottomOffset}px !important;
+            right: ${rightOffset}px !important;
+            z-index: 9998 !important;
+            background: oklch(0.55 0.22 240) !important;
+            border: 2px solid oklch(0.65 0.18 220) !important;
+            border-radius: 50% !important;
+            box-shadow: 0 4px 20px oklch(0.55 0.22 240 / 0.3) !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            width: 60px !important;
+            height: 60px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            cursor: pointer !important;
+          `
+          
+          if (className) {
+            widget.classList.add(className)
+          }
 
-      // Add corporate branding enhancement
-      widgetButton.setAttribute('title', 'Замовити зворотний дзвінок')
-      widgetButton.setAttribute('aria-label', 'Кнопка замовлення зворотнього дзвінка від ModulSoft')
+          // Add corporate branding enhancement
+          widget.setAttribute('title', 'Замовити зворотний дзвінок')
+          widget.setAttribute('aria-label', 'Кнопка замовлення зворотнього дзвінка від ModulSoft')
 
-      // Apply additional hover effects
-      const handleMouseEnter = () => {
-        widgetButton!.style.transform = 'scale(1.05)'
-        widgetButton!.style.background = 'oklch(0.65 0.18 220) !important'
-        widgetButton!.style.boxShadow = '0 6px 25px oklch(0.65 0.18 220 / 0.4) !important'
-      }
+          // Apply additional hover effects
+          const handleMouseEnter = () => {
+            widget.style.transform = 'scale(1.05)'
+            widget.style.background = 'oklch(0.65 0.18 220) !important'
+            widget.style.boxShadow = '0 6px 25px oklch(0.65 0.18 220 / 0.4) !important'
+          }
 
-      const handleMouseLeave = () => {
-        widgetButton!.style.transform = 'scale(1)'
-        widgetButton!.style.background = 'oklch(0.55 0.22 240) !important'
-        widgetButton!.style.boxShadow = '0 4px 20px oklch(0.55 0.22 240 / 0.3) !important'
-      }
+          const handleMouseLeave = () => {
+            widget.style.transform = 'scale(1)'
+            widget.style.background = 'oklch(0.55 0.22 240) !important'
+            widget.style.boxShadow = '0 4px 20px oklch(0.55 0.22 240 / 0.3) !important'
+          }
 
-      // Remove existing event listeners to avoid duplicates
-      widgetButton.removeEventListener('mouseenter', handleMouseEnter)
-      widgetButton.removeEventListener('mouseleave', handleMouseLeave)
-      
-      // Add new event listeners
-      widgetButton.addEventListener('mouseenter', handleMouseEnter)
-      widgetButton.addEventListener('mouseleave', handleMouseLeave)
+          // Remove existing event listeners to avoid duplicates
+          widget.removeEventListener('mouseenter', handleMouseEnter)
+          widget.removeEventListener('mouseleave', handleMouseLeave)
+          
+          // Add new event listeners
+          widget.addEventListener('mouseenter', handleMouseEnter)
+          widget.addEventListener('mouseleave', handleMouseLeave)
+        } else {
+          // Hide duplicate widgets
+          widget.style.display = 'none !important'
+          console.log(`🚫 Hiding duplicate widget #${index + 1}`)
+        }
+      })
 
       return true
     }

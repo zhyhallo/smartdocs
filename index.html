@@ -35,14 +35,16 @@
             
             let loadAttempts = 0;
             const maxAttempts = 3;
+            let isLoading = false;
             
             function loadZadarmaWidget() {
-                // Prevent double loading
-                if (window.ZCallbackWidget || document.querySelector('[src*="zadarma"]')) {
+                // Prevent double loading and multiple instances
+                if (isLoading || window.ZCallbackWidget || document.querySelector('[src*="zadarma"]')) {
                     console.log('✅ Zadarma widget already loaded or loading');
                     return;
                 }
                 
+                isLoading = true;
                 loadAttempts++;
                 console.log(`🔄 Loading Zadarma widget (attempt ${loadAttempts}/${maxAttempts})...`);
                 
@@ -54,15 +56,23 @@
                 
                 script.onload = function() {
                     console.log('✅ Zadarma widget script loaded successfully');
-                    // Wait a bit for the widget to initialize
+                    isLoading = false;
+                    
+                    // Wait for widget to initialize and hide duplicates
                     setTimeout(() => {
-                        const widget = document.getElementById('z-callback-widget-button') ||
-                                      document.querySelector('.z-callback-widget-button') ||
-                                      document.querySelector('[id*="zadarma"]') ||
-                                      document.querySelector('[class*="zadarma"]');
+                        const widgets = document.querySelectorAll(
+                            '#z-callback-widget-button, .z-callback-widget-button, [id*="zadarma"], [class*="zadarma"], [id*="callback"], [class*="callback"]'
+                        );
                         
-                        if (widget) {
-                            console.log('✅ Zadarma widget is active and ready');
+                        if (widgets.length > 0) {
+                            console.log(`✅ Found ${widgets.length} Zadarma widget(s), keeping only the first one`);
+                            
+                            // Hide all but first widget
+                            widgets.forEach((widget, index) => {
+                                if (index > 0) {
+                                    widget.style.display = 'none !important';
+                                }
+                            });
                         } else {
                             console.warn('⚠️ Zadarma widget script loaded but widget not found');
                         }
@@ -71,6 +81,7 @@
                 
                 script.onerror = function() {
                     console.warn(`❌ Failed to load Zadarma widget script (attempt ${loadAttempts})`);
+                    isLoading = false;
                     
                     // Retry loading if we haven't reached max attempts
                     if (loadAttempts < maxAttempts) {
@@ -102,14 +113,6 @@
                     }
                 }, 3000);
             });
-            
-            // Final backup for very slow connections
-            setTimeout(() => {
-                if (!document.querySelector('[id*="callback"], [class*="callback"], [id*="zadarma"], [class*="zadarma"]')) {
-                    console.log('🔄 Final backup attempt: Loading Zadarma widget...');
-                    loadZadarmaWidget();
-                }
-            }, 10000);
             
         })();
     </script>
