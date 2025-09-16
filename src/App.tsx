@@ -14,7 +14,8 @@ import {
   InteractiveSection,
   ContactPage,
   PrivacyPolicy,
-  CookieConsent
+  CookieConsent,
+  ZadarmaWidget
 } from "@/components"
 import { Toaster } from "sonner"
 import { motion } from "framer-motion"
@@ -173,6 +174,14 @@ function App() {
         />
         
         <ScrollToTop />
+        
+        <ZadarmaWidget 
+          config={{
+            bottomOffset: 120,
+            rightOffset: 20,
+            className: "zadarma-corporate-theme"
+          }}
+        />
         
         <CookieConsent 
           onLearnMore={handlePrivacyClick}

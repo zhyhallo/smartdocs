@@ -25,6 +25,7 @@ export { default as FloatingElements } from './FloatingElements'
 export { default as POSTerminal } from './POSTerminal'
 export { default as SizeOptimizationSummary } from './SizeOptimizationSummary'
 export { default as OptimizedOwlShowcase } from './OptimizedOwlShowcase'
+export { default as ZadarmaWidget } from './ZadarmaWidget'
 
 // Interactive components
 export { InteractiveSection, withInteractiveSection } from './InteractiveSection'

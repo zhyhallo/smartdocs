@@ -329,6 +329,240 @@
     perspective: 1000px;
     transform-style: preserve-3d;
   }
+
+  /* Zadarma Callback Widget Custom Styling */
+  /* Override default widget styles to match blue-white corporate theme */
+  
+  /* Main widget button */
+  #z-callback-widget-button,
+  .z-callback-widget-button {
+    background: oklch(0.55 0.22 240) !important;
+    border: 2px solid oklch(0.65 0.18 220) !important;
+    border-radius: 50% !important;
+    box-shadow: 0 4px 20px oklch(0.55 0.22 240 / 0.3) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+
+  #z-callback-widget-button:hover,
+  .z-callback-widget-button:hover {
+    background: oklch(0.65 0.18 220) !important;
+    transform: scale(1.05) !important;
+    box-shadow: 0 6px 25px oklch(0.65 0.18 220 / 0.4) !important;
+  }
+
+  /* Widget button icon */
+  #z-callback-widget-button svg,
+  .z-callback-widget-button svg,
+  #z-callback-widget-button img,
+  .z-callback-widget-button img {
+    filter: brightness(0) invert(1) !important;
+  }
+
+  /* Widget popup/modal */
+  #z-callback-widget-popup,
+  .z-callback-widget-popup,
+  .z-callback-widget-modal {
+    background: oklch(0.98 0.02 240) !important;
+    border: 1px solid oklch(0.88 0.04 240) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 10px 40px oklch(0.15 0.08 240 / 0.15) !important;
+    font-family: 'Inter', sans-serif !important;
+  }
+
+  /* Widget header */
+  .z-callback-widget-header,
+  #z-callback-widget-header {
+    background: oklch(0.55 0.22 240) !important;
+    color: oklch(0.98 0.02 240) !important;
+    border-radius: 12px 12px 0 0 !important;
+    padding: 16px !important;
+    font-weight: 600 !important;
+  }
+
+  /* Widget form inputs */
+  .z-callback-widget-input,
+  #z-callback-widget-popup input,
+  #z-callback-widget-popup select,
+  #z-callback-widget-popup textarea {
+    background: oklch(0.96 0.02 240) !important;
+    border: 1px solid oklch(0.88 0.04 240) !important;
+    border-radius: 8px !important;
+    color: oklch(0.15 0.08 240) !important;
+    font-family: 'Inter', sans-serif !important;
+    padding: 12px !important;
+    transition: all 0.2s ease !important;
+  }
+
+  .z-callback-widget-input:focus,
+  #z-callback-widget-popup input:focus,
+  #z-callback-widget-popup select:focus,
+  #z-callback-widget-popup textarea:focus {
+    border-color: oklch(0.55 0.22 240) !important;
+    outline: 2px solid oklch(0.55 0.22 240 / 0.2) !important;
+    outline-offset: 0 !important;
+  }
+
+  /* Widget buttons */
+  .z-callback-widget-submit,
+  #z-callback-widget-popup button[type="submit"],
+  .z-callback-widget-btn-primary {
+    background: oklch(0.55 0.22 240) !important;
+    color: oklch(0.98 0.02 240) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 12px 24px !important;
+    font-weight: 600 !important;
+    font-family: 'Inter', sans-serif !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+  }
+
+  .z-callback-widget-submit:hover,
+  #z-callback-widget-popup button[type="submit"]:hover,
+  .z-callback-widget-btn-primary:hover {
+    background: oklch(0.65 0.18 220) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px oklch(0.55 0.22 240 / 0.3) !important;
+  }
+
+  /* Widget secondary buttons */
+  .z-callback-widget-btn-secondary,
+  #z-callback-widget-popup .btn-cancel {
+    background: oklch(0.92 0.04 240) !important;
+    color: oklch(0.25 0.08 240) !important;
+    border: 1px solid oklch(0.88 0.04 240) !important;
+    border-radius: 8px !important;
+    padding: 12px 24px !important;
+    font-weight: 500 !important;
+    font-family: 'Inter', sans-serif !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+  }
+
+  .z-callback-widget-btn-secondary:hover,
+  #z-callback-widget-popup .btn-cancel:hover {
+    background: oklch(0.88 0.04 240) !important;
+    transform: translateY(-1px) !important;
+  }
+
+  /* Widget text and labels */
+  .z-callback-widget-text,
+  #z-callback-widget-popup label,
+  #z-callback-widget-popup p,
+  #z-callback-widget-popup span {
+    color: oklch(0.15 0.08 240) !important;
+    font-family: 'Inter', sans-serif !important;
+  }
+
+  /* Widget close button */
+  .z-callback-widget-close,
+  #z-callback-widget-close {
+    color: oklch(0.98 0.02 240) !important;
+    font-size: 20px !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+  }
+
+  .z-callback-widget-close:hover,
+  #z-callback-widget-close:hover {
+    color: oklch(0.92 0.04 240) !important;
+    transform: scale(1.1) !important;
+  }
+
+  /* Widget overlay */
+  .z-callback-widget-overlay,
+  #z-callback-widget-overlay {
+    background: oklch(0.15 0.08 240 / 0.5) !important;
+    backdrop-filter: blur(4px) !important;
+  }
+
+  /* Widget positioning - ensure it doesn't conflict with scroll to top button */
+  #z-callback-widget-button,
+  .z-callback-widget-button {
+    bottom: 120px !important; /* Position above scroll-to-top button */
+    right: 20px !important;
+    z-index: 9998 !important; /* Below scroll-to-top button */
+  }
+
+  /* Widget success/error messages */
+  .z-callback-widget-success {
+    background: oklch(0.7 0.15 145) !important;
+    color: oklch(0.98 0.02 240) !important;
+    border-radius: 8px !important;
+    padding: 12px !important;
+    font-family: 'Inter', sans-serif !important;
+  }
+
+  .z-callback-widget-error {
+    background: oklch(0.68 0.22 15) !important;
+    color: oklch(0.98 0.02 240) !important;
+    border-radius: 8px !important;
+    padding: 12px !important;
+    font-family: 'Inter', sans-serif !important;
+  }
+
+  /* Widget animation enhancements */
+  .z-callback-widget-popup,
+  #z-callback-widget-popup {
+    animation: slideInUp 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  /* Mobile responsiveness for widget */
+  @media (max-width: 768px) {
+    #z-callback-widget-button,
+    .z-callback-widget-button {
+      bottom: 100px !important;
+      right: 16px !important;
+      width: 56px !important;
+      height: 56px !important;
+    }
+
+    .z-callback-widget-popup,
+    #z-callback-widget-popup {
+      width: calc(100vw - 32px) !important;
+      max-width: 400px !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      margin: 16px !important;
+    }
+  }
+
+  /* Enhanced hover effects with owl theme integration */
+  #z-callback-widget-button::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, oklch(0.55 0.22 240), oklch(0.65 0.18 220), oklch(0.55 0.22 240));
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  #z-callback-widget-button:hover::before {
+    opacity: 1;
+    animation: rotate 2s linear infinite;
+  }
+
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
 }
 
 :root {
