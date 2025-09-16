@@ -56,7 +56,7 @@ export default function Hero({ onContactClick }: HeroProps) {
   return (
     <section className="relative py-20 bg-gradient-to-b from-secondary/30 to-background overflow-hidden">
       {/* Parallax Background Elements */}
-      <ParallaxBackground variant="dots" intensity="light" />
+      <ParallaxBackground variant="subtle" />
       <FloatingElements density="low" theme="tech" />
       
       <div className="container mx-auto px-4 relative z-10">

@@ -1,35 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Driver POSNET / Thermal для 1С:Enterprise – купити / ціна / функції</title>
     <meta name="description" content="Готова зовнішня компонента для інтеграції з POSNET / Thermal реєстраторами в 1С:Enterprise. Надійність, стабільність, техпідтримка. Ціна 1500 зл.">
+    
+    <!-- Preconnect to external domains for faster loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://my.zadarma.com">
+    
+    <!-- Load critical font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Preload critical CSS -->
     <link href="/src/main.css" rel="stylesheet" />
+    
+    <!-- Add favicon for better UX -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 </head>
 
 <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     
-    <!-- Zadarma Callback Widget -->
+    <!-- Load Zadarma widget asynchronously -->
     <script type="text/javascript">
-        var ZCallbackWidgetLinkId  = 'edec1cbf8a1f75508f534464a2b4fa55';
-        var ZCallbackWidgetDomain  = 'my.zadarma.com';
-        (function(){
+        // Load Zadarma widget after page load to avoid blocking
+        window.addEventListener('load', function() {
+            var ZCallbackWidgetLinkId  = 'edec1cbf8a1f75508f534464a2b4fa55';
+            var ZCallbackWidgetDomain  = 'my.zadarma.com';
+            
             var lt = document.createElement('script');
             lt.type ='text/javascript';
             lt.charset = 'utf-8';
             lt.async = true;
             lt.src = 'https://' + ZCallbackWidgetDomain + '/callbackWidget/js/main.min.js?v=1.15.4';
+            
             var sc = document.getElementsByTagName('script')[0];
             if (sc) sc.parentNode.insertBefore(lt, sc);
             else document.documentElement.firstChild.appendChild(lt);
-        })();
+        });
     </script>
 </body>
 

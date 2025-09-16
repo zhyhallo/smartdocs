@@ -99,7 +99,7 @@ export default function Features() {
   return (
     <section id="features" className="py-20 bg-secondary/20 relative overflow-hidden" ref={ref}>
       {/* Parallax Background Elements */}
-      <ParallaxBackground variant="geometric" intensity="light" />
+      <ParallaxBackground variant="subtle" />
       <FloatingElements density="medium" theme="business" />
       
       {/* Decorative floating owls with enhanced parallax */}

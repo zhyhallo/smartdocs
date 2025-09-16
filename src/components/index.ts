@@ -1,4 +1,4 @@
-// Component exports for easy importing
+// Core page components
 export { default as Header } from './Header'
 export { default as Hero } from './Hero'
 export { default as ProductDescription } from './ProductDescription'
@@ -8,31 +8,22 @@ export { default as SocialProof } from './SocialProof'
 export { default as FAQ } from './FAQ'
 export { default as CTA } from './CTA'
 export { default as Footer } from './Footer'
+
+// Modal and overlay components
 export { default as ContactModal } from './ContactModal'
 export { default as ContactPage } from './ContactPage'
 export { default as PrivacyPolicy } from './PrivacyPolicy'
 export { default as CookieConsent } from './CookieConsent'
+
+// UI enhancements
 export { default as OwlMascot } from './OwlMascot'
 export { default as OwlAnalyst } from './OwlAnalyst'
-export { default as OwlIcon } from './OwlIcon'
-export { default as ScrollToTop } from './ScrollToTop'
 export { default as OwlLoader } from './OwlLoader'
-export { default as OwlSpinner } from './OwlSpinner'
-export { default as OwlProgress } from './OwlProgress'
-export { default as LoadingState } from './LoadingState'
+export { default as POSTerminal } from './POSTerminal'
+export { default as ScrollToTop } from './ScrollToTop'
+export { default as ZadarmaWidget } from './ZadarmaWidget'
 export { default as ParallaxBackground } from './ParallaxBackground'
 export { default as FloatingElements } from './FloatingElements'
-export { default as POSTerminal } from './POSTerminal'
-export { default as SizeOptimizationSummary } from './SizeOptimizationSummary'
-export { default as OptimizedOwlShowcase } from './OptimizedOwlShowcase'
-export { default as ZadarmaWidget } from './ZadarmaWidget'
-export { default as AnimatedFormField } from './AnimatedFormField'
-export { default as FormValidationDemo } from './FormValidationDemo'
-export { default as FormAnimationShowcase } from './FormAnimationShowcase'
 
 // Interactive components
-export { InteractiveSection, withInteractiveSection } from './InteractiveSection'
-export { InteractiveButton, InteractiveInput } from './InteractiveComponents'
-
-// Form validation components
-export { ValidationSummary, useFormValidation, FloatingValidation } from './FormValidationComponents'
+export { InteractiveSection } from './InteractiveSection'

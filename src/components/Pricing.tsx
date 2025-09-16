@@ -97,7 +97,7 @@ export default function Pricing({ onContactClick }: PricingProps) {
   return (
     <section id="pricing" className="py-20 relative overflow-hidden" ref={ref}>
       {/* Parallax Background Elements */}
-      <ParallaxBackground variant="circles" intensity="medium" />
+      <ParallaxBackground variant="subtle" />
       <FloatingElements density="low" theme="business" />
       
       {/* Additional floating currency symbols with enhanced parallax */}

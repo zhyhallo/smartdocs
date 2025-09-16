@@ -59,7 +59,7 @@ export default function CTA({ onContactClick }: CTAProps) {
   return (
     <section className="py-20 bg-primary/5 relative overflow-hidden" ref={ref}>
       {/* Parallax Background Elements */}
-      <ParallaxBackground variant="waves" intensity="medium" />
+      <ParallaxBackground variant="subtle" />
       <FloatingElements density="high" theme="abstract" />
       
       {/* Enhanced decorative owls for CTA section */}

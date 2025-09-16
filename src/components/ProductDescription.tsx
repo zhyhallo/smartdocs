@@ -88,7 +88,7 @@ export default function ProductDescription() {
   return (
     <section id="product" className="py-20 relative overflow-hidden" ref={ref}>
       {/* Parallax Background Elements */}
-      <ParallaxBackground variant="dots" intensity="light" />
+      <ParallaxBackground variant="subtle" />
       <FloatingElements density="low" theme="tech" />
       
       {/* Additional tech-themed floating elements */}

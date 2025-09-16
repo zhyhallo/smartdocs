@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, lazy, Suspense } from "react"
 import { 
   Header, 
   Hero, 
@@ -10,17 +10,19 @@ import {
   CTA, 
   Footer, 
   ContactModal,
-  ScrollToTop,
-  InteractiveSection,
-  ContactPage,
-  PrivacyPolicy,
-  CookieConsent,
-  ZadarmaWidget
+  InteractiveSection
 } from "@/components"
 import { Toaster } from "sonner"
 import { motion } from "framer-motion"
 import { useSmoothScroll } from "@/hooks/useSmoothScroll"
 import { InteractionProvider } from "@/hooks/useInteractionContext"
+
+// Lazy load non-critical components
+const ScrollToTop = lazy(() => import("@/components/ScrollToTop"))
+const ContactPage = lazy(() => import("@/components/ContactPage"))
+const PrivacyPolicy = lazy(() => import("@/components/PrivacyPolicy"))
+const CookieConsent = lazy(() => import("@/components/CookieConsent"))
+const ZadarmaWidget = lazy(() => import("@/components/ZadarmaWidget"))
 
 type CurrentView = "home" | "contacts" | "privacy"
 
@@ -77,10 +79,14 @@ function App() {
           animate="animate"
           exit="exit"
         >
-          <ContactPage 
-            onBackClick={handleHomeClick}
-            onContactClick={openContactModal}
-          />
+          <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center">
+            <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
+          </div>}>
+            <ContactPage 
+              onBackClick={handleHomeClick}
+              onContactClick={openContactModal}
+            />
+          </Suspense>
           <ContactModal 
             open={isContactModalOpen}
             onOpenChange={setIsContactModalOpen}
@@ -103,7 +109,11 @@ function App() {
           animate="animate"
           exit="exit"
         >
-          <PrivacyPolicy onBackClick={handleHomeClick} />
+          <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center">
+            <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
+          </div>}>
+            <PrivacyPolicy onBackClick={handleHomeClick} />
+          </Suspense>
           <Toaster richColors position="top-right" />
         </motion.div>
       </InteractionProvider>
@@ -173,19 +183,28 @@ function App() {
           onPrivacyClick={handlePrivacyClick}
         />
         
-        <ScrollToTop />
         
-        <ZadarmaWidget 
-          config={{
-            bottomOffset: 120,
-            rightOffset: 20,
-            className: "zadarma-corporate-theme"
-          }}
-        />
+        <Suspense fallback={<div className="fixed inset-0 bg-background/80 flex items-center justify-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+        </div>}>
+          <ScrollToTop />
+        </Suspense>
         
-        <CookieConsent 
-          onLearnMore={handlePrivacyClick}
-        />
+        <Suspense fallback={null}>
+          <ZadarmaWidget 
+            config={{
+              bottomOffset: 120,
+              rightOffset: 20,
+              className: "zadarma-corporate-theme"
+            }}
+          />
+        </Suspense>
+        
+        <Suspense fallback={null}>
+          <CookieConsent 
+            onLearnMore={handlePrivacyClick}
+          />
+        </Suspense>
         
         <Toaster richColors position="top-right" />
       </motion.div>
