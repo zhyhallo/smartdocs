@@ -297,7 +297,7 @@
     font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif !important;
   }
 
-  /* Widget forms and popups */
+  /* Widget forms and popups - Enhanced alignment and formatting */
   #z-callback-widget-popup,
   .z-callback-widget-popup,
   [id*="popup"]:not([class*="manager"]):not([class*="sr-only"]),
@@ -308,54 +308,184 @@
     box-shadow: 0 10px 40px oklch(0.15 0.08 240 / 0.15) !important;
     font-family: 'Inter', sans-serif !important;
     z-index: 9999 !important;
+    min-width: 320px !important;
+    max-width: 400px !important;
+    padding: 0 !important;
+    overflow: hidden !important;
   }
 
-  .z-callback-widget-header {
+  /* Widget header styling */
+  .z-callback-widget-header,
+  #z-callback-widget-popup .header,
+  [id*="popup"] .header {
     background: oklch(0.55 0.22 240) !important;
     color: oklch(0.98 0.02 240) !important;
     border-radius: 12px 12px 0 0 !important;
-    padding: 16px !important;
+    padding: 16px 20px !important;
     font-weight: 600 !important;
+    text-align: center !important;
+    margin: 0 !important;
+    border: none !important;
   }
 
+  /* Widget form container */
+  #z-callback-widget-popup .form-container,
+  #z-callback-widget-popup form,
+  .z-callback-widget-popup .form-container,
+  .z-callback-widget-popup form {
+    padding: 20px !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+
+  /* Form labels */
+  #z-callback-widget-popup label,
+  .z-callback-widget-popup label {
+    color: oklch(0.25 0.08 240) !important;
+    font-weight: 500 !important;
+    font-size: 14px !important;
+    margin-bottom: 6px !important;
+    display: block !important;
+    font-family: 'Inter', sans-serif !important;
+  }
+
+  /* Form fields with improved spacing and alignment */
   #z-callback-widget-popup input,
   #z-callback-widget-popup select,
-  #z-callback-widget-popup textarea {
+  #z-callback-widget-popup textarea,
+  .z-callback-widget-popup input,
+  .z-callback-widget-popup select,
+  .z-callback-widget-popup textarea {
     background: oklch(0.96 0.02 240) !important;
     border: 1px solid oklch(0.88 0.04 240) !important;
     border-radius: 8px !important;
     color: oklch(0.15 0.08 240) !important;
     font-family: 'Inter', sans-serif !important;
-    padding: 12px !important;
-    transition: all 0.2s ease !important;
+    padding: 12px 16px !important;
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    margin: 0 !important;
   }
 
+  /* Focused form fields */
   #z-callback-widget-popup input:focus,
   #z-callback-widget-popup select:focus,
-  #z-callback-widget-popup textarea:focus {
+  #z-callback-widget-popup textarea:focus,
+  .z-callback-widget-popup input:focus,
+  .z-callback-widget-popup select:focus,
+  .z-callback-widget-popup textarea:focus {
     border-color: oklch(0.55 0.22 240) !important;
     outline: 2px solid oklch(0.55 0.22 240 / 0.2) !important;
     outline-offset: 0 !important;
+    box-shadow: 0 0 0 3px oklch(0.55 0.22 240 / 0.1) !important;
+    transform: translateY(-1px) !important;
   }
 
-  #z-callback-widget-popup button[type="submit"] {
+  /* Textarea specific styling */
+  #z-callback-widget-popup textarea,
+  .z-callback-widget-popup textarea {
+    resize: vertical !important;
+    min-height: 80px !important;
+    max-height: 120px !important;
+  }
+
+  /* Form field containers */
+  #z-callback-widget-popup .field-group,
+  .z-callback-widget-popup .field-group,
+  #z-callback-widget-popup .form-field,
+  .z-callback-widget-popup .form-field {
+    display: flex !important;
+    flex-direction: column !important;
+    margin-bottom: 16px !important;
+    width: 100% !important;
+  }
+
+  /* Submit button with enhanced styling */
+  #z-callback-widget-popup button[type="submit"],
+  .z-callback-widget-popup button[type="submit"],
+  #z-callback-widget-popup .submit-btn,
+  .z-callback-widget-popup .submit-btn {
     background: oklch(0.55 0.22 240) !important;
     color: oklch(0.98 0.02 240) !important;
     border: none !important;
     border-radius: 8px !important;
-    padding: 12px 24px !important;
+    padding: 14px 24px !important;
     font-weight: 600 !important;
     font-family: 'Inter', sans-serif !important;
+    font-size: 14px !important;
     cursor: pointer !important;
-    transition: all 0.2s ease !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    width: 100% !important;
+    margin-top: 8px !important;
+    box-shadow: 0 2px 8px oklch(0.55 0.22 240 / 0.2) !important;
   }
 
-  #z-callback-widget-popup button[type="submit"]:hover {
+  #z-callback-widget-popup button[type="submit"]:hover,
+  .z-callback-widget-popup button[type="submit"]:hover {
     background: oklch(0.65 0.18 220) !important;
-    transform: translateY(-1px) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px oklch(0.65 0.18 220 / 0.3) !important;
   }
 
-  /* Mobile optimization */
+  #z-callback-widget-popup button[type="submit"]:active,
+  .z-callback-widget-popup button[type="submit"]:active {
+    transform: translateY(0px) !important;
+    box-shadow: 0 2px 8px oklch(0.55 0.22 240 / 0.2) !important;
+  }
+
+  /* Close button styling */
+  #z-callback-widget-popup .close-btn,
+  .z-callback-widget-popup .close-btn {
+    position: absolute !important;
+    top: 12px !important;
+    right: 12px !important;
+    background: transparent !important;
+    border: none !important;
+    color: oklch(0.98 0.02 240) !important;
+    font-size: 18px !important;
+    cursor: pointer !important;
+    width: 32px !important;
+    height: 32px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+    transition: background-color 0.2s ease !important;
+  }
+
+  #z-callback-widget-popup .close-btn:hover,
+  .z-callback-widget-popup .close-btn:hover {
+    background: oklch(0.98 0.02 240 / 0.2) !important;
+  }
+
+  /* Error messages styling */
+  #z-callback-widget-popup .error-message,
+  .z-callback-widget-popup .error-message {
+    color: oklch(0.68 0.22 15) !important;
+    font-size: 12px !important;
+    margin-top: 4px !important;
+    display: block !important;
+    font-family: 'Inter', sans-serif !important;
+  }
+
+  /* Success messages styling */
+  #z-callback-widget-popup .success-message,
+  .z-callback-widget-popup .success-message {
+    background: oklch(0.92 0.04 150) !important;
+    color: oklch(0.25 0.08 150) !important;
+    padding: 12px 16px !important;
+    border-radius: 8px !important;
+    margin: 16px 0 !important;
+    font-size: 14px !important;
+    text-align: center !important;
+  }
+
+  /* Mobile optimization - Enhanced form styling */
   @media (max-width: 768px) {
     #z-callback-widget-button,
     .z-callback-widget-button {
@@ -370,13 +500,74 @@
       font-size: 20px !important;
     }
 
+    /* Mobile popup positioning and sizing */
     .z-callback-widget-popup,
     #z-callback-widget-popup {
-      width: calc(100vw - 32px) !important;
-      max-width: 400px !important;
+      width: calc(100vw - 24px) !important;
+      max-width: 360px !important;
       left: 50% !important;
       transform: translateX(-50%) !important;
-      margin: 16px !important;
+      margin: 12px !important;
+      bottom: auto !important;
+      top: 50% !important;
+      transform: translate(-50%, -50%) !important;
+    }
+
+    /* Mobile form adjustments */
+    #z-callback-widget-popup .form-container,
+    #z-callback-widget-popup form,
+    .z-callback-widget-popup .form-container,
+    .z-callback-widget-popup form {
+      padding: 16px !important;
+      gap: 14px !important;
+    }
+
+    /* Mobile form fields */
+    #z-callback-widget-popup input,
+    #z-callback-widget-popup select,
+    #z-callback-widget-popup textarea,
+    .z-callback-widget-popup input,
+    .z-callback-widget-popup select,
+    .z-callback-widget-popup textarea {
+      padding: 10px 14px !important;
+      font-size: 16px !important; /* Prevents zoom on iOS */
+    }
+
+    /* Mobile header */
+    .z-callback-widget-header,
+    #z-callback-widget-popup .header {
+      padding: 14px 16px !important;
+      font-size: 16px !important;
+    }
+
+    /* Mobile button */
+    #z-callback-widget-popup button[type="submit"],
+    .z-callback-widget-popup button[type="submit"] {
+      padding: 12px 20px !important;
+      font-size: 16px !important;
+      margin-top: 6px !important;
+    }
+
+    /* Mobile field groups */
+    #z-callback-widget-popup .field-group,
+    .z-callback-widget-popup .field-group {
+      margin-bottom: 14px !important;
+    }
+  }
+
+  /* Tablet optimization */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .z-callback-widget-popup,
+    #z-callback-widget-popup {
+      width: 380px !important;
+      max-width: 90vw !important;
+    }
+
+    #z-callback-widget-popup .form-container,
+    #z-callback-widget-popup form,
+    .z-callback-widget-popup .form-container,
+    .z-callback-widget-popup form {
+      padding: 18px !important;
     }
   }
 
