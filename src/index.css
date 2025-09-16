@@ -301,7 +301,9 @@
   #z-callback-widget-popup,
   .z-callback-widget-popup,
   [id*="popup"]:not([class*="manager"]):not([class*="sr-only"]),
-  [class*="popup"]:not([class*="manager"]):not([class*="sr-only"]) {
+  [class*="popup"]:not([class*="manager"]):not([class*="sr-only"]),
+  [id*="zadarma"] div[style*="position"],
+  [class*="zadarma"] div[style*="position"] {
     background: oklch(0.98 0.02 240) !important;
     border: 1px solid oklch(0.88 0.04 240) !important;
     border-radius: 12px !important;
@@ -312,12 +314,17 @@
     max-width: 400px !important;
     padding: 0 !important;
     overflow: hidden !important;
+    position: fixed !important;
+    right: 90px !important;
+    bottom: 20px !important;
   }
 
   /* Widget header styling */
   .z-callback-widget-header,
   #z-callback-widget-popup .header,
-  [id*="popup"] .header {
+  [id*="popup"] .header,
+  [id*="zadarma"] div:first-child,
+  [class*="zadarma"] div:first-child {
     background: oklch(0.55 0.22 240) !important;
     color: oklch(0.98 0.02 240) !important;
     border-radius: 12px 12px 0 0 !important;
@@ -326,29 +333,54 @@
     text-align: center !important;
     margin: 0 !important;
     border: none !important;
+    font-size: 16px !important;
+    line-height: 1.4 !important;
   }
 
-  /* Widget form container */
+  /* Widget form container - Enhanced for proper field positioning */
   #z-callback-widget-popup .form-container,
   #z-callback-widget-popup form,
   .z-callback-widget-popup .form-container,
-  .z-callback-widget-popup form {
+  .z-callback-widget-popup form,
+  [id*="zadarma"] form,
+  [class*="zadarma"] form,
+  [id*="popup"] form,
+  [class*="popup"] form {
     padding: 20px !important;
     margin: 0 !important;
     display: flex !important;
     flex-direction: column !important;
     gap: 16px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
   }
 
-  /* Form labels */
+  /* Ensure proper vertical stacking of form elements */
+  #z-callback-widget-popup > div,
+  .z-callback-widget-popup > div,
+  [id*="zadarma"] > div,
+  [class*="zadarma"] > div {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+
+  /* Form labels - Enhanced for better positioning */
   #z-callback-widget-popup label,
-  .z-callback-widget-popup label {
+  .z-callback-widget-popup label,
+  [id*="zadarma"] label,
+  [class*="zadarma"] label,
+  [id*="popup"] label,
+  [class*="popup"] label {
     color: oklch(0.25 0.08 240) !important;
     font-weight: 500 !important;
     font-size: 14px !important;
     margin-bottom: 6px !important;
+    margin-top: 0 !important;
     display: block !important;
     font-family: 'Inter', sans-serif !important;
+    width: 100% !important;
+    text-align: left !important;
   }
 
   /* Form fields with improved spacing and alignment */
@@ -357,7 +389,19 @@
   #z-callback-widget-popup textarea,
   .z-callback-widget-popup input,
   .z-callback-widget-popup select,
-  .z-callback-widget-popup textarea {
+  .z-callback-widget-popup textarea,
+  [id*="zadarma"] input,
+  [class*="zadarma"] input,
+  [id*="zadarma"] select,
+  [class*="zadarma"] select,
+  [id*="zadarma"] textarea,
+  [class*="zadarma"] textarea,
+  [id*="popup"] input,
+  [class*="popup"] input,
+  [id*="popup"] select,
+  [class*="popup"] select,
+  [id*="popup"] textarea,
+  [class*="popup"] textarea {
     background: oklch(0.96 0.02 240) !important;
     border: 1px solid oklch(0.88 0.04 240) !important;
     border-radius: 8px !important;
@@ -367,9 +411,12 @@
     font-size: 14px !important;
     line-height: 1.4 !important;
     width: 100% !important;
+    max-width: 100% !important;
     box-sizing: border-box !important;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    margin: 0 !important;
+    margin: 0 0 16px 0 !important;
+    display: block !important;
+    position: relative !important;
   }
 
   /* Focused form fields */
@@ -378,7 +425,13 @@
   #z-callback-widget-popup textarea:focus,
   .z-callback-widget-popup input:focus,
   .z-callback-widget-popup select:focus,
-  .z-callback-widget-popup textarea:focus {
+  .z-callback-widget-popup textarea:focus,
+  [id*="zadarma"] input:focus,
+  [class*="zadarma"] input:focus,
+  [id*="zadarma"] select:focus,
+  [class*="zadarma"] select:focus,
+  [id*="popup"] input:focus,
+  [class*="popup"] input:focus {
     border-color: oklch(0.55 0.22 240) !important;
     outline: 2px solid oklch(0.55 0.22 240 / 0.2) !important;
     outline-offset: 0 !important;
@@ -386,30 +439,34 @@
     transform: translateY(-1px) !important;
   }
 
-  /* Textarea specific styling */
-  #z-callback-widget-popup textarea,
-  .z-callback-widget-popup textarea {
-    resize: vertical !important;
-    min-height: 80px !important;
-    max-height: 120px !important;
-  }
-
-  /* Form field containers */
+  /* Form field containers - Enhanced for proper vertical alignment */
   #z-callback-widget-popup .field-group,
   .z-callback-widget-popup .field-group,
   #z-callback-widget-popup .form-field,
-  .z-callback-widget-popup .form-field {
+  .z-callback-widget-popup .form-field,
+  [id*="zadarma"] .field-group,
+  [class*="zadarma"] .field-group,
+  [id*="popup"] .field-group,
+  [class*="popup"] .field-group,
+  [id*="zadarma"] div,
+  [class*="zadarma"] div {
     display: flex !important;
     flex-direction: column !important;
-    margin-bottom: 16px !important;
+    margin-bottom: 0 !important;
     width: 100% !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
   }
 
   /* Submit button with enhanced styling */
   #z-callback-widget-popup button[type="submit"],
   .z-callback-widget-popup button[type="submit"],
   #z-callback-widget-popup .submit-btn,
-  .z-callback-widget-popup .submit-btn {
+  .z-callback-widget-popup .submit-btn,
+  [id*="zadarma"] button,
+  [class*="zadarma"] button,
+  [id*="popup"] button,
+  [class*="popup"] button {
     background: oklch(0.55 0.22 240) !important;
     color: oklch(0.98 0.02 240) !important;
     border: none !important;
@@ -422,18 +479,28 @@
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
     width: 100% !important;
     margin-top: 8px !important;
+    margin-bottom: 0 !important;
     box-shadow: 0 2px 8px oklch(0.55 0.22 240 / 0.2) !important;
+    display: block !important;
+    text-align: center !important;
+    line-height: 1.4 !important;
   }
 
   #z-callback-widget-popup button[type="submit"]:hover,
-  .z-callback-widget-popup button[type="submit"]:hover {
+  .z-callback-widget-popup button[type="submit"]:hover,
+  [id*="zadarma"] button:hover,
+  [class*="zadarma"] button:hover,
+  [id*="popup"] button:hover,
+  [class*="popup"] button:hover {
     background: oklch(0.65 0.18 220) !important;
     transform: translateY(-2px) !important;
     box-shadow: 0 4px 12px oklch(0.65 0.18 220 / 0.3) !important;
   }
 
   #z-callback-widget-popup button[type="submit"]:active,
-  .z-callback-widget-popup button[type="submit"]:active {
+  .z-callback-widget-popup button[type="submit"]:active,
+  [id*="zadarma"] button:active,
+  [class*="zadarma"] button:active {
     transform: translateY(0px) !important;
     box-shadow: 0 2px 8px oklch(0.55 0.22 240 / 0.2) !important;
   }
@@ -502,7 +569,9 @@
 
     /* Mobile popup positioning and sizing */
     .z-callback-widget-popup,
-    #z-callback-widget-popup {
+    #z-callback-widget-popup,
+    [id*="zadarma"] div[style*="position"],
+    [class*="zadarma"] div[style*="position"] {
       width: calc(100vw - 24px) !important;
       max-width: 360px !important;
       left: 50% !important;
@@ -511,13 +580,16 @@
       bottom: auto !important;
       top: 50% !important;
       transform: translate(-50%, -50%) !important;
+      right: auto !important;
     }
 
     /* Mobile form adjustments */
     #z-callback-widget-popup .form-container,
     #z-callback-widget-popup form,
     .z-callback-widget-popup .form-container,
-    .z-callback-widget-popup form {
+    .z-callback-widget-popup form,
+    [id*="zadarma"] form,
+    [class*="zadarma"] form {
       padding: 16px !important;
       gap: 14px !important;
     }
@@ -528,21 +600,28 @@
     #z-callback-widget-popup textarea,
     .z-callback-widget-popup input,
     .z-callback-widget-popup select,
-    .z-callback-widget-popup textarea {
+    .z-callback-widget-popup textarea,
+    [id*="zadarma"] input,
+    [class*="zadarma"] input {
       padding: 10px 14px !important;
       font-size: 16px !important; /* Prevents zoom on iOS */
+      margin: 0 0 14px 0 !important;
     }
 
     /* Mobile header */
     .z-callback-widget-header,
-    #z-callback-widget-popup .header {
+    #z-callback-widget-popup .header,
+    [id*="zadarma"] div:first-child,
+    [class*="zadarma"] div:first-child {
       padding: 14px 16px !important;
       font-size: 16px !important;
     }
 
     /* Mobile button */
     #z-callback-widget-popup button[type="submit"],
-    .z-callback-widget-popup button[type="submit"] {
+    .z-callback-widget-popup button[type="submit"],
+    [id*="zadarma"] button,
+    [class*="zadarma"] button {
       padding: 12px 20px !important;
       font-size: 16px !important;
       margin-top: 6px !important;
@@ -550,25 +629,92 @@
 
     /* Mobile field groups */
     #z-callback-widget-popup .field-group,
-    .z-callback-widget-popup .field-group {
+    .z-callback-widget-popup .field-group,
+    [id*="zadarma"] .field-group,
+    [class*="zadarma"] .field-group {
       margin-bottom: 14px !important;
     }
+  }
+
+  /* Specific styling for phone number field and call button structure */
+  [id*="zadarma"] input[type="tel"],
+  [class*="zadarma"] input[type="tel"],
+  [id*="popup"] input[type="tel"],
+  [class*="popup"] input[type="tel"],
+  input[name*="phone"],
+  input[placeholder*="phone"],
+  input[placeholder*="телефон"],
+  input[placeholder*="номер"] {
+    margin-bottom: 16px !important;
+    order: 1 !important;
+  }
+
+  /* Ensure button comes after phone input */
+  [id*="zadarma"] button[type="submit"],
+  [class*="zadarma"] button[type="submit"],
+  [id*="popup"] button[type="submit"],
+  [class*="popup"] button[type="submit"] {
+    order: 2 !important;
+    margin-top: 8px !important;
+  }
+
+  /* Make sure form elements stack properly */
+  [id*="zadarma"] form > *,
+  [class*="zadarma"] form > *,
+  [id*="popup"] form > * {
+    flex-shrink: 0 !important;
+    width: 100% !important;
   }
 
   /* Tablet optimization */
   @media (min-width: 769px) and (max-width: 1024px) {
     .z-callback-widget-popup,
-    #z-callback-widget-popup {
+    #z-callback-widget-popup,
+    [id*="zadarma"] div[style*="position"],
+    [class*="zadarma"] div[style*="position"] {
       width: 380px !important;
       max-width: 90vw !important;
+      right: 90px !important;
+      bottom: 20px !important;
     }
 
     #z-callback-widget-popup .form-container,
     #z-callback-widget-popup form,
     .z-callback-widget-popup .form-container,
-    .z-callback-widget-popup form {
+    .z-callback-widget-popup form,
+    [id*="zadarma"] form,
+    [class*="zadarma"] form {
       padding: 18px !important;
     }
+  }
+
+  /* Desktop optimization for proper form layout */
+  @media (min-width: 1025px) {
+    .z-callback-widget-popup,
+    #z-callback-widget-popup,
+    [id*="zadarma"] div[style*="position"],
+    [class*="zadarma"] div[style*="position"] {
+      right: 90px !important;
+      bottom: 20px !important;
+      width: 360px !important;
+    }
+  }
+
+  /* Force proper form structure - phone field first, then button */
+  [id*="zadarma"] form,
+  [class*="zadarma"] form,
+  [id*="popup"] form,
+  [class*="popup"] form {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  /* Ensure proper spacing between form elements */
+  [id*="zadarma"] form > * + *,
+  [class*="zadarma"] form > * + *,
+  [id*="popup"] form > * + * {
+    margin-top: 0 !important;
   }
 
   /* Force hide any green or secondary widgets */
