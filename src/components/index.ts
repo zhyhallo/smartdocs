@@ -14,7 +14,6 @@ export { default as ContactModal } from './ContactModal'
 export { default as ContactPage } from './ContactPage'
 export { default as PrivacyPolicy } from './PrivacyPolicy'
 export { default as CookieConsent } from './CookieConsent'
-export { default as ZadarmaModal } from './ZadarmaModal'
 
 // UI enhancements
 export { default as OwlMascot } from './OwlMascot'
@@ -22,8 +21,6 @@ export { default as OwlAnalyst } from './OwlAnalyst'
 export { default as OwlLoader } from './OwlLoader'
 export { default as POSTerminal } from './POSTerminal'
 export { default as ScrollToTop } from './ScrollToTop'
-export { default as ZadarmaWidget } from './ZadarmaWidget'
-export { default as DirectCallWidget } from './DirectCallWidget'
 export { default as ParallaxBackground } from './ParallaxBackground'
 export { default as FloatingElements } from './FloatingElements'
 

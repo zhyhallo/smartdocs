@@ -22,7 +22,6 @@ const ScrollToTop = lazy(() => import("@/components/ScrollToTop"))
 const ContactPage = lazy(() => import("@/components/ContactPage"))
 const PrivacyPolicy = lazy(() => import("@/components/PrivacyPolicy"))
 const CookieConsent = lazy(() => import("@/components/CookieConsent"))
-const ZadarmaWidget = lazy(() => import("@/components/ZadarmaWidget"))
 
 
 type CurrentView = "home" | "contacts" | "privacy"
@@ -186,21 +185,10 @@ function App() {
           onPrivacyClick={handlePrivacyClick}
         />
         
-        
         <Suspense fallback={<div className="fixed inset-0 bg-background/80 flex items-center justify-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
         </div>}>
           <ScrollToTop />
-        </Suspense>
-        
-        <Suspense fallback={null}>
-          <ZadarmaWidget 
-            config={{
-              bottomOffset: 120,
-              rightOffset: 20,
-              className: "zadarma-corporate-theme"
-            }}
-          />
         </Suspense>
         
         <Suspense fallback={null}>

@@ -202,48 +202,6 @@
   .float-gentle {
     animation: float-gentle 4s ease-in-out infinite;
   }
-
-  /* Zadarma Widget Hiding - Hide all original widgets completely */
-  #z-callback-widget-button,
-  .z-callback-widget-button,
-  [id*="zadarma"]:not([class*="sr-only"]):not([class*="custom"]),
-  [class*="zadarma"]:not([class*="sr-only"]):not([class*="custom"]),
-  [id*="callback"]:not([class*="sr-only"]):not([class*="custom"]),
-  [class*="callback"]:not([class*="sr-only"]):not([class*="custom"]),
-  /* Hide green or any other colored widgets */
-  [style*="background: green"],
-  [style*="background-color: green"],
-  [style*="background: #00ff00"],
-  [style*="background-color: #00ff00"],
-  .green-widget,
-  .secondary-widget {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-    z-index: -1 !important;
-  }
-
-  /* Force hide any duplicate widgets */
-  [id*="zadarma"]:not(:first-of-type),
-  [class*="zadarma"]:not(:first-of-type),
-  [id*="callback"]:not(:first-of-type),
-  [class*="callback"]:not(:first-of-type) {
-    display: none !important;
-    visibility: hidden !important;
-  }
-
-  /* Hide any popups or forms from original Zadarma */
-  #z-callback-widget-popup,
-  .z-callback-widget-popup,
-  [id*="popup"]:not([class*="custom"]),
-  [class*="popup"]:not([class*="custom"]),
-  [id*="zadarma"] div[style*="position"]:not([class*="custom"]),
-  [class*="zadarma"] div[style*="position"]:not([class*="custom"]) {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-  }
 }
 
 :root {
