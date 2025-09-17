@@ -7,6 +7,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Phone, X, CheckCircle } from "@phosphor-icons/react"
 import { toast } from "sonner"
 import { motion } from "framer-motion"
+import { useTranslation } from "@/hooks/useTranslation"
 
 interface ZadarmaModalProps {
   open: boolean
@@ -18,6 +19,7 @@ interface CallbackData {
 }
 
 export default function ZadarmaModal({ open, onOpenChange }: ZadarmaModalProps) {
+  const { t } = useTranslation()
   const [formData, setFormData] = useState<CallbackData>({
     phone: ""
   })
@@ -32,14 +34,14 @@ export default function ZadarmaModal({ open, onOpenChange }: ZadarmaModalProps) 
     e.preventDefault()
     
     if (!formData.phone.trim()) {
-      toast.error("Будь ласка, введіть номер телефону")
+      toast.error(t('zadarma.error.phone.required'))
       return
     }
 
     // Basic phone validation
     const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,}$/
     if (!phoneRegex.test(formData.phone.trim())) {
-      toast.error("Будь ласка, введіть корректний номер телефону")
+      toast.error(t('zadarma.error.phone.invalid'))
       return
     }
 
@@ -57,7 +59,7 @@ export default function ZadarmaModal({ open, onOpenChange }: ZadarmaModalProps) 
       })
       
       setIsSubmitted(true)
-      toast.success("Заявку на дзвінок успішно відправлено! Ми зателефонуємо вам протягом 5 хвилин.")
+      toast.success(t('zadarma.success.toast'))
       
       // Reset form after successful submission
       setTimeout(() => {
@@ -68,7 +70,7 @@ export default function ZadarmaModal({ open, onOpenChange }: ZadarmaModalProps) 
       
     } catch (error) {
       console.error("Callback request error:", error)
-      toast.error("Помилка відправки заявки. Спробуйте ще раз або зателефонуйте нам безпосередньо.")
+      toast.error(t('zadarma.error.submit'))
     } finally {
       setIsSubmitting(false)
     }
@@ -96,10 +98,10 @@ export default function ZadarmaModal({ open, onOpenChange }: ZadarmaModalProps) 
               <CheckCircle size={32} className="text-green-600" />
             </div>
             <DialogTitle className="text-xl font-bold text-green-700 mb-2">
-              Заявку прийнято!
+              {t('zadarma.success.title')}
             </DialogTitle>
             <DialogDescription className="text-muted-foreground">
-              Ми зателефонуємо вам протягом 5 хвилин для консультації щодо Driver POSNET / Thermal.
+              {t('zadarma.success.description')}
             </DialogDescription>
           </motion.div>
         </DialogContent>
@@ -119,13 +121,13 @@ export default function ZadarmaModal({ open, onOpenChange }: ZadarmaModalProps) 
             disabled={isSubmitting}
           >
             <X size={16} />
-            <span className="sr-only">Закрити</span>
+            <span className="sr-only">{t('zadarma.close')}</span>
           </Button>
           <DialogTitle className="text-xl font-bold text-foreground pr-8">
-            Замовити зворотний дзвінок
+            {t('zadarma.title')}
           </DialogTitle>
           <DialogDescription className="text-muted-foreground">
-            Введіть ваш номер телефону, і ми зателефонуємо вам протягом 5 хвилин
+            {t('zadarma.description')}
           </DialogDescription>
         </DialogHeader>
 
@@ -135,7 +137,7 @@ export default function ZadarmaModal({ open, onOpenChange }: ZadarmaModalProps) 
               <div className="space-y-2">
                 <Label htmlFor="callback-phone" className="text-sm font-medium flex items-center">
                   <Phone size={16} className="mr-2 text-primary" />
-                  Номер телефону *
+                  {t('zadarma.phone.label')}
                 </Label>
                 <Input
                   id="callback-phone"
@@ -157,7 +159,7 @@ export default function ZadarmaModal({ open, onOpenChange }: ZadarmaModalProps) 
                   disabled={isSubmitting || !formData.phone.trim()}
                 >
                   <Phone size={16} className="mr-2" />
-                  {isSubmitting ? "Відправляємо..." : "Замовити дзвінок"}
+                  {isSubmitting ? t('zadarma.submitting') : t('zadarma.submit')}
                 </Button>
                 <Button
                   type="button"
@@ -166,17 +168,17 @@ export default function ZadarmaModal({ open, onOpenChange }: ZadarmaModalProps) 
                   className="flex-1 font-medium"
                   disabled={isSubmitting}
                 >
-                  Скасувати
+                  {t('contact.cancel')}
                 </Button>
               </div>
             </form>
 
             <div className="mt-4 pt-4 border-t border-border/30">
               <p className="text-xs text-muted-foreground text-center">
-                * - обов'язкове поле для заповнення
+                * - {t('contact.required')}
               </p>
               <p className="text-xs text-muted-foreground text-center mt-1">
-                Час роботи: Пн-Пт з 8:00 до 17:00
+                {t('zadarma.schedule')}
               </p>
             </div>
           </CardContent>

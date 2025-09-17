@@ -25,7 +25,7 @@ interface FormData {
   fullName: string
 }
 
-export default function ContactModal({ open, onOpenChange, defaultService = "Консультація", onPrivacyClick }: ContactModalProps) {
+export default function ContactModal({ open, onOpenChange, defaultService = "", onPrivacyClick }: ContactModalProps) {
   const { t } = useTranslation()
   const [formData, setFormData] = useState<FormData>({
     phone: "",
@@ -50,13 +50,13 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
     const newErrors: Partial<FormData> = {}
     
     if (!formData.phone.trim()) {
-      newErrors.phone = "Телефон обов'язковий"
+      newErrors.phone = t('contact.error.phone')
     }
     
     if (!formData.email.trim()) {
-      newErrors.email = "Email обов'язковий"
+      newErrors.email = t('contact.error.email.required')
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = "Некоректний email"
+      newErrors.email = t('contact.error.email.invalid')
     }
 
     setErrors(newErrors)
@@ -67,12 +67,12 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
     e.preventDefault()
     
     if (!validateForm()) {
-      toast.error("Будь ласка, виправте помилки у формі")
+      toast.error(t('contact.error.validation'))
       return
     }
 
     if (!agreedToPrivacy) {
-      toast.error("Необхідно погодитися з політикою конфіденційності")
+      toast.error(t('contact.error.privacy'))
       return
     }
 
@@ -86,7 +86,7 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
       console.log("Submitting form data:", { ...formData, service: defaultService })
       
       setIsSubmitted(true)
-      toast.success("Заявку успішно відправлено! Ми зв'яжемося з вами найближчим часом.")
+      toast.success(t('contact.success.toast'))
       
       // Reset form after successful submission
       setTimeout(() => {
@@ -97,7 +97,7 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
       }, 2000)
       
     } catch (error) {
-      toast.error("Помилка відправки заявки. Спробуйте ще раз.")
+      toast.error(t('contact.error.submit'))
     } finally {
       setIsSubmitting(false)
     }
@@ -127,10 +127,10 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
               <CheckCircle size={32} className="text-green-600" />
             </div>
             <DialogTitle className="text-xl font-bold text-green-700 mb-2">
-              Заявку отримано!
+              {t('contact.success.title')}
             </DialogTitle>
             <DialogDescription className="text-muted-foreground">
-              Ми зв'яжемося з вами протягом години для обговорення деталей.
+              {t('contact.success.description')}
             </DialogDescription>
           </motion.div>
         </DialogContent>
@@ -144,10 +144,10 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
         <DialogHeader>
           <DialogTitle className="text-xl font-bold text-foreground flex items-center">
             <OwlLoader size="sm" className="mr-3" />
-            {defaultService}
+            {defaultService || t('contact.title')}
           </DialogTitle>
           <DialogDescription className="text-muted-foreground">
-            Заповніть форму, і ми зв'яжемося з вами для обговорення ваших потреб
+            {t('contact.description')}
           </DialogDescription>
         </DialogHeader>
 
@@ -158,7 +158,7 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
                 <div className="space-y-2">
                   <Label htmlFor="phone" className="text-sm font-medium flex items-center">
                     <Phone size={16} className="mr-2 text-primary" />
-                    Телефон *
+                    {t('contact.phone')} *
                   </Label>
                   <Input
                     id="phone"
@@ -179,7 +179,7 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
                 <div className="space-y-2">
                   <Label htmlFor="email" className="text-sm font-medium flex items-center">
                     <Envelope size={16} className="mr-2 text-primary" />
-                    Email *
+                    {t('contact.email')} *
                   </Label>
                   <Input
                     id="email"
@@ -201,12 +201,12 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
               <div className="space-y-2">
                 <Label htmlFor="fullName" className="text-sm font-medium flex items-center">
                   <User size={16} className="mr-2 text-primary" />
-                  ПІБ
+                  {t('contact.name')}
                 </Label>
                 <Input
                   id="fullName"
                   type="text"
-                  placeholder="Ваше повне ім'я"
+                  placeholder={t('contact.name')}
                   value={formData.fullName}
                   onChange={(e) => handleInputChange("fullName", e.target.value)}
                   className="border-border/50 focus:border-primary"
@@ -216,12 +216,12 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
               <div className="space-y-2">
                 <Label htmlFor="company" className="text-sm font-medium flex items-center">
                   <Building size={16} className="mr-2 text-primary" />
-                  Назва компанії
+                  {t('contact.company')}
                 </Label>
                 <Input
                   id="company"
                   type="text"
-                  placeholder="ТОВ 'Ваша компанія'"
+                  placeholder={t('contact.company')}
                   value={formData.company}
                   onChange={(e) => handleInputChange("company", e.target.value)}
                   className="border-border/50 focus:border-primary"
@@ -239,13 +239,13 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
                   <Label htmlFor="privacy-agreement" className="cursor-pointer flex items-start">
                     <Shield size={16} className="mr-2 text-primary flex-shrink-0 mt-0.5" />
                     <span>
-                      Я погоджуюсь на обробку персональних даних згідно з{" "}
+                      {t('contact.privacy.text')}{" "}
                       <button
                         type="button"
                         onClick={onPrivacyClick}
                         className="text-primary hover:text-accent underline font-medium transition-colors"
                       >
-                        Політикою конфіденційності
+                        {t('contact.privacy.link')}
                       </button>
                     </span>
                   </Label>
@@ -265,10 +265,10 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
                       animate={{ opacity: 1 }}
                     >
                       <OwlLoader size="sm" className="mr-2" />
-                      Відправляємо...
+                      {t('contact.submitting')}
                     </motion.div>
                   ) : (
-                    "Відправити заявку"
+                    t('contact.submit')
                   )}
                 </Button>
                 <Button
@@ -278,14 +278,14 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
                   className="flex-1 font-medium"
                   disabled={isSubmitting}
                 >
-                  Скасувати
+                  {t('contact.cancel')}
                 </Button>
               </div>
             </form>
 
             <div className="mt-4 pt-4 border-t border-border/30">
               <p className="text-xs text-muted-foreground text-center">
-                * - обов'язкові поля для заповнення
+                * - {t('contact.required')}
               </p>
             </div>
           </CardContent>

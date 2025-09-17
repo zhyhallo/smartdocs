@@ -130,6 +130,10 @@ const translations = {
     'contact.success.description': 'Ми зв\'яжемося з вами протягом години для обговорення деталей.',
     'contact.submitting': 'Відправляємо...',
     'contact.error.required': 'Будь ласка, заповніть обов\'язкові поля (телефон та email)',
+    'contact.error.phone': 'Телефон обов\'язковий',
+    'contact.error.email.required': 'Email обов\'язковий',
+    'contact.error.email.invalid': 'Некоректний email',
+    'contact.error.validation': 'Будь ласка, виправте помилки у формі',
     'contact.error.privacy': 'Необхідно підтвердити згоду на обробку персональних даних',
     'contact.error.submit': 'Помилка відправки заявки. Спробуйте ще раз.',
     'contact.success.toast': 'Заявку успішно відправлено! Ми зв\'яжемося з вами найближчим часом.',
@@ -204,6 +208,21 @@ const translations = {
     // Meta
     'meta.title': 'Driver POSNET / Thermal для 1С:Enterprise – купити / ціна / функції',
     'meta.description': 'Готова зовнішня компонента для інтеграції з POSNET / Thermal реєстраторами в 1С:Enterprise. Надійність, стабільність, техпідтримка. Ціна 1500 ₴.',
+    
+    // Zadarma Widget
+    'zadarma.title': 'Замовити зворотний дзвінок',
+    'zadarma.description': 'Введіть ваш номер телефону, і ми зателефонуємо вам протягом 5 хвилин',
+    'zadarma.phone.label': 'Номер телефону *',
+    'zadarma.submit': 'Замовити дзвінок',
+    'zadarma.submitting': 'Відправляємо...',
+    'zadarma.close': 'Закрити',
+    'zadarma.schedule': 'Час роботи: Пн-Пт з 8:00 до 17:00',
+    'zadarma.success.title': 'Заявку прийнято!',
+    'zadarma.success.description': 'Ми зателефонуємо вам протягом 5 хвилин для консультації щодо Driver POSNET / Thermal.',
+    'zadarma.success.toast': 'Заявку на дзвінок успішно відправлено! Ми зателефонуємо вам протягом 5 хвилин.',
+    'zadarma.error.phone.required': 'Будь ласка, введіть номер телефону',
+    'zadarma.error.phone.invalid': 'Будь ласка, введіть корректний номер телефону',
+    'zadarma.error.submit': 'Помилка відправки заявки. Спробуйте ще раз або зателефонуйте нам безпосередньо.',
   },
   
   pl: {
@@ -326,6 +345,10 @@ const translations = {
     'contact.success.description': 'Skontaktujemy się z Tobą w ciągu godziny, aby omówić szczegóły.',
     'contact.submitting': 'Wysyłamy...',
     'contact.error.required': 'Proszę wypełnić wymagane pola (telefon i email)',
+    'contact.error.phone': 'Telefon jest wymagany',
+    'contact.error.email.required': 'Email jest wymagany',
+    'contact.error.email.invalid': 'Nieprawidłowy email',
+    'contact.error.validation': 'Proszę poprawić błędy w formularzu',
     'contact.error.privacy': 'Konieczne jest potwierdzenie zgody na przetwarzanie danych osobowych',
     'contact.error.submit': 'Błąd wysyłania zapytania. Spróbuj ponownie.',
     'contact.success.toast': 'Zapytanie wysłane pomyślnie! Skontaktujemy się z Tobą wkrótce.',
@@ -400,6 +423,21 @@ const translations = {
     // Meta
     'meta.title': 'Driver POSNET / Thermal dla 1С:Enterprise – kup / cena / funkcje',
     'meta.description': 'Gotowy komponent zewnętrzny do integracji z drukarkami POSNET / Thermal w 1С:Enterprise. Niezawodność, stabilność, wsparcie techniczne. Cena 1500 zł.',
+    
+    // Zadarma Widget
+    'zadarma.title': 'Zamów zwrotny telefon',
+    'zadarma.description': 'Wprowadź swój numer telefonu, a zadzwonimy do Ciebie w ciągu 5 minut',
+    'zadarma.phone.label': 'Numer telefonu *',
+    'zadarma.submit': 'Zamów telefon',
+    'zadarma.submitting': 'Wysyłamy...',
+    'zadarma.close': 'Zamknij',
+    'zadarma.schedule': 'Godziny pracy: Pon-Pt 8:00 do 17:00',
+    'zadarma.success.title': 'Zapytanie przyjęte!',
+    'zadarma.success.description': 'Zadzwonimy do Ciebie w ciągu 5 minut w sprawie konsultacji Driver POSNET / Thermal.',
+    'zadarma.success.toast': 'Zapytanie o telefon wysłane pomyślnie! Zadzwonimy do Ciebie w ciągu 5 minut.',
+    'zadarma.error.phone.required': 'Proszę wprowadzić numer telefonu',
+    'zadarma.error.phone.invalid': 'Proszę wprowadzić prawidłowy numer telefonu',
+    'zadarma.error.submit': 'Błąd wysyłania zapytania. Spróbuj ponownie lub zadzwoń do nas bezpośrednio.',
   },
   
   ru: {
@@ -522,6 +560,10 @@ const translations = {
     'contact.success.description': 'Мы свяжемся с вами в течение часа для обсуждения деталей.',
     'contact.submitting': 'Отправляем...',
     'contact.error.required': 'Пожалуйста, заполните обязательные поля (телефон и email)',
+    'contact.error.phone': 'Телефон обязателен',
+    'contact.error.email.required': 'Email обязателен',
+    'contact.error.email.invalid': 'Некорректный email',
+    'contact.error.validation': 'Пожалуйста, исправьте ошибки в форме',
     'contact.error.privacy': 'Необходимо подтвердить согласие на обработку персональных данных',
     'contact.error.submit': 'Ошибка отправки заявки. Попробуйте еще раз.',
     'contact.success.toast': 'Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.',
@@ -596,6 +638,21 @@ const translations = {
     // Meta
     'meta.title': 'Driver POSNET / Thermal для 1С:Enterprise – купить / цена / функции',
     'meta.description': 'Готовая внешняя компонента для интеграции с POSNET / Thermal регистраторами в 1С:Enterprise. Надежность, стабильность, техподдержка. Цена 1500 ₽.',
+    
+    // Zadarma Widget
+    'zadarma.title': 'Заказать обратный звонок',
+    'zadarma.description': 'Введите ваш номер телефона, и мы позвоним вам в течение 5 минут',
+    'zadarma.phone.label': 'Номер телефона *',
+    'zadarma.submit': 'Заказать звонок',
+    'zadarma.submitting': 'Отправляем...',
+    'zadarma.close': 'Закрыть',
+    'zadarma.schedule': 'Время работы: Пн-Пт с 8:00 до 17:00',
+    'zadarma.success.title': 'Заявка принята!',
+    'zadarma.success.description': 'Мы позвоним вам в течение 5 минут для консультации по Driver POSNET / Thermal.',
+    'zadarma.success.toast': 'Заявка на звонок успешно отправлена! Мы позвоним вам в течение 5 минут.',
+    'zadarma.error.phone.required': 'Пожалуйста, введите номер телефона',
+    'zadarma.error.phone.invalid': 'Пожалуйста, введите корректный номер телефона',
+    'zadarma.error.submit': 'Ошибка отправки заявки. Попробуйте еще раз или позвоните нам непосредственно.',
   }
 }
 

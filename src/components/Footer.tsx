@@ -56,7 +56,7 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
                 }}
                 className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1 w-full text-left"
               >
-                Продукт
+                {t('nav.product')}
               </button>
               <button 
                 onClick={(e) => {

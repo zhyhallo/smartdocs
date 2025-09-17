@@ -34,12 +34,12 @@ const ContactPage = lazy(() => import("@/components/ContactPage"))
 const PrivacyPolicy = lazy(() => import("@/components/PrivacyPolicy"))
 const CookieConsent = lazy(() => import("@/components/CookieConsent"))
 
-
 type CurrentView = "home" | "contacts" | "privacy"
 
-function App() {
+function AppContent() {
+  const { t } = useTranslation()
   const [isContactModalOpen, setIsContactModalOpen] = useState(false)
-  const [contactService, setContactService] = useState("Консультація")
+  const [contactService, setContactService] = useState("")
   const [currentView, setCurrentView] = useState<CurrentView>("home")
 
   // Initialize performance optimizations
@@ -61,8 +61,8 @@ function App() {
   // Enable smooth scrolling for anchor links with optimized offset
   useSmoothScroll({ offset: 80, duration: 800 })
 
-  const openContactModal = (service: string = "Консультація") => {
-    setContactService(service)
+  const openContactModal = (service: string = "") => {
+    setContactService(service || t('contact.title'))
     setIsContactModalOpen(true)
   }
 
@@ -97,9 +97,7 @@ function App() {
   }
 
   if (currentView === "contacts") {
-  return (
-    <TranslationProvider>
-      <SEOManager />
+    return (
       <InteractionProvider>
         <motion.div 
           className="min-h-screen bg-background"
@@ -125,37 +123,11 @@ function App() {
           <Toaster richColors position="top-right" />
         </motion.div>
       </InteractionProvider>
-    </TranslationProvider>
-  )
+    )
   }
 
   if (currentView === "privacy") {
     return (
-      <TranslationProvider>
-        <SEOManager />
-        <InteractionProvider>
-          <motion.div 
-            className="min-h-screen bg-background"
-            variants={pageVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-          >
-            <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center">
-              <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
-            </div>}>
-              <PrivacyPolicy onBackClick={handleHomeClick} />
-            </Suspense>
-            <Toaster richColors position="top-right" />
-          </motion.div>
-        </InteractionProvider>
-      </TranslationProvider>
-    )
-  }
-
-  return (
-    <TranslationProvider>
-      <SEOManager />
       <InteractionProvider>
         <motion.div 
           className="min-h-screen bg-background"
@@ -164,6 +136,26 @@ function App() {
           animate="animate"
           exit="exit"
         >
+          <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center">
+            <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
+          </div>}>
+            <PrivacyPolicy onBackClick={handleHomeClick} />
+          </Suspense>
+          <Toaster richColors position="top-right" />
+        </motion.div>
+      </InteractionProvider>
+    )
+  }
+
+  return (
+    <InteractionProvider>
+      <motion.div 
+        className="min-h-screen bg-background"
+        variants={pageVariants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+      >
         <Header 
           onContactClick={openContactModal}
           onContactsClick={handleContactsClick}
@@ -237,6 +229,14 @@ function App() {
         <Toaster richColors position="top-right" />
       </motion.div>
     </InteractionProvider>
+  )
+}
+
+function App() {
+  return (
+    <TranslationProvider>
+      <SEOManager />
+      <AppContent />
     </TranslationProvider>
   )
 }
