@@ -29,6 +29,7 @@ const translations = {
     'hero.specialists': '40+ сертифікованих спеціалістів',
     'hero.cta.order': 'Замовити зараз',
     'hero.cta.demo': 'Отримати консультацію',
+    'hero.badge': 'Готове рішення',
     
     // Product Description
     'product.title': 'Що це таке?',
@@ -63,7 +64,8 @@ const translations = {
     'pricing.title': 'Ціна та умови',
     'pricing.subtitle': 'Прозора ціна без прихованих платежів',
     'pricing.price': '1500 ₴',
-    'pricing.currency': 'українських гривень',
+    'pricing.currency': 'одноразовий платіж',
+    'pricing.symbol': '₴',
     'pricing.features.license': 'Безстрокова ліцензія',
     'pricing.features.updates': 'Безкоштовні оновлення протягом року',
     'pricing.features.support': 'Технічна підтримка 6 місяців',
@@ -71,6 +73,7 @@ const translations = {
     'pricing.features.examples': 'Приклади використання',
     'pricing.features.installation': 'Допомога з встановленням',
     'pricing.cta': 'Замовити зараз',
+    'pricing.activation': 'Активація протягом 24 годин після оплати',
     
     // Social Proof
     'social.title': 'Довіра клієнтів',
@@ -82,6 +85,7 @@ const translations = {
     
     // FAQ
     'faq.title': 'Часто задавані питання',
+    'faq.subtitle': 'Відповіді на найпопулярніші питання про наш продукт',
     'faq.q1': 'Чи підходить для всіх версій 1С:Enterprise?',
     'faq.a1': 'Так, компонента сумісна з версіями 1С:Enterprise 8.2 та новішими.',
     'faq.q2': 'Як відбувається оновлення компоненти?',
@@ -221,6 +225,7 @@ const translations = {
     'hero.specialists': '40+ certyfikowanych specjalistów',
     'hero.cta.order': 'Zamów teraz',
     'hero.cta.demo': 'Uzyskaj konsultację',
+    'hero.badge': 'Gotowe rozwiązanie',
     
     // Product Description
     'product.title': 'Co to jest?',
@@ -255,7 +260,8 @@ const translations = {
     'pricing.title': 'Cena i warunki',
     'pricing.subtitle': 'Przejrzysta cena bez ukrytych opłat',
     'pricing.price': '1500 zł',
-    'pricing.currency': 'złotych polskich',
+    'pricing.currency': 'jednorazowa płatność',
+    'pricing.symbol': 'zł',
     'pricing.features.license': 'Bezterminowa licencja',
     'pricing.features.updates': 'Bezpłatne aktualizacje przez rok',
     'pricing.features.support': 'Wsparcie techniczne 6 miesięcy',
@@ -263,6 +269,7 @@ const translations = {
     'pricing.features.examples': 'Przykłady użycia',
     'pricing.features.installation': 'Pomoc w instalacji',
     'pricing.cta': 'Zamów teraz',
+    'pricing.activation': 'Aktywacja w ciągu 24 godzin po płatności',
     
     // Social Proof
     'social.title': 'Zaufanie klientów',
@@ -274,6 +281,7 @@ const translations = {
     
     // FAQ
     'faq.title': 'Często zadawane pytania',
+    'faq.subtitle': 'Odpowiedzi na najpopularniejsze pytania o nasz produkt',
     'faq.q1': 'Czy pasuje do wszystkich wersji 1С:Enterprise?',
     'faq.a1': 'Tak, komponent jest kompatybilny z wersjami 1С:Enterprise 8.2 i nowszymi.',
     'faq.q2': 'Jak przebiega aktualizacja komponentu?',
@@ -413,6 +421,7 @@ const translations = {
     'hero.specialists': '40+ сертифицированных специалистов',
     'hero.cta.order': 'Заказать сейчас',
     'hero.cta.demo': 'Получить консультацию',
+    'hero.badge': 'Готовое решение',
     
     // Product Description
     'product.title': 'Что это такое?',
@@ -447,7 +456,8 @@ const translations = {
     'pricing.title': 'Цена и условия',
     'pricing.subtitle': 'Прозрачная цена без скрытых платежей',
     'pricing.price': '1500 ₽',
-    'pricing.currency': 'российских рублей',
+    'pricing.currency': 'единовременный платеж',
+    'pricing.symbol': '₽',
     'pricing.features.license': 'Бессрочная лицензия',
     'pricing.features.updates': 'Бесплатные обновления в течение года',
     'pricing.features.support': 'Техническая поддержка 6 месяцев',
@@ -455,6 +465,7 @@ const translations = {
     'pricing.features.examples': 'Примеры использования',
     'pricing.features.installation': 'Помощь с установкой',
     'pricing.cta': 'Заказать сейчас',
+    'pricing.activation': 'Активация в течение 24 часов после оплаты',
     
     // Social Proof
     'social.title': 'Доверие клиентов',
@@ -466,6 +477,7 @@ const translations = {
     
     // FAQ
     'faq.title': 'Часто задаваемые вопросы',
+    'faq.subtitle': 'Ответы на самые популярные вопросы о нашем продукте',
     'faq.q1': 'Подходит ли для всех версий 1С:Enterprise?',
     'faq.a1': 'Да, компонента совместима с версиями 1С:Enterprise 8.2 и новее.',
     'faq.q2': 'Как происходит обновление компоненты?',
@@ -616,6 +628,7 @@ export function TranslationProvider({ children }: TranslationProviderProps) {
     // Update meta tags for SEO
     const titleElement = document.querySelector('title')
     const descriptionElement = document.querySelector('meta[name="description"]')
+    const keywordsElement = document.querySelector('meta[name="keywords"]')
     
     if (titleElement) {
       titleElement.textContent = t('meta.title')
@@ -624,6 +637,19 @@ export function TranslationProvider({ children }: TranslationProviderProps) {
     if (descriptionElement) {
       descriptionElement.setAttribute('content', t('meta.description'))
     }
+
+    // Update keywords based on language
+    if (keywordsElement) {
+      const keywords = currentLang === 'uk' 
+        ? "POSNET, Thermal, 1С Enterprise, фіскальний реєстратор, драйвер, компонента, касове обладнання, ModulSoft"
+        : currentLang === 'pl'
+        ? "POSNET, Thermal, 1С Enterprise, drukarka fiskalna, sterownik, komponent, urządzenie kasowe, ModulSoft"
+        : "POSNET, Thermal, 1С Enterprise, фискальный регистратор, драйвер, компонента, кассовое оборудование, ModulSoft"
+      keywordsElement.setAttribute('content', keywords)
+    }
+
+    // Update HTML lang attribute in <html> tag for accessibility
+    document.documentElement.setAttribute('lang', currentLang)
   }, [language, t])
 
   return (

@@ -2,6 +2,7 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { ArrowLeft, Phone, Envelope, MapPin, Clock, Headset } from "@phosphor-icons/react"
+import { useTranslation } from "@/hooks/useTranslation"
 
 interface ContactPageProps {
   onBackClick?: () => void
@@ -9,6 +10,7 @@ interface ContactPageProps {
 }
 
 export default function ContactPage({ onBackClick, onContactClick }: ContactPageProps) {
+  const { t } = useTranslation()
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -36,17 +38,16 @@ export default function ContactPage({ onBackClick, onContactClick }: ContactPage
 
   const contactSections = [
     {
-      title: "Адреса",
+      title: t('contacts.address.title'),
       icon: MapPin,
       content: (
         <div className="space-y-2">
-          <p className="font-semibold text-foreground">43025, м. Луцьк,</p>
-          <p className="font-semibold text-foreground">вул. Святовасилівська 4, 3</p>
+          <p className="font-semibold text-foreground">{t('contacts.address.value')}</p>
         </div>
       )
     },
     {
-      title: "Відділ продаж",
+      title: t('contacts.sales.title'),
       icon: Phone,
       content: (
         <div className="space-y-2">
@@ -63,7 +64,7 @@ export default function ContactPage({ onBackClick, onContactClick }: ContactPage
       )
     },
     {
-      title: "Технічна підтримка (Service Desk)",
+      title: t('contacts.support.title'),
       icon: Headset,
       content: (
         <div className="space-y-2">
@@ -77,13 +78,13 @@ export default function ContactPage({ onBackClick, onContactClick }: ContactPage
             +38 (066) 143-84-69
           </a>
           <a href="https://24.modulsoft.eu" target="_blank" rel="noopener noreferrer" className="block text-accent hover:underline cursor-pointer">
-            24.modulsoft.eu
+            {t('contacts.portal.title')}: 24.modulsoft.eu
           </a>
         </div>
       )
     },
     {
-      title: "Бухгалтерія",
+      title: t('contacts.accounting.title'),
       icon: Envelope,
       content: (
         <div className="space-y-2">
@@ -97,12 +98,12 @@ export default function ContactPage({ onBackClick, onContactClick }: ContactPage
       )
     },
     {
-      title: "Режим роботи",
+      title: t('contacts.schedule.title'),
       icon: Clock,
       content: (
         <div className="space-y-2">
-          <p className="text-foreground"><strong>Пн. - Пт.:</strong> з 8:00 до 17:00</p>
-          <p className="text-foreground"><strong>Сб. - Нд.:</strong> вихідні</p>
+          <p className="text-foreground">{t('contacts.schedule.weekdays')}</p>
+          <p className="text-foreground">{t('contacts.schedule.weekend')}</p>
         </div>
       )
     }
@@ -124,16 +125,16 @@ export default function ContactPage({ onBackClick, onContactClick }: ContactPage
               className="mb-6 cursor-pointer"
             >
               <ArrowLeft size={16} className="mr-2" />
-              Повернутись назад
+              {t('contacts.back')}
             </Button>
           )}
           
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-              Наші контакти
+              {t('contacts.title')}
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Зв'яжіться з нами зручним для вас способом. Ми завжди готові допомогти!
+              {t('contact.description')}
             </p>
           </div>
         </motion.div>

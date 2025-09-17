@@ -1,8 +1,10 @@
 import { motion } from "framer-motion"
 import { useInView } from "@/hooks/useInView"
+import { useTranslation } from "@/hooks/useTranslation"
 
 export default function SocialProof() {
   const [ref, isInView] = useInView({ threshold: 0.1 })
+  const { t } = useTranslation()
 
   const headerVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -56,17 +58,17 @@ export default function SocialProof() {
   const stats = [
     {
       number: "16+",
-      label: "років досвіду",
+      label: t('social.experience'),
       color: "text-primary"
     },
     {
       number: "200+",
-      label: "успішних проектів",
+      label: t('social.projects'),
       color: "text-accent"
     },
     {
       number: "40+",
-      label: "сертифікованих спеціалістів",
+      label: t('social.specialists'),
       color: "text-primary"
     }
   ]
@@ -80,8 +82,8 @@ export default function SocialProof() {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          <h2 className="text-3xl font-bold text-foreground mb-4">Наш досвід</h2>
-          <p className="text-lg text-muted-foreground">Довіра клієнтів - наша найкраща рекомендація</p>
+          <h2 className="text-3xl font-bold text-foreground mb-4">{t('social.title')}</h2>
+          <p className="text-lg text-muted-foreground">{t('social.subtitle')}</p>
         </motion.div>
 
         <motion.div 

@@ -2,26 +2,36 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { motion } from "framer-motion"
 import { useInView } from "@/hooks/useInView"
 import { OwlAnalyst } from "@/components"
+import { useTranslation } from "@/hooks/useTranslation"
 
 export default function FAQ() {
   const [ref, isInView] = useInView({ threshold: 0.1 })
+  const { t } = useTranslation()
 
   const faqItems = [
     {
-      question: "Чи підходить для всіх версій 1С:Enterprise?",
-      answer: "Компонент підтримує 1С:Enterprise 8.3 та новіші версії. Для точної сумісності з вашою версією зв'яжіться з нашими спеціалістами."
+      question: t('faq.q1'),
+      answer: t('faq.a1')
     },
     {
-      question: "Як відбувається процес установки?",
-      answer: "Після придбання ви отримуєте компонент та детальну інструкцію. Наші спеціалісти також можуть допомогти з установкою дистанційно."
+      question: t('faq.q2'),
+      answer: t('faq.a2')
     },
     {
-      question: "Що робити, якщо мій реєстратор іншої моделі?",
-      answer: "Компонент працює з реєстраторами POSNET та Thermal. Для інших моделей ми можемо розробити індивідуальне рішення."
+      question: t('faq.q3'),
+      answer: t('faq.a3')
     },
     {
-      question: "Як здійснюється оплата?",
-      answer: "Оплата можлива банківським переказом або через електронні платіжні системи. Після оплати ви одразу отримуєте доступ до компонента."
+      question: t('faq.q4'),
+      answer: t('faq.a4')
+    },
+    {
+      question: t('faq.q5'),
+      answer: t('faq.a5')
+    },
+    {
+      question: t('faq.q6'),
+      answer: t('faq.a6')
     }
   ]
 
@@ -73,10 +83,10 @@ export default function FAQ() {
               animate={isInView ? "visible" : "hidden"}
             >
               <h2 className="text-3xl font-bold text-foreground mb-4">
-                Часто задавані питання
+                {t('faq.title')}
               </h2>
               <p className="text-lg text-muted-foreground">
-                Відповіді на найпопулярніші питання про наш продукт
+                {t('faq.subtitle')}
               </p>
             </motion.div>
 

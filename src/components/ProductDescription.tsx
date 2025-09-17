@@ -2,9 +2,11 @@ import { Plug, Shield, Users } from "@phosphor-icons/react"
 import { motion } from "framer-motion"
 import { useInView } from "@/hooks/useInView"
 import { ParallaxBackground, FloatingElements } from "@/components"
+import { useTranslation } from "@/hooks/useTranslation"
 
 export default function ProductDescription() {
   const [ref, isInView] = useInView({ threshold: 0.1 })
+  const { t } = useTranslation()
 
   const headerVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -70,18 +72,18 @@ export default function ProductDescription() {
   const benefits = [
     {
       icon: <Plug size={32} className="text-primary" />,
-      title: "Легка інтеграція",
-      description: "Швидке підключення до 1С без додаткових налаштувань"
+      title: t('product.benefits.integration'),
+      description: t('product.benefits.integration.desc')
     },
     {
       icon: <Shield size={32} className="text-primary" />,
-      title: "Надійність",
-      description: "Стабільна робота та захист від збоїв"
+      title: t('product.benefits.reliability'),
+      description: t('product.benefits.reliability.desc')
     },
     {
       icon: <Users size={32} className="text-primary" />,
-      title: "Підтримка",
-      description: "Команда експертів завжди готова допомогти"
+      title: t('product.benefits.support'),
+      description: t('product.benefits.support.desc')
     }
   ]
 
@@ -157,7 +159,7 @@ export default function ProductDescription() {
               transition: { duration: 0.2 }
             }}
           >
-            Що це за компонент?
+            {t('product.title')}
           </motion.h2>
           
           <motion.p 
@@ -166,9 +168,7 @@ export default function ProductDescription() {
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
           >
-            Driver POSNET - це зовнішній компонент для системи 1С:Enterprise, яка забезпечує 
-            повну інтеграцію з фіскальними реєстраторами POSNET. Компонент вирішує всі задачі 
-            роботи з касовим обладнанням: від друку чеків до формування звітів.
+            {t('product.description')}
           </motion.p>
           
           <motion.div 

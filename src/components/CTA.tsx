@@ -3,6 +3,7 @@ import { Phone } from "@phosphor-icons/react"
 import { motion } from "framer-motion"
 import { useInView } from "@/hooks/useInView"
 import { OwlAnalyst, ParallaxBackground, FloatingElements } from "@/components"
+import { useTranslation } from "@/hooks/useTranslation"
 
 interface CTAProps {
   onContactClick: (service: string) => void
@@ -10,6 +11,7 @@ interface CTAProps {
 
 export default function CTA({ onContactClick }: CTAProps) {
   const [ref, isInView] = useInView({ threshold: 0.1 })
+  const { t } = useTranslation()
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -149,14 +151,14 @@ export default function CTA({ onContactClick }: CTAProps) {
               transition: { duration: 0.2 }
             }}
           >
-            Готові до інтеграції з POSNET?
+            {t('cta.title')}
           </motion.h2>
           
           <motion.p 
             className="text-lg text-muted-foreground mb-8"
             variants={itemVariants}
           >
-            Зв'яжіться з нами для детальної консультації або замовлення компонента
+            {t('cta.subtitle')}
           </motion.p>
           
           <motion.div 
@@ -170,7 +172,7 @@ export default function CTA({ onContactClick }: CTAProps) {
             <Button 
               size="lg" 
               className="text-lg px-8 py-4 cursor-pointer relative overflow-hidden group"
-              onClick={() => onContactClick("Купити Driver POSNET")}
+              onClick={() => onContactClick(t('cta.button'))}
             >
               {/* Button highlight effect */}
               <motion.div
@@ -203,7 +205,7 @@ export default function CTA({ onContactClick }: CTAProps) {
                 <Phone size={20} />
               </motion.div>
               
-              <span className="relative z-10">Замовити дзвінок</span>
+              <span className="relative z-10">{t('cta.button')}</span>
               
               {/* Ripple effect on hover */}
               <motion.div

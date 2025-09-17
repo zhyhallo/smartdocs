@@ -4,6 +4,7 @@ import { Check } from "@phosphor-icons/react"
 import { motion } from "framer-motion"
 import { useInView } from "@/hooks/useInView"
 import { ParallaxBackground, FloatingElements } from "@/components"
+import { useTranslation } from "@/hooks/useTranslation"
 
 interface PricingProps {
   onContactClick: (service: string) => void
@@ -11,6 +12,7 @@ interface PricingProps {
 
 export default function Pricing({ onContactClick }: PricingProps) {
   const [ref, isInView] = useInView({ threshold: 0.1 })
+  const { t } = useTranslation()
 
   const headerVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -87,9 +89,9 @@ export default function Pricing({ onContactClick }: PricingProps) {
   }
 
   const features = [
-    "Повна ліцензія на використання",
-    "Документація та інструкції",
-    "Допомога з встановленням"
+    t('pricing.features.license'),
+    t('pricing.features.documentation'),
+    t('pricing.features.installation')
   ]
 
   return (
@@ -113,7 +115,7 @@ export default function Pricing({ onContactClick }: PricingProps) {
             ease: "easeInOut"
           }}
         >
-          zł
+          {t('pricing.symbol')}
         </motion.div>
         
         <motion.div
@@ -158,8 +160,8 @@ export default function Pricing({ onContactClick }: PricingProps) {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          <h2 className="text-3xl font-bold text-foreground mb-4">Ціна та умови</h2>
-          <p className="text-lg text-muted-foreground">Прозора ціна без прихованих платежів</p>
+          <h2 className="text-3xl font-bold text-foreground mb-4">{t('pricing.title')}</h2>
+          <p className="text-lg text-muted-foreground">{t('pricing.subtitle')}</p>
         </motion.div>
 
         <div className="max-w-md mx-auto">
@@ -196,9 +198,9 @@ export default function Pricing({ onContactClick }: PricingProps) {
                       ease: "easeInOut"
                     }}
                   >
-                    1500 zł
+                    {t('pricing.price')}
                   </motion.div>
-                  <div className="text-muted-foreground">разовий платіж</div>
+                  <div className="text-muted-foreground">{t('pricing.currency')}</div>
                 </motion.div>
 
                 <div className="space-y-4 mb-8">
@@ -249,7 +251,7 @@ export default function Pricing({ onContactClick }: PricingProps) {
                   <Button 
                     className="w-full text-lg py-6 cursor-pointer relative overflow-hidden" 
                     size="lg"
-                    onClick={() => onContactClick("Купити Driver POSNET - 1500 zł")}
+                    onClick={() => onContactClick(t('pricing.cta'))}
                   >
                     <motion.div
                       className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
@@ -259,7 +261,7 @@ export default function Pricing({ onContactClick }: PricingProps) {
                         transition: { duration: 0.6, ease: "easeInOut" }
                       }}
                     />
-                    <span className="relative z-10">Купити зараз</span>
+                    <span className="relative z-10">{t('pricing.cta')}</span>
                   </Button>
                 </motion.div>
 
@@ -271,7 +273,7 @@ export default function Pricing({ onContactClick }: PricingProps) {
                     transition: { delay: 1.5, duration: 0.5 }
                   } : { opacity: 0 }}
                 >
-                  Активація протягом 24 годин після оплати
+                  {t('pricing.activation')}
                 </motion.p>
               </CardContent>
             </Card>

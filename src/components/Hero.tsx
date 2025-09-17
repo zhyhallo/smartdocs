@@ -72,7 +72,7 @@ export default function Hero({ onContactClick }: HeroProps) {
           >
             <motion.div variants={itemVariants}>
               <Badge variant="secondary" className="mb-6">
-                {t('hero.title')} {t('hero.subtitle')} - Готове рішення
+                {t('hero.title')} {t('hero.subtitle')} - {t('hero.badge')}
               </Badge>
             </motion.div>
             
