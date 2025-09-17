@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Phone, X } from "@phosphor-icons/react"
 import { toast } from "sonner"
+import { useTranslation } from "@/hooks/useTranslation"
 
 interface DirectCallWidgetProps {
   onContactClick?: (service: string) => void
@@ -11,6 +12,7 @@ interface DirectCallWidgetProps {
  * Direct call widget as a final fallback if Zadarma doesn't load
  */
 export default function DirectCallWidget({ onContactClick }: DirectCallWidgetProps) {
+  const { t } = useTranslation()
   const [isOpen, setIsOpen] = useState(false)
   const [formData, setFormData] = useState({ phone: '', name: '' })
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -66,7 +68,7 @@ export default function DirectCallWidget({ onContactClick }: DirectCallWidgetPro
     e.preventDefault()
     
     if (!formData.phone.trim()) {
-      toast.error("Введіть номер телефону")
+      toast.error(t('zadarma.error.phone.required'))
       return
     }
     
@@ -77,15 +79,15 @@ export default function DirectCallWidget({ onContactClick }: DirectCallWidgetPro
       await new Promise(resolve => setTimeout(resolve, 1000))
       
       if (onContactClick) {
-        const service = `Зворотний дзвінок${formData.name ? ` - ${formData.name}` : ''} (${formData.phone})`
+        const service = `${t('zadarma.title')}${formData.name ? ` - ${formData.name}` : ''} (${formData.phone})`
         onContactClick(service)
       }
       
-      toast.success("Заявку відправлено! Передзвонимо протягом години")
+      toast.success(t('zadarma.success.toast'))
       setIsOpen(false)
       setFormData({ phone: '', name: '' })
     } catch (error) {
-      toast.error("Помилка відправки. Спробуйте ще раз")
+      toast.error(t('zadarma.error.submit'))
     } finally {
       setIsSubmitting(false)
     }
@@ -115,8 +117,8 @@ export default function DirectCallWidget({ onContactClick }: DirectCallWidgetPro
                    flex items-center justify-center
                    transition-all duration-300 ease-in-out
                    hover:bg-accent focus:outline-none focus:ring-4 focus:ring-primary/30"
-        title="Замовити зворотний дзвінок"
-        aria-label="Кнопка замовлення зворотнього дзвінка"
+        title={t('zadarma.title')}
+        aria-label={t('zadarma.title')}
         transition={{
           rotate: {
             duration: 4,
@@ -169,12 +171,12 @@ export default function DirectCallWidget({ onContactClick }: DirectCallWidgetPro
               {/* Header */}
               <div className="flex items-center justify-between mb-4">
                 <h3 className="font-semibold text-foreground">
-                  Замовити дзвінок
+                  {t('zadarma.title')}
                 </h3>
                 <button
                   onClick={() => setIsOpen(false)}
                   className="text-muted-foreground hover:text-foreground transition-colors"
-                  aria-label="Закрити"
+                  aria-label={t('zadarma.close')}
                 >
                   <X size={20} />
                 </button>
@@ -184,7 +186,7 @@ export default function DirectCallWidget({ onContactClick }: DirectCallWidgetPro
               <form onSubmit={handleSubmit} className="space-y-3">
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-1">
-                    Телефон *
+                    {t('zadarma.phone.label')}
                   </label>
                   <input
                     type="tel"
@@ -200,13 +202,13 @@ export default function DirectCallWidget({ onContactClick }: DirectCallWidgetPro
                 
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-1">
-                    Ім'я
+                    {t('contact.name')}
                   </label>
                   <input
                     type="text"
                     value={formData.name}
                     onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                    placeholder="Ваше ім'я"
+                    placeholder={t('contact.name')}
                     className="w-full px-3 py-2 border border-input rounded-md 
                                bg-background text-foreground
                                focus:outline-none focus:ring-2 focus:ring-primary/30"
@@ -221,12 +223,12 @@ export default function DirectCallWidget({ onContactClick }: DirectCallWidgetPro
                            hover:bg-accent focus:outline-none focus:ring-2 focus:ring-primary/30
                            disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {isSubmitting ? 'Відправляємо...' : 'Замовити дзвінок'}
+                  {isSubmitting ? t('zadarma.submitting') : t('zadarma.submit')}
                 </button>
               </form>
               
               <p className="text-xs text-muted-foreground mt-2">
-                Ми передзвонимо протягом години
+                {t('zadarma.schedule')}
               </p>
             </motion.div>
           </>
