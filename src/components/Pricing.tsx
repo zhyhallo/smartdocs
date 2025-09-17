@@ -91,6 +91,7 @@ export default function Pricing({ onContactClick }: PricingProps) {
   const features = [
     t('pricing.features.license'),
     t('pricing.features.documentation'),
+    t('pricing.features.examples'),
     t('pricing.features.installation')
   ]
 
