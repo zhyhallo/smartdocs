@@ -32,7 +32,14 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
             <h3 className="text-lg font-bold text-background mb-4">Навігація</h3>
             <nav className="space-y-3">
               <button 
-                onClick={onHomeClick}
+                onClick={() => {
+                  onHomeClick?.();
+                  // Плавний скрол до верху сторінки
+                  window.scrollTo({ 
+                    top: 0, 
+                    behavior: 'smooth' 
+                  });
+                }}
                 className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1 w-full text-left"
               >
                 Головна
@@ -49,7 +56,11 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
                   e.preventDefault();
                   const element = document.getElementById('product');
                   if (element) {
-                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    const offsetTop = element.offsetTop - 100; // Offset для хедера
+                    window.scrollTo({ 
+                      top: offsetTop, 
+                      behavior: 'smooth' 
+                    });
                   }
                 }}
                 className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1"
@@ -62,7 +73,11 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
                   e.preventDefault();
                   const element = document.getElementById('features');
                   if (element) {
-                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    const offsetTop = element.offsetTop - 100; // Offset для хедера
+                    window.scrollTo({ 
+                      top: offsetTop, 
+                      behavior: 'smooth' 
+                    });
                   }
                 }}
                 className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1"
@@ -75,7 +90,11 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
                   e.preventDefault();
                   const element = document.getElementById('pricing');
                   if (element) {
-                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    const offsetTop = element.offsetTop - 100; // Offset для хедера
+                    window.scrollTo({ 
+                      top: offsetTop, 
+                      behavior: 'smooth' 
+                    });
                   }
                 }}
                 className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1"
@@ -88,7 +107,11 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
                   e.preventDefault();
                   const element = document.getElementById('faq');
                   if (element) {
-                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    const offsetTop = element.offsetTop - 100; // Offset для хедера
+                    window.scrollTo({ 
+                      top: offsetTop, 
+                      behavior: 'smooth' 
+                    });
                   }
                 }}
                 className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1"

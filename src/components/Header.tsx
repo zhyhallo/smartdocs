@@ -93,6 +93,20 @@ export default function Header({ onContactClick, onContactsClick }: HeaderProps)
     { href: null, label: "Контакти", onClick: onContactsClick }
   ]
 
+  // Функція для плавного скролу з offset
+  const handleSmoothScroll = (href: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    const elementId = href.replace('#', '');
+    const element = document.getElementById(elementId);
+    if (element) {
+      const offsetTop = element.offsetTop - 100; // Offset для фіксованого хедера
+      window.scrollTo({ 
+        top: offsetTop, 
+        behavior: 'smooth' 
+      });
+    }
+  }
+
   return (
     <motion.header 
       className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b border-border"
@@ -123,6 +137,7 @@ export default function Header({ onContactClick, onContactsClick }: HeaderProps)
                   variants={menuItemVariants}
                   whileHover="hover"
                   whileTap="tap"
+                  onClick={(e) => handleSmoothScroll(item.href, e)}
                   style={{
                     textDecoration: "none"
                   }}
@@ -243,7 +258,10 @@ export default function Header({ onContactClick, onContactsClick }: HeaderProps)
                         scale: 0.98,
                         transition: { duration: 0.1 }
                       }}
-                      onClick={() => setIsMobileMenuOpen(false)}
+                      onClick={(e) => {
+                        handleSmoothScroll(item.href, e);
+                        setIsMobileMenuOpen(false);
+                      }}
                       style={{
                         textDecoration: "none"
                       }}

@@ -14,9 +14,34 @@
     font-family: 'Inter', sans-serif;
   }
   
-  /* Smooth scrolling for all anchor links */
+  /* Smooth scrolling for all anchor links with improved timing */
+  html {
+    scroll-behavior: smooth;
+  }
+  
   a[href^="#"] {
     scroll-behavior: smooth;
+  }
+  
+  /* Custom smooth scroll timing */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px; /* Automatic offset for fixed header */
+    }
+  }
+  
+  /* Respect reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
   
   /* Cursor pointer for interactive elements */

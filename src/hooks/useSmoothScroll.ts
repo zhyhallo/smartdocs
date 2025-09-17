@@ -6,7 +6,7 @@ interface SmoothScrollOptions {
 }
 
 export function useSmoothScroll(options: SmoothScrollOptions = {}) {
-  const { offset = 80, duration = 800 } = options
+  const { offset = 100, duration = 1000 } = options
 
   useEffect(() => {
     const handleAnchorClick = (event: Event) => {
@@ -20,29 +20,15 @@ export function useSmoothScroll(options: SmoothScrollOptions = {}) {
         const targetElement = document.getElementById(targetId)
         
         if (targetElement) {
-          const elementPosition = targetElement.getBoundingClientRect().top
-          const offsetPosition = elementPosition + window.pageYOffset - offset
+          // Use a more precise method to get element position
+          const elementPosition = targetElement.offsetTop
+          const offsetPosition = elementPosition - offset
           
-          // Custom smooth scroll animation
-          const startPosition = window.pageYOffset
-          const distance = offsetPosition - startPosition
-          const startTime = performance.now()
-          
-          function animation(currentTime: number) {
-            const timeElapsed = currentTime - startTime
-            const progress = Math.min(timeElapsed / duration, 1)
-            
-            // Easing function (ease-out cubic)
-            const ease = 1 - Math.pow(1 - progress, 3)
-            
-            window.scrollTo(0, startPosition + distance * ease)
-            
-            if (progress < 1) {
-              requestAnimationFrame(animation)
-            }
-          }
-          
-          requestAnimationFrame(animation)
+          // Use native smooth scroll with improved behavior
+          window.scrollTo({ 
+            top: offsetPosition, 
+            behavior: 'smooth' 
+          })
         }
       }
     }

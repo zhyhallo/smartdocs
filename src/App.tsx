@@ -33,7 +33,7 @@ function App() {
   const [currentView, setCurrentView] = useState<CurrentView>("home")
 
   // Enable smooth scrolling for anchor links with offset for fixed header
-  useSmoothScroll({ offset: 80, duration: 800 })
+  useSmoothScroll({ offset: 100, duration: 1000 })
 
   const openContactModal = (service: string = "Консультація") => {
     setContactService(service)
