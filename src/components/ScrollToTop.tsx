@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { smoothScrollToTop } from "@/lib/smoothScroll"
 
 
 export default function ScrollToTop() {
@@ -20,16 +21,13 @@ export default function ScrollToTop() {
   const scrollToTop = () => {
     setIsScrolling(true)
     
-    // Smooth scroll to top
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    })
+    // Use improved smooth scroll
+    smoothScrollToTop(1500)
     
     // Reset scrolling state after animation
     setTimeout(() => {
       setIsScrolling(false)
-    }, 1200)
+    }, 1600)
   }
 
   const buttonVariants = {

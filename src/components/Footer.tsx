@@ -1,4 +1,5 @@
 import { Separator } from "@/components/ui/separator"
+import { smoothScrollToElement, smoothScrollToTop } from "@/lib/smoothScroll"
 
 interface FooterProps {
   onContactsClick?: () => void
@@ -34,11 +35,7 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
               <button 
                 onClick={() => {
                   onHomeClick?.();
-                  // Плавний скрол до верху сторінки
-                  window.scrollTo({ 
-                    top: 0, 
-                    behavior: 'smooth' 
-                  });
+                  smoothScrollToTop();
                 }}
                 className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1 w-full text-left"
               >
@@ -50,74 +47,42 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
               >
                 Контакти
               </button>
-              <a 
-                href="#product"
+              <button 
                 onClick={(e) => {
                   e.preventDefault();
-                  const element = document.getElementById('product');
-                  if (element) {
-                    const offsetTop = element.offsetTop - 100; // Offset для хедера
-                    window.scrollTo({ 
-                      top: offsetTop, 
-                      behavior: 'smooth' 
-                    });
-                  }
+                  smoothScrollToElement('product');
                 }}
-                className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1"
+                className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1 w-full text-left"
               >
                 Продукт
-              </a>
-              <a 
-                href="#features"
+              </button>
+              <button 
                 onClick={(e) => {
                   e.preventDefault();
-                  const element = document.getElementById('features');
-                  if (element) {
-                    const offsetTop = element.offsetTop - 100; // Offset для хедера
-                    window.scrollTo({ 
-                      top: offsetTop, 
-                      behavior: 'smooth' 
-                    });
-                  }
+                  smoothScrollToElement('features');
                 }}
-                className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1"
+                className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1 w-full text-left"
               >
                 Функції
-              </a>
-              <a 
-                href="#pricing"
+              </button>
+              <button 
                 onClick={(e) => {
                   e.preventDefault();
-                  const element = document.getElementById('pricing');
-                  if (element) {
-                    const offsetTop = element.offsetTop - 100; // Offset для хедера
-                    window.scrollTo({ 
-                      top: offsetTop, 
-                      behavior: 'smooth' 
-                    });
-                  }
+                  smoothScrollToElement('pricing');
                 }}
-                className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1"
+                className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1 w-full text-left"
               >
                 Ціни
-              </a>
-              <a 
-                href="#faq"
+              </button>
+              <button 
                 onClick={(e) => {
                   e.preventDefault();
-                  const element = document.getElementById('faq');
-                  if (element) {
-                    const offsetTop = element.offsetTop - 100; // Offset для хедера
-                    window.scrollTo({ 
-                      top: offsetTop, 
-                      behavior: 'smooth' 
-                    });
-                  }
+                  smoothScrollToElement('faq');
                 }}
-                className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1"
+                className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1 w-full text-left"
               >
                 FAQ
-              </a>
+              </button>
             </nav>
           </div>
           

@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { smoothScrollToElement, smoothScrollToTop } from '@/lib/smoothScroll'
 
 interface SmoothScrollOptions {
   offset?: number
@@ -6,7 +7,7 @@ interface SmoothScrollOptions {
 }
 
 export function useSmoothScroll(options: SmoothScrollOptions = {}) {
-  const { offset = 100, duration = 1000 } = options
+  const { offset = 80, duration = 1500 } = options
 
   useEffect(() => {
     const handleAnchorClick = (event: Event) => {
@@ -17,19 +18,15 @@ export function useSmoothScroll(options: SmoothScrollOptions = {}) {
         event.preventDefault()
         
         const targetId = href.substring(1)
-        const targetElement = document.getElementById(targetId)
         
-        if (targetElement) {
-          // Use a more precise method to get element position
-          const elementPosition = targetElement.offsetTop
-          const offsetPosition = elementPosition - offset
-          
-          // Use native smooth scroll with improved behavior
-          window.scrollTo({ 
-            top: offsetPosition, 
-            behavior: 'smooth' 
-          })
+        // Handle home link specially
+        if (targetId === '' || targetId === 'home') {
+          smoothScrollToTop(duration)
+          return
         }
+        
+        // Use utility function for element scroll
+        smoothScrollToElement(targetId, offset, duration)
       }
     }
 

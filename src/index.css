@@ -17,6 +17,7 @@
   /* Smooth scrolling for all anchor links with improved timing */
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 100px; /* Automatic offset for fixed header */
   }
   
   a[href^="#"] {
@@ -28,6 +29,18 @@
     html {
       scroll-behavior: smooth;
       scroll-padding-top: 100px; /* Automatic offset for fixed header */
+    }
+    
+    /* Add smooth transitions for all scrollable elements */
+    * {
+      scroll-behavior: smooth;
+    }
+  }
+  
+  /* Enhanced smooth scrolling with longer duration */
+  @supports (scroll-behavior: smooth) {
+    html {
+      scroll-behavior: smooth;
     }
   }
   
