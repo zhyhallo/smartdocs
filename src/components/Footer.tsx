@@ -129,7 +129,7 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
         {/* Bottom Section - Always centered */}
         <div className="text-center space-y-3">
           <div>
-            © 2024 ModulSoft. Всі права захищені.
+            © 2025 ModulSoft. Всі права захищені.
           </div>
           <button 
             onClick={onPrivacyClick}
