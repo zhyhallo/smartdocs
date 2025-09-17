@@ -23,6 +23,8 @@ export { default as POSTerminal } from './POSTerminal'
 export { default as ScrollToTop } from './ScrollToTop'
 export { default as ParallaxBackground } from './ParallaxBackground'
 export { default as FloatingElements } from './FloatingElements'
+export { default as LanguageSwitcher } from './LanguageSwitcher'
+export { default as SEOManager } from './SEOManager'
 
 // Interactive components
 export { InteractiveSection } from './InteractiveSection'

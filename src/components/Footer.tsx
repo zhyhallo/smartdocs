@@ -1,5 +1,6 @@
 import { Separator } from "@/components/ui/separator"
 import { smoothScrollToElement, smoothScrollToTop } from "@/lib/smoothScroll"
+import { useTranslation } from "@/hooks/useTranslation"
 
 interface FooterProps {
   onContactsClick?: () => void
@@ -8,6 +9,7 @@ interface FooterProps {
 }
 
 export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }: FooterProps) {
+  const { t } = useTranslation()
   return (
     <footer className="py-12 bg-foreground text-background">
       <div className="container mx-auto">
@@ -20,17 +22,17 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
               <div className="text-3xl font-bold tracking-tight">ModulSoft</div>
             </div>
             <p className="text-background/80 mb-4 text-lg leading-relaxed">
-              Професійні рішення для автоматизації бізнесу
+              {t('hero.description')}
             </p>
             <p className="text-background/70 text-sm leading-relaxed">
-              Понад 16 років досвіду, більше 200 успішних впроваджень.<br />
-              40+ сертифікованих спеціалістів.
+              {t('hero.experience')}, {t('hero.projects')}.<br />
+              {t('hero.specialists')}.
             </p>
           </div>
 
           {/* Navigation Section - Centered */}
           <div className="flex-shrink-0">
-            <h3 className="text-lg font-bold text-background mb-4">Навігація</h3>
+            <h3 className="text-lg font-bold text-background mb-4">{t('footer.navigation')}</h3>
             <nav className="space-y-3">
               <button 
                 onClick={() => {
@@ -39,13 +41,13 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
                 }}
                 className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1 w-full text-left"
               >
-                Головна
+                {t('nav.home')}
               </button>
               <button 
                 onClick={onContactsClick}
                 className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1 w-full text-left"
               >
-                Контакти
+                {t('nav.contacts')}
               </button>
               <button 
                 onClick={(e) => {
@@ -63,7 +65,7 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
                 }}
                 className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1 w-full text-left"
               >
-                Функції
+                {t('nav.features')}
               </button>
               <button 
                 onClick={(e) => {
@@ -72,7 +74,7 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
                 }}
                 className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1 w-full text-left"
               >
-                Ціни
+                {t('nav.pricing')}
               </button>
               <button 
                 onClick={(e) => {
@@ -81,14 +83,14 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
                 }}
                 className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1 w-full text-left"
               >
-                FAQ
+                {t('nav.faq')}
               </button>
             </nav>
           </div>
           
           {/* Contact Info Section - Centered */}
           <div className="flex-1 max-w-sm lg:max-w-md">
-            <h3 className="text-lg font-bold text-background mb-4">Наші контакти</h3>
+            <h3 className="text-lg font-bold text-background mb-4">{t('footer.contacts')}</h3>
             <div className="space-y-4 text-sm leading-relaxed">
               <div className="space-y-2">
                 <a 
@@ -106,18 +108,17 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
               </div>
               
               <div className="pt-2">
-                <p className="text-background/70 mb-2 font-medium">Режим роботи:</p>
+                <p className="text-background/70 mb-2 font-medium">{t('contacts.schedule.title')}:</p>
                 <p className="text-background/70">
-                  Пн. - Пт.: з 8:00 до 17:00<br />
-                  Сб. - Нд.: вихідні
+                  {t('footer.schedule')}<br />
+                  {t('footer.weekend')}
                 </p>
               </div>
               
               <div className="pt-2">
-                <p className="text-background/70 mb-2 font-medium">Адреса:</p>
+                <p className="text-background/70 mb-2 font-medium">{t('contacts.address.title')}:</p>
                 <p className="text-background/70">
-                  43025, м. Луцьк,<br />
-                  вул. Святовасилівська 4/3
+                  43025, {t('footer.address')}
                 </p>
               </div>
             </div>
@@ -129,13 +130,13 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
         {/* Bottom Section - Always centered */}
         <div className="text-center space-y-3">
           <div>
-            © 2025 ModulSoft. Всі права захищені.
+            {t('footer.rights')}
           </div>
           <button 
             onClick={onPrivacyClick}
             className="text-background/80 hover:text-background transition-all duration-300 text-sm cursor-pointer underline underline-offset-4 decoration-1 hover:decoration-2"
           >
-            Політика приватності
+            {t('footer.privacy')}
           </button>
         </div>
       </div>

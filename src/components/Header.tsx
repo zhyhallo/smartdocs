@@ -2,6 +2,8 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { motion, AnimatePresence } from "framer-motion"
+import { useTranslation } from "@/hooks/useTranslation"
+import LanguageSwitcher from "./LanguageSwitcher"
 
 interface HeaderProps {
   onContactClick: (service: string) => void
@@ -10,6 +12,7 @@ interface HeaderProps {
 
 export default function Header({ onContactClick, onContactsClick }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const { t } = useTranslation()
 
   const headerVariants = {
     hidden: { opacity: 0, y: -20 },
@@ -86,11 +89,11 @@ export default function Header({ onContactClick, onContactsClick }: HeaderProps)
   }
 
   const menuItems = [
-    { href: "#product", label: "Продукт" },
-    { href: "#features", label: "Функції" },
-    { href: "#pricing", label: "Ціна" },
-    { href: "#faq", label: "FAQ" },
-    { href: null, label: "Контакти", onClick: onContactsClick }
+    { href: "#product", label: t('nav.product') },
+    { href: "#features", label: t('nav.features') },
+    { href: "#pricing", label: t('nav.pricing') },
+    { href: "#faq", label: t('nav.faq') },
+    { href: null, label: t('nav.contacts'), onClick: onContactsClick }
   ]
 
   // Функція для плавного скролу з offset
@@ -158,9 +161,10 @@ export default function Header({ onContactClick, onContactsClick }: HeaderProps)
               )
             ))}
             <div className="flex items-center space-x-4">
+              <LanguageSwitcher />
               <motion.a 
                 href="tel:+380931776504" 
-                className="text-muted-foreground cursor-pointer"
+                className="text-muted-foreground cursor-pointer hidden lg:block"
                 whileHover={{ 
                   scale: 1.05, 
                   color: "oklch(0.65 0.18 220)",
@@ -175,24 +179,26 @@ export default function Header({ onContactClick, onContactsClick }: HeaderProps)
                 whileTap="tap"
               >
                 <Button 
-                  onClick={() => onContactClick("Замовити дзвінок")} 
+                  onClick={() => onContactClick(t('nav.call'))} 
                   variant="outline" 
                   size="sm"
-                  className="cursor-pointer"
+                  className="cursor-pointer hidden sm:flex"
                 >
-                  Замовити дзвінок
+                  {t('nav.call')}
                 </Button>
               </motion.div>
             </div>
           </nav>
 
           {/* Mobile Menu Button */}
-          <motion.button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 cursor-pointer relative"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
+          <div className="md:hidden flex items-center space-x-2">
+            <LanguageSwitcher />
+            <motion.button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2 cursor-pointer relative"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
             <div className="w-6 h-6 flex flex-col justify-center space-y-1">
               <motion.span
                 className="h-0.5 bg-foreground origin-center"
@@ -227,6 +233,7 @@ export default function Header({ onContactClick, onContactsClick }: HeaderProps)
               />
             </div>
           </motion.button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
@@ -319,14 +326,14 @@ export default function Header({ onContactClick, onContactsClick }: HeaderProps)
                 >
                   <Button 
                     onClick={() => {
-                      onContactClick("Замовити дзвінок")
+                      onContactClick(t('nav.call'))
                       setIsMobileMenuOpen(false)
                     }} 
                     variant="outline" 
                     size="sm" 
                     className="w-fit cursor-pointer"
                   >
-                    Замовити дзвінок
+                    {t('nav.call')}
                   </Button>
                 </motion.div>
               </div>

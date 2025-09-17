@@ -10,40 +10,42 @@ import {
 import { motion } from "framer-motion"
 import { useInView } from "@/hooks/useInView"
 import { OwlAnalyst, ParallaxBackground, FloatingElements } from "@/components"
+import { useTranslation } from "@/hooks/useTranslation"
 
 export default function Features() {
   const [ref, isInView] = useInView({ threshold: 0.1 })
+  const { t } = useTranslation()
 
   const features = [
     {
       icon: <Receipt size={32} />,
-      title: "Фіскальні операції",
-      description: "Відкриття/закриття змін, друк фіскальних і нефіскальних чеків"
-    },
-    {
-      icon: <Printer size={32} />,
-      title: "Управління друком",
-      description: "Повний контроль над процесом друку та форматуванням чеків"
+      title: t('features.sales.title'),
+      description: t('features.sales.desc')
     },
     {
       icon: <ChartBar size={32} />,
-      title: "Звітність",
-      description: "Генерація X та Z звітів, перегляд статистики продажів"
+      title: t('features.reports.title'),
+      description: t('features.reports.desc')
     },
     {
       icon: <Plug size={32} />,
-      title: "Інтеграція з 1С",
-      description: "Безшовна інтеграція з системою 1С:Enterprise"
+      title: t('features.status.title'),
+      description: t('features.status.desc')
     },
     {
       icon: <Shield size={32} />,
-      title: "Надійність",
-      description: "Стабільна робота та обробка помилок"
+      title: t('features.errors.title'),
+      description: t('features.errors.desc')
+    },
+    {
+      icon: <Printer size={32} />,
+      title: t('features.config.title'),
+      description: t('features.config.desc')
     },
     {
       icon: <Clock size={32} />,
-      title: "24/7 Підтримка",
-      description: "Технічна підтримка та швидке вирішення питань"
+      title: t('features.backup.title'),
+      description: t('features.backup.desc')
     }
   ]
 
@@ -171,9 +173,9 @@ export default function Features() {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          <h2 className="text-3xl font-bold text-foreground mb-4">Функціональні можливості</h2>
+          <h2 className="text-3xl font-bold text-foreground mb-4">{t('features.title')}</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Повний набір функцій для роботи з касовим обладнанням в системі 1С:Enterprise
+            {t('features.subtitle')}
           </p>
         </motion.div>
 
@@ -202,7 +204,7 @@ export default function Features() {
                   />
                 </div>
                 
-                <CardContent className="p-6 relative z-10 flex flex-col h-full">
+                <CardContent className="p-6 relative z-10 flex flex-col h-full justify-between min-h-[200px]">
                   <motion.div 
                     className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors duration-300"
                     variants={iconVariants}

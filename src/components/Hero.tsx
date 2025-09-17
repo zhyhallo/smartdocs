@@ -2,12 +2,14 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { motion } from "framer-motion"
 import { OwlAnalyst, ParallaxBackground, FloatingElements } from "@/components"
+import { useTranslation } from "@/hooks/useTranslation"
 
 interface HeroProps {
   onContactClick: (service: string) => void
 }
 
 export default function Hero({ onContactClick }: HeroProps) {
+  const { t } = useTranslation()
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -70,7 +72,7 @@ export default function Hero({ onContactClick }: HeroProps) {
           >
             <motion.div variants={itemVariants}>
               <Badge variant="secondary" className="mb-6">
-                Готове рішення для 1С:Enterprise
+                {t('hero.title')} {t('hero.subtitle')} - Готове рішення
               </Badge>
             </motion.div>
             
@@ -78,12 +80,12 @@ export default function Hero({ onContactClick }: HeroProps) {
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 tracking-tight"
               variants={itemVariants}
             >
-              Driver POSNET
+              {t('hero.title')}
               <motion.span 
                 className="block text-primary"
                 variants={itemVariants}
               >
-                для 1С:Enterprise
+                {t('hero.subtitle')}
               </motion.span>
             </motion.h1>
             
@@ -91,8 +93,7 @@ export default function Hero({ onContactClick }: HeroProps) {
               className="text-xl text-muted-foreground mb-8 leading-relaxed"
               variants={itemVariants}
             >
-              Професійний зовнішній компонент для інтеграції з фіскальними реєстраторами POSNET. 
-              Надійність, стабільність і повна техпідтримка.
+              {t('hero.description')}
             </motion.p>
             
             <motion.div 
@@ -106,9 +107,9 @@ export default function Hero({ onContactClick }: HeroProps) {
               <Button 
                 size="lg" 
                 className="text-lg px-8 py-4 cursor-pointer"
-                onClick={() => onContactClick("Купити Driver POSNET")}
+                onClick={() => onContactClick(t('hero.cta.order'))}
               >
-                Купити зараз - 1500 zł
+                {t('hero.cta.order')}
               </Button>
             </motion.div>
           </motion.div>

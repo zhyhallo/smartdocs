@@ -1,4 +1,4 @@
-import { useState, lazy, Suspense } from "react"
+import { useState, lazy, Suspense, useEffect } from "react"
 import { 
   Header, 
   Hero, 
@@ -11,12 +11,22 @@ import {
   Footer, 
   ContactModal,
   InteractiveSection,
-  ZadarmaWidget
+  ZadarmaWidget,
+  SEOManager
 } from "@/components"
 import { Toaster } from "sonner"
 import { motion } from "framer-motion"
 import { useSmoothScroll } from "@/hooks/useSmoothScroll"
 import { InteractionProvider } from "@/hooks/useInteractionContext"
+import { TranslationProvider, useTranslation } from "@/hooks/useTranslation"
+import { 
+  measureWebVitals, 
+  preloadCriticalResources, 
+  optimizeImages,
+  createStructuredData,
+  addStructuredData,
+  updateMetaTags
+} from "@/utils/optimization"
 
 // Lazy load non-critical components
 const ScrollToTop = lazy(() => import("@/components/ScrollToTop"))
@@ -32,8 +42,24 @@ function App() {
   const [contactService, setContactService] = useState("Консультація")
   const [currentView, setCurrentView] = useState<CurrentView>("home")
 
-  // Enable smooth scrolling for anchor links with offset for fixed header
-  useSmoothScroll({ offset: 80, duration: 1500 })
+  // Initialize performance optimizations
+  useEffect(() => {
+    // Preload critical resources
+    preloadCriticalResources()
+    
+    // Setup performance monitoring
+    measureWebVitals()
+    
+    // Optimize images with lazy loading
+    const timer = setTimeout(() => {
+      optimizeImages()
+    }, 1000)
+    
+    return () => clearTimeout(timer)
+  }, [])
+
+  // Enable smooth scrolling for anchor links with optimized offset
+  useSmoothScroll({ offset: 80, duration: 800 })
 
   const openContactModal = (service: string = "Консультація") => {
     setContactService(service)
@@ -71,7 +97,9 @@ function App() {
   }
 
   if (currentView === "contacts") {
-    return (
+  return (
+    <TranslationProvider>
+      <SEOManager />
       <InteractionProvider>
         <motion.div 
           className="min-h-screen bg-background"
@@ -97,11 +125,37 @@ function App() {
           <Toaster richColors position="top-right" />
         </motion.div>
       </InteractionProvider>
-    )
+    </TranslationProvider>
+  )
   }
 
   if (currentView === "privacy") {
     return (
+      <TranslationProvider>
+        <SEOManager />
+        <InteractionProvider>
+          <motion.div 
+            className="min-h-screen bg-background"
+            variants={pageVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+          >
+            <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center">
+              <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
+            </div>}>
+              <PrivacyPolicy onBackClick={handleHomeClick} />
+            </Suspense>
+            <Toaster richColors position="top-right" />
+          </motion.div>
+        </InteractionProvider>
+      </TranslationProvider>
+    )
+  }
+
+  return (
+    <TranslationProvider>
+      <SEOManager />
       <InteractionProvider>
         <motion.div 
           className="min-h-screen bg-background"
@@ -110,26 +164,6 @@ function App() {
           animate="animate"
           exit="exit"
         >
-          <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center">
-            <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
-          </div>}>
-            <PrivacyPolicy onBackClick={handleHomeClick} />
-          </Suspense>
-          <Toaster richColors position="top-right" />
-        </motion.div>
-      </InteractionProvider>
-    )
-  }
-
-  return (
-    <InteractionProvider>
-      <motion.div 
-        className="min-h-screen bg-background"
-        variants={pageVariants}
-        initial="initial"
-        animate="animate"
-        exit="exit"
-      >
         <Header 
           onContactClick={openContactModal}
           onContactsClick={handleContactsClick}
@@ -203,6 +237,7 @@ function App() {
         <Toaster richColors position="top-right" />
       </motion.div>
     </InteractionProvider>
+    </TranslationProvider>
   )
 }
 

@@ -9,6 +9,7 @@ import { Phone, Envelope, Building, User, CheckCircle, Shield } from "@phosphor-
 import { toast } from "sonner"
 import { motion, AnimatePresence } from "framer-motion"
 import { OwlLoader } from "@/components"
+import { useTranslation } from "@/hooks/useTranslation"
 
 interface ContactModalProps {
   open: boolean
@@ -81,7 +82,7 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
       await new Promise(resolve => setTimeout(resolve, 1500))
       
       // Here you would normally send the data to your API endpoint
-      console.log("Submitting form data:", { ...formData, service: posnet })
+      console.log("Submitting form data:", { ...formData, service: defaultService })
       
       setIsSubmitted(true)
       toast.success("Заявку успішно відправлено! Ми зв'яжемося з вами найближчим часом.")
