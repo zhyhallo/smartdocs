@@ -81,7 +81,7 @@ export default function ContactModal({ open, onOpenChange, defaultService = "К�
       await new Promise(resolve => setTimeout(resolve, 1500))
       
       // Here you would normally send the data to your API endpoint
-      console.log("Submitting form data:", { ...formData, service: defaultService })
+      console.log("Submitting form data:", { ...formData, service: posnet })
       
       setIsSubmitted(true)
       toast.success("Заявку успішно відправлено! Ми зв'яжемося з вами найближчим часом.")
