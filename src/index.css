@@ -8,67 +8,16 @@
   
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+    font-display: swap;
   }
   
   body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-display: swap;
   }
   
-  /* Smooth scrolling for all anchor links with improved timing */
-  html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 100px; /* Automatic offset for fixed header */
-  }
-  
-  a[href^="#"] {
-    scroll-behavior: smooth;
-  }
-  
-  /* Custom smooth scroll timing */
-  @media (prefers-reduced-motion: no-preference) {
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 100px; /* Automatic offset for fixed header */
-    }
-    
-    /* Add smooth transitions for all scrollable elements */
-    * {
-      scroll-behavior: smooth;
-    }
-  }
-  
-  /* Enhanced smooth scrolling with longer duration */
-  html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 100px; /* Automatic offset for fixed header */
-  }
-  
-  /* Custom CSS-only smooth scroll implementation for better control */
-  @supports (scroll-behavior: smooth) {
-    html {
-      scroll-behavior: smooth;
-    }
-  }
-  
-  /* Enhanced smooth scrolling for anchor links */
-  @media (prefers-reduced-motion: no-preference) {
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 100px;
-    }
-    
-    /* Longer scroll duration using CSS */
-    html:focus-within {
-      scroll-behavior: smooth;
-    }
-    
-    /* Custom scroll timing */
-    * {
-      scroll-behavior: smooth;
-    }
-  }
-  
-  /* Respect reduced motion preferences */
+  /* Optimize for reduced motion users */
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
@@ -81,188 +30,71 @@
     }
   }
   
-  /* Cursor pointer for interactive elements */
-  button, 
-  a, 
-  [role="button"], 
-  .cursor-pointer,
-  input[type="button"],
-  input[type="submit"],
-  input[type="reset"] {
+  /* Essential cursor styles */
+  button, a, [role="button"], .cursor-pointer {
     cursor: pointer;
   }
   
-  /* Custom scrollbar styles */
+  /* Optimized scrollbar with minimal repaints */
   ::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
   }
   
   ::-webkit-scrollbar-track {
-    background: oklch(0.94 0.03 240);
+    background: transparent;
   }
   
   ::-webkit-scrollbar-thumb {
     background: oklch(0.55 0.22 240);
-    border-radius: 4px;
+    border-radius: 3px;
   }
   
   ::-webkit-scrollbar-thumb:hover {
     background: oklch(0.45 0.22 240);
   }
   
-  /* Container and centering styles */
+  /* Performance-optimized container */
   .container {
     width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+    max-width: 1200px;
   }
   
-  /* Responsive container max-widths for proper centering */
-  @media (min-width: 640px) {
-    .container {
-      max-width: 640px;
-    }
-  }
-  
-  @media (min-width: 768px) {
-    .container {
-      max-width: 768px;
-    }
-  }
-  
-  @media (min-width: 1024px) {
-    .container {
-      max-width: 1024px;
-    }
-  }
-  
-  @media (min-width: 1280px) {
-    .container {
-      max-width: 1200px;
-    }
-  }
-  
-  @media (min-width: 1536px) {
-    .container {
-      max-width: 1280px;
-    }
-  }
-  
-  /* Center all major sections */
-  section {
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  /* Hero section specific centering */
-  #hero .container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  /* Text centering utilities */
-  .text-center {
-    text-align: center;
-  }
-  
-  .mx-auto {
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  /* Override any default link colors */
-  a {
-    color: inherit !important;
-    text-decoration: none !important;
-  }
-  
-  a:hover {
-    color: inherit !important;
-    text-decoration: none !important;
-  }
-  
-  /* Menu item hover effects */
-  .menu-item-hover:hover {
-    color: oklch(0.65 0.18 220) !important;
-    transform: scale(1.05);
-    transition: all 0.3s ease-in-out;
-  }
-  
-  /* Navigation menu links hover effects */
+  /* Critical hover effects only */
+  .menu-item-hover:hover,
   nav a:hover,
   nav a:focus {
     color: oklch(0.65 0.18 220) !important;
-    text-decoration: none !important;
-    transform: scale(1.05);
-    transition: all 0.3s ease-in-out;
+    transform: scale(1.02);
+    transition: all 0.2s ease;
   }
   
-  /* Burger menu line styles */
-  .burger-line {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    transform-origin: center;
+  /* Essential animations only */
+  @keyframes float-gentle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
   }
   
-  .burger-line:hover {
-    background-color: oklch(0.65 0.18 220) !important;
-    transform: scaleX(1.05);
-  }
-
-  /* Icon hover effects */
-  .icon-hover:hover {
-    color: oklch(0.65 0.18 220) !important;
-    transform: scale(1.05);
-    transition: all 0.2s ease-in-out;
+  .float-gentle {
+    animation: float-gentle 3s ease-in-out infinite;
   }
   
-  /* Essential owl animations */
-  .owl-container {
-    position: relative;
-    overflow: visible;
-  }
-
-  .owl-container:hover .owl-sparkle {
-    animation: sparkle 2s ease-in-out infinite;
-  }
-
   @keyframes sparkle {
-    0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
-    25% { opacity: 1; transform: scale(1) rotate(90deg); }
-    50% { opacity: 0.7; transform: scale(1.2) rotate(180deg); }
-    75% { opacity: 1; transform: scale(0.8) rotate(270deg); }
-  }
-
-  /* Smooth scroll behavior */
-  html {
-    scroll-behavior: smooth;
+    0%, 100% { opacity: 0; transform: scale(0); }
+    50% { opacity: 1; transform: scale(1); }
   }
   
-  /* Scroll offset for fixed header */
-  * {
-    scroll-margin-top: 80px;
+  .owl-container:hover .owl-sparkle {
+    animation: sparkle 1.5s ease infinite;
   }
-
-  /* Essential parallax effects */
-  .parallax-element {
+  
+  /* GPU acceleration for smooth animations */
+  .parallax-element,
+  .float-gentle,
+  .animate-spin {
     will-change: transform;
     transform: translateZ(0);
-  }
-
-  /* Essential floating animations */
-  @keyframes float-gentle {
-    0%, 100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
-
-  .float-gentle {
-    animation: float-gentle 4s ease-in-out infinite;
   }
 }
 

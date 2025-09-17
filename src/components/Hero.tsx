@@ -3,12 +3,13 @@ import { Badge } from "@/components/ui/badge"
 import { motion } from "framer-motion"
 import { OwlAnalyst, ParallaxBackground, FloatingElements } from "@/components"
 import { useTranslation } from "@/hooks/useTranslation"
+import { memo } from "react"
 
 interface HeroProps {
   onContactClick: (service: string) => void
 }
 
-export default function Hero({ onContactClick }: HeroProps) {
+const Hero = memo(function Hero({ onContactClick }: HeroProps) {
   const { t } = useTranslation()
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -175,4 +176,6 @@ export default function Hero({ onContactClick }: HeroProps) {
       </div>
     </section>
   )
-}
+})
+
+export default Hero

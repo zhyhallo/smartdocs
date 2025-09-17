@@ -13,20 +13,8 @@ export default function SEOManager() {
     updateMetaTags(language, title, description)
     
     // Add structured data for current language
-    const { organizationData, productData } = createStructuredData(language)
-    
-    // Remove existing structured data scripts
-    const existingScripts = document.querySelectorAll('script[type="application/ld+json"]:not([data-keep])')
-    existingScripts.forEach(script => {
-      if (script.textContent?.includes('"@type": "Organization"') || 
-          script.textContent?.includes('"@type": "Product"')) {
-        script.remove()
-      }
-    })
-    
-    // Add new structured data
-    addStructuredData(organizationData)
-    addStructuredData(productData)
+    const structuredData = createStructuredData(language)
+    addStructuredData(structuredData)
     
   }, [language, t])
 

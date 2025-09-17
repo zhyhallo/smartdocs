@@ -1,20 +1,98 @@
 /**
- * SEO and Performance Optimization Utilities
+ * Optimized Performance and SEO Utilities
  */
 
-// Create structured data for SEO
+// Performance monitoring (simplified)
+export function measureWebVitals() {
+  if (typeof window !== 'undefined' && 'PerformanceObserver' in window) {
+    try {
+      const observer = new PerformanceObserver((list) => {
+        for (const entry of list.getEntries()) {
+          if (entry.entryType === 'navigation' || entry.entryType === 'paint') {
+            console.debug(`${entry.name || entry.entryType}: ${entry.duration || entry.startTime}ms`)
+          }
+        }
+      })
+      
+      observer.observe({ entryTypes: ['navigation', 'paint'] })
+    } catch (error) {
+      console.debug('Performance monitoring not available')
+    }
+  }
+}
+
+// Preload critical resources
+export function preloadCriticalResources() {
+  if (typeof document !== 'undefined') {
+    // Only preload if not already loaded
+    const existingPreloads = document.querySelectorAll('link[rel="preload"]')
+    const preloadedHrefs = Array.from(existingPreloads).map(link => (link as HTMLLinkElement).href)
+    
+    const fontHref = 'https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2'
+    
+    if (!preloadedHrefs.includes(fontHref)) {
+      const fontLink = document.createElement('link')
+      fontLink.rel = 'preload'
+      fontLink.as = 'font'
+      fontLink.type = 'font/woff2'
+      fontLink.crossOrigin = 'anonymous'
+      fontLink.href = fontHref
+      document.head.appendChild(fontLink)
+    }
+  }
+}
+
+// Optimize images with intersection observer
+export function optimizeImages() {
+  if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
+    const imageObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target as HTMLImageElement
+            if (img.dataset.src && !img.src.includes(img.dataset.src)) {
+              img.src = img.dataset.src
+              img.classList.remove('lazy')
+              observer.unobserve(img)
+            }
+          }
+        })
+      },
+      {
+        rootMargin: '50px 0px',
+        threshold: 0.01
+      }
+    )
+    
+    // Only observe images that haven't been processed
+    document.querySelectorAll('img[data-src]:not([src])').forEach(img => {
+      imageObserver.observe(img)
+    })
+  }
+}
+
+// Create optimized structured data
 export function createStructuredData(language: 'uk' | 'pl' | 'ru' = 'uk') {
-  const organizationData = {
+  const baseUrl = 'https://modulsoft.eu'
+  
+  return {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "ModulSoft",
-    "url": "https://modulsoft.eu",
-    "logo": "https://modulsoft.eu/logo.png",
+    "@type": ["Organization", "SoftwareApplication"],
+    "name": "ModulSoft - Driver POSNET / Thermal для 1С:Enterprise",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Windows",
+    "url": baseUrl,
     "description": language === 'uk' 
-      ? "Розробка та впровадження програмного забезпечення для бізнесу"
+      ? "Професійна зовнішня компонента для інтеграції з фіскальними реєстраторами POSNET / Thermal"
       : language === 'pl'
-      ? "Rozwój i wdrażanie oprogramowania dla biznesu" 
-      : "Разработка и внедрение программного обеспечения для бизнеса",
+      ? "Profesjonalny komponent zewnętrzny do integracji z drukarkami fiskalnymi POSNET / Thermal"
+      : "Профессиональная внешняя компонента для интеграции с фискальными регистраторами POSNET / Thermal",
+    "offers": {
+      "@type": "Offer",
+      "price": "1500",
+      "priceCurrency": language === 'pl' ? "PLN" : language === 'ru' ? "RUB" : "UAH",
+      "availability": "https://schema.org/InStock"
+    },
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "вул. Святовасилівська 4/3",
@@ -29,161 +107,44 @@ export function createStructuredData(language: 'uk' | 'pl' | 'ru' = 'uk') {
       "email": "info@modulsoft.eu"
     }
   }
-
-  const productData = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "name": "Driver POSNET / Thermal для 1С:Enterprise",
-    "description": language === 'uk'
-      ? "Професійна зовнішня компонента для інтеграції з фіскальними реєстраторами POSNET / Thermal"
-      : language === 'pl'
-      ? "Profesjonalny komponent zewnętrzny do integracji z drukarkami fiskalnymi POSNET / Thermal"
-      : "Профессиональная внешняя компонента для интеграции с фискальными регистраторами POSNET / Thermal",
-    "offers": {
-      "@type": "Offer",
-      "price": language === 'ru' ? "1500" : "1500",
-      "priceCurrency": language === 'pl' ? "PLN" : language === 'ru' ? "RUB" : "UAH",
-      "availability": "https://schema.org/InStock"
-    },
-    "manufacturer": {
-      "@type": "Organization",
-      "name": "ModulSoft"
-    }
-  }
-
-  return { organizationData, productData }
 }
 
-// Performance monitoring
-export function measureWebVitals() {
-  if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
-    const observer = new PerformanceObserver((list) => {
-      for (const entry of list.getEntries()) {
-        // Log Core Web Vitals
-        if (entry.entryType === 'measure') {
-          console.log(`${entry.name}: ${entry.duration}ms`)
-        }
-      }
-    })
-    
-    observer.observe({ entryTypes: ['measure'] })
-  }
-}
-
-// Preload critical resources
-export function preloadCriticalResources() {
-  if (typeof window !== 'undefined') {
-    // Preload critical fonts
-    const fontLink = document.createElement('link')
-    fontLink.rel = 'preload'
-    fontLink.as = 'font'
-    fontLink.type = 'font/woff2'
-    fontLink.crossOrigin = 'anonymous'
-    fontLink.href = 'https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2'
-    document.head.appendChild(fontLink)
-    
-    // Preload critical images (when they exist)
-    const criticalImages = [
-      '/owl-mascot.svg',
-      '/modulsoft-logo.svg'
-    ]
-    
-    criticalImages.forEach(src => {
-      const link = document.createElement('link')
-      link.rel = 'preload'
-      link.as = 'image'
-      link.href = src
-      document.head.appendChild(link)
-    })
-  }
-}
-
-// Optimize images with lazy loading
-export function optimizeImages() {
-  if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const img = entry.target as HTMLImageElement
-          img.src = img.dataset.src || img.src
-          img.classList.remove('lazy')
-          observer.unobserve(img)
-        }
-      })
-    })
-    
-    document.querySelectorAll('img[data-src]').forEach(img => {
-      imageObserver.observe(img)
-    })
-  }
-}
-
-// Update meta tags for each language
+// Optimized meta tags update
 export function updateMetaTags(language: 'uk' | 'pl' | 'ru', title: string, description: string) {
   if (typeof document !== 'undefined') {
-    // Update title
     document.title = title
-    
-    // Update meta description
-    let descMeta = document.querySelector('meta[name="description"]')
-    if (!descMeta) {
-      descMeta = document.createElement('meta')
-      descMeta.setAttribute('name', 'description')
-      document.head.appendChild(descMeta)
-    }
-    descMeta.setAttribute('content', description)
-    
-    // Update language
     document.documentElement.lang = language
     
-    // Update Open Graph tags
-    const ogTags = [
-      { property: 'og:title', content: title },
-      { property: 'og:description', content: description },
-      { property: 'og:locale', content: language === 'uk' ? 'uk_UA' : language === 'pl' ? 'pl_PL' : 'ru_RU' }
+    const metaUpdates = [
+      { selector: 'meta[name="description"]', attr: 'content', value: description },
+      { selector: 'meta[property="og:title"]', attr: 'content', value: title },
+      { selector: 'meta[property="og:description"]', attr: 'content', value: description },
+      { selector: 'meta[property="og:locale"]', attr: 'content', 
+        value: language === 'uk' ? 'uk_UA' : language === 'pl' ? 'pl_PL' : 'ru_RU' }
     ]
     
-    ogTags.forEach(({ property, content }) => {
-      let meta = document.querySelector(`meta[property="${property}"]`)
-      if (!meta) {
-        meta = document.createElement('meta')
-        meta.setAttribute('property', property)
-        document.head.appendChild(meta)
+    metaUpdates.forEach(({ selector, attr, value }) => {
+      const meta = document.querySelector(selector)
+      if (meta) {
+        meta.setAttribute(attr, value)
       }
-      meta.setAttribute('content', content)
     })
   }
 }
 
-// Add structured data to head
+// Add structured data to head (prevent duplicates)
 export function addStructuredData(data: any) {
   if (typeof document !== 'undefined') {
+    // Remove existing structured data to prevent duplicates
+    const existing = document.querySelector('script[type="application/ld+json"][data-dynamic]')
+    if (existing) {
+      existing.remove()
+    }
+    
     const script = document.createElement('script')
     script.type = 'application/ld+json'
+    script.setAttribute('data-dynamic', 'true')
     script.textContent = JSON.stringify(data)
     document.head.appendChild(script)
-  }
-}
-
-// Optimize CSS loading
-export function optimizeCSSLoading() {
-  if (typeof document !== 'undefined') {
-    // Use requestIdleCallback for non-critical CSS
-    const nonCriticalCSS = document.querySelectorAll('link[rel="preload"][as="style"]')
-    
-    function loadCSS(link: HTMLLinkElement) {
-      link.rel = 'stylesheet'
-    }
-    
-    if ('requestIdleCallback' in window) {
-      nonCriticalCSS.forEach(link => {
-        requestIdleCallback(() => loadCSS(link as HTMLLinkElement))
-      })
-    } else {
-      // Fallback for browsers without requestIdleCallback
-      setTimeout(() => {
-        nonCriticalCSS.forEach(link => loadCSS(link as HTMLLinkElement))
-      }, 100)
-    }
   }
 }

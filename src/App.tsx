@@ -1,4 +1,4 @@
-import { useState, lazy, Suspense, useEffect } from "react"
+import { useState, lazy, Suspense, useEffect, memo } from "react"
 import { 
   Header, 
   Hero, 
@@ -28,38 +28,59 @@ import {
   updateMetaTags
 } from "@/utils/optimization"
 
-// Lazy load non-critical components
+// Optimized lazy loading with better splitting
 const ScrollToTop = lazy(() => import("@/components/ScrollToTop"))
+
 const ContactPage = lazy(() => import("@/components/ContactPage"))
+
 const PrivacyPolicy = lazy(() => import("@/components/PrivacyPolicy"))
+
 const CookieConsent = lazy(() => import("@/components/CookieConsent"))
 
 type CurrentView = "home" | "contacts" | "privacy"
+
+// Memoized loading component
+const LoadingSpinner = memo(() => (
+  <div className="fixed inset-0 bg-background/90 backdrop-blur-sm flex items-center justify-center z-50">
+    <div className="flex flex-col items-center gap-4">
+      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
+      <p className="text-sm text-muted-foreground">Завантаження...</p>
+    </div>
+  </div>
+))
+
+LoadingSpinner.displayName = "LoadingSpinner"
 
 function AppContent() {
   const { t } = useTranslation()
   const [isContactModalOpen, setIsContactModalOpen] = useState(false)
   const [contactService, setContactService] = useState("")
   const [currentView, setCurrentView] = useState<CurrentView>("home")
+  const [isInitialized, setIsInitialized] = useState(false)
 
-  // Initialize performance optimizations
+  // Optimized initialization
   useEffect(() => {
-    // Preload critical resources
-    preloadCriticalResources()
+    const initializeApp = async () => {
+      // Preload critical resources
+      preloadCriticalResources()
+      
+      // Setup performance monitoring
+      measureWebVitals()
+      
+      // Optimize images with lazy loading
+      setTimeout(() => {
+        optimizeImages()
+      }, 1000)
+      
+      // Mark as initialized after brief delay to prevent flash
+      setTimeout(() => setIsInitialized(true), 100)
+    }
     
-    // Setup performance monitoring
-    measureWebVitals()
-    
-    // Optimize images with lazy loading
-    const timer = setTimeout(() => {
-      optimizeImages()
-    }, 1000)
-    
-    return () => clearTimeout(timer)
+    initializeApp()
   }, [])
 
-  // Enable smooth scrolling for anchor links with optimized offset
-  useSmoothScroll({ offset: 80, duration: 800 })
+  // Optimized smooth scrolling
+  useSmoothScroll({ offset: 80, duration: 600 })
 
   const openContactModal = (service: string = "") => {
     setContactService(service || t('contact.title'))
@@ -78,22 +99,28 @@ function AppContent() {
     setCurrentView("home")
   }
 
+  // Optimized page transition variants
   const pageVariants = {
     initial: { opacity: 0 },
     animate: { 
       opacity: 1,
       transition: {
-        duration: 0.5,
+        duration: 0.3,
         ease: "easeOut"
       }
     },
     exit: { 
       opacity: 0,
       transition: {
-        duration: 0.3,
+        duration: 0.2,
         ease: "easeIn"
       }
     }
+  }
+
+  // Show loading state during initialization
+  if (!isInitialized) {
+    return <LoadingSpinner />
   }
 
   if (currentView === "contacts") {
@@ -106,9 +133,7 @@ function AppContent() {
           animate="animate"
           exit="exit"
         >
-          <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center">
-            <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
-          </div>}>
+          <Suspense fallback={<LoadingSpinner />}>
             <ContactPage 
               onBackClick={handleHomeClick}
               onContactClick={openContactModal}
@@ -136,9 +161,7 @@ function AppContent() {
           animate="animate"
           exit="exit"
         >
-          <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center">
-            <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
-          </div>}>
+          <Suspense fallback={<LoadingSpinner />}>
             <PrivacyPolicy onBackClick={handleHomeClick} />
           </Suspense>
           <Toaster richColors position="top-right" />
@@ -212,9 +235,7 @@ function AppContent() {
           onPrivacyClick={handlePrivacyClick}
         />
         
-        <Suspense fallback={<div className="fixed inset-0 bg-background/80 flex items-center justify-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-        </div>}>
+        <Suspense fallback={<div className="fixed bottom-4 right-4 w-12 h-12 bg-primary/10 rounded-full animate-pulse" />}>
           <ScrollToTop />
         </Suspense>
         

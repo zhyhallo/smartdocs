@@ -11,8 +11,9 @@ import { motion } from "framer-motion"
 import { useInView } from "@/hooks/useInView"
 import { OwlAnalyst, ParallaxBackground, FloatingElements } from "@/components"
 import { useTranslation } from "@/hooks/useTranslation"
+import { memo } from "react"
 
-export default function Features() {
+const Features = memo(function Features() {
   const [ref, isInView] = useInView({ threshold: 0.1 })
   const { t } = useTranslation()
 
@@ -238,4 +239,6 @@ export default function Features() {
       </div>
     </section>
   )
-}
+})
+
+export default Features

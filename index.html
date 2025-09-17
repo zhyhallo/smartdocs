@@ -29,57 +29,106 @@
     <meta property="twitter:description" content="Професійна зовнішня компонента для інтеграції з фіскальними реєстраторами POSNET / Thermal">
     <meta property="twitter:image" content="https://modulsoft.eu/og-image.jpg">
     
-    <!-- Preconnect to external domains for faster loading -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Performance optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://my.zadarma.com">
+    <link rel="dns-prefetch" href="//my.zadarma.com">
     
-    <!-- Critical font preload -->
+    <!-- Critical font preload for better performance -->
     <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin>
     
-    <!-- Load critical font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Load optimized font with font-display swap for better performance -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
     
-    <!-- Preload critical CSS -->
+    <!-- Critical CSS inline -->
+    <style>
+      /* Critical above-the-fold styles */
+      html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+      body { 
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+        margin: 0; 
+        background-color: oklch(0.98 0.02 240);
+        color: oklch(0.15 0.08 240);
+      }
+      .container { 
+        width: 100%; 
+        margin: 0 auto; 
+        padding: 0 1rem; 
+        max-width: 1200px; 
+      }
+      /* Loading spinner */
+      .loading-spinner {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 32px;
+        height: 32px;
+        border: 2px solid oklch(0.88 0.04 240);
+        border-top: 2px solid oklch(0.55 0.22 240);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        0% { transform: translate(-50%, -50%) rotate(0deg); }
+        100% { transform: translate(-50%, -50%) rotate(360deg); }
+      }
+    </style>
+    
+    <!-- Load main CSS -->
     <link href="/src/main.css" rel="stylesheet" />
     
-    <!-- Favicon and icons -->
+    <!-- Favicon optimized -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
     
-    <!-- Structured data -->
+    <!-- Structured data for better SEO -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "ModulSoft",
-        "url": "https://modulsoft.eu",
-        "logo": "https://modulsoft.eu/logo.png",
-        "description": "Розробка та впровадження програмного забезпечення для бізнесу",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "вул. Святовасилівська 4/3",
-            "addressLocality": "Луцьк",
-            "postalCode": "43025",
-            "addressCountry": "UA"
-        },
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+380931776504",
-            "contactType": "customer service",
-            "email": "info@modulsoft.eu"
+        "@type": "SoftwareApplication",
+        "name": "Driver POSNET / Thermal для 1С:Enterprise",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Windows",
+        "price": "1500",
+        "priceCurrency": "UAH",
+        "provider": {
+            "@type": "Organization",
+            "name": "ModulSoft",
+            "url": "https://modulsoft.eu",
+            "logo": "https://modulsoft.eu/logo.png",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "вул. Святовасилівська 4/3",
+                "addressLocality": "Луцьк",
+                "postalCode": "43025",
+                "addressCountry": "UA"
+            },
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+380931776504",
+                "contactType": "customer service",
+                "email": "info@modulsoft.eu"
+            }
         }
     }
     </script>
+</head>
 
-    <!-- Zadarma Widget Script -->
-    <script type="text/javascript">
-        var ZCallbackWidgetLinkId = 'edec1cbf8a1f75508f534464a2b4fa55';
-        var ZCallbackWidgetDomain = 'my.zadarma.com';
-        (function(){
+<body>
+    <!-- Loading fallback -->
+    <div id="loading-fallback" class="loading-spinner"></div>
+    
+    <div id="root"></div>
+    
+    <!-- Load main script with defer for better performance -->
+    <script type="module" src="/src/main.tsx" defer></script>
+    
+    <!-- Zadarma Widget - Load async to not block rendering -->
+    <script type="text/javascript" async>
+        window.addEventListener('load', function() {
+            var ZCallbackWidgetLinkId = 'edec1cbf8a1f75508f534464a2b4fa55';
+            var ZCallbackWidgetDomain = 'my.zadarma.com';
             var lt = document.createElement('script');
             lt.type ='text/javascript';
             lt.charset = 'utf-8';
@@ -88,13 +137,8 @@
             var sc = document.getElementsByTagName('script')[0];
             if (sc) sc.parentNode.insertBefore(lt, sc);
             else document.documentElement.firstChild.appendChild(lt);
-        })();
+        });
     </script>
-</head>
-
-<body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
 </body>
 
 </html>

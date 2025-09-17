@@ -3,8 +3,9 @@ import { motion } from "framer-motion"
 import { useInView } from "@/hooks/useInView"
 import { OwlAnalyst } from "@/components"
 import { useTranslation } from "@/hooks/useTranslation"
+import { memo } from "react"
 
-export default function FAQ() {
+const FAQ = memo(function FAQ() {
   const [ref, isInView] = useInView({ threshold: 0.1 })
   const { t } = useTranslation()
 
@@ -337,4 +338,6 @@ export default function FAQ() {
       </div>
     </section>
   )
-}
+})
+
+export default FAQ
