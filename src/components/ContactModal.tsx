@@ -26,6 +26,7 @@ interface FormData {
 }
 
 export default function ContactModal({ open, onOpenChange, defaultService = "Консультація", onPrivacyClick }: ContactModalProps) {
+  const { t } = useTranslation()
   const [formData, setFormData] = useState<FormData>({
     phone: "",
     email: "",

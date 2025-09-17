@@ -2,12 +2,14 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { ArrowLeft, Shield, Database, Cookie, Eye, FileText } from "@phosphor-icons/react"
+import { useTranslation } from "@/hooks/useTranslation"
 
 interface PrivacyPolicyProps {
   onBackClick?: () => void
 }
 
 export default function PrivacyPolicy({ onBackClick }: PrivacyPolicyProps) {
+  const { t } = useTranslation()
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -49,19 +51,19 @@ export default function PrivacyPolicy({ onBackClick }: PrivacyPolicyProps) {
               className="mb-6 cursor-pointer"
             >
               <ArrowLeft size={16} className="mr-2" />
-              Повернутись назад
+              {t('privacy.back')}
             </Button>
           )}
           
           <div className="flex items-center mb-4">
             <Shield size={32} className="text-primary mr-3" />
             <h1 className="text-4xl font-bold text-foreground">
-              Політика конфіденційності
+              {t('privacy.title')}
             </h1>
           </div>
           
           <p className="text-muted-foreground text-lg">
-            Остання редакція: {new Date().toLocaleDateString('uk-UA')}
+            {t('privacy.last-updated')}: {new Date().toLocaleDateString('uk-UA')}
           </p>
         </motion.div>
 
@@ -71,20 +73,15 @@ export default function PrivacyPolicy({ onBackClick }: PrivacyPolicyProps) {
               <div className="flex items-center mb-4">
                 <FileText size={24} className="text-accent mr-3" />
                 <h2 className="text-2xl font-bold text-foreground">
-                  Загальні положення
+                  {t('privacy.general.title')}
                 </h2>
               </div>
               <div className="text-foreground leading-relaxed space-y-4">
                 <p>
-                  Компанія ModulSoft ("Компанія", "ми", "нас", "наш") зобов'язується захищати 
-                  конфіденційність ваших персональних даних. Ця Політика конфіденційності 
-                  пояснює, як ми збираємо, використовуємо, зберігаємо та захищаємо вашу 
-                  персональну інформацію відповідно до Загального регламенту захисту даних (GDPR) 
-                  та Закону України "Про захист персональних даних".
+                  {t('privacy.general.content1')}
                 </p>
                 <p>
-                  Використовуючи наш веб-сайт або наші послуги, ви погоджуєтесь з умовами 
-                  цієї Політики конфіденційності.
+                  {t('privacy.general.content2')}
                 </p>
               </div>
             </CardContent>
@@ -95,16 +92,16 @@ export default function PrivacyPolicy({ onBackClick }: PrivacyPolicyProps) {
               <div className="flex items-center mb-4">
                 <Database size={24} className="text-accent mr-3" />
                 <h2 className="text-2xl font-bold text-foreground">
-                  Персональні дані, які ми збираємо
+                  {t('privacy.data.title')}
                 </h2>
               </div>
               <div className="text-foreground leading-relaxed space-y-4">
-                <p>Ми можемо збирати наступні категорії персональних даних:</p>
+                <p>{t('privacy.data.intro')}</p>
                 <ul className="list-disc pl-6 space-y-2">
-                  <li><strong>Контактна інформація:</strong> ім'я, адреса електронної пошти, номер телефону, назва компанії</li>
-                  <li><strong>Технічна інформація:</strong> IP-адреса, тип браузера, операційна система, дані про використання сайту</li>
-                  <li><strong>Файли cookie:</strong> інформація про ваші налаштування та активність на сайті</li>
-                  <li><strong>Комерційна інформація:</strong> історія замовлень, платіжна інформація (зберігається через захищені платіжні системи)</li>
+                  <li><strong>{t('privacy.data.contact')}</strong></li>
+                  <li><strong>{t('privacy.data.technical')}</strong></li>
+                  <li><strong>{t('privacy.data.cookies')}</strong></li>
+                  <li><strong>{t('privacy.data.commercial')}</strong></li>
                 </ul>
               </div>
             </CardContent>
@@ -115,19 +112,19 @@ export default function PrivacyPolicy({ onBackClick }: PrivacyPolicyProps) {
               <div className="flex items-center mb-4">
                 <Eye size={24} className="text-accent mr-3" />
                 <h2 className="text-2xl font-bold text-foreground">
-                  Як ми використовуємо ваші дані
+                  {t('privacy.usage.title')}
                 </h2>
               </div>
               <div className="text-foreground leading-relaxed space-y-4">
-                <p>Ми використовуємо ваші персональні дані для:</p>
+                <p>{t('privacy.usage.intro')}</p>
                 <ul className="list-disc pl-6 space-y-2">
-                  <li>Надання наших продуктів та послуг</li>
-                  <li>Обробки замовлень та здійснення платежів</li>
-                  <li>Зв'язку з вами щодо ваших запитів</li>
-                  <li>Покращення нашого веб-сайту та послуг</li>
-                  <li>Відправки маркетингових повідомлень (за вашою згодою)</li>
-                  <li>Дотримання юридичних зобов'язань</li>
-                  <li>Захисту наших прав та інтересів</li>
+                  <li>{t('privacy.usage.services')}</li>
+                  <li>{t('privacy.usage.orders')}</li>
+                  <li>{t('privacy.usage.contact')}</li>
+                  <li>{t('privacy.usage.improve')}</li>
+                  <li>{t('privacy.usage.marketing')}</li>
+                  <li>{t('privacy.usage.legal')}</li>
+                  <li>{t('privacy.usage.protection')}</li>
                 </ul>
               </div>
             </CardContent>
@@ -138,21 +135,19 @@ export default function PrivacyPolicy({ onBackClick }: PrivacyPolicyProps) {
               <div className="flex items-center mb-4">
                 <Cookie size={24} className="text-accent mr-3" />
                 <h2 className="text-2xl font-bold text-foreground">
-                  Файли cookie та відстеження
+                  {t('privacy.cookies.title')}
                 </h2>
               </div>
               <div className="text-foreground leading-relaxed space-y-4">
                 <p>
-                  Наш веб-сайт використовує файли cookie для покращення функціональності 
-                  та аналізу використання сайту. Cookie - це невеликі текстові файли, 
-                  які зберігаються на вашому пристрої.
+                  {t('privacy.cookies.description')}
                 </p>
-                <p><strong>Типи cookie, які ми використовуємо:</strong></p>
+                <p><strong>{t('privacy.cookies.types')}</strong></p>
                 <ul className="list-disc pl-6 space-y-2">
-                  <li><strong>Обов'язкові cookie:</strong> необхідні для функціонування сайту</li>
-                  <li><strong>Функціональні cookie:</strong> зберігають ваші налаштування</li>
-                  <li><strong>Аналітичні cookie:</strong> допомагають нам покращувати сайт</li>
-                  <li><strong>Маркетингові cookie:</strong> для персоналізації реклами (за згодою)</li>
+                  <li><strong>{t('privacy.cookies.essential')}</strong></li>
+                  <li><strong>{t('privacy.cookies.functional')}</strong></li>
+                  <li><strong>{t('privacy.cookies.analytics')}</strong></li>
+                  <li><strong>{t('privacy.cookies.marketing')}</strong></li>
                 </ul>
               </div>
             </CardContent>
@@ -163,22 +158,22 @@ export default function PrivacyPolicy({ onBackClick }: PrivacyPolicyProps) {
               <div className="flex items-center mb-4">
                 <Shield size={24} className="text-accent mr-3" />
                 <h2 className="text-2xl font-bold text-foreground">
-                  Ваші права
+                  {t('privacy.rights.title')}
                 </h2>
               </div>
               <div className="text-foreground leading-relaxed space-y-4">
-                <p>Відповідно до GDPR та українського законодавства, ви маєте право:</p>
+                <p>{t('privacy.rights.intro')}</p>
                 <ul className="list-disc pl-6 space-y-2">
-                  <li>Доступу до ваших персональних даних</li>
-                  <li>Виправлення неточних даних</li>
-                  <li>Видалення ваших даних</li>
-                  <li>Обмеження обробки</li>
-                  <li>Портативності даних</li>
-                  <li>Заперечення проти обробки</li>
-                  <li>Відкликання згоди в будь-який час</li>
+                  <li>{t('privacy.rights.access')}</li>
+                  <li>{t('privacy.rights.rectification')}</li>
+                  <li>{t('privacy.rights.erasure')}</li>
+                  <li>{t('privacy.rights.restriction')}</li>
+                  <li>{t('privacy.rights.portability')}</li>
+                  <li>{t('privacy.rights.objection')}</li>
+                  <li>{t('privacy.rights.withdraw')}</li>
                 </ul>
                 <p>
-                  Для реалізації цих прав зверніться до нас за адресою: 
+                  {t('privacy.rights.contact')}{' '}
                   <a href="mailto:info@modulsoft.eu" className="text-accent underline">
                     info@modulsoft.eu
                   </a>
@@ -192,19 +187,15 @@ export default function PrivacyPolicy({ onBackClick }: PrivacyPolicyProps) {
               <div className="flex items-center mb-4">
                 <Database size={24} className="text-accent mr-3" />
                 <h2 className="text-2xl font-bold text-foreground">
-                  Безпека та зберігання даних
+                  {t('privacy.security.title')}
                 </h2>
               </div>
               <div className="text-foreground leading-relaxed space-y-4">
                 <p>
-                  Ми вживаємо відповідних технічних та організаційних заходів для захисту 
-                  ваших персональних даних від несанкціонованого доступу, втрати або 
-                  знищення.
+                  {t('privacy.security.protection')}
                 </p>
                 <p>
-                  Ваші дані зберігаються лише стільки часу, скільки необхідно для 
-                  досягнення цілей, для яких вони були зібрані, або відповідно до 
-                  юридичних вимог.
+                  {t('privacy.security.retention')}
                 </p>
               </div>
             </CardContent>
@@ -215,13 +206,12 @@ export default function PrivacyPolicy({ onBackClick }: PrivacyPolicyProps) {
               <div className="flex items-center mb-4">
                 <FileText size={24} className="text-accent mr-3" />
                 <h2 className="text-2xl font-bold text-foreground">
-                  Контактна інформація
+                  {t('privacy.contact.title')}
                 </h2>
               </div>
               <div className="text-foreground leading-relaxed space-y-4">
                 <p>
-                  Якщо у вас є питання щодо цієї Політики конфіденційності або ви хочете 
-                  реалізувати свої права щодо персональних даних, зверніться до нас:
+                  {t('privacy.contact.intro')}
                 </p>
                 <div className="bg-muted/50 p-4 rounded-lg">
                   <p><strong>ModulSoft</strong></p>
@@ -230,7 +220,7 @@ export default function PrivacyPolicy({ onBackClick }: PrivacyPolicyProps) {
                   <p>Email: <a href="mailto:info@modulsoft.eu" className="text-accent">info@modulsoft.eu</a></p>
                 </div>
                 <p>
-                  Ми зобов'язуємося відповісти на ваш запит протягом 30 днів.
+                  {t('privacy.contact.response')}
                 </p>
               </div>
             </CardContent>

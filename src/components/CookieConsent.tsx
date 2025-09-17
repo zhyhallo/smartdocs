@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { motion, AnimatePresence } from "framer-motion"
 import { X, Cookie, Shield, CheckCircle } from "@phosphor-icons/react"
 import { useKV } from "@github/spark/hooks"
+import { useTranslation } from "@/hooks/useTranslation"
 
 interface CookieConsentProps {
   onAccept?: () => void
@@ -12,6 +13,7 @@ interface CookieConsentProps {
 }
 
 export default function CookieConsent({ onAccept, onDecline, onLearnMore }: CookieConsentProps) {
+  const { t } = useTranslation()
   const [isVisible, setIsVisible] = useState(false)
   const [cookieConsent, setCookieConsent, deleteCookieConsent] = useKV("cookie-consent", undefined as string | undefined)
   const [isAccepted, setIsAccepted] = useState(false)
@@ -111,7 +113,7 @@ export default function CookieConsent({ onAccept, onDecline, onLearnMore }: Cook
                   <CheckCircle size={20} className="text-green-600" />
                 </div>
                 <p className="text-foreground font-medium">
-                  Дякуємо за вашу згоду! Налаштування збережено.
+                  {t('cookies.success')}
                 </p>
               </motion.div>
             ) : (
@@ -126,18 +128,17 @@ export default function CookieConsent({ onAccept, onDecline, onLearnMore }: Cook
                   <div className="flex items-center space-x-2">
                     <Shield size={20} className="text-primary" />
                     <h3 className="text-lg font-bold text-foreground">
-                      Повідомлення про файли cookie
+                      {t('cookies.title')}
                     </h3>
                   </div>
                   
                   <p className="text-muted-foreground leading-relaxed">
-                    Цей сайт використовує файли cookie для забезпечення найкращої роботи 
-                    та аналізу використання. Продовжуючи користування сайтом, ви погоджуєтесь 
-                    з нашою <button 
+                    {t('cookies.message')}{' '}
+                    <button 
                       onClick={handleLearnMore}
                       className="text-accent hover:underline cursor-pointer font-medium"
                     >
-                      Політикою конфіденційності
+                      {t('contact.privacy.link')}
                     </button>.
                   </p>
                 </div>
@@ -147,7 +148,7 @@ export default function CookieConsent({ onAccept, onDecline, onLearnMore }: Cook
                     onClick={handleAccept}
                     className="cursor-pointer whitespace-nowrap"
                   >
-                    Погоджуюсь
+                    {t('cookies.accept')}
                   </Button>
                   
                   <Button
@@ -155,7 +156,7 @@ export default function CookieConsent({ onAccept, onDecline, onLearnMore }: Cook
                     variant="outline"
                     className="cursor-pointer whitespace-nowrap"
                   >
-                    Детальніше
+                    {t('cookies.learn')}
                   </Button>
                   
                   <Button
@@ -165,7 +166,7 @@ export default function CookieConsent({ onAccept, onDecline, onLearnMore }: Cook
                     className="cursor-pointer p-2 w-10 h-10 sm:w-auto sm:h-auto"
                   >
                     <X size={16} className="sm:mr-2" />
-                    <span className="hidden sm:inline">Відхилити</span>
+                    <span className="hidden sm:inline">{t('cookies.decline')}</span>
                   </Button>
                 </div>
               </div>
