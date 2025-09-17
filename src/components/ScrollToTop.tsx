@@ -361,7 +361,7 @@ export default function ScrollToTop() {
     <AnimatePresence>
       {isVisible && (
         <motion.button
-          className="fixed bottom-6 right-6 p-4 rounded-full shadow-lg backdrop-blur-sm border border-border/50 hover:shadow-xl cursor-pointer z-[9999]"
+          className="fixed bottom-6 right-24 p-3 rounded-full shadow-lg backdrop-blur-sm border border-border/50 hover:shadow-xl cursor-pointer z-[9998]"
           variants={buttonVariants}
           initial="hidden"
           animate="visible"

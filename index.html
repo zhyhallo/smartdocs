@@ -124,21 +124,7 @@
     <!-- Load main script with defer for better performance -->
     <script type="module" src="/src/main.tsx" defer></script>
     
-    <!-- Zadarma Widget - Load async to not block rendering -->
-    <script type="text/javascript" async>
-        window.addEventListener('load', function() {
-            var ZCallbackWidgetLinkId = 'edec1cbf8a1f75508f534464a2b4fa55';
-            var ZCallbackWidgetDomain = 'my.zadarma.com';
-            var lt = document.createElement('script');
-            lt.type ='text/javascript';
-            lt.charset = 'utf-8';
-            lt.async = true;
-            lt.src = 'https://' + ZCallbackWidgetDomain + '/callbackWidget/js/main.min.js?v=1.15.4';
-            var sc = document.getElementsByTagName('script')[0];
-            if (sc) sc.parentNode.insertBefore(lt, sc);
-            else document.documentElement.firstChild.appendChild(lt);
-        });
-    </script>
+
 </body>
 
 </html>
