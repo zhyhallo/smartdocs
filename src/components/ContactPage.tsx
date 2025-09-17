@@ -174,13 +174,6 @@ export default function ContactPage({ onBackClick, onContactClick }: ContactPage
                 >
                   Отримати консультацію
                 </Button>
-                <Button
-                  onClick={() => onContactClick?.("Замовити дзвінок")}
-                  variant="outline"
-                  className="cursor-pointer"
-                >
-                  Замовити дзвінок
-                </Button>
               </div>
             </CardContent>
           </Card>

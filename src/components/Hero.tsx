@@ -78,7 +78,7 @@ export default function Hero({ onContactClick }: HeroProps) {
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 tracking-tight"
               variants={itemVariants}
             >
-              Driver POSNET / Thermal
+              Driver POSNET
               <motion.span 
                 className="block text-primary"
                 variants={itemVariants}
@@ -91,7 +91,7 @@ export default function Hero({ onContactClick }: HeroProps) {
               className="text-xl text-muted-foreground mb-8 leading-relaxed"
               variants={itemVariants}
             >
-              Професійна зовнішня компонента для інтеграції з фіскальними реєстраторами POSNET та Thermal. 
+              Професійний зовнішній компонент для інтеграції з фіскальними реєстраторами POSNET. 
               Надійність, стабільність і повна техпідтримка.
             </motion.p>
             
@@ -125,18 +125,7 @@ export default function Hero({ onContactClick }: HeroProps) {
                 size="md" 
                 className="drop-shadow-2xl" 
               />
-              
-              {/* Floating badge near owl */}
-              <motion.div
-                className="absolute -top-2 -right-8 bg-accent text-accent-foreground px-2 py-1 rounded-full text-xs font-medium shadow-lg"
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.2, duration: 0.5, type: "spring" }}
-              >
-                16+ років досвіду
-              </motion.div>
-              
-              {/* Enhanced floating elements around owl with parallax */}
+                          {/* Enhanced floating elements around owl with parallax */}
               <motion.div
                 className="absolute -right-6 top-12 w-3 h-3 bg-primary/20 rounded-full"
                 animate={{
