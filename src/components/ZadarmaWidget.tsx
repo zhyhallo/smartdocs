@@ -44,6 +44,34 @@ export default function ZadarmaWidget() {
         console.log('Zadarma script loaded successfully')
         setIsScriptLoaded(true)
         addCustomStyles()
+        
+        // Hide any Zadarma elements that appear after script load
+        setTimeout(() => {
+          const hideZadarmaElements = () => {
+            const zadarmaElements = document.querySelectorAll(`
+              .zcallback-widget-button,
+              .zcallback-widget-button-container,
+              #zcallback-widget-button,
+              .zcallback-info-button,
+              [id*="zadarma"],
+              [class*="zadarma"],
+              [class*="zcallback"]
+            `)
+            
+            zadarmaElements.forEach(el => {
+              if (el && el instanceof HTMLElement) {
+                el.style.display = 'none'
+                el.style.visibility = 'hidden'
+                el.style.opacity = '0'
+              }
+            })
+          }
+          
+          hideZadarmaElements()
+          // Repeat check every 500ms for 5 seconds
+          const interval = setInterval(hideZadarmaElements, 500)
+          setTimeout(() => clearInterval(interval), 5000)
+        }, 100)
       }
       
       script.onerror = (error) => {
@@ -66,13 +94,20 @@ export default function ZadarmaWidget() {
       const style = document.createElement('style')
       style.id = 'zadarma-custom-style'
       style.innerHTML = `
-        /* Hide default Zadarma button since we have our own */
+        /* Hide ALL default Zadarma buttons and widgets */
         .zcallback-widget-button,
-        .zcallback-widget-button-container {
+        .zcallback-widget-button-container,
+        #zcallback-widget-button,
+        .zcallback-info-button,
+        div[id*="zadarma"],
+        div[class*="zadarma"],
+        div[class*="zcallback"] {
           display: none !important;
+          visibility: hidden !important;
+          opacity: 0 !important;
         }
         
-        /* Style the popup */
+        /* Style the popup when it appears */
         .zcallback-widget-popup {
           border-radius: 12px !important;
           box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15) !important;
@@ -138,9 +173,8 @@ export default function ZadarmaWidget() {
           color: white !important;
         }
         
-        /* Hide unwanted elements */
+        /* Hide unwanted elements in popup */
         .zcallback-widget-info,
-        .zcallback-info-button,
         .zcallback-widget-powered {
           display: none !important;
         }
