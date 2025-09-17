@@ -1,5 +1,4 @@
 import { Separator } from "@/components/ui/separator"
-import { OwlAnalyst } from "@/components"
 
 interface FooterProps {
   onContactsClick?: () => void
@@ -34,33 +33,67 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
             <nav className="space-y-3">
               <button 
                 onClick={onHomeClick}
-                className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1"
+                className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1 w-full text-left"
               >
                 Головна
               </button>
               <button 
                 onClick={onContactsClick}
-                className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1"
+                className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1 w-full text-left"
               >
                 Контакти
               </button>
               <a 
                 href="#product"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const element = document.getElementById('product');
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }}
                 className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1"
               >
                 Продукт
               </a>
               <a 
                 href="#features"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const element = document.getElementById('features');
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }}
                 className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1"
               >
                 Функції
               </a>
               <a 
                 href="#pricing"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const element = document.getElementById('pricing');
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }}
                 className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1"
               >
                 Ціни
+              </a>
+              <a 
+                href="#faq"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const element = document.getElementById('faq');
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }}
+                className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1"
+              >
+                FAQ
               </a>
             </nav>
           </div>
@@ -101,16 +134,6 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Owl - Centered at bottom of footer content */}
-        <div className="flex justify-center items-center mb-8">
-          <OwlAnalyst 
-            size="md" 
-            animated={true} 
-            withTerminal={false}
-            className="filter invert" 
-          />
         </div>
         
         <Separator className="bg-background/20 mb-6" />
