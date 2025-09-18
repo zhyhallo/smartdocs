@@ -146,10 +146,6 @@ export default function CTA({ onContactClick }: CTAProps) {
           <motion.h2 
             className="text-3xl font-bold text-foreground mb-4"
             variants={itemVariants}
-            whileHover={{
-              scale: 1.02,
-              transition: { duration: 0.2 }
-            }}
           >
             {t('cta.title')}
           </motion.h2>
@@ -185,14 +181,9 @@ export default function CTA({ onContactClick }: CTAProps) {
                 }}
               />
               
-              {/* Animated phone icon */}
+              {/* Phone icon */}
               <motion.div
                 className="mr-2 relative z-10"
-                whileHover={{ 
-                  rotate: [0, -10, 10, 0],
-                  scale: 1.1,
-                  transition: { duration: 0.4 } 
-                }}
                 animate={{
                   y: [0, -2, 0]
                 }}

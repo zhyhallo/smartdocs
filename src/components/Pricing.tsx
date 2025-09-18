@@ -170,10 +170,6 @@ export default function Pricing({ onContactClick }: PricingProps) {
             variants={cardVariants}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
-            whileHover={{ 
-              scale: 1.02,
-              transition: { duration: 0.3 }
-            }}
           >
             <Card className="border-primary/50 shadow-xl hover:shadow-2xl transition-shadow duration-300 relative overflow-hidden">
               {/* Card background effect */}
@@ -213,10 +209,6 @@ export default function Pricing({ onContactClick }: PricingProps) {
                       variants={listItemVariants}
                       initial="hidden"
                       animate={isInView ? "visible" : "hidden"}
-                      whileHover={{
-                        x: 5,
-                        transition: { duration: 0.2 }
-                      }}
                     >
                       <motion.div
                         initial={{ scale: 0, rotate: -180 }}
@@ -229,11 +221,6 @@ export default function Pricing({ onContactClick }: PricingProps) {
                             ease: "backOut"
                           }
                         } : { scale: 0, rotate: -180 }}
-                        whileHover={{
-                          scale: 1.2,
-                          rotate: 360,
-                          transition: { duration: 0.3 }
-                        }}
                       >
                         <Check className="text-primary mr-3" size={20} />
                       </motion.div>

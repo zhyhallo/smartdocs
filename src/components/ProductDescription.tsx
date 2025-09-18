@@ -154,10 +154,6 @@ export default function ProductDescription() {
             variants={headerVariants}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
-            whileHover={{
-              scale: 1.02,
-              transition: { duration: 0.2 }
-            }}
           >
             {t('product.title')}
           </motion.h2>
@@ -180,12 +176,8 @@ export default function ProductDescription() {
             {benefits.map((benefit, index) => (
               <motion.div 
                 key={index}
-                className="text-center group cursor-pointer relative"
+                className="text-center relative"
                 variants={itemVariants}
-                whileHover={{ 
-                  scale: 1.05, 
-                  transition: { duration: 0.2 } 
-                }}
               >
                 {/* Individual card parallax background */}
                 <div className="absolute inset-0 rounded-lg opacity-5 pointer-events-none">
@@ -204,53 +196,24 @@ export default function ProductDescription() {
                 </div>
                 
                 <motion.div 
-                  className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors duration-300 relative overflow-hidden"
+                  className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 relative overflow-hidden"
                   variants={iconVariants}
                 >
                   {/* Icon container background effect */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-primary/5 to-accent/5 rounded-full"
-                    whileHover={{
-                      scale: 1.2,
-                      rotate: 180,
-                      transition: { duration: 0.4 }
-                    }}
-                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-accent/5 rounded-full" />
                   
-                  <motion.div
-                    className="relative z-10"
-                    whileHover={{ 
-                      scale: 1.1,
-                      rotate: [0, -10, 10, 0],
-                      transition: { 
-                        scale: { duration: 0.2 },
-                        rotate: { duration: 0.5 }
-                      } 
-                    }}
-                  >
+                  <div className="relative z-10">
                     {benefit.icon}
-                  </motion.div>
+                  </div>
                 </motion.div>
                 
-                <motion.h3 
-                  className="font-semibold mb-2 group-hover:text-primary transition-colors duration-300"
-                  whileHover={{
-                    y: -2,
-                    transition: { duration: 0.2 }
-                  }}
-                >
+                <h3 className="font-semibold mb-2">
                   {benefit.title}
-                </motion.h3>
+                </h3>
                 
-                <motion.p 
-                  className="text-muted-foreground"
-                  whileHover={{
-                    scale: 1.02,
-                    transition: { duration: 0.2 }
-                  }}
-                >
+                <p className="text-muted-foreground">
                   {benefit.description}
-                </motion.p>
+                </p>
               </motion.div>
             ))}
           </motion.div>

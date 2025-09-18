@@ -186,7 +186,7 @@ const Features = memo(function Features() {
         >
           {features.map((feature, index) => (
             <motion.div key={index} variants={cardVariants} className="h-full">
-              <Card className="h-full hover:shadow-xl transition-all duration-300 group cursor-pointer hover:scale-105 relative overflow-hidden flex flex-col">
+              <Card className="h-full transition-all duration-300 relative overflow-hidden flex flex-col">
                 {/* Card background parallax effect */}
                 <div className="absolute inset-0 opacity-5">
                   <motion.div
@@ -205,25 +205,17 @@ const Features = memo(function Features() {
                 
                 <CardContent className="p-6 relative z-10 flex flex-col h-full justify-between min-h-[200px]">
                   <motion.div 
-                    className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors duration-300"
+                    className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mb-4"
                     variants={iconVariants}
                     initial="hidden"
                     animate={isInView ? "visible" : "hidden"}
                     style={{ transitionDelay: `${index * 0.1}s` }}
-                    whileHover={{
-                      rotate: [0, -10, 10, 0],
-                      scale: 1.1
-                    }}
-                    transition={{
-                      rotate: { duration: 0.5 },
-                      scale: { duration: 0.2 }
-                    }}
                   >
-                    <div className="text-primary group-hover:scale-110 transition-transform duration-300">
+                    <div className="text-primary">
                       {feature.icon}
                     </div>
                   </motion.div>
-                  <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors duration-300 min-h-[3.5rem] flex items-start">
+                  <h3 className="text-xl font-semibold mb-3 transition-colors duration-300 min-h-[3.5rem] flex items-start">
                     {feature.title}
                   </h3>
                   <p className="text-muted-foreground leading-relaxed flex-1">
