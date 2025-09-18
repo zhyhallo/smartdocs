@@ -196,7 +196,7 @@ const FAQ = memo(function FAQ() {
                 animate={isInView ? { opacity: 1, scale: 1, x: 0 } : { opacity: 0, scale: 0.8, x: 20 }}
                 transition={{ duration: 0.6, delay: 0.7 }}
               >
-                <OwlMascot variant="analyst" size="lg" animated={true} />
+                <OwlMascot variant="analyst" size="xl" animated={true} />
                 
                 {/* Thought bubbles connecting question mark to owl */}
                 <motion.div

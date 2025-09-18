@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { useState, useEffect } from "react"
 
 interface OwlMascotProps {
-  size?: "xs" | "sm" | "md" | "lg" | "xl"
+  size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
   className?: string
   animated?: boolean
   variant?: "default" | "analyst" | "loader"
@@ -23,8 +23,9 @@ export default function OwlMascot({
     xs: "w-8 h-8 sm:w-10 sm:h-10",      // Very small
     sm: "w-12 h-12 sm:w-14 sm:h-14",    // Small
     md: "w-16 h-16 sm:w-20 sm:h-20",    // Medium
-    lg: "w-24 h-24 sm:w-28 sm:h-28",    // Large
-    xl: "w-32 h-32 sm:w-36 sm:h-36"     // Extra large
+    lg: "w-36 h-36 sm:w-42 sm:h-42",    // Large - увеличено на 150%
+    xl: "w-48 h-48 sm:w-54 sm:h-54",    // Extra large - увеличено на 150%
+    "2xl": "w-60 h-60 sm:w-72 sm:h-72"  // Super large для hero
   }
 
   // Blink animation timer
