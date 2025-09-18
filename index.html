@@ -74,7 +74,7 @@
     <meta name="business:contact_data:country_name" content="Україна">
     <meta name="business:contact_data:phone_number" content="+380931776504">
     <meta name="business:contact_data:email" content="info@modulsoft.eu">
-    <meta name="business:hours" content="mo-fr 08:00-17:00")
+    <meta name="business:hours" content="mo-fr 08:00-17:00">
     
     <!-- Performance optimizations with enhanced preloading -->
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
@@ -429,90 +429,21 @@
         }
     }
     </script>
-</head>
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="dns-prefetch" href="//my.zadarma.com">
     
-    <!-- Critical font preload for better performance -->
-    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin>
-    
-    <!-- Load optimized font with font-display swap for better performance -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
-    
-    <!-- Critical CSS inline -->
-    <style>
-      /* Critical above-the-fold styles */
-      html { scroll-behavior: smooth; scroll-padding-top: 80px; }
-      body { 
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
-        margin: 0; 
-        background-color: oklch(0.98 0.02 240);
-        color: oklch(0.15 0.08 240);
-      }
-      .container { 
-        width: 100%; 
-        margin: 0 auto; 
-        padding: 0 1rem; 
-        max-width: 1200px; 
-      }
-      /* Loading spinner */
-      .loading-spinner {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 32px;
-        height: 32px;
-        border: 2px solid oklch(0.88 0.04 240);
-        border-top: 2px solid oklch(0.55 0.22 240);
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-      }
-      @keyframes spin {
-        0% { transform: translate(-50%, -50%) rotate(0deg); }
-        100% { transform: translate(-50%, -50%) rotate(360deg); }
-      }
-    </style>
-    
-    <!-- Load main CSS -->
-    <link href="/src/main.css" rel="stylesheet" />
-    
-    <!-- Favicon optimized -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    
-    <!-- Structured data for better SEO -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "Driver POSNET / Thermal для 1С:Enterprise",
-        "applicationCategory": "BusinessApplication",
-        "operatingSystem": "Windows",
-        "price": "1500",
-        "priceCurrency": "UAH",
-        "provider": {
-            "@type": "Organization",
-            "name": "ModulSoft",
-            "url": "https://modulsoft.eu",
-            "logo": "https://modulsoft.eu/logo.png",
-            "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "вул. Святовасилівська 4/3",
-                "addressLocality": "Луцьк",
-                "postalCode": "43025",
-                "addressCountry": "UA"
-            },
-            "contactPoint": {
-                "@type": "ContactPoint",
-                "telephone": "+380931776504",
-                "contactType": "customer service",
-                "email": "info@modulsoft.eu"
-            }
-        }
-    }
-    </script>
+    <!-- Zadarma Widget Script -->
+    <script type="text/javascript">
+    var ZCallbackWidgetLinkId = 'edec1cbf8a1f75508f534464a2b4fa55';
+    var ZCallbackWidgetDomain = 'my.zadarma.com';
+    (function(){
+        var lt = document.createElement('script');
+        lt.type = 'text/javascript';
+        lt.charset = 'utf-8';
+        lt.async = true;
+        lt.src = 'https://' + ZCallbackWidgetDomain + '/callbackWidget/js/main.min.js?v=1.15.4';
+        var sc = document.getElementsByTagName('script')[0];
+        if (sc) sc.parentNode.insertBefore(lt, sc);
+        else document.documentElement.firstChild.appendChild(lt);
+    })();
 </head>
 
 <body>
