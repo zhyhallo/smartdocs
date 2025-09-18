@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { motion } from "framer-motion"
-import { OwlAnalyst, ParallaxBackground, FloatingElements } from "@/components"
+import { OwlMascot, ParallaxBackground, FloatingElements } from "@/components"
 import { useTranslation } from "@/hooks/useTranslation"
 import { memo } from "react"
 
@@ -123,7 +123,7 @@ const Hero = memo(function Hero({ onContactClick }: HeroProps) {
             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
           >
             <div className="relative">
-              <OwlAnalyst 
+              <OwlMascot 
                 size="md" 
                 className="drop-shadow-2xl" 
               />
