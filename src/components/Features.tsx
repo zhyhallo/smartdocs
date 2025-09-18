@@ -9,7 +9,7 @@ import {
 } from "@phosphor-icons/react"
 import { motion } from "framer-motion"
 import { useInView } from "@/hooks/useInView"
-import { OwlAnalyst, ParallaxBackground, FloatingElements } from "@/components"
+import { OwlMascot, ParallaxBackground, FloatingElements } from "@/components"
 import { useTranslation } from "@/hooks/useTranslation"
 import { memo } from "react"
 
@@ -120,7 +120,7 @@ const Features = memo(function Features() {
             ease: "easeInOut"
           }}
         >
-          <OwlAnalyst 
+          <OwlMascot variant="analyst" 
             size="sm" 
             animated={false} 
           />
@@ -140,7 +140,7 @@ const Features = memo(function Features() {
             delay: 2
           }}
         >
-          <OwlAnalyst 
+          <OwlMascot variant="analyst" 
             size="xs" 
             animated={false} 
           />

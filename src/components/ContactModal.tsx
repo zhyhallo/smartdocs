@@ -8,7 +8,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Phone, Envelope, Building, User, CheckCircle, Shield } from "@phosphor-icons/react"
 import { toast } from "sonner"
 import { motion, AnimatePresence } from "framer-motion"
-import { OwlLoader } from "@/components"
+import { OwlMascot } from "@/components"
 import { useTranslation } from "@/hooks/useTranslation"
 
 interface ContactModalProps {
@@ -143,7 +143,7 @@ export default function ContactModal({ open, onOpenChange, defaultService = "", 
       <DialogContent className="sm:max-w-lg max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-xl font-bold text-foreground flex items-center">
-            <OwlLoader size="sm" className="mr-3" />
+            <OwlMascot variant="loader" size="sm" className="mr-3" />
             {defaultService || t('contact.title')}
           </DialogTitle>
           <DialogDescription className="text-muted-foreground">
@@ -264,7 +264,7 @@ export default function ContactModal({ open, onOpenChange, defaultService = "", 
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                     >
-                      <OwlLoader size="sm" className="mr-2" />
+                      <OwlMascot variant="loader" size="sm" className="mr-2" />
                       {t('contact.submitting')}
                     </motion.div>
                   ) : (

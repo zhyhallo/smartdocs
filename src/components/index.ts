@@ -17,8 +17,6 @@ export { default as CookieConsent } from './CookieConsent'
 
 // UI enhancements
 export { default as OwlMascot } from './OwlMascot'
-export { default as OwlAnalyst } from './OwlAnalyst'
-export { default as OwlLoader } from './OwlLoader'
 
 export { default as ScrollToTop } from './ScrollToTop'
 export { default as ParallaxBackground } from './ParallaxBackground'

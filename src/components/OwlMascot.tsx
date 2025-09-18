@@ -1,24 +1,145 @@
 import { motion, AnimatePresence } from "framer-motion"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 interface OwlMascotProps {
   size?: "xs" | "sm" | "md" | "lg" | "xl"
   className?: string
   animated?: boolean
+  variant?: "default" | "analyst" | "loader"
 }
 
-export default function OwlMascot({ size = "md", className = "", animated = true }: OwlMascotProps) {
+export default function OwlMascot({ 
+  size = "md", 
+  className = "", 
+  animated = true, 
+  variant = "default" 
+}: OwlMascotProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [showSparkles, setShowSparkles] = useState(false)
+  const [isBlinking, setIsBlinking] = useState(false)
+  const [isLookingAround, setIsLookingAround] = useState(false)
   
   const sizeClasses = {
-    xs: "w-1.5 h-1.5 sm:w-2 sm:h-2",    // Very small
-    sm: "w-2 h-2 sm:w-2.5 sm:h-2.5",    // Small
-    md: "w-3 h-3 sm:w-3.5 sm:h-3.5",    // Medium - reduced
-    lg: "w-4 h-4 sm:w-4.5 sm:h-4.5",    // Large - reduced
-    xl: "w-5 h-5 sm:w-5.5 sm:h-5.5"     // Extra large - reduced
+    xs: "w-8 h-8 sm:w-10 sm:h-10",      // Very small
+    sm: "w-12 h-12 sm:w-14 sm:h-14",    // Small
+    md: "w-16 h-16 sm:w-20 sm:h-20",    // Medium
+    lg: "w-24 h-24 sm:w-28 sm:h-28",    // Large
+    xl: "w-32 h-32 sm:w-36 sm:h-36"     // Extra large
   }
 
+  // Blink animation timer
+  useEffect(() => {
+    if (!animated || variant === "loader") return
+    
+    const blinkTimer = setInterval(() => {
+      setIsBlinking(true)
+      setTimeout(() => setIsBlinking(false), 200)
+    }, 4000 + Math.random() * 3000)
+
+    return () => clearInterval(blinkTimer)
+  }, [animated, variant])
+
+  // Look around animation timer
+  useEffect(() => {
+    if (!animated || variant === "loader") return
+    
+    const lookTimer = setInterval(() => {
+      setIsLookingAround(true)
+      setTimeout(() => setIsLookingAround(false), 2000)
+    }, 8000 + Math.random() * 4000)
+
+    return () => clearInterval(lookTimer)
+  }, [animated, variant])
+
+  const handleMouseEnter = () => {
+    if (variant === "loader") return
+    setIsHovered(true)
+    setShowSparkles(true)
+    setTimeout(() => setShowSparkles(false), 2000)
+  }
+
+  const handleMouseLeave = () => {
+    if (variant === "loader") return
+    setIsHovered(false)
+  }
+
+  // Loader variant
+  if (variant === "loader") {
+    return (
+      <div className={`flex items-center justify-center ${className}`}>
+        <motion.div
+          className={`relative ${sizeClasses[size]}`}
+          animate={{
+            rotate: [0, -8, 8, -5, 5, 0],
+            y: [0, -2, 0, -1, 0],
+          }}
+          transition={{
+            duration: 3,
+            ease: "easeInOut",
+            repeat: Infinity,
+            repeatDelay: 0.5
+          }}
+        >
+          <motion.div 
+            className="absolute inset-0 bg-primary rounded-full shadow-lg"
+            animate={{
+              scale: [1, 1.05, 1, 1.02, 1],
+            }}
+            transition={{
+              duration: 2.5,
+              ease: "easeInOut",
+              repeat: Infinity
+            }}
+          >
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="relative flex space-x-1">
+                {[0, 1].map((i) => (
+                  <motion.div 
+                    key={i}
+                    className="w-2 h-2 bg-white rounded-full relative shadow-inner"
+                    animate={{
+                      scaleY: [1, 0.1, 1, 1, 1, 1, 1, 0.1, 1],
+                    }}
+                    transition={{
+                      duration: 4,
+                      ease: "easeInOut",
+                      repeat: Infinity,
+                    }}
+                  >
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-1 h-1 bg-accent rounded-full" />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+
+        <div className="ml-3 flex space-x-1">
+          {[0, 1, 2].map((index) => (
+            <motion.div
+              key={index}
+              className="w-1.5 h-1.5 bg-primary rounded-full"
+              animate={{
+                scale: [1, 1.3, 1],
+                opacity: [0.4, 1, 0.4],
+                y: [0, -4, 0]
+              }}
+              transition={{
+                duration: 1.2,
+                repeat: Infinity,
+                delay: index * 0.15,
+                ease: "easeInOut"
+              }}
+            />
+          ))}
+        </div>
+      </div>
+    )
+  }
+
+  // Main owl variants
   const owlVariants = {
     initial: { opacity: 0, scale: 0.8, rotate: -10 },
     animate: {
@@ -37,8 +158,7 @@ export default function OwlMascot({ size = "md", className = "", animated = true
       y: [-2, -8, -4, -6, -2],
       transition: {
         duration: 0.8,
-        ease: "easeInOut",
-        times: [0, 0.2, 0.4, 0.6, 0.8, 1]
+        ease: "easeInOut"
       }
     },
     float: {
@@ -49,121 +169,6 @@ export default function OwlMascot({ size = "md", className = "", animated = true
         ease: "easeInOut"
       }
     }
-  }
-
-  const eyeBlinkVariants = {
-    normal: {
-      scaleY: [1, 0.1, 1],
-      transition: {
-        duration: 0.3,
-        repeat: Infinity,
-        repeatDelay: 3,
-        ease: "easeInOut"
-      }
-    },
-    excited: {
-      scaleY: [1, 0.8, 1.2, 1],
-      scaleX: [1, 1.1, 0.9, 1],
-      transition: {
-        duration: 0.4,
-        repeat: Infinity,
-        repeatDelay: 1.5,
-        ease: "easeInOut"
-      }
-    }
-  }
-
-  const wingVariants = {
-    normal: {
-      rotate: 0,
-      transition: {
-        duration: 0.3,
-        ease: "easeInOut"
-      }
-    },
-    flap: {
-      rotate: [0, -25, 15, -20, 10, -15, 5, 0],
-      y: [0, -2, -1, -3, -1, -2, 0, 0],
-      transition: {
-        duration: 1.2,
-        repeat: Infinity,
-        ease: "easeInOut",
-        times: [0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1]
-      }
-    }
-  }
-
-  const headVariants = {
-    normal: {
-      rotate: 0,
-      x: 0,
-      transition: {
-        duration: 0.3,
-        ease: "easeInOut"
-      }
-    },
-    curious: {
-      rotate: [0, -8, 12, -6, 8, -4, 6, 0],
-      x: [0, -1, 2, -1, 1, -1, 1, 0],
-      transition: {
-        duration: 2,
-        repeat: Infinity,
-        ease: "easeInOut",
-        times: [0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1]
-      }
-    }
-  }
-
-  const pupilVariants = {
-    normal: {
-      x: 0,
-      y: 0,
-      transition: {
-        duration: 0.3,
-        ease: "easeInOut"
-      }
-    },
-    lookAround: {
-      x: [0, 2, -1, 1, -2, 1, 0],
-      y: [0, -1, 1, -2, 1, -1, 0],
-      transition: {
-        duration: 3,
-        repeat: Infinity,
-        ease: "easeInOut",
-        times: [0, 0.17, 0.33, 0.5, 0.67, 0.83, 1]
-      }
-    }
-  }
-
-  const glassesVariants = {
-    normal: {
-      scale: 1,
-      opacity: 0.6,
-      transition: {
-        duration: 0.3,
-        ease: "easeInOut"
-      }
-    },
-    shine: {
-      scale: [1, 1.05, 1],
-      opacity: [0.6, 0.9, 0.6],
-      transition: {
-        duration: 1.5,
-        repeat: Infinity,
-        ease: "easeInOut"
-      }
-    }
-  }
-
-  const handleMouseEnter = () => {
-    setIsHovered(true)
-    setShowSparkles(true)
-    // Hide sparkles after animation
-    setTimeout(() => setShowSparkles(false), 2000)
-  }
-
-  const handleMouseLeave = () => {
-    setIsHovered(false)
   }
 
   const OwlSVG = () => (
@@ -212,137 +217,87 @@ export default function OwlMascot({ size = "md", className = "", animated = true
         className="drop-shadow-md"
       />
       
-      {/* Owl Head with Animation */}
+      {/* Owl Head */}
       <motion.circle
         cx="100"
         cy="80"
         r="50"
         fill="oklch(0.65 0.18 220)"
         className="drop-shadow-md"
-        variants={headVariants}
-        animate={isHovered ? "curious" : "normal"}
+        animate={
+          isLookingAround || isHovered ? {
+            rotate: [0, -8, 8, -5, 0],
+          } : {}
+        }
+        transition={{ duration: 2, ease: "easeInOut" }}
       />
       
-      {/* Animated Ear Tufts */}
+      {/* Ear Tufts */}
       <motion.path
         d="M70 45 L75 25 L85 40 Z"
         fill="oklch(0.55 0.22 240)"
-        animate={{
-          rotate: isHovered ? [0, -5, 5, 0] : 0,
-          scale: isHovered ? [1, 1.1, 1] : 1
-        }}
-        transition={{
-          duration: 0.6,
-          ease: "easeInOut"
-        }}
+        animate={isHovered ? { rotate: [-2, 2, -2] } : {}}
+        transition={{ duration: 0.6, ease: "easeInOut" }}
       />
       <motion.path
         d="M130 45 L125 25 L115 40 Z"
         fill="oklch(0.55 0.22 240)"
-        animate={{
-          rotate: isHovered ? [0, 5, -5, 0] : 0,
-          scale: isHovered ? [1, 1.1, 1] : 1
-        }}
-        transition={{
-          duration: 0.6,
-          ease: "easeInOut",
-          delay: 0.1
-        }}
+        animate={isHovered ? { rotate: [2, -2, 2] } : {}}
+        transition={{ duration: 0.6, ease: "easeInOut", delay: 0.1 }}
       />
       
-      {/* Eyes Background with glow effect */}
+      {/* Eyes Background */}
+      <circle cx="85" cy="75" r="18" fill="white" />
+      <circle cx="115" cy="75" r="18" fill="white" />
+      
+      {/* Pupils with blink */}
       <motion.circle 
         cx="85" 
         cy="75" 
-        r="18" 
-        fill="white"
-        animate={{
-          r: isHovered ? [18, 20, 18] : 18
-        }}
-        transition={{ duration: 0.5 }}
+        r="12" 
+        fill="oklch(0.15 0.08 240)"
+        animate={
+          isBlinking ? { scaleY: 0.1 } : 
+          isHovered ? { scaleY: [1, 0.8, 1.2, 1], scaleX: [1, 1.1, 0.9, 1] } : {}
+        }
+        transition={{ duration: isBlinking ? 0.1 : 0.4 }}
       />
       <motion.circle 
         cx="115" 
         cy="75" 
-        r="18" 
-        fill="white"
-        animate={{
-          r: isHovered ? [18, 20, 18] : 18
-        }}
-        transition={{ duration: 0.5 }}
+        r="12" 
+        fill="oklch(0.15 0.08 240)"
+        animate={
+          isBlinking ? { scaleY: 0.1 } : 
+          isHovered ? { scaleY: [1, 0.8, 1.2, 1], scaleX: [1, 1.1, 0.9, 1] } : {}
+        }
+        transition={{ duration: isBlinking ? 0.1 : 0.4 }}
       />
       
-      {/* Eyes with pupils that can look around */}
-      <motion.g variants={pupilVariants} animate={isHovered ? "lookAround" : "normal"}>
-        <motion.circle 
-          cx="85" 
-          cy="75" 
-          r="12" 
-          fill="oklch(0.15 0.08 240)"
-          variants={eyeBlinkVariants}
-          animate={isHovered ? "excited" : "normal"}
-        />
-        <motion.circle 
-          cx="115" 
-          cy="75" 
-          r="12" 
-          fill="oklch(0.15 0.08 240)"
-          variants={eyeBlinkVariants}
-          animate={isHovered ? "excited" : "normal"}
-        />
-      </motion.g>
+      {/* Eye shine */}
+      <circle cx="88" cy="72" r="3" fill="white" />
+      <circle cx="118" cy="72" r="3" fill="white" />
       
-      {/* Enhanced Eye shine with animation */}
-      <motion.circle 
-        cx="88" 
-        cy="72" 
-        r="3" 
-        fill="white"
-        animate={{
-          scale: isHovered ? [1, 1.3, 1] : 1,
-          opacity: isHovered ? [1, 0.7, 1] : 1
-        }}
-        transition={{
-          duration: 1,
-          repeat: isHovered ? Infinity : 0
-        }}
-      />
-      <motion.circle 
-        cx="118" 
-        cy="72" 
-        r="3" 
-        fill="white"
-        animate={{
-          scale: isHovered ? [1, 1.3, 1] : 1,
-          opacity: isHovered ? [1, 0.7, 1] : 1
-        }}
-        transition={{
-          duration: 1,
-          repeat: isHovered ? Infinity : 0,
-          delay: 0.3
-        }}
-      />
-      
-      {/* Animated Beak */}
-      <motion.path
+      {/* Beak */}
+      <path
         d="M100 85 L90 95 L110 95 Z"
         fill="oklch(0.75 0.15 60)"
-        animate={{
-          scale: isHovered ? [1, 1.1, 1] : 1,
-          rotate: isHovered ? [0, -2, 2, 0] : 0
-        }}
-        transition={{ duration: 0.8 }}
       />
       
-      {/* Animated Wings */}
+      {/* Wings */}
       <motion.ellipse
         cx="75"
         cy="125"
         rx="15"
         ry="25"
         fill="oklch(0.45 0.20 240)"
-        variants={wingVariants}
-        animate={isHovered ? "flap" : "normal"}
+        animate={
+          isHovered ? {
+            rotate: [0, -25, 15, -20, 10, -15, 5, 0],
+            y: [0, -2, -1, -3, -1, -2, 0, 0]
+          } : {}
+        }
+        transition={{ duration: 1.2, ease: "easeInOut" }}
         style={{ transformOrigin: "75px 120px" }}
       />
       <motion.ellipse
@@ -351,88 +306,47 @@ export default function OwlMascot({ size = "md", className = "", animated = true
         rx="15"
         ry="25"
         fill="oklch(0.45 0.20 240)"
-        variants={wingVariants}
-        animate={isHovered ? "flap" : "normal"}
-        style={{ transformOrigin: "125px 120px", transform: "scaleX(-1)" }}
+        animate={
+          isHovered ? {
+            rotate: [0, 25, -15, 20, -10, 15, -5, 0],
+            y: [0, -2, -1, -3, -1, -2, 0, 0]
+          } : {}
+        }
+        transition={{ duration: 1.2, ease: "easeInOut" }}
+        style={{ transformOrigin: "125px 120px" }}
       />
       
-      {/* Chest Pattern with pulse */}
-      <motion.ellipse
+      {/* Chest Pattern */}
+      <ellipse
         cx="100"
         cy="120"
         rx="20"
         ry="15"
         fill="oklch(0.75 0.12 220)"
         opacity="0.7"
-        animate={{
-          scale: isHovered ? [1, 1.05, 1] : 1,
-          opacity: isHovered ? [0.7, 0.9, 0.7] : 0.7
-        }}
-        transition={{
-          duration: 1.5,
-          repeat: isHovered ? Infinity : 0
-        }}
       />
       
-      {/* Animated Feet */}
-      <motion.ellipse 
-        cx="90" 
-        cy="175" 
-        rx="8" 
-        ry="4" 
-        fill="oklch(0.75 0.15 60)"
-        animate={{
-          scale: isHovered ? [1, 1.1, 1] : 1,
-          y: isHovered ? [0, -1, 0] : 0
-        }}
-        transition={{ duration: 0.4 }}
-      />
-      <motion.ellipse 
-        cx="110" 
-        cy="175" 
-        rx="8" 
-        ry="4" 
-        fill="oklch(0.75 0.15 60)"
-        animate={{
-          scale: isHovered ? [1, 1.1, 1] : 1,
-          y: isHovered ? [0, -1, 0] : 0
-        }}
-        transition={{ duration: 0.4, delay: 0.1 }}
-      />
+      {/* Feet */}
+      <ellipse cx="90" cy="175" rx="8" ry="4" fill="oklch(0.75 0.15 60)" />
+      <ellipse cx="110" cy="175" rx="8" ry="4" fill="oklch(0.75 0.15 60)" />
       
-      {/* Animated Glasses (tech touch) */}
-      <motion.g variants={glassesVariants} animate={isHovered ? "shine" : "normal"}>
-        <circle cx="85" cy="75" r="20" fill="none" stroke="oklch(0.25 0.08 240)" strokeWidth="2" opacity="0.6" />
-        <circle cx="115" cy="75" r="20" fill="none" stroke="oklch(0.25 0.08 240)" strokeWidth="2" opacity="0.6" />
-        <line x1="105" y1="75" x2="95" y2="75" stroke="oklch(0.25 0.08 240)" strokeWidth="2" opacity="0.6" />
-      </motion.g>
-
-      {/* Hover Effect - Magic Aura */}
-      <AnimatePresence>
-        {isHovered && (
-          <motion.circle
-            cx="100"
-            cy="100"
-            r="80"
-            fill="none"
-            stroke="oklch(0.85 0.15 220)"
-            strokeWidth="1"
-            opacity="0.3"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{
-              scale: [0.8, 1.2, 0.8],
-              opacity: [0, 0.3, 0],
-              strokeWidth: [1, 3, 1]
-            }}
-            exit={{ scale: 0.8, opacity: 0 }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-        )}
-      </AnimatePresence>
+      {/* Glasses for analyst variant */}
+      {variant === "analyst" && (
+        <motion.g 
+          opacity="0.7"
+          animate={
+            isHovered ? { 
+              opacity: [0.7, 1, 0.7],
+              scale: [1, 1.05, 1]
+            } : {}
+          }
+          transition={{ duration: 1.5, repeat: Infinity }}
+        >
+          <circle cx="85" cy="75" r="20" fill="none" stroke="oklch(0.25 0.08 240)" strokeWidth="2" />
+          <circle cx="115" cy="75" r="20" fill="none" stroke="oklch(0.25 0.08 240)" strokeWidth="2" />
+          <line x1="105" y1="75" x2="95" y2="75" stroke="oklch(0.25 0.08 240)" strokeWidth="2" />
+        </motion.g>
+      )}
     </svg>
   )
 
@@ -450,12 +364,11 @@ export default function OwlMascot({ size = "md", className = "", animated = true
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Owl */}
       <div className="flex-shrink-0">
         <OwlSVG />
       </div>
       
-      {/* Additional Floating Hearts on Hover */}
+      {/* Interactive sparkles */}
       <AnimatePresence>
         {isHovered && (
           <>

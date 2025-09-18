@@ -1,7 +1,7 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { motion } from "framer-motion"
 import { useInView } from "@/hooks/useInView"
-import { OwlAnalyst } from "@/components"
+import { OwlMascot } from "@/components"
 import { useTranslation } from "@/hooks/useTranslation"
 import { memo } from "react"
 
@@ -196,7 +196,7 @@ const FAQ = memo(function FAQ() {
                 animate={isInView ? { opacity: 1, scale: 1, x: 0 } : { opacity: 0, scale: 0.8, x: 20 }}
                 transition={{ duration: 0.6, delay: 0.7 }}
               >
-                <OwlAnalyst size="sm" animated={true} />
+                <OwlMascot variant="analyst" size="sm" animated={true} />
                 
                 {/* Thought bubbles connecting question mark to owl */}
                 <motion.div
