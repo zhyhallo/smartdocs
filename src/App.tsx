@@ -35,24 +35,13 @@ const CookieConsent = lazy(() => import("@/components/CookieConsent"))
 
 type CurrentView = "home" | "contacts" | "privacy"
 
-// Memoized loading component
-const LoadingSpinner = memo(() => (
-  <div className="fixed inset-0 bg-background/90 backdrop-blur-sm flex items-center justify-center z-50">
-    <div className="flex flex-col items-center gap-4">
-      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
-      <p className="text-sm text-muted-foreground">Завантаження...</p>
-    </div>
-  </div>
-))
 
-LoadingSpinner.displayName = "LoadingSpinner"
 
 function AppContent() {
   const { t } = useTranslation()
   const [isContactModalOpen, setIsContactModalOpen] = useState(false)
   const [contactService, setContactService] = useState("")
   const [currentView, setCurrentView] = useState<CurrentView>("home")
-  const [isInitialized, setIsInitialized] = useState(false)
 
   // Optimized initialization
   useEffect(() => {
@@ -67,9 +56,6 @@ function AppContent() {
       setTimeout(() => {
         optimizeImages()
       }, 1000)
-      
-      // Mark as initialized after brief delay to prevent flash
-      setTimeout(() => setIsInitialized(true), 100)
     }
     
     initializeApp()
@@ -114,11 +100,6 @@ function AppContent() {
     }
   }
 
-  // Show loading state during initialization
-  if (!isInitialized) {
-    return <LoadingSpinner />
-  }
-
   if (currentView === "contacts") {
     return (
       <InteractionProvider>
@@ -129,7 +110,7 @@ function AppContent() {
           animate="animate"
           exit="exit"
         >
-          <Suspense fallback={<LoadingSpinner />}>
+          <Suspense fallback={<div className="flex items-center justify-center min-h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" /></div>}>
             <ContactPage 
               onBackClick={handleHomeClick}
               onContactClick={openContactModal}
@@ -157,7 +138,7 @@ function AppContent() {
           animate="animate"
           exit="exit"
         >
-          <Suspense fallback={<LoadingSpinner />}>
+          <Suspense fallback={<div className="flex items-center justify-center min-h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" /></div>}>
             <PrivacyPolicy onBackClick={handleHomeClick} />
           </Suspense>
           <Toaster richColors position="top-right" />

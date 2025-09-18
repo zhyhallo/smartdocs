@@ -165,24 +165,6 @@
         padding: 0 1rem; 
         max-width: 1200px; 
       }
-      /* Loading spinner optimization */
-      .loading-spinner {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 32px;
-        height: 32px;
-        border: 2px solid oklch(0.88 0.04 240);
-        border-top: 2px solid oklch(0.55 0.22 240);
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-        will-change: transform;
-      }
-      @keyframes spin {
-        0% { transform: translate(-50%, -50%) rotate(0deg); }
-        100% { transform: translate(-50%, -50%) rotate(360deg); }
-      }
       /* Prevent layout shift */
       img { max-width: 100%; height: auto; }
       .hero-section { min-height: 500px; }
@@ -439,9 +421,6 @@
 </head>
 
 <body>
-    <!-- Loading fallback -->
-    <div id="loading-fallback" class="loading-spinner"></div>
-    
     <div id="root"></div>
     
     <!-- Load main script with defer for better performance -->
