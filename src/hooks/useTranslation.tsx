@@ -20,6 +20,12 @@ const translations = {
     'nav.contacts': 'Контакти',
     'nav.call': 'Зателефонувати',
     
+    // Breadcrumb Navigation
+    'breadcrumb.navigation': 'Навігація по сайту',
+    'breadcrumb.home': 'Головна',
+    'breadcrumb.products': 'Продукти',
+    'breadcrumb.posnet_driver': 'Driver POSNET / Thermal',
+    
     // Hero Section
     'hero.title': 'Driver POSNET',
     'hero.subtitle': 'для 1С:Enterprise',
@@ -229,6 +235,12 @@ const translations = {
     'nav.contacts': 'Kontakt',
     'nav.call': 'Zadzwoń',
     
+    // Breadcrumb Navigation
+    'breadcrumb.navigation': 'Nawigacja po stronie',
+    'breadcrumb.home': 'Główna',
+    'breadcrumb.products': 'Produkty',
+    'breadcrumb.posnet_driver': 'Driver POSNET / Thermal',
+    
     // Hero Section
     'hero.title': 'Driver POSNET',
     'hero.subtitle': 'dla 1С:Enterprise',
@@ -437,6 +449,12 @@ const translations = {
     'nav.faq': 'FAQ',
     'nav.contacts': 'Контакты',
     'nav.call': 'Позвонить',
+    
+    // Breadcrumb Navigation
+    'breadcrumb.navigation': 'Навигация по сайту',
+    'breadcrumb.home': 'Главная',
+    'breadcrumb.products': 'Продукты',
+    'breadcrumb.posnet_driver': 'Driver POSNET / Thermal',
     
     // Hero Section
     'hero.title': 'Driver POSNET',

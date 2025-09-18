@@ -26,6 +26,18 @@ export { default as FloatingElements } from './FloatingElements'
 export { default as LanguageSwitcher } from './LanguageSwitcher'
 export { default as SEOManager } from './SEOManager'
 
+// SEO optimization components
+export { default as Breadcrumb } from './Breadcrumb'
+export { 
+  SEOContent, 
+  SEOHeading, 
+  SEOImage, 
+  SEOText, 
+  SEOList, 
+  SEOListItem, 
+  SEOFAQ 
+} from './SEOComponents'
+
 // Interactive components
 export { InteractiveSection } from './InteractiveSection'
 export { default as ZadarmaWidget } from './ZadarmaWidget'
