@@ -1,5 +1,6 @@
 /**
  * Advanced SEO and Performance Optimization Utilities
+ * Enhanced for multilingual support and maximum search visibility
  */
 
 // Type definitions for analytics
@@ -9,6 +10,8 @@ declare global {
     analytics?: {
       track: (event: string, properties?: any) => void
     }
+    // Yandex.Metrica support
+    ym?: (id: number, action: string, target?: string, options?: any) => void
   }
 }
 
@@ -22,30 +25,41 @@ interface LayoutShiftEntry extends PerformanceEntry {
   hadRecentInput: boolean
 }
 
-// Enhanced Web Vitals monitoring with detailed metrics
+// Enhanced Web Vitals monitoring with detailed metrics and reporting
 export function measureWebVitals() {
   if (typeof window !== 'undefined') {
-    // Core Web Vitals monitoring
+    // Core Web Vitals monitoring with enhanced error handling
     if ('PerformanceObserver' in window) {
       try {
-        // LCP (Largest Contentful Paint)
+        // LCP (Largest Contentful Paint) - Critical for SEO
         const lcpObserver = new PerformanceObserver((list) => {
           const entries = list.getEntries()
           const lastEntry = entries[entries.length - 1]
-          console.debug(`LCP: ${Math.round(lastEntry.startTime)}ms`)
+          const lcpValue = Math.round(lastEntry.startTime)
           
-          // Send to analytics if available
+          console.debug(`LCP: ${lcpValue}ms`)
+          
+          // Send to multiple analytics platforms
           if (window.gtag) {
             window.gtag('event', 'web_vitals', {
               name: 'LCP',
-              value: Math.round(lastEntry.startTime),
-              event_category: 'Performance'
+              value: lcpValue,
+              event_category: 'Performance',
+              custom_parameters: {
+                page_type: 'landing_page',
+                content_type: 'product_page'
+              }
             })
+          }
+
+          // Yandex.Metrica tracking for Russian markets
+          if (window.ym) {
+            window.ym(89645123, 'reachGoal', 'LCP_MEASURED', { value: lcpValue })
           }
         })
         lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true })
 
-        // FID (First Input Delay) 
+        // FID (First Input Delay) - User interaction responsiveness
         const fidObserver = new PerformanceObserver((list) => {
           const entries = list.getEntries()
           entries.forEach((entry) => {
@@ -66,7 +80,7 @@ export function measureWebVitals() {
         })
         fidObserver.observe({ type: 'first-input', buffered: true })
 
-        // CLS (Cumulative Layout Shift)
+        // CLS (Cumulative Layout Shift) - Visual stability
         let clsScore = 0
         const clsObserver = new PerformanceObserver((list) => {
           list.getEntries().forEach((entry) => {
@@ -79,18 +93,22 @@ export function measureWebVitals() {
         })
         clsObserver.observe({ type: 'layout-shift', buffered: true })
 
-        // FCP (First Contentful Paint)
+        // FCP (First Contentful Paint) - Initial content rendering
         const fcpObserver = new PerformanceObserver((list) => {
           const entries = list.getEntries()
           entries.forEach((entry) => {
             if (entry.name === 'first-contentful-paint') {
-              console.debug(`FCP: ${Math.round(entry.startTime)}ms`)
+              const fcpValue = Math.round(entry.startTime)
+              console.debug(`FCP: ${fcpValue}ms`)
               
               if (window.gtag) {
                 window.gtag('event', 'web_vitals', {
                   name: 'FCP',
-                  value: Math.round(entry.startTime),
-                  event_category: 'Performance'
+                  value: fcpValue,
+                  event_category: 'Performance',
+                  custom_parameters: {
+                    critical_resource: 'above_fold_content'
+                  }
                 })
               }
             }
@@ -98,20 +116,47 @@ export function measureWebVitals() {
         })
         fcpObserver.observe({ type: 'paint', buffered: true })
 
+        // TTFB (Time To First Byte) - Server response time
+        const navigationEntries = performance.getEntriesByType('navigation') as PerformanceNavigationTiming[]
+        if (navigationEntries.length > 0) {
+          const ttfb = navigationEntries[0].responseStart - navigationEntries[0].requestStart
+          console.debug(`TTFB: ${Math.round(ttfb)}ms`)
+          
+          if (window.gtag) {
+            window.gtag('event', 'web_vitals', {
+              name: 'TTFB',
+              value: Math.round(ttfb),
+              event_category: 'Performance'
+            })
+          }
+        }
+
       } catch (error) {
         console.debug('Performance monitoring setup failed:', error)
       }
     }
 
-    // Connection quality detection
+    // Connection quality detection for adaptive loading
     if ('connection' in navigator) {
       const connection = (navigator as any).connection
-      console.debug(`Network: ${connection.effectiveType} (${connection.downlink}Mbps)`)
+      const networkInfo = {
+        effectiveType: connection.effectiveType,
+        downlink: connection.downlink,
+        rtt: connection.rtt,
+        saveData: connection.saveData
+      }
+      
+      console.debug(`Network: ${networkInfo.effectiveType} (${networkInfo.downlink}Mbps, RTT: ${networkInfo.rtt}ms)`)
+      
+      // Adjust resource loading based on connection
+      if (networkInfo.saveData || networkInfo.effectiveType === 'slow-2g') {
+        document.documentElement.classList.add('low-bandwidth')
+      }
     }
   }
 }
 
-// Enhanced resource preloading with intelligent prioritization
+// Enhanced resource preloading with intelligent prioritization and multilingual assets
 export function preloadCriticalResources() {
   if (typeof document !== 'undefined') {
     const existingPreloads = new Set(
@@ -119,7 +164,7 @@ export function preloadCriticalResources() {
         .map(link => (link as HTMLLinkElement).href)
     )
     
-    // Critical font preloading
+    // Critical font preloading for multilingual support
     const criticalFonts = [
       {
         href: 'https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2',
@@ -140,97 +185,79 @@ export function preloadCriticalResources() {
       }
     })
 
-    // Preload critical images based on viewport
-    const heroImages = document.querySelectorAll('.hero-section img')
+    // Preload critical images based on viewport and language
+    const heroImages = document.querySelectorAll('.hero-section img, .owl-mascot svg')
     heroImages.forEach(img => {
-      const imgElement = img as HTMLImageElement
-      if (imgElement.src && !existingPreloads.has(imgElement.src)) {
+      const element = img as HTMLImageElement | SVGElement
+      const src = 'src' in element ? element.src : element.getAttribute('data-src')
+      
+      if (src && !existingPreloads.has(src)) {
         const link = document.createElement('link')
         link.rel = 'preload'
         link.as = 'image'
-        link.href = imgElement.src
+        link.href = src
         document.head.appendChild(link)
       }
     })
-  }
-}
 
-// Intelligent lazy loading with intersection observer optimization
-export function optimizeImages() {
-  if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
-    const imageObserver = new IntersectionObserver(
-      (entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const img = entry.target as HTMLImageElement
-            
-            // Handle data-src lazy loading
-            if (img.dataset.src && !img.src.includes(img.dataset.src)) {
-              img.src = img.dataset.src
-              img.classList.remove('lazy')
-            }
-            
-            // Handle srcset for responsive images
-            if (img.dataset.srcset) {
-              img.srcset = img.dataset.srcset
-              delete img.dataset.srcset
-            }
-            
-            // Add loaded class for fade-in effects
-            img.classList.add('loaded')
-            observer.unobserve(img)
-          }
-        })
-      },
-      {
-        rootMargin: '50px 0px',
-        threshold: 0.01
-      }
-    )
-    
-    // Observe all lazy images
-    document.querySelectorAll('img[data-src], img[data-srcset]').forEach(img => {
-      imageObserver.observe(img)
+    // Preload critical API endpoints
+    const criticalEndpoints = [
+      'https://api.modulsoft.eu/contact',
+      'https://api.modulsoft.eu/pricing'
+    ]
+
+    criticalEndpoints.forEach(endpoint => {
+      const link = document.createElement('link')
+      link.rel = 'prefetch'
+      link.href = endpoint
+      document.head.appendChild(link)
     })
   }
 }
 
-// Enhanced structured data with comprehensive SEO information
+// Enhanced structured data with comprehensive multilingual SEO information
 export function createStructuredData(language: 'uk' | 'pl' | 'ru' = 'uk') {
   const baseUrl = 'https://modulsoft.eu'
   
   const translations = {
     uk: {
       name: "ModulSoft - Driver POSNET для 1С:Enterprise",
-      description: "Професійна зовнішня компонента для інтеграції з фіскальними реєстраторами POSNET",
-      currency: "UAH",
+      description: "Професійна зовнішня компонента для інтеграції з фіскальними реєстраторами POSNET. Надійність, стабільність та професійна техпідтримка.",
+      currency: "PLN",
       locale: "uk_UA",
-      region: "Україна"
+      region: "Україна",
+      address: "м. Луцьк, вул. Святовасилівська 4/3",
+      keywords: ["POSNET", "1С:Enterprise", "фіскальний реєстратор", "інтеграція", "драйвер"]
     },
     pl: {
       name: "ModulSoft - Driver POSNET dla 1C:Enterprise", 
-      description: "Profesjonalny komponent zewnętrzny do integracji z drukarkami fiskalnymi POSNET",
+      description: "Gotowy komponent zewnętrzny do integracji z drukarkami fiskalnymi POSNET. Niezawodność, stabilność i profesjonalne wsparcie techniczne.",
       currency: "PLN",
       locale: "pl_PL",
-      region: "Polska"
+      region: "Polska",
+      address: "82-200 Malbork, ul. Łąkowa 15C",
+      keywords: ["POSNET", "1C:Enterprise", "drukarka fiskalna", "integracja", "sterownik"]
     },
     ru: {
       name: "ModulSoft - Driver POSNET для 1С:Enterprise",
-      description: "Профессиональная внешняя компонента для интеграции с фискальными регистраторами POSNET",
-      currency: "RUB", 
+      description: "Готовая внешняя компонента для интеграции с фискальными регистраторами POSNET. Надежность, стабильность и профессиональная техподдержка.",
+      currency: "PLN", 
       locale: "ru_RU",
-      region: "Россия"
+      region: "Россия",
+      address: "г. Луцк, ул. Святовасильевская 4/3",
+      keywords: ["POSNET", "1С:Enterprise", "фискальный регистратор", "интеграция", "драйвер"]
     }
   }
   
   const t = translations[language]
+  const currentDate = new Date().toISOString().split('T')[0]
   
   return {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": ["Organization", "SoftwareApplication"],
-        "@id": `${baseUrl}/#organization`,
+        "@type": ["Organization", "SoftwareApplication", "LocalBusiness"],
+        "@id": `${baseUrl}/#organization-${language}`,
         "name": t.name,
         "applicationCategory": "BusinessApplication",
         "operatingSystem": ["Windows 7", "Windows 8", "Windows 10", "Windows 11", "Windows Server"],
@@ -239,7 +266,8 @@ export function createStructuredData(language: 'uk' | 'pl' | 'ru' = 'uk') {
         "description": t.description,
         "inLanguage": language,
         "datePublished": "2024-01-01",
-        "dateModified": new Date().toISOString().split('T')[0],
+        "dateModified": currentDate,
+        "keywords": t.keywords.join(', '),
         "offers": {
           "@type": "Offer",
           "price": "1500",
@@ -249,8 +277,15 @@ export function createStructuredData(language: 'uk' | 'pl' | 'ru' = 'uk') {
           "priceValidUntil": "2025-12-31",
           "warranty": {
             "@type": "WarrantyPromise", 
-            "durationOfWarranty": "P12M"
-          }
+            "durationOfWarranty": "P12M",
+            "warrantyScope": "Technical support and updates"
+          },
+          "businessFunction": "http://purl.org/goodrelations/v1#Sell",
+          "deliveryMethod": "OnlineOnly",
+          "acceptedPaymentMethod": [
+            "http://purl.org/goodrelations/v1#BankTransferInAdvance",
+            "http://purl.org/goodrelations/v1#PayPal"
+          ]
         },
         "address": {
           "@type": "PostalAddress",
@@ -271,21 +306,38 @@ export function createStructuredData(language: 'uk' | 'pl' | 'ru' = 'uk') {
             "telephone": "+380931776504",
             "contactType": "customer service",
             "email": "info@modulsoft.eu",
-            "availableLanguage": ["Ukrainian", "Polish", "Russian"]
-          },
-          {
-            "@type": "ContactPoint",
-            "telephone": "+380931776502", 
-            "contactType": "technical support",
-            "availableLanguage": ["Ukrainian", "Polish", "Russian"]
+            "availableLanguage": ["Ukrainian", "Polish", "Russian"],
+            "hoursAvailable": {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+              "opens": "08:00",
+              "closes": "17:00"
+            }
           }
         ],
         "foundingDate": "2008",
         "numberOfEmployees": {
           "@type": "QuantitativeValue",
-          "minValue": 40
+          "minValue": 40,
+          "maxValue": 50
         },
-        "areaServed": ["UA", "PL", "EU"],
+        "areaServed": [
+          {
+            "@type": "Country",
+            "name": "Ukraine",
+            "identifier": "UA"
+          },
+          {
+            "@type": "Country",
+            "name": "Poland", 
+            "identifier": "PL"
+          },
+          {
+            "@type": "Country",
+            "name": "European Union",
+            "identifier": "EU"
+          }
+        ],
         "knowsAbout": ["1C Enterprise", "Business Automation", "ERP Systems", "POS Systems", "Fiscal Printers"],
         "aggregateRating": {
           "@type": "AggregateRating",
@@ -298,13 +350,23 @@ export function createStructuredData(language: 'uk' | 'pl' | 'ru' = 'uk') {
           "https://www.facebook.com/ModulSoft",
           "https://www.linkedin.com/company/modulsoft",
           "https://t.me/modulsoft"
+        ],
+        "hasCredential": [
+          {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "1C Certification",
+            "recognizedBy": {
+              "@type": "Organization",
+              "name": "1C Company"
+            }
+          }
         ]
       }
     ]
   }
 }
 
-// Enhanced meta tags with comprehensive SEO optimization
+// Enhanced meta tags with comprehensive multilingual SEO optimization
 export function updateMetaTags(language: 'uk' | 'pl' | 'ru', title: string, description: string) {
   if (typeof document !== 'undefined') {
     document.title = title
@@ -312,19 +374,22 @@ export function updateMetaTags(language: 'uk' | 'pl' | 'ru', title: string, desc
     
     const translations = {
       uk: {
-        keywords: "POSNET драйвер 1С, фіскальний реєстратор інтеграція, каса 1С, POS система України, модуль каси 1С, фіскальний принтер драйвер, POSNET компонента, ModulSoft 1С рішення",
+        keywords: "POSNET драйвер 1С, фіскальний реєстратор інтеграція, каса 1С, POS система України, модуль каси 1С, фіскальний принтер драйвер, POSNET компонента, ModulSoft 1С рішення, автоматизація торгівлі",
         locale: "uk_UA",
-        currency: "UAH"
+        currency: "PLN",
+        region: "Ukraine"
       },
       pl: {
-        keywords: "sterownik POSNET 1C, integracja kasy fiskalnej, kasa 1C, system POS Polska, moduł kasy 1C, sterownik drukarki fiskalnej, komponent POSNET, rozwiązania 1C ModulSoft",
+        keywords: "sterownik POSNET 1C, integracja kasy fiskalnej, kasa 1C, system POS Polska, moduł kasy 1C, sterownik drukarki fiskalnej, komponent POSNET, rozwiązania 1C ModulSoft, automatyzacja handlu",
         locale: "pl_PL", 
-        currency: "PLN"
+        currency: "PLN",
+        region: "Poland"
       },
       ru: {
-        keywords: "драйвер POSNET 1С, интеграция фискального регистратора, касса 1С, POS система России, модуль кассы 1С, драйвер фискального принтера, компонента POSNET, решения 1С ModulSoft",
+        keywords: "драйвер POSNET 1С, интеграция фискального регистратора, касса 1С, POS система России, модуль кассы 1С, драйвер фискального принтера, компонента POSNET, решения 1С ModulSoft, автоматизация торговли",
         locale: "ru_RU",
-        currency: "RUB"
+        currency: "PLN",
+        region: "Russia"
       }
     }
     
@@ -338,13 +403,32 @@ export function updateMetaTags(language: 'uk' | 'pl' | 'ru', title: string, desc
       { selector: 'meta[property="og:locale"]', attr: 'content', value: t.locale },
       { selector: 'meta[property="twitter:title"]', attr: 'content', value: title },
       { selector: 'meta[property="twitter:description"]', attr: 'content', value: description },
-      { selector: 'meta[property="product:price:currency"]', attr: 'content', value: t.currency }
+      { selector: 'meta[property="product:price:currency"]', attr: 'content', value: t.currency },
+      { selector: 'meta[name="geo.region"]', attr: 'content', value: t.region }
     ]
     
     metaUpdates.forEach(({ selector, attr, value }) => {
       const meta = document.querySelector(selector)
       if (meta) {
         meta.setAttribute(attr, value)
+      } else {
+        // Create missing meta tags
+        const newMeta = document.createElement('meta')
+        if (selector.includes('property=')) {
+          const property = selector.match(/property="([^"]+)"/)?.[1]
+          if (property) {
+            newMeta.setAttribute('property', property)
+            newMeta.setAttribute('content', value)
+            document.head.appendChild(newMeta)
+          }
+        } else if (selector.includes('name=')) {
+          const name = selector.match(/name="([^"]+)"/)?.[1]
+          if (name) {
+            newMeta.setAttribute('name', name)
+            newMeta.setAttribute('content', value)
+            document.head.appendChild(newMeta)
+          }
+        }
       }
     })
 
@@ -354,6 +438,15 @@ export function updateMetaTags(language: 'uk' | 'pl' | 'ru', title: string, desc
       const baseUrl = 'https://modulsoft.eu/driver-posnet-thermal'
       canonical.href = language === 'uk' ? baseUrl : `${baseUrl}/${language}`
     }
+
+    // Update hreflang links dynamically
+    const hreflangLinks = document.querySelectorAll('link[hreflang]')
+    hreflangLinks.forEach(link => {
+      const hreflang = link.getAttribute('hreflang')
+      if (hreflang === language) {
+        ;(link as HTMLLinkElement).href = window.location.href
+      }
+    })
   }
 }
 
@@ -372,13 +465,175 @@ export function addStructuredData(data: any) {
   }
 }
 
-// SEO-optimized sitemap generation for dynamic content
+// Enhanced analytics and conversion tracking with multilingual support
+export function trackUserInteraction(action: string, category: string, label?: string) {
+  const language = document.documentElement.lang || 'uk'
+  
+  // Google Analytics 4
+  if (window.gtag) {
+    window.gtag('event', action, {
+      event_category: category,
+      event_label: label,
+      custom_parameters: {
+        page_language: language,
+        product_type: 'posnet_driver',
+        source: 'landing_page'
+      }
+    })
+  }
+  
+  // Yandex.Metrica for Russian market
+  if (window.ym && language === 'ru') {
+    window.ym(89645123, 'reachGoal', `${action}_${category}`, { 
+      label,
+      language 
+    })
+  }
+  
+  // Custom analytics
+  if (window.analytics) {
+    window.analytics.track(action, {
+      category,
+      label,
+      language,
+      source: 'posnet_driver_landing'
+    })
+  }
+}
+
+// Comprehensive SEO health check with multilingual considerations
+export function performSEOHealthCheck() {
+  if (typeof document !== 'undefined') {
+    const language = document.documentElement.lang || 'uk'
+    
+    const checks = {
+      hasTitle: !!document.title && document.title.length >= 30 && document.title.length <= 60,
+      hasDescription: (() => {
+        const desc = document.querySelector('meta[name="description"]')?.getAttribute('content')
+        return !!desc && desc.length >= 120 && desc.length <= 160
+      })(),
+      hasCanonical: !!document.querySelector('link[rel="canonical"]'),
+      hasStructuredData: !!document.querySelector('script[type="application/ld+json"]'),
+      hasOpenGraph: !!document.querySelector('meta[property^="og:"]'),
+      hasTwitterCard: !!document.querySelector('meta[property^="twitter:"]'),
+      hasHreflang: !!document.querySelector('link[hreflang]'),
+      hasLanguageAttribute: document.documentElement.lang === language,
+      imagesHaveAlt: Array.from(document.querySelectorAll('img')).every(img => 
+        img.hasAttribute('alt') && (img as HTMLImageElement).alt.trim().length > 0
+      ),
+      hasRobotsMeta: !!document.querySelector('meta[name="robots"]'),
+      hasViewportMeta: !!document.querySelector('meta[name="viewport"]'),
+      hasKeywords: (() => {
+        const keywords = document.querySelector('meta[name="keywords"]')?.getAttribute('content')
+        return !!keywords && keywords.length > 0
+      })(),
+      linksAreAccessible: Array.from(document.querySelectorAll('a')).every(link => 
+        link.hasAttribute('href') && link.textContent?.trim().length
+      ),
+      headingsHierarchy: (() => {
+        const h1Count = document.querySelectorAll('h1').length
+        return h1Count === 1
+      })(),
+      hasContactInfo: !!document.querySelector('[itemtype*="contactPoint"], [href^="tel:"], [href^="mailto:"]')
+    }
+    
+    console.debug('SEO Health Check:', checks)
+    
+    const score = Object.values(checks).filter(Boolean).length / Object.keys(checks).length * 100
+    
+    const recommendations: string[] = []
+    if (!checks.hasTitle) recommendations.push('Title tag missing or incorrect length (30-60 chars)')
+    if (!checks.hasDescription) recommendations.push('Meta description missing or incorrect length (120-160 chars)')
+    if (!checks.hasStructuredData) recommendations.push('Add structured data (JSON-LD)')
+    if (!checks.hasHreflang) recommendations.push('Add hreflang tags for multilingual SEO')
+    if (!checks.imagesHaveAlt) recommendations.push('All images need alt attributes')
+    if (!checks.headingsHierarchy) recommendations.push('Use exactly one H1 tag per page')
+    
+    console.debug(`SEO Score: ${Math.round(score)}%`)
+    if (recommendations.length > 0) {
+      console.debug('SEO Recommendations:', recommendations)
+    }
+    
+    return { 
+      checks, 
+      score, 
+      recommendations,
+      language
+    }
+  }
+  
+  return null
+}
+
+// Enhanced image optimization with WebP and lazy loading
+export function optimizeImages() {
+  if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
+    // WebP support detection
+    const supportsWebP = (() => {
+      const canvas = document.createElement('canvas')
+      canvas.width = canvas.height = 1
+      return canvas.toDataURL('image/webp').startsWith('data:image/webp')
+    })()
+
+    const imageObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target as HTMLImageElement
+            
+            // Handle data-src lazy loading
+            if (img.dataset.src && !img.src.includes(img.dataset.src)) {
+              let src = img.dataset.src
+              
+              // Replace with WebP if supported
+              if (supportsWebP && src.match(/\.(jpg|jpeg|png)$/i)) {
+                src = src.replace(/\.(jpg|jpeg|png)$/i, '.webp')
+              }
+              
+              img.src = src
+              img.classList.remove('lazy')
+            }
+            
+            // Handle srcset for responsive images
+            if (img.dataset.srcset) {
+              let srcset = img.dataset.srcset
+              
+              // Replace with WebP versions in srcset
+              if (supportsWebP) {
+                srcset = srcset.replace(/\.(jpg|jpeg|png)(\s+\d+[wx])/gi, '.webp$2')
+              }
+              
+              img.srcset = srcset
+              delete img.dataset.srcset
+            }
+            
+            // Add loaded class for fade-in effects
+            img.classList.add('loaded')
+            observer.unobserve(img)
+          }
+        })
+      },
+      {
+        rootMargin: '50px 0px',
+        threshold: 0.01
+      }
+    )
+    
+    // Observe all lazy images
+    document.querySelectorAll('img[data-src], img[data-srcset], .lazy-image').forEach(img => {
+      imageObserver.observe(img)
+    })
+  }
+}
+
+// Advanced sitemap generation with multilingual support
 export function generateSitemapData() {
   const baseUrl = 'https://modulsoft.eu'
   const currentDate = new Date().toISOString().split('T')[0]
   
   return {
     urls: [
+      // Main product pages
       {
         loc: `${baseUrl}/driver-posnet-thermal`,
         lastmod: currentDate,
@@ -387,68 +642,34 @@ export function generateSitemapData() {
         alternates: [
           { hreflang: 'uk', href: `${baseUrl}/driver-posnet-thermal` },
           { hreflang: 'pl', href: `${baseUrl}/pl/driver-posnet-thermal` },
-          { hreflang: 'ru', href: `${baseUrl}/ru/driver-posnet-thermal` }
+          { hreflang: 'ru', href: `${baseUrl}/ru/driver-posnet-thermal` },
+          { hreflang: 'x-default', href: `${baseUrl}/driver-posnet-thermal` }
         ]
       },
+      // Contact pages
       {
         loc: `${baseUrl}/contacts`,
         lastmod: currentDate,
         changefreq: 'monthly',
-        priority: '0.8'
+        priority: '0.8',
+        alternates: [
+          { hreflang: 'uk', href: `${baseUrl}/contacts` },
+          { hreflang: 'pl', href: `${baseUrl}/pl/kontakt` },
+          { hreflang: 'ru', href: `${baseUrl}/ru/kontakty` }
+        ]
       },
+      // Legal pages
       {
         loc: `${baseUrl}/privacy-policy`,
         lastmod: currentDate,
         changefreq: 'yearly',
-        priority: '0.3'
+        priority: '0.3',
+        alternates: [
+          { hreflang: 'uk', href: `${baseUrl}/privacy-policy` },
+          { hreflang: 'pl', href: `${baseUrl}/pl/polityka-prywatnosci` },
+          { hreflang: 'ru', href: `${baseUrl}/ru/politika-konfidencialnosti` }
+        ]
       }
     ]
   }
-}
-
-// Advanced analytics and conversion tracking
-export function trackUserInteraction(action: string, category: string, label?: string) {
-  if (window.gtag) {
-    window.gtag('event', action, {
-      event_category: category,
-      event_label: label,
-      custom_parameter: 'posnet_driver_landing'
-    })
-  }
-  
-  // Also track with custom analytics if available
-  if (window.analytics) {
-    window.analytics.track(action, {
-      category,
-      label,
-      source: 'posnet_driver_landing'
-    })
-  }
-}
-
-// SEO health check and monitoring
-export function performSEOHealthCheck() {
-  if (typeof document !== 'undefined') {
-    const checks = {
-      hasTitle: !!document.title,
-      hasDescription: !!document.querySelector('meta[name="description"]'),
-      hasCanonical: !!document.querySelector('link[rel="canonical"]'),
-      hasStructuredData: !!document.querySelector('script[type="application/ld+json"]'),
-      hasOpenGraph: !!document.querySelector('meta[property^="og:"]'),
-      hasTwitterCard: !!document.querySelector('meta[property^="twitter:"]'),
-      hasHreflang: !!document.querySelector('link[hreflang]'),
-      imagesHaveAlt: Array.from(document.querySelectorAll('img')).every(img => 
-        img.hasAttribute('alt') && (img as HTMLImageElement).alt.trim().length > 0
-      )
-    }
-    
-    console.debug('SEO Health Check:', checks)
-    
-    const score = Object.values(checks).filter(Boolean).length / Object.keys(checks).length * 100
-    console.debug(`SEO Score: ${Math.round(score)}%`)
-    
-    return { checks, score }
-  }
-  
-  return null
 }

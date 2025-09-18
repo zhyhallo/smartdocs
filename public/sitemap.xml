@@ -1,71 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
-  <!-- Main landing page with language alternatives -->
+  <!-- Main product page with language alternatives -->
   <url>
     <loc>https://modulsoft.eu/driver-posnet-thermal</loc>
-    <lastmod>2025-01-02</lastmod>
+    <lastmod>2025-01-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="uk" href="https://modulsoft.eu/driver-posnet-thermal"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://modulsoft.eu/pl/driver-posnet-thermal"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://modulsoft.eu/ru/driver-posnet-thermal"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://modulsoft.eu/driver-posnet-thermal"/>
-    <image:image>
-      <image:loc>https://modulsoft.eu/og-posnet-driver.jpg</image:loc>
-      <image:title>Driver POSNET / Thermal для 1С:Enterprise</image:title>
-      <image:caption>Професійна компонента для інтеграції фіскальних реєстраторів з 1С</image:caption>
-    </image:image>
   </url>
 
-  <!-- Polish version -->
+  <!-- Polish product page -->
   <url>
     <loc>https://modulsoft.eu/pl/driver-posnet-thermal</loc>
-    <lastmod>2025-01-02</lastmod>
+    <lastmod>2025-01-03</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="uk" href="https://modulsoft.eu/driver-posnet-thermal"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://modulsoft.eu/pl/driver-posnet-thermal"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://modulsoft.eu/ru/driver-posnet-thermal"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://modulsoft.eu/driver-posnet-thermal"/>
   </url>
 
-  <!-- Russian version -->
+  <!-- Russian product page -->
   <url>
     <loc>https://modulsoft.eu/ru/driver-posnet-thermal</loc>
-    <lastmod>2025-01-02</lastmod>
+    <lastmod>2025-01-03</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="uk" href="https://modulsoft.eu/driver-posnet-thermal"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://modulsoft.eu/pl/driver-posnet-thermal"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://modulsoft.eu/ru/driver-posnet-thermal"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://modulsoft.eu/driver-posnet-thermal"/>
   </url>
 
-  <!-- Contacts page -->
+  <!-- Contact pages -->
   <url>
     <loc>https://modulsoft.eu/contacts</loc>
-    <lastmod>2025-01-02</lastmod>
+    <lastmod>2025-01-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://modulsoft.eu/contacts"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://modulsoft.eu/pl/kontakt"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://modulsoft.eu/ru/kontakty"/>
   </url>
 
-  <!-- Privacy policy -->
+  <url>
+    <loc>https://modulsoft.eu/pl/kontakt</loc>
+    <lastmod>2025-01-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://modulsoft.eu/contacts"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://modulsoft.eu/pl/kontakt"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://modulsoft.eu/ru/kontakty"/>
+  </url>
+
+  <url>
+    <loc>https://modulsoft.eu/ru/kontakty</loc>
+    <lastmod>2025-01-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://modulsoft.eu/contacts"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://modulsoft.eu/pl/kontakt"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://modulsoft.eu/ru/kontakty"/>
+  </url>
+
+  <!-- Privacy policy pages -->
   <url>
     <loc>https://modulsoft.eu/privacy-policy</loc>
-    <lastmod>2025-01-02</lastmod>
+    <lastmod>2025-01-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://modulsoft.eu/privacy-policy"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://modulsoft.eu/pl/polityka-prywatnosci"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://modulsoft.eu/ru/politika-konfidencialnosti"/>
   </url>
 
-  <!-- Main company site -->
   <url>
-    <loc>https://modulsoft.eu/</loc>
-    <lastmod>2025-01-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://modulsoft.eu/pl/polityka-prywatnosci</loc>
+    <lastmod>2025-01-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://modulsoft.eu/privacy-policy"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://modulsoft.eu/pl/polityka-prywatnosci"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://modulsoft.eu/ru/politika-konfidencialnosti"/>
+  </url>
+
+  <url>
+    <loc>https://modulsoft.eu/ru/politika-konfidencialnosti</loc>
+    <lastmod>2025-01-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://modulsoft.eu/privacy-policy"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://modulsoft.eu/pl/polityka-prywatnosci"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://modulsoft.eu/ru/politika-konfidencialnosti"/>
   </url>
 
 </urlset>

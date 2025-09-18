@@ -26,13 +26,12 @@ export { default as SEOManager } from './SEOManager'
 
 
 export { 
-  SEOContent, 
-  SEOHeading, 
-  SEOImage, 
-  SEOText, 
-  SEOList, 
-  SEOListItem, 
-  SEOFAQ 
+  SEOSchemas,
+  DynamicMetaTags,
+  BreadcrumbSchema,
+  ProductSchema,
+  FAQSchema,
+  LocalBusinessSchema
 } from './SEOComponents'
 
 // Interactive components

@@ -207,7 +207,10 @@ const translations = {
     
     // Meta
     'meta.title': 'Driver POSNET для 1С:Enterprise – купити / ціна / функції',
-    'meta.description': 'Зовнішній компонент для інтеграції з POSNET реєстраторами в 1С:Enterprise. Надійність, стабільність, техпідтримка. Ціна 1500 zł.',
+    'meta.description': 'Готовий зовнішній компонент для інтеграції з POSNET реєстраторами в 1С:Enterprise. Надійність, стабільність, техпідтримка 24/7. Ціна 1500 zł.',
+    'meta.keywords': 'POSNET драйвер 1С, фіскальний реєстратор інтеграція, каса 1С, POS система України, модуль каси 1С, фіскальний принтер драйвер, POSNET компонента, ModulSoft 1С рішення',
+    'meta.og.title': 'Driver POSNET для 1С:Enterprise – Професійна компонента | ModulSoft',
+    'meta.og.description': 'Готова зовнішня компонента для інтеграції з POSNET реєстраторами. 16+ років досвіду, 200+ успішних впроваджень, техпідтримка 24/7. Ціна 1500 zł',
   },
   
   pl: {
@@ -407,7 +410,10 @@ const translations = {
     
     // Meta
     'meta.title': 'Driver POSNET dla 1С:Enterprise – kup / cena / funkcje',
-    'meta.description': 'Gotowy komponent zewnętrzny do integracji z drukarkami POSNET w 1С:Enterprise. Niezawodność, stabilność, wsparcie techniczne. Cena 1500 zł.',
+    'meta.description': 'Gotowy komponent zewnętrzny do integracji z POSNET drukarkami w 1С:Enterprise. Niezawodność, stabilność, wsparcie techniczne 24/7. Cena 1500 zł.',
+    'meta.keywords': 'sterownik POSNET 1C, integracja kasy fiskalnej, kasa 1C, system POS Polska, moduł kasy 1C, sterownik drukarki fiskalnej, komponent POSNET, rozwiązania 1C ModulSoft',
+    'meta.og.title': 'Driver POSNET dla 1С:Enterprise – Profesjonalny komponent | ModulSoft', 
+    'meta.og.description': 'Gotowy komponent zewnętrzny do integracji z drukarkami POSNET. 16+ lat doświadczenia, 200+ udanych wdrożeń, wsparcie techniczne 24/7. Cena 1500 zł',
   },
   
   ru: {
@@ -607,7 +613,10 @@ const translations = {
     
     // Meta
     'meta.title': 'Driver POSNET для 1С:Enterprise – купить / цена / функции',
-    'meta.description': 'Готовая внешняя компонента для интеграции с POSNET регистраторами в 1С:Enterprise. Надежность, стабильность, техподдержка. Цена 1500 zł.',
+    'meta.description': 'Готовая внешняя компонента для интеграции с POSNET регистраторами в 1С:Enterprise. Надежность, стабильность, техподдержка 24/7. Цена 1500 zł.',
+    'meta.keywords': 'драйвер POSNET 1С, интеграция фискального регистратора, касса 1С, POS система России, модуль кассы 1С, драйвер фискального принтера, компонента POSNET, решения 1С ModulSoft',
+    'meta.og.title': 'Driver POSNET для 1С:Enterprise – Профессиональная компонента | ModulSoft',
+    'meta.og.description': 'Готовая внешняя компонента для интеграции с POSNET регистраторами. 16+ лет опыта, 200+ успешных внедрений, техподдержка 24/7. Цена 1500 zł',
   }
 }
 

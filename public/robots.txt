@@ -1,37 +1,68 @@
-# Robots.txt for ModulSoft - Driver POSNET/Thermal Landing Page
+# Enhanced robots.txt for multilingual SEO optimization
+# Updated: 2025-01-03
 
 User-agent: *
 Allow: /
 
-# Allow all major search engines
+# Sitemaps for all languages
+Sitemap: https://modulsoft.eu/sitemap.xml
+Sitemap: https://modulsoft.eu/sitemap-uk.xml
+Sitemap: https://modulsoft.eu/sitemap-pl.xml  
+Sitemap: https://modulsoft.eu/sitemap-ru.xml
+
+# Specific crawling directives for search engines
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 0
 
 User-agent: Bingbot
 Allow: /
-
-User-agent: Slurp
-Allow: /
+Crawl-delay: 1
 
 User-agent: YandexBot
 Allow: /
+Crawl-delay: 1
 
 User-agent: facebookexternalhit
 Allow: /
 
-# Disallow admin and private areas (if any in future)
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+# Block development and admin areas
 Disallow: /admin/
-Disallow: /private/
+Disallow: /dev/
+Disallow: /test/
+Disallow: /temp/
 Disallow: /*.json$
-Disallow: /api/
+Disallow: /*?debug*
+Disallow: /*?test*
 
-# Allow important files
+# Allow important resources
+Allow: /assets/
+Allow: /images/
+Allow: /css/
+Allow: /js/
 Allow: /favicon.ico
-Allow: /sitemap.xml
-Allow: /robots.txt
+Allow: /logo.png
+Allow: /og-*.jpg
 
-# Sitemap location
-Sitemap: https://modulsoft.eu/sitemap.xml
+# Language-specific pages
+Allow: /driver-posnet-thermal
+Allow: /pl/driver-posnet-thermal
+Allow: /ru/driver-posnet-thermal
+Allow: /contacts
+Allow: /pl/kontakt
+Allow: /ru/kontakty
+Allow: /privacy-policy
+Allow: /pl/polityka-prywatnosci
+Allow: /ru/politika-konfidencialnosti
 
-# Crawl-delay for respectful crawling
-Crawl-delay: 1
+# Clean URLs without query parameters
+Disallow: /*?*
+Allow: /*?utm_*
+Allow: /*?ref=*
+Allow: /*?lang=*

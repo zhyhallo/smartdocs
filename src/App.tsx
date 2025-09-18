@@ -11,7 +11,8 @@ import {
   Footer, 
   ContactModal,
   InteractiveSection,
-  SEOManager
+  SEOManager,
+  SEOSchemas
 } from "@/components"
 import { Toaster } from "sonner"
 import { motion } from "framer-motion"
@@ -232,6 +233,7 @@ function App() {
   return (
     <TranslationProvider>
       <SEOManager />
+      <SEOSchemas />
       <AppContent />
     </TranslationProvider>
   )
