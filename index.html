@@ -146,10 +146,10 @@
     
     <!-- Critical CSS inline for better performance -->
     <style>
-      /* Critical above-the-fold styles */
+      /* Critical CSS inline for better performance */
       html { 
         scroll-behavior: smooth; 
-        scroll-padding-top: 80px; 
+        scroll-padding-top: 100px; 
         font-display: swap;
       }
       body { 
@@ -187,6 +187,13 @@
       img { max-width: 100%; height: auto; }
       .hero-section { min-height: 500px; }
       .section { padding: 2rem 0; }
+      
+      /* Enhanced smooth scrolling for better experience */
+      @media (prefers-reduced-motion: no-preference) {
+        * {
+          scroll-behavior: smooth !important;
+        }
+      }
     </style>
     
     <!-- Load main CSS with optimizations -->

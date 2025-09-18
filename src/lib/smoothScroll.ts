@@ -1,23 +1,23 @@
 /**
- * Optimized smooth scroll utility with better performance and easing
+ * Optimized smooth scroll utility with enhanced easing and longer duration for smoother experience
  */
-export const smoothScrollTo = (targetPosition: number, duration: number = 800) => {
+export const smoothScrollTo = (targetPosition: number, duration: number = 1200) => {
   const startPosition = window.pageYOffset
   const distance = targetPosition - startPosition
   let startTime: number | null = null
 
-  // Optimized easing function for smoother, more natural movement
-  const easeInOutQuart = (t: number): number => {
+  // Enhanced easing function for ultra-smooth, natural movement
+  const easeInOutCubic = (t: number): number => {
     return t < 0.5 
-      ? 8 * t * t * t * t 
-      : 1 - 8 * (--t) * t * t * t
+      ? 4 * t * t * t 
+      : 1 - Math.pow(-2 * t + 2, 3) / 2
   }
 
   const animation = (currentTime: number) => {
     if (startTime === null) startTime = currentTime
     const timeElapsed = currentTime - startTime
     const progress = Math.min(timeElapsed / duration, 1)
-    const run = easeInOutQuart(progress)
+    const run = easeInOutCubic(progress)
     
     window.scrollTo(0, startPosition + distance * run)
     
@@ -30,9 +30,9 @@ export const smoothScrollTo = (targetPosition: number, duration: number = 800) =
 }
 
 /**
- * Optimized smooth scroll to element by ID with offset
+ * Enhanced smooth scroll to element by ID with offset and longer duration
  */
-export const smoothScrollToElement = (elementId: string, offset: number = 80, duration: number = 800) => {
+export const smoothScrollToElement = (elementId: string, offset: number = 100, duration: number = 1200) => {
   const element = document.getElementById(elementId)
   if (element) {
     const rect = element.getBoundingClientRect()
@@ -43,8 +43,8 @@ export const smoothScrollToElement = (elementId: string, offset: number = 80, du
 }
 
 /**
- * Optimized smooth scroll to top of page
+ * Enhanced smooth scroll to top of page with longer duration
  */
-export const smoothScrollToTop = (duration: number = 800) => {
+export const smoothScrollToTop = (duration: number = 1200) => {
   smoothScrollTo(0, duration)
 }

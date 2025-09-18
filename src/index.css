@@ -8,7 +8,7 @@
   
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 80px;
+    scroll-padding-top: 100px; /* Збільшено offset для кращого позиціонування */
     font-display: swap;
   }
   
@@ -18,15 +18,19 @@
   }
   
   /* Optimize for reduced motion users */
-  @media (prefers-reduced-motion: reduce) {
-    html {
+  @media (prefers-reduced-motion: reduce) {\n    html {
       scroll-behavior: auto;
     }
-    
-    *, *::before, *::after {
+    \n    *, *::before, *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
+    }
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
     }
   }
   

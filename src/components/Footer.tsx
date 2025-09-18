@@ -37,7 +37,7 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
               <button 
                 onClick={() => {
                   onHomeClick?.();
-                  smoothScrollToTop();
+                  smoothScrollToTop(1200);
                 }}
                 className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1 w-full text-left"
               >
@@ -52,7 +52,7 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
               <button 
                 onClick={(e) => {
                   e.preventDefault();
-                  smoothScrollToElement('product');
+                  smoothScrollToElement('product', 100, 1200);
                 }}
                 className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1 w-full text-left"
               >
@@ -61,7 +61,7 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
               <button 
                 onClick={(e) => {
                   e.preventDefault();
-                  smoothScrollToElement('features');
+                  smoothScrollToElement('features', 100, 1200);
                 }}
                 className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1 w-full text-left"
               >
@@ -70,7 +70,7 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
               <button 
                 onClick={(e) => {
                   e.preventDefault();
-                  smoothScrollToElement('pricing');
+                  smoothScrollToElement('pricing', 100, 1200);
                 }}
                 className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1 w-full text-left"
               >
@@ -79,7 +79,7 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
               <button 
                 onClick={(e) => {
                   e.preventDefault();
-                  smoothScrollToElement('faq');
+                  smoothScrollToElement('faq', 100, 1200);
                 }}
                 className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1 w-full text-left"
               >
