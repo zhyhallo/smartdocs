@@ -54,6 +54,9 @@ export default function ContactPage({ onBackClick, onContactClick }: ContactPage
           <a href="tel:+380931776504" className="block text-accent hover:underline cursor-pointer">
             +38 (093) 177-65-04
           </a>
+          <a href="tel:+48588810566" className="block text-accent hover:underline cursor-pointer">
+            +48 (588) 81-05-66
+          </a>
           <a href="tel:+380987482235" className="block text-accent hover:underline cursor-pointer">
             +38 (098) 748-22-35
           </a>

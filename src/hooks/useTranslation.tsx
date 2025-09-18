@@ -34,7 +34,7 @@ const translations = {
     // Product Description
     'product.title': 'Що це таке?',
     'product.subtitle': 'Професійне рішення для інтеграції',
-    'product.description': 'Наша компонента забезпечує повну інтеграцію фіскальних реєстраторів POSNET з системою 1С:Enterprise. Рішення розроблено з урахуванням всіх вимог українського та польського законодавства.',
+    'product.description': 'Наш компонент забезпечує повну інтеграцію фіскальних реєстраторів POSNET з системою 1С:Enterprise. Рішення розроблено з урахуванням всіх вимог польського законодавства.',
     'product.benefits.reliability': 'Надійність',
     'product.benefits.reliability.desc': 'Стабільна робота навіть при високих навантаженнях',
     'product.benefits.support': 'Підтримка',
@@ -52,7 +52,7 @@ const translations = {
     'features.reports.title': 'Звіти',
     'features.reports.desc': 'X та Z звіти, звіти за періоди, детальна аналітика продажів',
     'features.status.title': 'Статус реєстратора',
-    'features.status.desc': 'Моніторинг стану устрою, залишку паперу, помилок та технічних параметрів',
+    'features.status.desc': 'Моніторинг стану, залишку паперу, помилок та технічних параметрів',
     'features.errors.title': 'Обробка помилок',
     'features.errors.desc': 'Детальне логування, діагностика проблем та автоматичне відновлення',
     'features.config.title': 'Налаштування',
@@ -63,9 +63,9 @@ const translations = {
     // Pricing
     'pricing.title': 'Ціна та умови',
     'pricing.subtitle': 'Прозора ціна без прихованих платежів',
-    'pricing.price': '1500 ₴',
+    'pricing.price': '1500 zł',
     'pricing.currency': 'одноразовий платіж',
-    'pricing.symbol': '₴',
+    'pricing.symbol': 'zł',
     'pricing.features.license': 'Безстрокова ліцензія',
     'pricing.features.documentation': 'Повна документація',
     'pricing.features.examples': 'Приклади використання',
@@ -88,12 +88,8 @@ const translations = {
     'faq.a1': 'Так, компонента сумісна з версіями 1С:Enterprise 8.2 та новішими.',
     'faq.q2': 'Як відбувається оновлення компоненти?',
     'faq.a2': 'Оновлення надсилаються автоматично протягом року.',
-    'faq.q3': 'Що робити, якщо реєстратор іншої моделі?',
-    'faq.a3': 'Ми можемо адаптувати компоненту під ваш реєстратор за додаткову плату.',
     'faq.q4': 'Які способи оплати доступні?',
     'faq.a4': 'Приймаємо оплату банківським переказом та електронними платежами.',
-    'faq.q5': 'Чи є демо-версія?',
-    'faq.a5': 'Так, надаємо тестовий період 14 днів для ознайомлення.',
     'faq.q6': 'Скільки часу займає впровадження?',
     'faq.a6': 'Зазвичай впровадження займає від 1 до 3 робочих днів.',
     
@@ -197,7 +193,7 @@ const translations = {
     
     // Cookie Consent
     'cookies.title': 'Повідомлення про файли cookie',
-    'cookies.message': 'Цей сайт використовує cookies для зручності користувача. Продовжуючи користування сайтом, ви погоджуєтесь з нашою Політикою конфіденційності.',
+    'cookies.message': 'Цей сайт використовує cookies для зручності користувача. Продовжуючи користування сайтом, ви по��оджуєтесь з нашою Політикою конфіденційності.',
     'cookies.accept': 'Погоджуюсь',
     'cookies.learn': 'Детальніше',
     'cookies.decline': 'Відхилити',
@@ -205,7 +201,7 @@ const translations = {
     
     // Meta
     'meta.title': 'Driver POSNET для 1С:Enterprise – купити / ціна / функції',
-    'meta.description': 'Зовнішній компонент для інтеграції з POSNET реєстраторами в 1С:Enterprise. Надійність, стабільність, техпідтримка. Ціна 1500 ₴.',
+    'meta.description': 'Зовнішній компонент для інтеграції з POSNET реєстраторами в 1С:Enterprise. Надійність, стабільність, техпідтримка. Ціна 1500 zł.',
     
     // Zadarma Widget
     'zadarma.title': 'Замовити зворотний дзвінок',
@@ -234,9 +230,9 @@ const translations = {
     'nav.call': 'Zadzwoń',
     
     // Hero Section
-    'hero.title': 'Driver POSNET / Thermal',
+    'hero.title': 'Driver POSNET',
     'hero.subtitle': 'dla 1С:Enterprise',
-    'hero.description': 'Gotowy komponent zewnętrzny do integracji z drukarkami fiskalnymi POSNET / Thermal. Niezawodność, stabilność i profesjonalne wsparcie techniczne.',
+    'hero.description': 'Gotowy komponent zewnętrzny do integracji z drukarkami fiskalnymi POSNET. Niezawodność, stabilność i profesjonalne wsparcie techniczne.',
     'hero.experience': '16+ lat doświadczenia',
     'hero.projects': '200+ udanych projektów',
     'hero.specialists': '40+ certyfikowanych specjalistów',
@@ -247,7 +243,7 @@ const translations = {
     // Product Description
     'product.title': 'Co to jest?',
     'product.subtitle': 'Profesjonalne rozwiązanie do integracji',
-    'product.description': 'Nasz komponent zapewnia pełną integrację drukarek fiskalnych POSNET i Thermal z systemem 1С:Enterprise. Rozwiązanie zostało opracowane z uwzględnieniem wszystkich wymagań ukraińskiego i polskiego prawa.',
+    'product.description': 'Nasz komponent zapewnia pełną integrację drukarek fiskalnych POSNET z systemem 1С:Enterprise. Rozwiązanie zostało opracowane z uwzględnieniem wszystkich wymagań polskiego prawa.',
     'product.benefits.reliability': 'Niezawodność',
     'product.benefits.reliability.desc': 'Stabilna praca nawet przy wysokich obciążeniach',
     'product.benefits.support': 'Wsparcie',
@@ -265,7 +261,7 @@ const translations = {
     'features.reports.title': 'Raporty',
     'features.reports.desc': 'Raporty X i Z, raporty za okresy, szczegółowa analityka sprzedaży',
     'features.status.title': 'Status drukarki',
-    'features.status.desc': 'Monitorowanie stanu urządzenia, zapasu papieru, błędów i parametrów technicznych',
+    'features.status.desc': 'Monitorowanie stanu, zapasu papieru, błędów i parametrów technicznych',
     'features.errors.title': 'Obsługa błędów',
     'features.errors.desc': 'Szczegółowe logowanie, diagnostyka problemów i automatyczne odzyskiwanie',
     'features.config.title': 'Konfiguracja',
@@ -301,12 +297,8 @@ const translations = {
     'faq.a1': 'Tak, komponent jest kompatybilny z wersjami 1С:Enterprise 8.2 i nowszymi.',
     'faq.q2': 'Jak przebiega aktualizacja komponentu?',
     'faq.a2': 'Aktualizacje są wysyłane automatycznie przez rok bezpłatnie.',
-    'faq.q3': 'Co robić, jeśli drukarka to inny model?',
-    'faq.a3': 'Możemy dostosować komponent do Twojej drukarki za dodatkową opłatą.',
     'faq.q4': 'Jakie sposoby płatności są dostępne?',
     'faq.a4': 'Przyjmujemy płatności przelewem bankowym i płatności elektroniczne.',
-    'faq.q5': 'Czy jest wersja demo?',
-    'faq.a5': 'Tak, zapewniamy okres testowy 14 dni na zapoznanie.',
     'faq.q6': 'Ile czasu zajmuje wdrożenie?',
     'faq.a6': 'Zazwyczaj wdrożenie zajmuje od 1 do 3 dni roboczych.',
     
@@ -321,7 +313,7 @@ const translations = {
     'footer.phone': 'Telefon',
     'footer.schedule': 'Pon. - Pt.: 8:00 do 17:00',
     'footer.weekend': 'So. - Nd.: weekendy',
-    'footer.address': 'Łuck, ul. Świętowasylijska 4/3',
+    'footer.address': '82-200 Malborkul. Łąkowa 15C',
     'footer.rights': '© 2025 ModulSoft. Wszystkie prawa zastrzeżone.',
     'footer.privacy': 'Polityka prywatności',
     
@@ -344,7 +336,7 @@ const translations = {
     'contact.error.phone': 'Telefon jest wymagany',
     'contact.error.email.required': 'Email jest wymagany',
     'contact.error.email.invalid': 'Nieprawidłowy email',
-    'contact.error.validation': 'Proszę poprawić błędy w formularzu',
+    'contact.error.validation': 'Proszę poprawić b��ędy w formularzu',
     'contact.error.privacy': 'Konieczne jest potwierdzenie zgody na przetwarzanie danych osobowych',
     'contact.error.submit': 'Błąd wysyłania zapytania. Spróbuj ponownie.',
     'contact.success.toast': 'Zapytanie wysłane pomyślnie! Skontaktujemy się z Tobą wkrótce.',
@@ -352,7 +344,7 @@ const translations = {
     // Contacts Page
     'contacts.title': 'Kontakt',
     'contacts.address.title': 'Adres',
-    'contacts.address.value': 'Łuck, ul. Świętowasylijska 4, 3',
+    'contacts.address.value': '82-200 Malborkul. Łąkowa 15C',
     'contacts.sales.title': 'Dział sprzedaży',
     'contacts.support.title': 'Wsparcie techniczne (Service Desk)',
     'contacts.accounting.title': 'Księgowość',
@@ -447,9 +439,9 @@ const translations = {
     'nav.call': 'Позвонить',
     
     // Hero Section
-    'hero.title': 'Driver POSNET / Thermal',
+    'hero.title': 'Driver POSNET',
     'hero.subtitle': 'для 1С:Enterprise',
-    'hero.description': 'Готовая внешняя компонента для интеграции с фискальными регистраторами POSNET / Thermal. Надежность, стабильность и профессиональная техподдержка.',
+    'hero.description': 'Готовая внешняя компонента для интеграции с фискальными регистраторами POSNET. Надежность, стабильность и профессиональная техподдержка.',
     'hero.experience': '16+ лет опыта',
     'hero.projects': '200+ успешных проектов',
     'hero.specialists': '40+ сертифицированных специалистов',
@@ -459,8 +451,8 @@ const translations = {
     
     // Product Description
     'product.title': 'Что это такое?',
-    'product.subtitle': 'Профессиональное решение для интеграции',
-    'product.description': 'Наша компонента обеспечивает полную интеграцию фискальных регистраторов POSNET и Thermal с системой 1С:Enterprise. Решение разработано с учетом всех требований украинского и польского законодательства.',
+    'product.subtitle': 'Профессиональное решение ��ля интеграции',
+    'product.description': 'Наша ко��понента обеспечивает полную интеграцию фискальных регистраторов POSNET с системой 1С:Enterprise. Решение разработано с учетом всех требований украинского и польского законодательства.',
     'product.benefits.reliability': 'Надежность',
     'product.benefits.reliability.desc': 'Стабильная работа даже при высоких нагрузках',
     'product.benefits.support': 'Поддержка',
@@ -478,7 +470,7 @@ const translations = {
     'features.reports.title': 'Отчеты',
     'features.reports.desc': 'X и Z отчеты, отчеты за периоды, детальная аналитика продаж',
     'features.status.title': 'Статус регистратора',
-    'features.status.desc': 'Мониторинг состояния устройства, остатка бумаги, ошибок и технических параметров',
+    'features.status.desc': 'Мониторинг состояния, остатка бумаги, ошибок и технических параметров',
     'features.errors.title': 'Обработка ошибок',
     'features.errors.desc': 'Детальное логирование, диагностика проблем и автоматическое восстановление',
     'features.config.title': 'Настройки',
@@ -489,9 +481,9 @@ const translations = {
     // Pricing
     'pricing.title': 'Цена и условия',
     'pricing.subtitle': 'Прозрачная цена без скрытых платежей',
-    'pricing.price': '1500 ₽',
+    'pricing.price': '1500 zł',
     'pricing.currency': 'единовременный платеж',
-    'pricing.symbol': '₽',
+    'pricing.symbol': 'zł',
     'pricing.features.license': 'Бессрочная лицензия',
     'pricing.features.documentation': 'Полная документация',
     'pricing.features.examples': 'Примеры использования',
@@ -514,12 +506,8 @@ const translations = {
     'faq.a1': 'Да, компонента совместима с версиями 1С:Enterprise 8.2 и новее.',
     'faq.q2': 'Как происходит обновление компоненты?',
     'faq.a2': 'Обновления отправляются автоматически в течение года бесплатно.',
-    'faq.q3': 'Что делать, если регистратор другой модели?',
-    'faq.a3': 'Мы можем адаптировать компоненту под ваш регистратор за дополнительную плату.',
     'faq.q4': 'Какие способы оплаты доступны?',
     'faq.a4': 'Принимаем оплату банковским переводом и электронными платежами.',
-    'faq.q5': 'Есть ли демо-версия?',
-    'faq.a5': 'Да, предоставляем тестовый период на 14 дней для ознакомления.',
     'faq.q6': 'Сколько времени занимает внедрение?',
     'faq.a6': 'Обычно внедрение занимает от 1 до 3 рабочих дней.',
     
@@ -630,8 +618,8 @@ const translations = {
     'cookies.success': 'Спасибо за ваше согласие! Настройки сохранены.',
     
     // Meta
-    'meta.title': 'Driver POSNET / Thermal для 1С:Enterprise – купить / цена / функции',
-    'meta.description': 'Готовая внешняя компонента для интеграции с POSNET / Thermal регистраторами в 1С:Enterprise. Надежность, стабильность, техподдержка. Цена 1500 ₽.',
+    'meta.title': 'Driver POSNET для 1С:Enterprise – купить / цена / функции',
+    'meta.description': 'Готовая внешняя компонента для интеграции с POSNET регистраторами в 1С:Enterprise. Надежность, стабильность, техподдержка. Цена 1500 zł.',
     
     // Zadarma Widget
     'zadarma.title': 'Заказать обратный звонок',
@@ -642,7 +630,7 @@ const translations = {
     'zadarma.close': 'Закрыть',
     'zadarma.schedule': 'Время работы: Пн-Пт с 8:00 до 17:00',
     'zadarma.success.title': 'Заявка принята!',
-    'zadarma.success.description': 'Мы позвоним вам в течение 5 минут для консультации по Driver POSNET / Thermal.',
+    'zadarma.success.description': 'Мы позвоним вам �� течение 5 минут для консультации по Driver POSNET.',
     'zadarma.success.toast': 'Заявка на звонок успешно отправлена! Мы позвоним вам в течение 5 минут.',
     'zadarma.error.phone.required': 'Пожалуйста, введите номер телефона',
     'zadarma.error.phone.invalid': 'Пожалуйста, введите корректный номер телефона',
