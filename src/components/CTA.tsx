@@ -221,6 +221,7 @@ export default function CTA({ onContactClick }: CTAProps) {
             } : { opacity: 0, y: 20 }}
           >
             <motion.div
+              className="text-xs text-muted-foreground cursor-pointer hover-lift"
               animate={{
                 scale: [1, 1.1, 1],
                 opacity: [0.3, 0.6, 0.3]
@@ -230,11 +231,16 @@ export default function CTA({ onContactClick }: CTAProps) {
                 repeat: Infinity,
                 delay: 0
               }}
-              className="text-xs text-muted-foreground"
+              whileHover={{
+                scale: 1.1,
+                opacity: 0.8,
+                color: "var(--primary)"
+              }}
             >
-              ✓ Швидке впровадження
+              ✓ {t('cta.features.implementation')}
             </motion.div>
             <motion.div
+              className="text-xs text-muted-foreground cursor-pointer hover-lift"
               animate={{
                 scale: [1, 1.1, 1],
                 opacity: [0.3, 0.6, 0.3]
@@ -244,11 +250,16 @@ export default function CTA({ onContactClick }: CTAProps) {
                 repeat: Infinity,
                 delay: 1
               }}
-              className="text-xs text-muted-foreground"
+              whileHover={{
+                scale: 1.1,
+                opacity: 0.8,
+                color: "var(--primary)"
+              }}
             >
-              ✓ Експертна підтримка  
+              ✓ {t('cta.features.support')}
             </motion.div>
             <motion.div
+              className="text-xs text-muted-foreground cursor-pointer hover-lift"
               animate={{
                 scale: [1, 1.1, 1],
                 opacity: [0.3, 0.6, 0.3]
@@ -258,9 +269,13 @@ export default function CTA({ onContactClick }: CTAProps) {
                 repeat: Infinity,
                 delay: 2
               }}
-              className="text-xs text-muted-foreground"
+              whileHover={{
+                scale: 1.1,
+                opacity: 0.8,
+                color: "var(--primary)"
+              }}
             >
-              ✓ Гарантія якості
+              ✓ {t('cta.features.quality')}
             </motion.div>
           </motion.div>
         </motion.div>

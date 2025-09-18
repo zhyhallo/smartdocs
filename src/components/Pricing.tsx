@@ -171,7 +171,7 @@ export default function Pricing({ onContactClick }: PricingProps) {
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
           >
-            <Card className="border-primary/50 shadow-xl hover:shadow-2xl transition-shadow duration-300 relative overflow-hidden">
+            <Card className="pricing-card cursor-pointer border-primary/50 shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden">
               {/* Card background effect */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5"></div>
               <div className="absolute -top-20 -right-20 w-40 h-40 bg-primary/5 rounded-full"></div>
@@ -179,13 +179,13 @@ export default function Pricing({ onContactClick }: PricingProps) {
               
               <CardContent className="p-8 text-center relative z-10">
                 <motion.div 
-                  className="mb-6"
+                  className="mb-6 cursor-pointer"
                   variants={priceVariants}
                   initial="hidden"
                   animate={isInView ? "visible" : "hidden"}
                 >
                   <motion.div 
-                    className="text-4xl font-bold text-primary mb-2"
+                    className="text-4xl font-bold text-primary mb-2 cursor-pointer hover-scale"
                     animate={{
                       scale: [1, 1.02, 1]
                     }}
@@ -194,23 +194,27 @@ export default function Pricing({ onContactClick }: PricingProps) {
                       repeat: Infinity,
                       ease: "easeInOut"
                     }}
+                    whileHover={{ scale: 1.05 }}
                   >
                     {t('pricing.price')}
                   </motion.div>
-                  <div className="text-muted-foreground">{t('pricing.currency')}</div>
+                  <div className="text-muted-foreground cursor-pointer">{t('pricing.currency')}</div>
                 </motion.div>
 
                 <div className="space-y-4 mb-8">
                   {features.map((feature, index) => (
                     <motion.div 
                       key={index}
-                      className="flex items-center"
+                      className="flex items-center hover-lift cursor-pointer"
                       custom={index}
                       variants={listItemVariants}
                       initial="hidden"
                       animate={isInView ? "visible" : "hidden"}
+                      whileHover={{ x: 4 }}
+                      transition={{ duration: 0.2 }}
                     >
                       <motion.div
+                        className="icon-hover cursor-pointer"
                         initial={{ scale: 0, rotate: -180 }}
                         animate={isInView ? { 
                           scale: 1, 
@@ -221,10 +225,15 @@ export default function Pricing({ onContactClick }: PricingProps) {
                             ease: "backOut"
                           }
                         } : { scale: 0, rotate: -180 }}
+                        whileHover={{ 
+                          scale: 1.2,
+                          rotate: 360,
+                          transition: { duration: 0.3 }
+                        }}
                       >
-                        <Check className="text-primary mr-3" size={20} />
+                        <Check className="text-primary mr-3 cursor-pointer" size={20} />
                       </motion.div>
-                      <span>{feature}</span>
+                      <span className="cursor-pointer">{feature}</span>
                     </motion.div>
                   ))}
                 </div>

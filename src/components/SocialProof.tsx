@@ -95,19 +95,29 @@ export default function SocialProof() {
           {stats.map((stat, index) => (
             <motion.div 
               key={index}
-              className="text-center"
+              className="text-center cursor-pointer hover-scale p-6 rounded-lg transition-all duration-300"
               variants={statVariants}
+              whileHover={{
+                scale: 1.1,
+                y: -8,
+                transition: { duration: 0.3 }
+              }}
             >
               <motion.div 
-                className={`text-4xl font-bold mb-2 ${stat.color}`}
+                className={`text-4xl font-bold mb-2 ${stat.color} cursor-pointer icon-hover`}
                 variants={numberVariants}
                 initial="hidden"
                 animate={isInView ? "visible" : "hidden"}
                 style={{ transitionDelay: `${index * 0.1}s` }}
+                whileHover={{ 
+                  scale: 1.2,
+                  textShadow: "0 0 8px rgba(37, 99, 235, 0.5)",
+                  transition: { duration: 0.2 }
+                }}
               >
                 {stat.number}
               </motion.div>
-              <div className="text-muted-foreground">
+              <div className="text-muted-foreground cursor-pointer hover:text-foreground transition-colors duration-300">
                 {stat.label}
               </div>
             </motion.div>

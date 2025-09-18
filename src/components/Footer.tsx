@@ -39,13 +39,13 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
                   onHomeClick?.();
                   smoothScrollToTop(1200);
                 }}
-                className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1 w-full text-left"
+                className="block text-background/80 hover:text-background hover:text-accent transition-all duration-300 cursor-pointer hover:translate-x-1 hover:scale-105 w-full text-left"
               >
                 {t('nav.home')}
               </button>
               <button 
                 onClick={onContactsClick}
-                className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1 w-full text-left"
+                className="block text-background/80 hover:text-background hover:text-accent transition-all duration-300 cursor-pointer hover:translate-x-1 hover:scale-105 w-full text-left"
               >
                 {t('nav.contacts')}
               </button>
@@ -54,7 +54,7 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
                   e.preventDefault();
                   smoothScrollToElement('product', 100, 1200);
                 }}
-                className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1 w-full text-left"
+                className="block text-background/80 hover:text-background hover:text-accent transition-all duration-300 cursor-pointer hover:translate-x-1 hover:scale-105 w-full text-left"
               >
                 {t('nav.product')}
               </button>
@@ -63,7 +63,7 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
                   e.preventDefault();
                   smoothScrollToElement('features', 100, 1200);
                 }}
-                className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1 w-full text-left"
+                className="block text-background/80 hover:text-background hover:text-accent transition-all duration-300 cursor-pointer hover:translate-x-1 hover:scale-105 w-full text-left"
               >
                 {t('nav.features')}
               </button>
@@ -72,7 +72,7 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
                   e.preventDefault();
                   smoothScrollToElement('pricing', 100, 1200);
                 }}
-                className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1 w-full text-left"
+                className="block text-background/80 hover:text-background hover:text-accent transition-all duration-300 cursor-pointer hover:translate-x-1 hover:scale-105 w-full text-left"
               >
                 {t('nav.pricing')}
               </button>
@@ -81,7 +81,7 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
                   e.preventDefault();
                   smoothScrollToElement('faq', 100, 1200);
                 }}
-                className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1 w-full text-left"
+                className="block text-background/80 hover:text-background hover:text-accent transition-all duration-300 cursor-pointer hover:translate-x-1 hover:scale-105 w-full text-left"
               >
                 {t('nav.faq')}
               </button>
@@ -95,29 +95,29 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
               <div className="space-y-2">
                 <a 
                   href="tel:+380931776504"
-                  className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1 text-lg font-medium"
+                  className="block text-background/80 hover:text-background hover:text-accent transition-all duration-300 cursor-pointer hover:translate-x-1 hover:scale-105 text-lg font-medium"
                 >
                   +38 (093) 177-65-04
                 </a>
                 <a 
                   href="mailto:info@modulsoft.eu"
-                  className="block text-background/80 hover:text-background transition-all duration-300 cursor-pointer hover:translate-x-1"
+                  className="block text-background/80 hover:text-background hover:text-accent transition-all duration-300 cursor-pointer hover:translate-x-1 hover:scale-105"
                 >
                   info@modulsoft.eu
                 </a>
               </div>
               
               <div className="pt-2">
-                <p className="text-background/70 mb-2 font-medium">{t('contacts.schedule.title')}:</p>
-                <p className="text-background/70">
+                <p className="text-background/70 mb-2 font-medium cursor-pointer hover:text-background transition-colors duration-300">{t('contacts.schedule.title')}:</p>
+                <p className="text-background/70 cursor-pointer hover:text-background/90 transition-colors duration-300">
                   {t('footer.schedule')}<br />
                   {t('footer.weekend')}
                 </p>
               </div>
               
               <div className="pt-2">
-                <p className="text-background/70 mb-2 font-medium">{t('contacts.address.title')}:</p>
-                <p className="text-background/70">
+                <p className="text-background/70 mb-2 font-medium cursor-pointer hover:text-background transition-colors duration-300">{t('contacts.address.title')}:</p>
+                <p className="text-background/70 cursor-pointer hover:text-background/90 transition-colors duration-300">
                   43025, {t('footer.address')}
                 </p>
               </div>
@@ -134,7 +134,7 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
           </div>
           <button 
             onClick={onPrivacyClick}
-            className="text-background/80 hover:text-background transition-all duration-300 text-sm cursor-pointer underline underline-offset-4 decoration-1 hover:decoration-2"
+            className="text-background/80 hover:text-background hover:text-accent transition-all duration-300 text-sm cursor-pointer underline underline-offset-4 decoration-1 hover:decoration-2 hover:scale-105"
           >
             {t('footer.privacy')}
           </button>

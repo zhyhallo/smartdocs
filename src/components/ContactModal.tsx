@@ -156,8 +156,8 @@ export default function ContactModal({ open, onOpenChange, defaultService = "", 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="phone" className="text-sm font-medium flex items-center">
-                    <Phone size={16} className="mr-2 text-primary" />
+                  <Label htmlFor="phone" className="text-sm font-medium flex items-center cursor-pointer">
+                    <Phone size={16} className="mr-2 text-primary icon-hover cursor-pointer" />
                     {t('contact.phone')} *
                   </Label>
                   <Input
@@ -166,7 +166,7 @@ export default function ContactModal({ open, onOpenChange, defaultService = "", 
                     placeholder="+380 XX XXX XX XX"
                     value={formData.phone}
                     onChange={(e) => handleInputChange("phone", e.target.value)}
-                    className={`border-border/50 focus:border-primary ${
+                    className={`border-border/50 focus:border-primary cursor-pointer hover:border-primary/70 transition-colors duration-300 ${
                       errors.phone ? 'border-destructive focus:border-destructive' : ''
                     }`}
                     required
@@ -177,8 +177,8 @@ export default function ContactModal({ open, onOpenChange, defaultService = "", 
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="email" className="text-sm font-medium flex items-center">
-                    <Envelope size={16} className="mr-2 text-primary" />
+                  <Label htmlFor="email" className="text-sm font-medium flex items-center cursor-pointer">
+                    <Envelope size={16} className="mr-2 text-primary icon-hover cursor-pointer" />
                     {t('contact.email')} *
                   </Label>
                   <Input
@@ -187,7 +187,7 @@ export default function ContactModal({ open, onOpenChange, defaultService = "", 
                     placeholder="email@company.com"
                     value={formData.email}
                     onChange={(e) => handleInputChange("email", e.target.value)}
-                    className={`border-border/50 focus:border-primary ${
+                    className={`border-border/50 focus:border-primary cursor-pointer hover:border-primary/70 transition-colors duration-300 ${
                       errors.email ? 'border-destructive focus:border-destructive' : ''
                     }`}
                     required
@@ -199,8 +199,8 @@ export default function ContactModal({ open, onOpenChange, defaultService = "", 
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="fullName" className="text-sm font-medium flex items-center">
-                  <User size={16} className="mr-2 text-primary" />
+                <Label htmlFor="fullName" className="text-sm font-medium flex items-center cursor-pointer">
+                  <User size={16} className="mr-2 text-primary icon-hover cursor-pointer" />
                   {t('contact.name')}
                 </Label>
                 <Input
@@ -209,13 +209,13 @@ export default function ContactModal({ open, onOpenChange, defaultService = "", 
                   placeholder={t('contact.name')}
                   value={formData.fullName}
                   onChange={(e) => handleInputChange("fullName", e.target.value)}
-                  className="border-border/50 focus:border-primary"
+                  className="border-border/50 focus:border-primary cursor-pointer hover:border-primary/70 transition-colors duration-300"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="company" className="text-sm font-medium flex items-center">
-                  <Building size={16} className="mr-2 text-primary" />
+                <Label htmlFor="company" className="text-sm font-medium flex items-center cursor-pointer">
+                  <Building size={16} className="mr-2 text-primary icon-hover cursor-pointer" />
                   {t('contact.company')}
                 </Label>
                 <Input
@@ -224,7 +224,7 @@ export default function ContactModal({ open, onOpenChange, defaultService = "", 
                   placeholder={t('contact.company')}
                   value={formData.company}
                   onChange={(e) => handleInputChange("company", e.target.value)}
-                  className="border-border/50 focus:border-primary"
+                  className="border-border/50 focus:border-primary cursor-pointer hover:border-primary/70 transition-colors duration-300"
                 />
               </div>
 
@@ -233,17 +233,17 @@ export default function ContactModal({ open, onOpenChange, defaultService = "", 
                   id="privacy-agreement"
                   checked={agreedToPrivacy}
                   onCheckedChange={(checked) => setAgreedToPrivacy(checked as boolean)}
-                  className="mt-1"
+                  className="mt-1 cursor-pointer hover:border-primary transition-colors duration-300"
                 />
                 <div className="text-sm leading-relaxed">
-                  <Label htmlFor="privacy-agreement" className="cursor-pointer flex items-start">
-                    <Shield size={16} className="mr-2 text-primary flex-shrink-0 mt-0.5" />
-                    <span>
+                  <Label htmlFor="privacy-agreement" className="cursor-pointer hover-lift flex items-start transition-all duration-300">
+                    <Shield size={16} className="mr-2 text-primary flex-shrink-0 mt-0.5 icon-hover cursor-pointer" />
+                    <span className="cursor-pointer hover:text-primary transition-colors duration-300">
                       {t('contact.privacy.text')}{" "}
                       <button
                         type="button"
                         onClick={onPrivacyClick}
-                        className="text-primary hover:text-accent underline font-medium transition-colors"
+                        className="text-primary hover:text-accent underline font-medium transition-all duration-300 cursor-pointer hover:scale-105 inline-block"
                       >
                         {t('contact.privacy.link')}
                       </button>
@@ -255,7 +255,7 @@ export default function ContactModal({ open, onOpenChange, defaultService = "", 
               <div className="pt-4 flex flex-col sm:flex-row gap-3">
                 <Button
                   type="submit"
-                  className="flex-1 font-medium tracking-wide"
+                  className="flex-1 font-medium tracking-wide cursor-pointer button-hover hover:shadow-lg transition-all duration-300"
                   disabled={isSubmitting || !agreedToPrivacy}
                 >
                   {isSubmitting ? (
@@ -275,7 +275,7 @@ export default function ContactModal({ open, onOpenChange, defaultService = "", 
                   type="button"
                   variant="outline"
                   onClick={() => onOpenChange(false)}
-                  className="flex-1 font-medium"
+                  className="flex-1 font-medium cursor-pointer hover:border-primary hover:text-primary transition-all duration-300"
                   disabled={isSubmitting}
                 >
                   {t('contact.cancel')}

@@ -176,8 +176,13 @@ export default function ProductDescription() {
             {benefits.map((benefit, index) => (
               <motion.div 
                 key={index}
-                className="text-center relative"
+                className="text-center relative cursor-pointer hover-scale p-4 rounded-lg transition-all duration-300"
                 variants={itemVariants}
+                whileHover={{
+                  y: -8,
+                  scale: 1.05,
+                  transition: { duration: 0.3 }
+                }}
               >
                 {/* Individual card parallax background */}
                 <div className="absolute inset-0 rounded-lg opacity-5 pointer-events-none">
@@ -196,22 +201,28 @@ export default function ProductDescription() {
                 </div>
                 
                 <motion.div 
-                  className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 relative overflow-hidden"
+                  className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 relative overflow-hidden cursor-pointer icon-hover"
                   variants={iconVariants}
+                  whileHover={{
+                    scale: 1.2,
+                    backgroundColor: "oklch(0.55 0.22 240 / 0.15)",
+                    boxShadow: "0 8px 16px rgba(37, 99, 235, 0.15)"
+                  }}
+                  transition={{ duration: 0.3 }}
                 >
                   {/* Icon container background effect */}
                   <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-accent/5 rounded-full" />
                   
-                  <div className="relative z-10">
+                  <div className="relative z-10 cursor-pointer">
                     {benefit.icon}
                   </div>
                 </motion.div>
                 
-                <h3 className="font-semibold mb-2">
+                <h3 className="font-semibold mb-2 cursor-pointer hover:text-primary transition-colors duration-300">
                   {benefit.title}
                 </h3>
                 
-                <p className="text-muted-foreground">
+                <p className="text-muted-foreground cursor-pointer hover:text-foreground transition-colors duration-300">
                   {benefit.description}
                 </p>
               </motion.div>

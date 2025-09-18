@@ -35,7 +35,9 @@
   }
   
   /* Essential cursor styles */
-  button, a, [role="button"], .cursor-pointer {
+  button, a, [role="button"], .cursor-pointer,
+  .card, .feature-card, .pricing-card, .faq-item,
+  .icon-button, .hover-scale {
     cursor: pointer;
   }
   
@@ -65,13 +67,53 @@
     max-width: 1200px;
   }
   
-  /* Critical hover effects only */
+  /* Enhanced hover effects for navigation */
   .menu-item-hover:hover,
   nav a:hover,
   nav a:focus {
     color: oklch(0.65 0.18 220) !important;
     transform: scale(1.02);
     transition: all 0.2s ease;
+  }
+  
+  /* Universal card hover effects */
+  .card:hover,
+  .feature-card:hover,
+  .pricing-card:hover {
+    transform: scale(1.03) translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Icon hover effects */
+  .icon-hover:hover {
+    transform: scale(1.15);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Button hover enhancements */
+  .button-hover:hover {
+    transform: scale(1.05);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* FAQ item hover */
+  .faq-item:hover {
+    transform: scale(1.01);
+    background-color: oklch(0.96 0.02 240);
+    transition: all 0.2s ease;
+  }
+  
+  /* Subtle hover for interactive sections */
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    transition: all 0.2s ease;
+  }
+  
+  /* Scale effect for logos and images */
+  .hover-scale:hover {
+    transform: scale(1.05);
+    transition: all 0.3s ease;
   }
   
   /* Essential animations only */
@@ -91,6 +133,43 @@
   
   .owl-container:hover .owl-sparkle {
     animation: sparkle 1.5s ease infinite;
+  }
+  
+  /* Enhanced badge hover effects */
+  .badge:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(37, 99, 235, 0.2);
+    transition: all 0.2s ease;
+  }
+  
+  /* Enhanced separator hover effects */
+  .separator:hover {
+    background-color: oklch(0.55 0.22 240);
+    transition: all 0.3s ease;
+  }
+  
+  /* Enhanced accordion item hover effects */
+  .accordion-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  /* Enhanced dialog content hover effects */
+  .dialog-content:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  /* Enhanced input hover effects */
+  .input:hover {
+    border-color: oklch(0.65 0.18 220);
+    transition: all 0.2s ease;
+  }
+  
+  /* Enhanced label hover effects */
+  .label:hover {
+    color: oklch(0.55 0.22 240);
+    transition: all 0.2s ease;
   }
   
   /* GPU acceleration for smooth animations */

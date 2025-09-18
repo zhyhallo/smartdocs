@@ -186,7 +186,7 @@ const Features = memo(function Features() {
         >
           {features.map((feature, index) => (
             <motion.div key={index} variants={cardVariants} className="h-full">
-              <Card className="h-full transition-all duration-300 relative overflow-hidden flex flex-col">
+              <Card className="h-full card feature-card cursor-pointer transition-all duration-300 relative overflow-hidden flex flex-col hover:shadow-xl">
                 {/* Card background parallax effect */}
                 <div className="absolute inset-0 opacity-5">
                   <motion.div
@@ -205,20 +205,25 @@ const Features = memo(function Features() {
                 
                 <CardContent className="p-6 relative z-10 flex flex-col h-full justify-between min-h-[200px]">
                   <motion.div 
-                    className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mb-4"
+                    className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mb-4 icon-hover cursor-pointer"
                     variants={iconVariants}
                     initial="hidden"
                     animate={isInView ? "visible" : "hidden"}
                     style={{ transitionDelay: `${index * 0.1}s` }}
+                    whileHover={{ 
+                      scale: 1.1,
+                      backgroundColor: "oklch(0.55 0.22 240 / 0.15)"
+                    }}
+                    transition={{ duration: 0.2 }}
                   >
-                    <div className="text-primary">
+                    <div className="text-primary cursor-pointer">
                       {feature.icon}
                     </div>
                   </motion.div>
-                  <h3 className="text-xl font-semibold mb-3 transition-colors duration-300 min-h-[3.5rem] flex items-start">
+                  <h3 className="text-xl font-semibold mb-3 transition-colors duration-300 min-h-[3.5rem] flex items-start cursor-pointer">
                     {feature.title}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed flex-1">
+                  <p className="text-muted-foreground leading-relaxed flex-1 cursor-pointer">
                     {feature.description}
                   </p>
                 </CardContent>
