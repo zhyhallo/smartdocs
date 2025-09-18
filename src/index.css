@@ -172,16 +172,6 @@
     transition: all 0.2s ease;
   }
   
-  /* Zadarma widget styles */
-  .zadarma-widget {
-    z-index: 9999 !important;
-  }
-  
-  /* Ensure Zadarma modal appears above everything */
-  [id*="zadarma"], [class*="zadarma"], [id*="callback"] {
-    z-index: 10000 !important;
-  }
-  
   /* GPU acceleration for smooth animations */
   .parallax-element,
   .float-gentle,
