@@ -1,5 +1,4 @@
 import { motion } from "framer-motion"
-import { POSTerminal } from "@/components"
 
 interface OwlLoaderProps {
   size?: "sm" | "md" | "lg"
@@ -97,12 +96,7 @@ export default function OwlLoader({ size = "md", className = "" }: OwlLoaderProp
   }
 
   return (
-    <div className={`flex items-center justify-center space-x-3 ${className}`}>
-      {/* POS Terminal */}
-      <div className="flex-shrink-0">
-        <POSTerminal size="xs" animated={true} />
-      </div>
-      
+    <div className={`flex items-center justify-center ${className}`}>
       {/* Owl Loader */}
       <motion.div
         className={`relative ${sizeClasses[size]}`}

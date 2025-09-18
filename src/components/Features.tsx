@@ -123,7 +123,6 @@ const Features = memo(function Features() {
           <OwlAnalyst 
             size="sm" 
             animated={false} 
-            withTerminal={false}
           />
         </motion.div>
         
@@ -144,7 +143,6 @@ const Features = memo(function Features() {
           <OwlAnalyst 
             size="xs" 
             animated={false} 
-            withTerminal={false}
           />
         </motion.div>
         

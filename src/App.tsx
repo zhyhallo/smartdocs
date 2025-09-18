@@ -12,8 +12,7 @@ import {
   ContactModal,
   InteractiveSection,
   ZadarmaWidget,
-  SEOManager,
-  Breadcrumb
+  SEOManager
 } from "@/components"
 import { Toaster } from "sonner"
 import { motion } from "framer-motion"
@@ -181,14 +180,6 @@ function AppContent() {
           onContactClick={openContactModal}
           onContactsClick={handleContactsClick}
         />
-        
-        <div className="container">
-          <Breadcrumb items={[
-            { name: t('breadcrumb.home'), href: 'https://modulsoft.eu' },
-            { name: t('breadcrumb.products'), href: 'https://modulsoft.eu/products' },
-            { name: t('breadcrumb.posnet_driver'), href: 'https://modulsoft.eu/driver-posnet-thermal' }
-          ]} />
-        </div>
         
         <main className="w-full">
           <InteractiveSection sectionId="hero" triggerOnView triggerOnHover>

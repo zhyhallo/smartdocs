@@ -55,7 +55,7 @@ export default function ZadarmaModal({ open, onOpenChange }: ZadarmaModalProps) 
       console.log("Submitting callback request:", { 
         phone: formData.phone,
         timestamp: new Date().toISOString(),
-        service: "Driver POSNET / Thermal consultation"
+        service: "Driver POSNET consultation"
       })
       
       setIsSubmitted(true)

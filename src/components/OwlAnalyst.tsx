@@ -1,12 +1,10 @@
 import { motion, AnimatePresence } from "framer-motion"
 import { useState, useEffect } from "react"
-import { POSTerminal } from "@/components"
 
 interface OwlAnalystProps {
   size?: "xs" | "sm" | "md" | "lg" | "xl"
   className?: string
   animated?: boolean
-  withTerminal?: boolean
 }
 
 type InteractionEvent = {
@@ -17,8 +15,7 @@ type InteractionEvent = {
 export default function OwlAnalyst({ 
   size = "md", 
   className = "", 
-  animated = true,
-  withTerminal = true
+  animated = true
 }: OwlAnalystProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [isBlinking, setIsBlinking] = useState(false)
@@ -293,15 +290,7 @@ export default function OwlAnalyst({
 
   if (!animated) {
     return (
-      <div className={`${sizeClasses[size]} ${className} flex items-center ${withTerminal ? 'space-x-1 sm:space-x-2' : ''} max-w-fit`}>
-        {withTerminal && (
-          <div className="flex-shrink-0 mr-1">
-            <POSTerminal 
-              size={size === "xl" ? "sm" : size === "lg" ? "sm" : "xs"} 
-              animated={false}
-            />
-          </div>
-        )}
+      <div className={`${sizeClasses[size]} ${className} max-w-fit`}>
         <div className="flex-shrink-0">
           <OwlSVG />
         </div>
@@ -317,7 +306,7 @@ export default function OwlAnalyst({
         isClicked ? ["animate", "excited"] :
         ["animate", "float"]
       }
-      className={`${sizeClasses[size]} ${className} cursor-pointer select-none owl-container relative flex items-center ${withTerminal ? 'space-x-1 sm:space-x-2' : ''} max-w-fit`}
+      className={`${sizeClasses[size]} ${className} cursor-pointer select-none owl-container relative max-w-fit`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => {
@@ -330,8 +319,7 @@ export default function OwlAnalyst({
       role="button"
       aria-label="Interactive owl analyst mascot"
     >
-      {/* POS Terminal positioned to the left - only show if withTerminal is true */}
-      {/* Owl positioned to the right */}
+      {/* Owl */}
       <div className="flex-shrink-0">
         <OwlSVG />
       </div>

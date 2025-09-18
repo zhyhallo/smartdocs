@@ -1,6 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion"
 import { useState } from "react"
-import { POSTerminal } from "@/components"
 
 interface OwlMascotProps {
   size?: "xs" | "sm" | "md" | "lg" | "xl"
@@ -447,19 +446,11 @@ export default function OwlMascot({ size = "md", className = "", animated = true
       initial="initial"
       animate={["animate", "float"]}
       whileHover="hover"
-      className="cursor-pointer relative flex items-center space-x-1 max-w-fit"
+      className="cursor-pointer relative max-w-fit"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {/* POS Terminal positioned to the left */}
-      <div className="flex-shrink-0 mr-1 sm:mr-2">
-        <POSTerminal 
-          size={size === "xl" ? "sm" : size === "lg" ? "sm" : "xs"} 
-          animated={animated && isHovered}
-        />
-      </div>
-      
-      {/* Owl positioned to the right */}
+      {/* Owl */}
       <div className="flex-shrink-0">
         <OwlSVG />
       </div>

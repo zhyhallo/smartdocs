@@ -24,7 +24,7 @@ const translations = {
     'breadcrumb.navigation': 'Навігація по сайту',
     'breadcrumb.home': 'Головна',
     'breadcrumb.products': 'Продукти',
-    'breadcrumb.posnet_driver': 'Driver POSNET / Thermal',
+    'breadcrumb.posnet_driver': 'Driver POSNET',
     
     // Hero Section
     'hero.title': 'Driver POSNET',
@@ -239,7 +239,7 @@ const translations = {
     'breadcrumb.navigation': 'Nawigacja po stronie',
     'breadcrumb.home': 'Główna',
     'breadcrumb.products': 'Produkty',
-    'breadcrumb.posnet_driver': 'Driver POSNET / Thermal',
+    'breadcrumb.posnet_driver': 'Driver POSNET',
     
     // Hero Section
     'hero.title': 'Driver POSNET',
@@ -421,8 +421,8 @@ const translations = {
     'cookies.success': 'Dziękujemy za zgodę! Ustawienia zostały zapisane.',
     
     // Meta
-    'meta.title': 'Driver POSNET / Thermal dla 1С:Enterprise – kup / cena / funkcje',
-    'meta.description': 'Gotowy komponent zewnętrzny do integracji z drukarkami POSNET / Thermal w 1С:Enterprise. Niezawodność, stabilność, wsparcie techniczne. Cena 1500 zł.',
+    'meta.title': 'Driver POSNET dla 1С:Enterprise – kup / cena / funkcje',
+    'meta.description': 'Gotowy komponent zewnętrzny do integracji z drukarkami POSNET w 1С:Enterprise. Niezawodność, stabilność, wsparcie techniczne. Cena 1500 zł.',
     
     // Zadarma Widget
     'zadarma.title': 'Zamów zwrotny telefon',
@@ -433,7 +433,7 @@ const translations = {
     'zadarma.close': 'Zamknij',
     'zadarma.schedule': 'Godziny pracy: Pon-Pt 8:00 do 17:00',
     'zadarma.success.title': 'Zapytanie przyjęte!',
-    'zadarma.success.description': 'Zadzwonimy do Ciebie w ciągu 5 minut w sprawie konsultacji Driver POSNET / Thermal.',
+    'zadarma.success.description': 'Zadzwonimy do Ciebie w ciągu 5 minut w sprawie konsultacji Driver POSNET.',
     'zadarma.success.toast': 'Zapytanie o telefon wysłane pomyślnie! Zadzwonimy do Ciebie w ciągu 5 minut.',
     'zadarma.error.phone.required': 'Proszę wprowadzić numer telefonu',
     'zadarma.error.phone.invalid': 'Proszę wprowadzić prawidłowy numer telefonu',
@@ -454,7 +454,7 @@ const translations = {
     'breadcrumb.navigation': 'Навигация по сайту',
     'breadcrumb.home': 'Главная',
     'breadcrumb.products': 'Продукты',
-    'breadcrumb.posnet_driver': 'Driver POSNET / Thermal',
+    'breadcrumb.posnet_driver': 'Driver POSNET',
     
     // Hero Section
     'hero.title': 'Driver POSNET',
@@ -698,10 +698,10 @@ export function TranslationProvider({ children }: TranslationProviderProps) {
     // Update keywords based on language
     if (keywordsElement) {
       const keywords = currentLang === 'uk' 
-        ? "POSNET, Thermal, 1С Enterprise, фіскальний реєстратор, драйвер, компонента, касове обладнання, ModulSoft"
+        ? "POSNET, 1С Enterprise, фіскальний реєстратор, драйвер, компонента, касове обладнання, ModulSoft"
         : currentLang === 'pl'
-        ? "POSNET, Thermal, 1С Enterprise, drukarka fiskalna, sterownik, komponent, urządzenie kasowe, ModulSoft"
-        : "POSNET, Thermal, 1С Enterprise, фискальный регистратор, драйвер, компонента, кассовое оборудование, ModulSoft"
+        ? "POSNET, 1С Enterprise, drukarka fiskalna, sterownik, komponent, urządzenie kasowe, ModulSoft"
+        : "POSNET, 1С Enterprise, фискальный регистратор, драйвер, компонента, кассовое оборудование, ModulSoft"
       keywordsElement.setAttribute('content', keywords)
     }
 

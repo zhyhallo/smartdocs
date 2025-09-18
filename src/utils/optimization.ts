@@ -201,22 +201,22 @@ export function createStructuredData(language: 'uk' | 'pl' | 'ru' = 'uk') {
   
   const translations = {
     uk: {
-      name: "ModulSoft - Driver POSNET / Thermal для 1С:Enterprise",
-      description: "Професійна зовнішня компонента для інтеграції з фіскальними реєстраторами POSNET / Thermal",
+      name: "ModulSoft - Driver POSNET для 1С:Enterprise",
+      description: "Професійна зовнішня компонента для інтеграції з фіскальними реєстраторами POSNET",
       currency: "UAH",
       locale: "uk_UA",
       region: "Україна"
     },
     pl: {
-      name: "ModulSoft - Driver POSNET / Thermal dla 1C:Enterprise", 
-      description: "Profesjonalny komponent zewnętrzny do integracji z drukarkami fiskalnymi POSNET / Thermal",
+      name: "ModulSoft - Driver POSNET dla 1C:Enterprise", 
+      description: "Profesjonalny komponent zewnętrzny do integracji z drukarkami fiskalnymi POSNET",
       currency: "PLN",
       locale: "pl_PL",
       region: "Polska"
     },
     ru: {
-      name: "ModulSoft - Driver POSNET / Thermal для 1С:Enterprise",
-      description: "Профессиональная внешняя компонента для интеграции с фискальными регистраторами POSNET / Thermal",
+      name: "ModulSoft - Driver POSNET для 1С:Enterprise",
+      description: "Профессиональная внешняя компонента для интеграции с фискальными регистраторами POSNET",
       currency: "RUB", 
       locale: "ru_RU",
       region: "Россия"
@@ -312,17 +312,17 @@ export function updateMetaTags(language: 'uk' | 'pl' | 'ru', title: string, desc
     
     const translations = {
       uk: {
-        keywords: "POSNET драйвер 1С, Thermal принтер 1С Enterprise, фіскальний реєстратор інтеграція, каса 1С, POS система України, модуль каси 1С, фіскальний принтер драйвер, POSNET Thermal компонента, ModulSoft 1С рішення",
+        keywords: "POSNET драйвер 1С, фіскальний реєстратор інтеграція, каса 1С, POS система України, модуль каси 1С, фіскальний принтер драйвер, POSNET компонента, ModulSoft 1С рішення",
         locale: "uk_UA",
         currency: "UAH"
       },
       pl: {
-        keywords: "sterownik POSNET 1C, drukarka Thermal 1C Enterprise, integracja kasy fiskalnej, kasa 1C, system POS Polska, moduł kasy 1C, sterownik drukarki fiskalnej, komponent POSNET Thermal, rozwiązania 1C ModulSoft",
+        keywords: "sterownik POSNET 1C, integracja kasy fiskalnej, kasa 1C, system POS Polska, moduł kasy 1C, sterownik drukarki fiskalnej, komponent POSNET, rozwiązania 1C ModulSoft",
         locale: "pl_PL", 
         currency: "PLN"
       },
       ru: {
-        keywords: "драйвер POSNET 1С, принтер Thermal 1С Enterprise, интеграция фискального регистратора, касса 1С, POS система России, модуль кассы 1С, драйвер фискального принтера, компонента POSNET Thermal, решения 1С ModulSoft",
+        keywords: "драйвер POSNET 1С, интеграция фискального регистратора, касса 1С, POS система России, модуль кассы 1С, драйвер фискального принтера, компонента POSNET, решения 1С ModulSoft",
         locale: "ru_RU",
         currency: "RUB"
       }
