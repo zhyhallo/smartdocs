@@ -213,26 +213,9 @@ export default function Pricing({ onContactClick }: PricingProps) {
                       whileHover={{ x: 4 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <motion.div
-                        className="icon-hover cursor-pointer"
-                        initial={{ scale: 0, rotate: -180 }}
-                        animate={isInView ? { 
-                          scale: 1, 
-                          rotate: 0,
-                          transition: {
-                            delay: 0.8 + (index * 0.1),
-                            duration: 0.4,
-                            ease: "backOut"
-                          }
-                        } : { scale: 0, rotate: -180 }}
-                        whileHover={{ 
-                          scale: 1.2,
-                          rotate: 360,
-                          transition: { duration: 0.3 }
-                        }}
-                      >
+                      <div className="cursor-pointer">
                         <Check className="text-primary mr-3 cursor-pointer" size={20} />
-                      </motion.div>
+                      </div>
                       <span className="cursor-pointer">{feature}</span>
                     </motion.div>
                   ))}
