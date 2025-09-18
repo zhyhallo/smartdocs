@@ -205,6 +205,10 @@ const translations = {
     'cookies.decline': 'Відхилити',
     'cookies.success': 'Дякуємо за вашу згоду! Налаштування збережено.',
     
+    // Callback Widget
+    'widget.callback.title': 'Замовити зворотний дзвінок',
+    'widget.callback.button': 'Зателефонувати',
+    
     // Meta
     'meta.title': 'Driver POSNET для 1С:Enterprise – купити / ціна / функції',
     'meta.description': 'Зовнішній компонент для інтеграції з POSNET реєстраторами в 1С:Enterprise. Надійність, стабільність, техпідтримка. Ціна 1500 zł.',
@@ -405,6 +409,10 @@ const translations = {
     'cookies.decline': 'Odrzuć',
     'cookies.success': 'Dziękujemy za zgodę! Ustawienia zostały zapisane.',
     
+    // Callback Widget
+    'widget.callback.title': 'Zamów telefon zwrotny',
+    'widget.callback.button': 'Zadzwoń',
+    
     // Meta
     'meta.title': 'Driver POSNET dla 1С:Enterprise – kup / cena / funkcje',
     'meta.description': 'Gotowy komponent zewnętrzny do integracji z drukarkami POSNET w 1С:Enterprise. Niezawodność, stabilność, wsparcie techniczne. Cena 1500 zł.',
@@ -604,6 +612,10 @@ const translations = {
     'cookies.learn': 'Подробнее',
     'cookies.decline': 'Отклонить',
     'cookies.success': 'Спасибо за ваше согласие! Настройки сохранены.',
+    
+    // Callback Widget
+    'widget.callback.title': 'Заказать обратный звонок',
+    'widget.callback.button': 'Позвонить',
     
     // Meta
     'meta.title': 'Driver POSNET для 1С:Enterprise – купить / цена / функции',
