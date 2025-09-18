@@ -124,7 +124,7 @@ const Hero = memo(function Hero({ onContactClick }: HeroProps) {
           >
             <div className="relative">
               <OwlMascot 
-                size="md" 
+                size="xl" 
                 className="drop-shadow-2xl" 
               />
                           {/* Enhanced floating elements around owl with parallax */}
