@@ -208,21 +208,6 @@ const translations = {
     // Meta
     'meta.title': 'Driver POSNET для 1С:Enterprise – купити / ціна / функції',
     'meta.description': 'Зовнішній компонент для інтеграції з POSNET реєстраторами в 1С:Enterprise. Надійність, стабільність, техпідтримка. Ціна 1500 zł.',
-    
-    // Zadarma Widget
-    'zadarma.title': 'Замовити зворотний дзвінок',
-    'zadarma.description': 'Введіть ваш номер телефону, і ми зателефонуємо вам протягом 5 хвилин',
-    'zadarma.phone.label': 'Номер телефону *',
-    'zadarma.submit': 'Замовити дзвінок',
-    'zadarma.submitting': 'Відправляємо...',
-    'zadarma.close': 'Закрити',
-    'zadarma.schedule': 'Час роботи: Пн-Пт з 8:00 до 17:00',
-    'zadarma.success.title': 'Заявку прийнято!',
-    'zadarma.success.description': 'Ми зателефонуємо вам протягом 5 хвилин для консультації щодо Driver POSNET.',
-    'zadarma.success.toast': 'Заявку на дзвінок успішно відправлено! Ми зателефонуємо вам протягом 5 хвилин.',
-    'zadarma.error.phone.required': 'Будь ласка, введіть номер телефону',
-    'zadarma.error.phone.invalid': 'Будь ласка, введіть корректний номер телефону',
-    'zadarma.error.submit': 'Помилка відправки заявки. Спробуйте ще раз або зателефонуйте нам безпосередньо.',
   },
   
   pl: {
@@ -423,21 +408,6 @@ const translations = {
     // Meta
     'meta.title': 'Driver POSNET dla 1С:Enterprise – kup / cena / funkcje',
     'meta.description': 'Gotowy komponent zewnętrzny do integracji z drukarkami POSNET w 1С:Enterprise. Niezawodność, stabilność, wsparcie techniczne. Cena 1500 zł.',
-    
-    // Zadarma Widget
-    'zadarma.title': 'Zamów zwrotny telefon',
-    'zadarma.description': 'Wprowadź swój numer telefonu, a zadzwonimy do Ciebie w ciągu 5 minut',
-    'zadarma.phone.label': 'Numer telefonu *',
-    'zadarma.submit': 'Zamów telefon',
-    'zadarma.submitting': 'Wysyłamy...',
-    'zadarma.close': 'Zamknij',
-    'zadarma.schedule': 'Godziny pracy: Pon-Pt 8:00 do 17:00',
-    'zadarma.success.title': 'Zapytanie przyjęte!',
-    'zadarma.success.description': 'Zadzwonimy do Ciebie w ciągu 5 minut w sprawie konsultacji Driver POSNET.',
-    'zadarma.success.toast': 'Zapytanie o telefon wysłane pomyślnie! Zadzwonimy do Ciebie w ciągu 5 minut.',
-    'zadarma.error.phone.required': 'Proszę wprowadzić numer telefonu',
-    'zadarma.error.phone.invalid': 'Proszę wprowadzić prawidłowy numer telefonu',
-    'zadarma.error.submit': 'Błąd wysyłania zapytania. Spróbuj ponownie lub zadzwoń do nas bezpośrednio.',
   },
   
   ru: {
@@ -638,21 +608,6 @@ const translations = {
     // Meta
     'meta.title': 'Driver POSNET для 1С:Enterprise – купить / цена / функции',
     'meta.description': 'Готовая внешняя компонента для интеграции с POSNET регистраторами в 1С:Enterprise. Надежность, стабильность, техподдержка. Цена 1500 zł.',
-    
-    // Zadarma Widget
-    'zadarma.title': 'Заказать обратный звонок',
-    'zadarma.description': 'Введите ваш номер телефона, и мы позвоним вам в течение 5 минут',
-    'zadarma.phone.label': 'Номер телефона *',
-    'zadarma.submit': 'Заказать звонок',
-    'zadarma.submitting': 'Отправляем...',
-    'zadarma.close': 'Закрыть',
-    'zadarma.schedule': 'Время работы: Пн-Пт с 8:00 до 17:00',
-    'zadarma.success.title': 'Заявка принята!',
-    'zadarma.success.description': 'Мы позвоним вам �� течение 5 минут для консультации по Driver POSNET.',
-    'zadarma.success.toast': 'Заявка на звонок успешно отправлена! Мы позвоним вам в течение 5 минут.',
-    'zadarma.error.phone.required': 'Пожалуйста, введите номер телефона',
-    'zadarma.error.phone.invalid': 'Пожалуйста, введите корректный номер телефона',
-    'zadarma.error.submit': 'Ошибка отправки заявки. Попробуйте еще раз или позвоните нам непосредственно.',
   }
 }
 

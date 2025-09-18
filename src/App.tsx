@@ -11,7 +11,6 @@ import {
   Footer, 
   ContactModal,
   InteractiveSection,
-  ZadarmaWidget,
   SEOManager
 } from "@/components"
 import { Toaster } from "sonner"
@@ -241,8 +240,6 @@ function AppContent() {
             onLearnMore={handlePrivacyClick}
           />
         </Suspense>
-        
-        <ZadarmaWidget />
         
         <Toaster richColors position="top-right" />
       </motion.div>
