@@ -23,10 +23,7 @@ import { TranslationProvider, useTranslation } from "@/hooks/useTranslation"
 import { 
   measureWebVitals, 
   preloadCriticalResources, 
-  optimizeImages,
-  createStructuredData,
-  addStructuredData,
-  updateMetaTags
+  optimizeImages
 } from "@/utils/optimization"
 
 // Optimized lazy loading with better splitting
