@@ -162,13 +162,16 @@ export default function Header({ onContactClick, onContactsClick }: HeaderProps)
                 <motion.a 
                   key={index}
                   href={item.href} 
-                  className="text-foreground font-medium cursor-pointer relative overflow-hidden menu-item-hover"
+                  className="text-foreground font-medium cursor-pointer relative overflow-hidden"
                   variants={menuItemVariants}
                   whileHover="hover"
                   whileTap="tap"
                   onClick={(e) => handleSmoothScroll(item.href, e)}
                   style={{
-                    textDecoration: "none"
+                    textDecoration: "none",
+                    background: "none",
+                    border: "none",
+                    outline: "none"
                   }}
                 >
                   {item.label}
@@ -177,10 +180,16 @@ export default function Header({ onContactClick, onContactsClick }: HeaderProps)
                 <motion.button
                   key={index}
                   onClick={item.onClick}
-                  className="text-foreground font-medium cursor-pointer relative overflow-hidden menu-item-hover bg-transparent border-none"
+                  className="text-foreground font-medium cursor-pointer relative overflow-hidden bg-transparent border-none outline-none"
                   variants={menuItemVariants}
                   whileHover="hover"
                   whileTap="tap"
+                  style={{
+                    background: "none",
+                    border: "none",
+                    outline: "none",
+                    textDecoration: "none"
+                  }}
                 >
                   {item.label}
                 </motion.button>
@@ -278,7 +287,7 @@ export default function Header({ onContactClick, onContactsClick }: HeaderProps)
                     <motion.a 
                       key={index}
                       href={item.href} 
-                      className="text-foreground font-medium cursor-pointer block py-2 menu-item-hover"
+                      className="text-foreground font-medium cursor-pointer block py-2"
                       custom={index}
                       variants={mobileItemVariants}
                       initial="hidden"
@@ -296,7 +305,10 @@ export default function Header({ onContactClick, onContactsClick }: HeaderProps)
                         setIsMobileMenuOpen(false);
                       }}
                       style={{
-                        textDecoration: "none"
+                        textDecoration: "none",
+                        background: "none",
+                        border: "none",
+                        outline: "none"
                       }}
                     >
                       {item.label}
@@ -308,7 +320,7 @@ export default function Header({ onContactClick, onContactsClick }: HeaderProps)
                         item.onClick?.()
                         setIsMobileMenuOpen(false)
                       }}
-                      className="text-foreground font-medium cursor-pointer block py-2 menu-item-hover bg-transparent border-none text-left"
+                      className="text-foreground font-medium cursor-pointer block py-2 bg-transparent border-none text-left outline-none"
                       custom={index}
                       variants={mobileItemVariants}
                       initial="hidden"
@@ -320,6 +332,12 @@ export default function Header({ onContactClick, onContactsClick }: HeaderProps)
                       whileTap={{
                         scale: 0.98,
                         transition: { duration: 0.1 }
+                      }}
+                      style={{
+                        background: "none",
+                        border: "none",
+                        outline: "none",
+                        textDecoration: "none"
                       }}
                     >
                       {item.label}

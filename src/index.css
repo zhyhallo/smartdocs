@@ -76,6 +76,59 @@
     transition: all 0.2s ease;
   }
   
+  /* Remove any default button hover styles that might cause green colors */
+  .menu-item-hover {
+    background: none !important;
+    border: none !important;
+  }
+  
+  .menu-item-hover:hover {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  
+  /* Ensure navigation items don't inherit any unwanted colors */
+  nav a,
+  nav button,
+  header a,
+  header button {
+    background-color: transparent !important;
+    border: none !important;
+    outline: none !important;
+  }
+  
+  nav a:hover,
+  nav button:hover,
+  header a:hover,
+  header button:hover {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: oklch(0.65 0.18 220) !important;
+  }
+  
+  nav a:focus,
+  nav button:focus,
+  header a:focus,
+  header button:focus {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: oklch(0.65 0.18 220) !important;
+    outline: none !important;
+  }
+  
+  nav a:active,
+  nav button:active,
+  header a:active,
+  header button:active {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: oklch(0.65 0.18 220) !important;
+  }
+  
   /* Universal card hover effects */
   .card:hover,
   .feature-card:hover,
