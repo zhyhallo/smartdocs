@@ -1,68 +1,103 @@
-# Enhanced robots.txt for multilingual SEO optimization
+# Robots.txt for posnet.modulsoft.eu
 # Updated: 2025-01-03
+# This file allows search engines to crawl and index the website
 
+# Allow all search engines to crawl everything
 User-agent: *
 Allow: /
 
-# Sitemaps for all languages
-Sitemap: https://modulsoft.eu/sitemap.xml
-Sitemap: https://modulsoft.eu/sitemap-uk.xml
-Sitemap: https://modulsoft.eu/sitemap-pl.xml  
-Sitemap: https://modulsoft.eu/sitemap-ru.xml
-
-# Specific crawling directives for search engines
+# Special directives for major search engines
 User-agent: Googlebot
 Allow: /
-Crawl-delay: 0
+Crawl-delay: 1
 
 User-agent: Bingbot
 Allow: /
-Crawl-delay: 1
+Crawl-delay: 2
 
 User-agent: YandexBot
 Allow: /
-Crawl-delay: 1
+Crawl-delay: 2
 
 User-agent: facebookexternalhit
 Allow: /
 
-User-agent: Twitterbot
-Allow: /
-
-User-agent: LinkedInBot
-Allow: /
-
-# Block development and admin areas
+# Disallow access to admin and private areas
 Disallow: /admin/
-Disallow: /dev/
-Disallow: /test/
-Disallow: /temp/
-Disallow: /*.json$
-Disallow: /*?debug*
-Disallow: /*?test*
+Disallow: /private/
+Disallow: /.env
+Disallow: /logs/
+Disallow: /tmp/
+Disallow: /_next/
+Disallow: /node_modules/
 
-# Allow important resources
+# Allow CSS and JS files for better rendering in search results
+Allow: *.css
+Allow: *.js
+Allow: /src/
 Allow: /assets/
-Allow: /images/
-Allow: /css/
-Allow: /js/
+
+# Sitemap location
+Sitemap: https://posnet.modulsoft.eu/sitemap.xml
+
+# Additional sitemaps for different content types
+# Sitemap: https://posnet.modulsoft.eu/sitemap-images.xml
+# Sitemap: https://posnet.modulsoft.eu/sitemap-news.xml
+
+# Host directive (for consistency)
+Host: https://posnet.modulsoft.eu
+
+# Clean URLs - redirect common variations
+# Ensure canonical URLs are used
+
+# Security considerations - block sensitive files
+Disallow: /*.sql$
+Disallow: /*.env$
+Disallow: /*.log$
+Disallow: /*.bak$
+Disallow: /*.conf$
+Disallow: /*.config$
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /.git/
+Disallow: /.htaccess
+Disallow: /error_log
+Disallow: /access_log
+
+# Allow important files for SEO and verification
+Allow: /robots.txt
+Allow: /sitemap.xml
+Allow: /*.xml$
+Allow: /manifest.json
 Allow: /favicon.ico
-Allow: /logo.png
-Allow: /og-*.jpg
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.gif$
+Allow: /*.webp$
+Allow: /*.svg$
+Allow: /*.ico$
 
-# Language-specific pages
-Allow: /driver-posnet-thermal
-Allow: /pl/driver-posnet-thermal
-Allow: /ru/driver-posnet-thermal
-Allow: /contacts
-Allow: /pl/kontakt
-Allow: /ru/kontakty
-Allow: /privacy-policy
-Allow: /pl/polityka-prywatnosci
-Allow: /ru/politika-konfidencialnosti
+# Additional directives for better SEO
+# Block duplicate content and parameters that don't add value
+Disallow: /*?utm_source=*
+Disallow: /*?utm_medium=*
+Disallow: /*?utm_campaign=*
+Disallow: /*?ref=*
+Disallow: /*?track=*
+Disallow: /*?sid=*
+Disallow: /*?sessionid=*
 
-# Clean URLs without query parameters
-Disallow: /*?*
-Allow: /*?utm_*
-Allow: /*?ref=*
-Allow: /*?lang=*
+# Block printer-friendly versions if not needed
+Disallow: /*?print=*
+Disallow: /*/print/
+
+# Block search result pages if any exist
+Disallow: /search?*
+Disallow: /*?search=*
+Disallow: /*?q=*
+
+# Performance optimization - allow critical resources
+Allow: /src/main.css
+Allow: /src/main.tsx
+Allow: /src/App.tsx

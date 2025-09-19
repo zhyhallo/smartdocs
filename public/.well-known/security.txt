@@ -1,0 +1,8 @@
+Contact: mailto:info@modulsoft.eu
+Contact: tel:+380931776504
+Expires: 2025-12-31T23:59:59.000Z
+Encryption: https://posnet.modulsoft.eu/pgp-key.txt
+Preferred-Languages: uk, en, pl, ru
+Canonical: https://posnet.modulsoft.eu/.well-known/security.txt
+Policy: https://posnet.modulsoft.eu/privacy-policy
+Hiring: https://posnet.modulsoft.eu/careers
