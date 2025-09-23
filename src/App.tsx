@@ -12,7 +12,8 @@ import {
   ContactModal,
   InteractiveSection,
   SEOManager,
-  SEOSchemas
+  SEOSchemas,
+  PrivacyPolicy
 } from "@/components"
 import { Toaster } from "sonner"
 import { motion } from "framer-motion"
@@ -29,8 +30,6 @@ import {
 const ScrollToTop = lazy(() => import("@/components/ScrollToTop"))
 
 const ContactPage = lazy(() => import("@/components/ContactPage"))
-
-const PrivacyPolicy = lazy(() => import("@/components/PrivacyPolicy"))
 
 const CookieConsent = lazy(() => import("@/components/CookieConsent"))
 
@@ -177,9 +176,7 @@ function AppContent() {
           animate="animate"
           exit="exit"
         >
-          <Suspense fallback={<div className="flex items-center justify-center min-h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" /></div>}>
-            <PrivacyPolicy onBackClick={handleHomeClick} />
-          </Suspense>
+          <PrivacyPolicy onBackClick={handleHomeClick} />
           <Toaster richColors position="top-right" />
         </motion.div>
       </InteractionProvider>

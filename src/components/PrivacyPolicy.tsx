@@ -1,4 +1,3 @@
-import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { ArrowLeft, Shield, Database, Cookie, Eye, FileText } from "@phosphor-icons/react"
@@ -10,40 +9,11 @@ interface PrivacyPolicyProps {
 
 export default function PrivacyPolicy({ onBackClick }: PrivacyPolicyProps) {
   const { t } = useTranslation()
-  const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-        staggerChildren: 0.1
-      }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut"
-      }
-    }
-  }
 
   return (
-    <motion.div
-      className="min-h-screen bg-background py-16"
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-    >
+    <div className="min-h-screen bg-background py-16">
       <div className="container mx-auto px-4 max-w-4xl">
-        <motion.div className="mb-8" variants={itemVariants}>
+        <div className="mb-8">
           {onBackClick && (
             <Button
               variant="outline"
@@ -65,9 +35,9 @@ export default function PrivacyPolicy({ onBackClick }: PrivacyPolicyProps) {
           <p className="text-muted-foreground text-lg">
             {t('privacy.last-updated')}: {new Date().toLocaleDateString('uk-UA')}
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div className="space-y-8" variants={itemVariants}>
+        <div className="space-y-8">
           <Card className="border-border/50">
             <CardContent className="p-8">
               <div className="flex items-center mb-4">
@@ -225,8 +195,8 @@ export default function PrivacyPolicy({ onBackClick }: PrivacyPolicyProps) {
               </div>
             </CardContent>
           </Card>
-        </motion.div>
+        </div>
       </div>
-    </motion.div>
+    </div>
   )
 }
