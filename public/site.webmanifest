@@ -1,68 +1,46 @@
 {
   "name": "Driver POSNET для 1С:Enterprise - ModulSoft",
   "short_name": "POSNET Driver",
-  "description": "Професійна зовнішня компонента для інтеграції з POSNET реєстраторами в 1С:Enterprise",
+  "description": "Професійна компонента для інтеграції фіскальних реєстраторів POSNET з 1С:Enterprise",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#f8fafc",
-  "theme_color": "#2563eb",
   "orientation": "portrait-primary",
-  "scope": "/",
-  "lang": "uk-UA",
+  "theme_color": "#2563eb",
+  "background_color": "#f8fafc",
+  "lang": "uk",
   "dir": "ltr",
-  
+  "scope": "/",
+  "categories": ["business", "finance", "productivity"],
   "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
     {
       "src": "/favicon-16x16.png",
       "sizes": "16x16",
       "type": "image/png"
     },
     {
-      "src": "/favicon-32x32.png", 
-      "sizes": "32x32",
-      "type": "image/png"
-    },
-    {
       "src": "/apple-touch-icon.png",
       "sizes": "180x180",
-      "type": "image/png"
-    },
-    {
-      "src": "/android-chrome-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "maskable"
-    },
-    {
-      "src": "/android-chrome-512x512.png",
-      "sizes": "512x512", 
       "type": "image/png",
       "purpose": "maskable"
     }
   ],
-
-  "categories": ["business", "productivity", "utilities"],
-  "screenshots": [
-    {
-      "src": "/screenshot-wide.png",
-      "sizes": "1280x720",
-      "type": "image/png",
-      "form_factor": "wide"
-    },
-    {
-      "src": "/screenshot-narrow.png",
-      "sizes": "750x1334",
-      "type": "image/png", 
-      "form_factor": "narrow"
-    }
-  ],
-
   "shortcuts": [
     {
-      "name": "Замовити драйвер",
+      "name": "Замовити",
       "short_name": "Замовити",
       "description": "Швидке замовлення Driver POSNET",
-      "url": "/#pricing",
+      "url": "/#order",
       "icons": [
         {
           "src": "/favicon-32x32.png",
@@ -72,8 +50,8 @@
     },
     {
       "name": "Контакти",
-      "short_name": "Контакти", 
-      "description": "Зв'язатись з ModulSoft",
+      "short_name": "Контакти",
+      "description": "Наші контактні дані",
       "url": "/contacts",
       "icons": [
         {
@@ -83,7 +61,12 @@
       ]
     }
   ],
-
   "related_applications": [],
-  "prefer_related_applications": false
+  "prefer_related_applications": false,
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  }
 }

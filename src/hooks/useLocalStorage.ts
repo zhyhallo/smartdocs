@@ -1,16 +1,17 @@
 import { useState, useEffect, useCallback } from 'react'
 
- * 
-export function useLocalStorage<T>(key: string, defaultV
+/**
+ * Custom hook for localStorage with Spark-like API
  * Provides the same API for data persistence
  */
 export function useLocalStorage<T>(key: string, defaultValue: T) {
   const [value, setValue] = useState<T>(() => {
     try {
-      return defaultValue
-    }
-
-    try {
+      // Server-side rendering support
+      if (typeof window === 'undefined') {
+        return defaultValue
+      }
+      
       const item = localStorage.getItem(key)
       return item ? JSON.parse(item) : defaultValue
     } catch (error) {
@@ -21,7 +22,9 @@ export function useLocalStorage<T>(key: string, defaultValue: T) {
 
   const setStoredValue = useCallback((newValue: T | ((prev: T) => T)) => {
     try {
-      const valueToStore = typeof newValue === 'function' ? (newValue as (prev: T) => T)(value) : newValue
+      const valueToStore = typeof newValue === 'function' 
+        ? (newValue as (prev: T) => T)(value) 
+        : newValue
 
       setValue(valueToStore)
 
@@ -47,26 +50,25 @@ export function useLocalStorage<T>(key: string, defaultValue: T) {
   // Listen to changes made by other tabs/windows
   useEffect(() => {
     if (typeof window === 'undefined') {
-        try 
-     
-
-        setValue(defaultValue)
+      return
     }
-    window.ad
+
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === key && e.newValue !== null) {
+        try {
+          setValue(JSON.parse(e.newValue))
+        } catch (error) {
+          console.warn(`Error parsing localStorage value for key "${key}":`, error)
+          setValue(defaultValue)
+        }
+      }
+    }
+
+    window.addEventListener('storage', handleStorageChange)
     return () => {
+      window.removeEventListener('storage', handleStorageChange)
     }
+  }, [key, defaultValue])
 
+  return [value, setStoredValue, deleteValue] as const
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
