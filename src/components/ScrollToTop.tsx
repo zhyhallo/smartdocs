@@ -102,10 +102,11 @@ export default function ScrollToTop() {
           exit="hidden"
           whileHover="hover"
           whileTap="tap"
-          className="scroll-to-top fixed right-6 z-40 p-3 rounded-full 
+          className="scroll-to-top fixed right-6 z-40 rounded-full 
                      backdrop-blur-sm border border-border/30
                      shadow-lg hover:shadow-xl transition-shadow duration-300
-                     focus:outline-none focus:ring-2 focus:ring-primary/50"
+                     focus:outline-none focus:ring-2 focus:ring-primary/50
+                     p-2 sm:p-3"
           style={{
             bottom: getBottomPosition(),
             background: "oklch(0.98 0.02 240 / 0.9)"
@@ -139,8 +140,8 @@ export default function ScrollToTop() {
             <AnimatePresence>
               {isHovered && !isScrolling && (
                 <motion.div
-                  className="absolute -top-8 left-1/2 transform -translate-x-1/2 
-                             text-primary text-lg font-bold pointer-events-none"
+                  className="absolute -top-6 sm:-top-8 left-1/2 transform -translate-x-1/2 
+                             text-primary text-base sm:text-lg font-bold pointer-events-none"
                   initial={{ opacity: 0, y: 10, scale: 0 }}
                   animate={{
                     opacity: [0, 1, 0],

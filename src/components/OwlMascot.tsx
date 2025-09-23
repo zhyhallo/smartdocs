@@ -20,12 +20,12 @@ export default function OwlMascot({
   const [isLookingAround, setIsLookingAround] = useState(false)
   
   const sizeClasses = {
-    xs: "w-8 h-8 sm:w-10 sm:h-10",      // Very small
-    sm: "w-12 h-12 sm:w-14 sm:h-14",    // Small
-    md: "w-16 h-16 sm:w-20 sm:h-20",    // Medium
-    lg: "w-36 h-36 sm:w-42 sm:h-42",    // Large - увеличено на 150%
-    xl: "w-48 h-48 sm:w-54 sm:h-54",    // Extra large - увеличено на 150%
-    "2xl": "w-60 h-60 sm:w-72 sm:h-72"  // Super large для hero
+    xs: "w-6 h-6 sm:w-10 sm:h-10",      // Very small - зменшено на мобільних на 50%
+    sm: "w-6 h-6 sm:w-14 sm:h-14",      // Small - зменшено на мобільних на 50%
+    md: "w-8 h-8 sm:w-20 sm:h-20",      // Medium - зменшено на мобільних на 50%
+    lg: "w-18 h-18 sm:w-42 sm:h-42",    // Large - зменшено на мобільних на 50%
+    xl: "w-24 h-24 sm:w-54 sm:h-54",    // Extra large - зменшено на мобільних на 50%
+    "2xl": "w-30 h-30 sm:w-72 sm:h-72"  // Super large для hero - зменшено на мобільних на 50%
   }
 
   // Blink animation timer
