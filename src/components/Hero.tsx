@@ -57,28 +57,28 @@ const Hero = memo(function Hero({ onContactClick }: HeroProps) {
   }
 
   return (
-    <section className="relative py-20 bg-gradient-to-b from-secondary/30 to-background overflow-hidden">
+    <section className="hero-section relative py-16 md:py-20 lg:py-24 bg-gradient-to-b from-secondary/30 to-background overflow-hidden">
       {/* Parallax Background Elements */}
       <ParallaxBackground variant="subtle" />
       <FloatingElements density="low" theme="tech" />
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-8 items-center max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center max-w-7xl mx-auto">
           {/* Left side - Content */}
           <motion.div 
-            className="max-w-2xl mx-auto lg:mx-0 text-center lg:text-left"
+            className="max-w-2xl mx-auto lg:mx-0 text-center lg:text-left order-2 lg:order-1"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
           >
             <motion.div variants={itemVariants}>
-              <Badge variant="secondary" className="mb-6">
+              <Badge variant="secondary" className="mb-4 md:mb-6">
                 {t('hero.title')} {t('hero.subtitle')} - {t('hero.badge')}
               </Badge>
             </motion.div>
             
             <motion.h1 
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 tracking-tight"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 md:mb-6 tracking-tight leading-tight"
               variants={itemVariants}
             >
               {t('hero.title')}
@@ -91,14 +91,14 @@ const Hero = memo(function Hero({ onContactClick }: HeroProps) {
             </motion.h1>
             
             <motion.p 
-              className="text-xl text-muted-foreground mb-8 leading-relaxed"
+              className="text-lg md:text-xl text-muted-foreground mb-6 md:mb-8 leading-relaxed"
               variants={itemVariants}
             >
               {t('hero.description')}
             </motion.p>
             
             <motion.div 
-              className="flex justify-center"
+              className="flex justify-center lg:justify-start"
               variants={buttonVariants}
               initial="hidden"
               animate="visible"
@@ -107,7 +107,7 @@ const Hero = memo(function Hero({ onContactClick }: HeroProps) {
             >
               <Button 
                 size="lg" 
-                className="text-lg px-8 py-4 cursor-pointer"
+                className="text-base md:text-lg px-6 md:px-8 py-3 md:py-4 cursor-pointer w-full sm:w-auto"
                 onClick={() => onContactClick(t('hero.cta.order'))}
               >
                 {t('hero.cta.order')}
@@ -117,12 +117,12 @@ const Hero = memo(function Hero({ onContactClick }: HeroProps) {
 
         {/* Right side - Owl Mascot */}
           <motion.div 
-            className="flex justify-center"
+            className="flex justify-center order-1 lg:order-2 mb-8 lg:mb-0"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
           >
-            <div className="relative">
+            <div className="relative scale-75 sm:scale-90 md:scale-100">
               <OwlMascot 
                 size="2xl" 
                 className="drop-shadow-2xl" 

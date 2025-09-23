@@ -690,6 +690,38 @@
             animation: true
         };
         
+        // Apply mobile-specific styles after widget loads
+        setTimeout(function() {
+            var zadarmaWidget = document.querySelector('[id*="callback"], [id*="zcallback"], .zadarma-widget');
+            if (zadarmaWidget) {
+                var style = document.createElement('style');
+                style.textContent = `
+                    @media (max-width: 768px) {
+                        [id*="callback"], [id*="zcallback"], .zadarma-widget {
+                            bottom: 80px !important;
+                            right: 16px !important;
+                            z-index: 30 !important;
+                        }
+                        [id*="callback"] iframe, [id*="zcallback"] iframe {
+                            width: 280px !important;
+                            max-width: calc(100vw - 32px) !important;
+                        }
+                    }
+                    @media (max-width: 480px) {
+                        [id*="callback"], [id*="zcallback"], .zadarma-widget {
+                            bottom: 70px !important;
+                            right: 12px !important;
+                        }
+                        [id*="callback"] iframe, [id*="zcallback"] iframe {
+                            width: 260px !important;
+                            max-width: calc(100vw - 24px) !important;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }, 2000);
+        
         (function() {
             var lt = document.createElement('script');
             lt.type = 'text/javascript';

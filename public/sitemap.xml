@@ -1,139 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml"
-        xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0"
-        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-
-  <!-- Main Homepage - Ukrainian -->
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- Main product page in Ukrainian (default) -->
   <url>
     <loc>https://posnet.modulsoft.eu</loc>
-    <lastmod>2025-01-03T10:00:00+00:00</lastmod>
+    <lastmod>2025-01-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <mobile:mobile/>
     <xhtml:link rel="alternate" hreflang="uk" href="https://posnet.modulsoft.eu" />
     <xhtml:link rel="alternate" hreflang="pl" href="https://posnet.modulsoft.eu/pl" />
     <xhtml:link rel="alternate" hreflang="ru" href="https://posnet.modulsoft.eu/ru" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://posnet.modulsoft.eu" />
   </url>
-
-  <!-- Polish Version -->
+  
+  <!-- Product page in Polish -->
   <url>
     <loc>https://posnet.modulsoft.eu/pl</loc>
-    <lastmod>2025-01-03T10:00:00+00:00</lastmod>
+    <lastmod>2025-01-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <mobile:mobile/>
     <xhtml:link rel="alternate" hreflang="uk" href="https://posnet.modulsoft.eu" />
     <xhtml:link rel="alternate" hreflang="pl" href="https://posnet.modulsoft.eu/pl" />
     <xhtml:link rel="alternate" hreflang="ru" href="https://posnet.modulsoft.eu/ru" />
   </url>
-
-  <!-- Russian Version -->
+  
+  <!-- Product page in Russian -->
   <url>
     <loc>https://posnet.modulsoft.eu/ru</loc>
-    <lastmod>2025-01-03T10:00:00+00:00</lastmod>
+    <lastmod>2025-01-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <mobile:mobile/>
     <xhtml:link rel="alternate" hreflang="uk" href="https://posnet.modulsoft.eu" />
     <xhtml:link rel="alternate" hreflang="pl" href="https://posnet.modulsoft.eu/pl" />
     <xhtml:link rel="alternate" hreflang="ru" href="https://posnet.modulsoft.eu/ru" />
   </url>
-
-  <!-- Contact Pages -->
+  
+  <!-- Contacts page Ukrainian -->
   <url>
     <loc>https://posnet.modulsoft.eu/contacts</loc>
-    <lastmod>2025-01-03T10:00:00+00:00</lastmod>
+    <lastmod>2025-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <mobile:mobile/>
     <xhtml:link rel="alternate" hreflang="uk" href="https://posnet.modulsoft.eu/contacts" />
     <xhtml:link rel="alternate" hreflang="pl" href="https://posnet.modulsoft.eu/pl/kontakt" />
     <xhtml:link rel="alternate" hreflang="ru" href="https://posnet.modulsoft.eu/ru/kontakty" />
   </url>
-
+  
+  <!-- Contacts page Polish -->
   <url>
     <loc>https://posnet.modulsoft.eu/pl/kontakt</loc>
-    <lastmod>2025-01-03T10:00:00+00:00</lastmod>
+    <lastmod>2025-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <mobile:mobile/>
     <xhtml:link rel="alternate" hreflang="uk" href="https://posnet.modulsoft.eu/contacts" />
     <xhtml:link rel="alternate" hreflang="pl" href="https://posnet.modulsoft.eu/pl/kontakt" />
     <xhtml:link rel="alternate" hreflang="ru" href="https://posnet.modulsoft.eu/ru/kontakty" />
   </url>
-
+  
+  <!-- Contacts page Russian -->
   <url>
     <loc>https://posnet.modulsoft.eu/ru/kontakty</loc>
-    <lastmod>2025-01-03T10:00:00+00:00</lastmod>
+    <lastmod>2025-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <mobile:mobile/>
     <xhtml:link rel="alternate" hreflang="uk" href="https://posnet.modulsoft.eu/contacts" />
     <xhtml:link rel="alternate" hreflang="pl" href="https://posnet.modulsoft.eu/pl/kontakt" />
     <xhtml:link rel="alternate" hreflang="ru" href="https://posnet.modulsoft.eu/ru/kontakty" />
   </url>
-
-  <!-- Privacy Policy Pages -->
+  
+  <!-- Privacy Policy Ukrainian -->
   <url>
     <loc>https://posnet.modulsoft.eu/privacy-policy</loc>
-    <lastmod>2025-01-03T10:00:00+00:00</lastmod>
+    <lastmod>2025-01-01</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-    <mobile:mobile/>
+    <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="uk" href="https://posnet.modulsoft.eu/privacy-policy" />
     <xhtml:link rel="alternate" hreflang="pl" href="https://posnet.modulsoft.eu/pl/polityka-prywatnosci" />
-    <xhtml:link rel="alternate" hreflang="ru" href="https://posnet.modulsoft.eu/ru/politika-konfidentsialnosti" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://posnet.modulsoft.eu/ru/politika-konfidencialnosti" />
   </url>
-
+  
+  <!-- Privacy Policy Polish -->
   <url>
     <loc>https://posnet.modulsoft.eu/pl/polityka-prywatnosci</loc>
-    <lastmod>2025-01-03T10:00:00+00:00</lastmod>
+    <lastmod>2025-01-01</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-    <mobile:mobile/>
+    <priority>0.2</priority>
     <xhtml:link rel="alternate" hreflang="uk" href="https://posnet.modulsoft.eu/privacy-policy" />
     <xhtml:link rel="alternate" hreflang="pl" href="https://posnet.modulsoft.eu/pl/polityka-prywatnosci" />
-    <xhtml:link rel="alternate" hreflang="ru" href="https://posnet.modulsoft.eu/ru/politika-konfidentsialnosti" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://posnet.modulsoft.eu/ru/politika-konfidencialnosti" />
   </url>
-
+  
+  <!-- Privacy Policy Russian -->
   <url>
-    <loc>https://posnet.modulsoft.eu/ru/politika-konfidentsialnosti</loc>
-    <lastmod>2025-01-03T10:00:00+00:00</lastmod>
+    <loc>https://posnet.modulsoft.eu/ru/politika-konfidencialnosti</loc>
+    <lastmod>2025-01-01</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-    <mobile:mobile/>
+    <priority>0.2</priority>
     <xhtml:link rel="alternate" hreflang="uk" href="https://posnet.modulsoft.eu/privacy-policy" />
     <xhtml:link rel="alternate" hreflang="pl" href="https://posnet.modulsoft.eu/pl/polityka-prywatnosci" />
-    <xhtml:link rel="alternate" hreflang="ru" href="https://posnet.modulsoft.eu/ru/politika-konfidentsialnosti" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://posnet.modulsoft.eu/ru/politika-konfidencialnosti" />
   </url>
-
-  <!-- Product Download Page -->
-  <url>
-    <loc>https://posnet.modulsoft.eu/downloads/posnet-driver</loc>
-    <lastmod>2025-01-03T10:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <mobile:mobile/>
-  </url>
-
-  <!-- Product Support Pages -->
-  <url>
-    <loc>https://posnet.modulsoft.eu/support</loc>
-    <lastmod>2025-01-03T10:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <mobile:mobile/>
-  </url>
-
-  <!-- Changelog -->
-  <url>
-    <loc>https://posnet.modulsoft.eu/changelog</loc>
-    <lastmod>2025-01-03T10:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <mobile:mobile/>
-  </url>
-
+  
 </urlset>

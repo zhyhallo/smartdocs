@@ -156,7 +156,7 @@ export function measureWebVitals() {
   }
 }
 
-// Enhanced resource preloading with intelligent prioritization and multilingual assets
+// Enhanced resource preloading with intelligent prioritization, multilingual assets, and mobile optimization
 export function preloadCriticalResources() {
   if (typeof document !== 'undefined') {
     const existingPreloads = new Set(
@@ -164,7 +164,14 @@ export function preloadCriticalResources() {
         .map(link => (link as HTMLLinkElement).href)
     )
     
-    // Critical font preloading for multilingual support
+    // Check if mobile device
+    const isMobile = window.innerWidth <= 768
+    const isLowBandwidth = 'connection' in navigator && 
+      ((navigator as any).connection?.saveData || 
+       (navigator as any).connection?.effectiveType === 'slow-2g' || 
+       (navigator as any).connection?.effectiveType === '2g')
+    
+    // Critical font preloading for multilingual support (reduced on mobile/low bandwidth)
     const criticalFonts = [
       {
         href: 'https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2',
@@ -173,25 +180,32 @@ export function preloadCriticalResources() {
       }
     ]
     
-    criticalFonts.forEach(font => {
-      if (!existingPreloads.has(font.href)) {
-        const link = document.createElement('link')
-        link.rel = 'preload'
-        link.as = font.as
-        link.type = font.type
-        link.crossOrigin = 'anonymous'
-        link.href = font.href
-        document.head.appendChild(link)
-      }
-    })
+    // Only preload fonts if not on slow connection
+    if (!isLowBandwidth) {
+      criticalFonts.forEach(font => {
+        if (!existingPreloads.has(font.href)) {
+          const link = document.createElement('link')
+          link.rel = 'preload'
+          link.as = font.as
+          link.type = font.type
+          link.crossOrigin = 'anonymous'
+          link.href = font.href
+          document.head.appendChild(link)
+        }
+      })
+    }
 
-    // Preload critical images based on viewport and language
+    // Preload critical above-the-fold images based on viewport and device type
     const heroImages = document.querySelectorAll('.hero-section img, .owl-mascot svg')
-    heroImages.forEach(img => {
+    let imagesToPreload = isMobile ? 1 : 2 // Fewer images on mobile
+    
+    heroImages.forEach((img, index) => {
+      if (index >= imagesToPreload) return
+      
       const element = img as HTMLImageElement | SVGElement
       const src = 'src' in element ? element.src : element.getAttribute('data-src')
       
-      if (src && !existingPreloads.has(src)) {
+      if (src && !existingPreloads.has(src) && !isLowBandwidth) {
         const link = document.createElement('link')
         link.rel = 'preload'
         link.as = 'image'
@@ -200,17 +214,34 @@ export function preloadCriticalResources() {
       }
     })
 
-    // Preload critical API endpoints
-    const criticalEndpoints = [
-      'https://api.modulsoft.eu/contact',
-      'https://api.modulsoft.eu/pricing'
+    // Preload critical API endpoints only on good connections
+    if (!isLowBandwidth) {
+      const criticalEndpoints = [
+        'https://api.modulsoft.eu/contact'
+      ]
+
+      criticalEndpoints.forEach(endpoint => {
+        const link = document.createElement('link')
+        link.rel = 'prefetch'
+        link.href = endpoint
+        document.head.appendChild(link)
+      })
+    }
+
+    // DNS prefetch for external domains (lightweight even on slow connections)
+    const externalDomains = [
+      'fonts.googleapis.com',
+      'fonts.gstatic.com',
+      'www.google-analytics.com'
     ]
 
-    criticalEndpoints.forEach(endpoint => {
-      const link = document.createElement('link')
-      link.rel = 'prefetch'
-      link.href = endpoint
-      document.head.appendChild(link)
+    externalDomains.forEach(domain => {
+      if (!document.querySelector(`link[href*="${domain}"]`)) {
+        const link = document.createElement('link')
+        link.rel = 'dns-prefetch'
+        link.href = `//${domain}`
+        document.head.appendChild(link)
+      }
     })
   }
 }
@@ -565,7 +596,7 @@ export function performSEOHealthCheck() {
   return null
 }
 
-// Enhanced image optimization with WebP and lazy loading
+// Enhanced image optimization with WebP and lazy loading, mobile-specific optimizations
 export function optimizeImages() {
   if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
     // WebP support detection
@@ -574,6 +605,12 @@ export function optimizeImages() {
       canvas.width = canvas.height = 1
       return canvas.toDataURL('image/webp').startsWith('data:image/webp')
     })()
+
+    // Mobile detection for different optimization strategies
+    const isMobile = window.innerWidth <= 768
+    const isLowBandwidth = 'connection' in navigator && 
+      ((navigator as any).connection?.effectiveType === 'slow-2g' || 
+       (navigator as any).connection?.effectiveType === '2g')
 
     const imageObserver = new IntersectionObserver(
       (entries, observer) => {
@@ -584,6 +621,12 @@ export function optimizeImages() {
             // Handle data-src lazy loading
             if (img.dataset.src && !img.src.includes(img.dataset.src)) {
               let src = img.dataset.src
+              
+              // Use smaller images on mobile/low bandwidth
+              if (isMobile || isLowBandwidth) {
+                src = src.replace(/@2x\./g, '.')
+                src = src.replace(/_large\./g, '_medium.')
+              }
               
               // Replace with WebP if supported
               if (supportsWebP && src.match(/\.(jpg|jpeg|png)$/i)) {
@@ -614,7 +657,7 @@ export function optimizeImages() {
         })
       },
       {
-        rootMargin: '50px 0px',
+        rootMargin: isMobile ? '100px 0px' : '50px 0px', // Larger margin on mobile for smoother scrolling
         threshold: 0.01
       }
     )
@@ -623,6 +666,20 @@ export function optimizeImages() {
     document.querySelectorAll('img[data-src], img[data-srcset], .lazy-image').forEach(img => {
       imageObserver.observe(img)
     })
+
+    // Mobile-specific image optimizations
+    if (isMobile) {
+      // Preload critical above-the-fold images
+      const criticalImages = document.querySelectorAll('.hero-section img, .owl-mascot')
+      criticalImages.forEach((img, index) => {
+        if (index < 2) { // Only preload first 2 critical images on mobile
+          const element = img as HTMLImageElement
+          if (element.dataset.src && !element.src) {
+            element.src = element.dataset.src
+          }
+        }
+      })
+    }
   }
 }
 

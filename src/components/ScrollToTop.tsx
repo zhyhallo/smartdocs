@@ -68,7 +68,8 @@ export default function ScrollToTop() {
           exit="hidden"
           whileHover="hover"
           whileTap="tap"
-          className="fixed bottom-6 right-6 z-50 p-3 rounded-full 
+          className="scroll-to-top fixed bottom-6 right-6 md:bottom-6 md:right-6 
+                     sm:bottom-20 sm:right-4 z-40 p-3 rounded-full 
                      backdrop-blur-sm border border-border/30
                      shadow-lg hover:shadow-xl transition-shadow duration-300
                      focus:outline-none focus:ring-2 focus:ring-primary/50"

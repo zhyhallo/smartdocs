@@ -34,11 +34,35 @@
     }
   }
   
-  /* Essential cursor styles */
+  /* Essential cursor styles with mobile optimization */
   button, a, [role="button"], .cursor-pointer,
   .card, .feature-card, .pricing-card, .faq-item,
   .icon-button, .hover-scale {
     cursor: pointer;
+  }
+  
+  /* Mobile-optimized touch targets */
+  @media (max-width: 768px) {
+    button, a, [role="button"], .cursor-pointer {
+      min-height: 44px;
+      min-width: 44px;
+      padding: 8px 16px;
+    }
+    
+    /* Improve touch spacing */
+    .grid > * {
+      margin-bottom: 16px;
+    }
+    
+    /* Mobile-specific font sizes */
+    .text-4xl { font-size: 2.5rem; }
+    .text-5xl { font-size: 3rem; }
+    .text-6xl { font-size: 3.5rem; }
+    
+    /* Mobile container optimization */
+    .container {
+      padding: 0 1rem;
+    }
   }
   
   /* Optimized scrollbar with minimal repaints */
@@ -149,12 +173,29 @@
   
 
   
-  /* GPU acceleration for smooth animations */
+  /* GPU acceleration for smooth animations with mobile optimization */
   .parallax-element,
   .float-gentle,
-  .animate-spin {
+  .animate-spin,
+  .owl-mascot,
+  .scroll-to-top {
     will-change: transform;
     transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+  
+  /* Reduce motion for mobile devices with lower performance */
+  @media (max-width: 768px) {
+    .parallax-element {
+      will-change: auto;
+      transform: none;
+    }
+    
+    /* Simplified animations on mobile */
+    .float-gentle {
+      animation-duration: 4s;
+      animation-timing-function: ease-in-out;
+    }
   }
   
   /* SEO-friendly content structures */
@@ -173,14 +214,32 @@
     font-weight: 700;
   }
   
+  @media (max-width: 768px) {
+    .seo-heading.h1 {
+      font-size: 2rem;
+    }
+  }
+  
   .seo-heading.h2 {
     font-size: 2rem;
     font-weight: 600;
   }
   
+  @media (max-width: 768px) {
+    .seo-heading.h2 {
+      font-size: 1.75rem;
+    }
+  }
+  
   .seo-heading.h3 {
     font-size: 1.5rem;
     font-weight: 600;
+  }
+  
+  @media (max-width: 768px) {
+    .seo-heading.h3 {
+      font-size: 1.25rem;
+    }
   }
   
   .seo-text {
@@ -232,6 +291,61 @@
   
   .skip-link:focus {
     top: 6px;
+  }
+  
+  /* Zadarma widget mobile positioning */
+  @media (max-width: 768px) {
+    [id*="zcallback"], 
+    [id*="callback"],
+    .zadarma-widget {
+      bottom: 80px !important;
+      right: 16px !important;
+      z-index: 30 !important;
+    }
+    
+    /* Scroll to top button mobile positioning */
+    .scroll-to-top {
+      bottom: 20px !important;
+      right: 16px !important;
+      z-index: 40 !important;
+    }
+    
+    /* Mobile navigation improvements */
+    .mobile-menu {
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+    
+    /* Mobile modal positioning */
+    .modal-overlay {
+      padding: 16px;
+    }
+    
+    /* Mobile hero adjustments */
+    .hero-section {
+      padding: 60px 0 40px 0;
+    }
+    
+    /* Mobile grid improvements */
+    .grid-mobile-single {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+  
+  /* Tablet optimizations */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .container {
+      padding: 0 2rem;
+    }
+    
+    .grid-cols-2 {
+      gap: 32px;
+    }
+    
+    .grid-cols-3 {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 }
 

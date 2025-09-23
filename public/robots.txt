@@ -1,103 +1,34 @@
-# Robots.txt for posnet.modulsoft.eu
-# Updated: 2025-01-03
-# This file allows search engines to crawl and index the website
-
-# Allow all search engines to crawl everything
 User-agent: *
 Allow: /
-
-# Special directives for major search engines
-User-agent: Googlebot
-Allow: /
-Crawl-delay: 1
-
-User-agent: Bingbot
-Allow: /
-Crawl-delay: 2
-
-User-agent: YandexBot
-Allow: /
-Crawl-delay: 2
-
-User-agent: facebookexternalhit
-Allow: /
-
-# Disallow access to admin and private areas
-Disallow: /admin/
-Disallow: /private/
-Disallow: /.env
-Disallow: /logs/
-Disallow: /tmp/
-Disallow: /_next/
-Disallow: /node_modules/
-
-# Allow CSS and JS files for better rendering in search results
-Allow: *.css
-Allow: *.js
-Allow: /src/
-Allow: /assets/
 
 # Sitemap location
 Sitemap: https://posnet.modulsoft.eu/sitemap.xml
 
-# Additional sitemaps for different content types
-# Sitemap: https://posnet.modulsoft.eu/sitemap-images.xml
-# Sitemap: https://posnet.modulsoft.eu/sitemap-news.xml
+# Block certain areas (if needed)
+# Disallow: /admin/
+# Disallow: /api/
 
-# Host directive (for consistency)
-Host: https://posnet.modulsoft.eu
+# Crawl delay for respectful crawling
+Crawl-delay: 1
 
-# Clean URLs - redirect common variations
-# Ensure canonical URLs are used
+# Allow all major search engines
+User-agent: Googlebot
+Allow: /
 
-# Security considerations - block sensitive files
-Disallow: /*.sql$
-Disallow: /*.env$
-Disallow: /*.log$
-Disallow: /*.bak$
-Disallow: /*.conf$
-Disallow: /*.config$
-Disallow: /wp-admin/
-Disallow: /wp-includes/
-Disallow: /.git/
-Disallow: /.htaccess
-Disallow: /error_log
-Disallow: /access_log
+User-agent: Bingbot
+Allow: /
 
-# Allow important files for SEO and verification
-Allow: /robots.txt
-Allow: /sitemap.xml
-Allow: /*.xml$
-Allow: /manifest.json
-Allow: /favicon.ico
-Allow: /*.png$
-Allow: /*.jpg$
-Allow: /*.jpeg$
-Allow: /*.gif$
-Allow: /*.webp$
-Allow: /*.svg$
-Allow: /*.ico$
+User-agent: Slurp
+Allow: /
 
-# Additional directives for better SEO
-# Block duplicate content and parameters that don't add value
-Disallow: /*?utm_source=*
-Disallow: /*?utm_medium=*
-Disallow: /*?utm_campaign=*
-Disallow: /*?ref=*
-Disallow: /*?track=*
-Disallow: /*?sid=*
-Disallow: /*?sessionid=*
+User-agent: DuckDuckBot
+Allow: /
 
-# Block printer-friendly versions if not needed
-Disallow: /*?print=*
-Disallow: /*/print/
+User-agent: YandexBot
+Allow: /
 
-# Block search result pages if any exist
-Disallow: /search?*
-Disallow: /*?search=*
-Disallow: /*?q=*
+User-agent: facebookexternalhit
+Allow: /
 
-# Performance optimization - allow critical resources
-Allow: /src/main.css
-Allow: /src/main.tsx
-Allow: /src/App.tsx
+User-agent: Twitterbot
+Allow: /

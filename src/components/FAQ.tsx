@@ -74,7 +74,7 @@ const FAQ = memo(function FAQ() {
   return (
     <section id="faq" className="py-20 bg-muted/30">
       <div ref={ref as any} className="container mx-auto px-4 max-w-7xl">
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           {/* Left side - FAQ content */}
           <div>
             <motion.div 
@@ -129,10 +129,10 @@ const FAQ = memo(function FAQ() {
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <div className="relative flex items-center justify-center w-full max-w-md">
+            <div className="relative flex items-center justify-center w-full max-w-md mx-auto lg:mx-0">
               {/* Question Mark moved to the left */}
               <motion.div
-                className="text-6xl lg:text-7xl xl:text-8xl font-bold text-primary/25 select-none relative mr-8 lg:mr-12"
+                className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-primary/25 select-none relative mr-6 sm:mr-8 lg:mr-12"
                 initial={{ opacity: 0, scale: 0.8, x: -30 }}
                 animate={isInView ? { 
                   opacity: 1, 
@@ -191,12 +191,12 @@ const FAQ = memo(function FAQ() {
 
               {/* Owl positioned to the right of question mark */}
               <motion.div
-                className="flex-shrink-0 relative z-10"
+                className="flex-shrink-0 relative z-10 scale-90 sm:scale-100"
                 initial={{ opacity: 0, scale: 0.8, x: 20 }}
                 animate={isInView ? { opacity: 1, scale: 1, x: 0 } : { opacity: 0, scale: 0.8, x: 20 }}
                 transition={{ duration: 0.6, delay: 0.7 }}
               >
-                <OwlMascot variant="analyst" size="2xl" animated={true} />
+                <OwlMascot variant="analyst" size="xl" animated={true} />
                 
                 {/* Thought bubbles connecting question mark to owl */}
                 <motion.div
