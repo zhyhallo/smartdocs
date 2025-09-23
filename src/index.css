@@ -468,8 +468,8 @@
       height: 2.5rem !important;
       padding: 0.375rem !important;
       bottom: 80px !important;
-      right: 50% !important;
-      transform: translateX(50%);
+      right: 16px !important;
+      transform: none;
       z-index: 40 !important;
     }
     
