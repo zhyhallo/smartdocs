@@ -252,7 +252,19 @@ function AppContent() {
           <ScrollToTop />
         </Suspense>
         
-        <Suspense fallback={null}>
+        <Suspense fallback={
+          <div className="fixed bottom-4 left-4 right-4 z-50 opacity-20">
+            <div className="max-w-4xl mx-auto bg-card/50 rounded-lg p-4 animate-pulse">
+              <div className="flex items-center space-x-4">
+                <div className="w-10 h-10 bg-primary/20 rounded-full"></div>
+                <div className="flex-1 space-y-2">
+                  <div className="h-4 bg-primary/20 rounded w-3/4"></div>
+                  <div className="h-3 bg-primary/20 rounded w-1/2"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        }>
           <CookieConsent 
             onLearnMore={handlePrivacyClick}
           />

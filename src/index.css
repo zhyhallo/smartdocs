@@ -472,6 +472,23 @@
       z-index: 40;
     }
     
+    /* Cookie consent positioning - ensure it doesn't overlap with widgets */
+    [data-cookie-consent] {
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 60;
+      padding: 0.75rem;
+    }
+    
+    /* Adjust spacing when cookie banner is visible */
+    body:has([data-cookie-consent]) .scroll-to-top,
+    body:has([data-cookie-consent]) [id*="zcallback"],
+    body:has([data-cookie-consent]) [id*="callback"] {
+      bottom: 8rem; /* Move widgets up when cookie banner is visible */
+      transition: bottom 0.3s ease;
+    }
+    
     /* Modal enhancements for mobile */
     [data-state="open"] [id*="zcallback"],
     [data-state="open"] [id*="callback"] {

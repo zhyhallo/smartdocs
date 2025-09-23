@@ -156,15 +156,34 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
           <div className="text-sm sm:text-base">
             {t('footer.rights')}
           </div>
-          <button 
-            onClick={onPrivacyClick}
-            className="text-background/80 hover:text-accent transition-all duration-300 
-                     text-sm underline underline-offset-4 decoration-1 
-                     hover:decoration-2 hover:scale-105 py-2 px-4 rounded-md
-                     hover:bg-background/10"
-          >
-            {t('footer.privacy')}
-          </button>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <button 
+              onClick={onPrivacyClick}
+              className="text-background/80 hover:text-accent transition-all duration-300 
+                       text-sm underline underline-offset-4 decoration-1 
+                       hover:decoration-2 hover:scale-105 py-2 px-4 rounded-md
+                       hover:bg-background/10"
+            >
+              {t('footer.privacy')}
+            </button>
+            
+            {/* Development only - Cookie reset button */}
+            {process.env.NODE_ENV === 'development' && (
+              <button 
+                onClick={() => {
+                  localStorage.removeItem('cookie-consent')
+                  console.log('Cookie consent reset - page will reload')
+                  window.location.reload()
+                }}
+                className="text-background/60 hover:text-background/80 transition-colors 
+                         text-xs px-3 py-1 border border-background/30 rounded-md
+                         hover:border-background/50"
+                title="Reset Cookie Consent (Dev only) - Ctrl+Shift+C"
+              >
+                🍪 Reset
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </footer>
