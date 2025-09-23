@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { motion, AnimatePresence } from "framer-motion"
 import { X, Cookie, Shield, CheckCircle } from "@phosphor-icons/react"
-import { useKV } from "@github/spark/hooks"
+import { useLocalStorage } from "@/hooks/useLocalStorage"
 import { useTranslation } from "@/hooks/useTranslation"
 
 interface CookieConsentProps {
@@ -15,11 +15,11 @@ interface CookieConsentProps {
 export default function CookieConsent({ onAccept, onDecline, onLearnMore }: CookieConsentProps) {
   const { t } = useTranslation()
   const [isVisible, setIsVisible] = useState(false)
-  const [cookieConsent, setCookieConsent, deleteCookieConsent] = useKV("cookie-consent", undefined as string | undefined)
+  const [cookieConsent, setCookieConsent, deleteCookieConsent] = useLocalStorage("cookie-consent", undefined as string | undefined)
   const [isAccepted, setIsAccepted] = useState(false)
   const [isInitialized, setIsInitialized] = useState(false)
 
-  // Wait for useKV to initialize
+  // Wait for localStorage to initialize
   useEffect(() => {
     if (!isInitialized) {
       console.log('Initializing cookie consent, current value:', cookieConsent)

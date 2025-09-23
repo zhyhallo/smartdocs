@@ -1,21 +1,14 @@
+# Robots.txt for posnet.modulsoft.eu
+# Allow all search engines to index all content
+
 User-agent: *
 Allow: /
 
-# Sitemap location
-Sitemap: https://posnet.modulsoft.eu/sitemap.xml
-
-# Block certain areas (if needed)
-# Disallow: /admin/
-# Disallow: /api/
-
-# Crawl delay for respectful crawling
-Crawl-delay: 1
-
-# Allow all major search engines
+# Specific directives for major search engines
 User-agent: Googlebot
 Allow: /
 
-User-agent: Bingbot
+User-agent: Bingbot  
 Allow: /
 
 User-agent: Slurp
@@ -24,11 +17,41 @@ Allow: /
 User-agent: DuckDuckBot
 Allow: /
 
-User-agent: YandexBot
-Allow: /
-
 User-agent: facebookexternalhit
 Allow: /
 
-User-agent: Twitterbot
-Allow: /
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://posnet.modulsoft.eu/sitemap.xml
+
+# Additional sitemaps if needed
+# Sitemap: https://posnet.modulsoft.eu/sitemap-images.xml
+# Sitemap: https://posnet.modulsoft.eu/sitemap-news.xml
+
+# Block access to sensitive files/directories (if any)
+# Disallow: /admin/
+# Disallow: /api/
+# Disallow: *.json$
+# Disallow: /temp/
+
+# Allow access to important static resources
+Allow: /assets/
+Allow: /images/
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.webp$
+Allow: /*.svg$
+Allow: /*.ico$
+Allow: /*.woff$
+Allow: /*.woff2$
+Allow: /*.ttf$
+
+# Priority pages for crawling (implicit through Allow)
+# / (homepage)
+# /contacts
+# /privacy-policy

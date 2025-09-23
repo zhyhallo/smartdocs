@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, ReactNode, useEffect } from 'react'
-import { useKV } from '@github/spark/hooks'
+import { useLocalStorage } from './useLocalStorage'
 
 export type Language = 'uk' | 'pl' | 'ru'
 
@@ -636,7 +636,7 @@ interface TranslationProviderProps {
 }
 
 export function TranslationProvider({ children }: TranslationProviderProps) {
-  const [language, setLanguage] = useKV<Language>('preferred-language', 'uk')
+  const [language, setLanguage] = useLocalStorage<Language>('preferred-language', 'uk')
 
   const t = (key: string): string => {
     const langTranslations = translations[language || 'uk']
