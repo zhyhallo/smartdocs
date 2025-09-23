@@ -101,12 +101,14 @@ const FAQ = memo(function FAQ() {
                   <motion.div key={index} variants={itemVariants}>
                     <AccordionItem 
                       value={`item-${index}`} 
-                      className="faq-item cursor-pointer border-border/50 bg-card rounded-lg px-4 shadow-sm hover:shadow-md transition-all duration-300"
+                      className="faq-item border-border/50 bg-card rounded-lg px-4 shadow-sm hover:shadow-md transition-all duration-300"
                     >
-                      <AccordionTrigger className="text-left font-medium cursor-pointer hover:text-primary transition-colors duration-300 py-4 icon-hover">
-                        {item.question}
+                      <AccordionTrigger className="faq-trigger text-left font-medium py-4">
+                        <span className="faq-text cursor-pointer transition-colors duration-300">
+                          {item.question}
+                        </span>
                       </AccordionTrigger>
-                      <AccordionContent className="text-muted-foreground pb-4 cursor-pointer">
+                      <AccordionContent className="text-muted-foreground pb-4">
                         <motion.div
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}

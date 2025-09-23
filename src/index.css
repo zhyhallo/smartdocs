@@ -166,6 +166,24 @@
     transition: all 0.2s ease;
   }
   
+  /* FAQ text hover - only affect text, not arrow icons */
+  .faq-text:hover {
+    color: oklch(0.55 0.22 240);
+    transition: color 0.2s ease;
+  }
+  
+  /* Remove default trigger hover underline and ensure icon stays neutral */
+  .faq-trigger:hover {
+    text-decoration: none;
+  }
+  
+  /* Ensure FAQ chevron icon doesn't change color on hover */
+  .faq-trigger:hover [data-lucide="chevron-down"],
+  .faq-trigger:hover svg {
+    color: oklch(0.45 0.06 240); /* Keep muted-foreground color */
+    transition: none;
+  }
+  
   /* General hover lift effect */
   .hover-lift:hover {
     transform: translateY(-2px);
