@@ -28,11 +28,6 @@ export { default as SEOManager } from './SEOManager'
 export { 
   SEOSchemas,
   DynamicMetaTags,
-  BreadcrumbSchema,
-  ProductSchema,
-  FAQSchema,
-  LocalBusinessSchema
-} from './SEOComponents'
 
 // Interactive components
 export { InteractiveSection } from './InteractiveSection'
