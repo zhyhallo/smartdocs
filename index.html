@@ -212,10 +212,10 @@
     
     <!-- Critical CSS inline for better performance -->
     <style>
-      /* Critical CSS inline for better performance */
+      /* Unified critical CSS for consistent scrolling behavior */
       html { 
         scroll-behavior: smooth; 
-        scroll-padding-top: 100px; 
+        scroll-padding-top: 80px; 
         font-display: swap;
       }
       body { 
@@ -224,6 +224,7 @@
         background-color: oklch(0.98 0.02 240);
         color: oklch(0.15 0.08 240);
         font-display: swap;
+        overflow-x: hidden;
       }
       .container { 
         width: 100%; 
@@ -234,12 +235,21 @@
       /* Prevent layout shift */
       img { max-width: 100%; height: auto; }
       .hero-section { min-height: 500px; }
-      .section { padding: 2rem 0; }
+      .section { padding: 2rem 0; scroll-margin-top: 80px; }
       
-      /* Enhanced smooth scrolling for better experience */
+      /* Unified smooth scrolling for consistent experience */
       @media (prefers-reduced-motion: no-preference) {
-        * {
+        *, *:before, *:after {
           scroll-behavior: smooth !important;
+        }
+      }
+      
+      /* Modal responsive improvements */
+      @media (max-width: 768px) {
+        .modal-content {
+          max-height: 85vh !important;
+          margin: 1rem !important;
+          width: calc(100vw - 2rem) !important;
         }
       }
     </style>

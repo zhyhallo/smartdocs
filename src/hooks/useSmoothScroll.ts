@@ -7,7 +7,7 @@ interface SmoothScrollOptions {
 }
 
 export function useSmoothScroll(options: SmoothScrollOptions = {}) {
-  const { offset = 100, duration = 1200 } = options
+  const { offset = 80, duration = 800 } = options
 
   useEffect(() => {
     const handleAnchorClick = (event: Event) => {
@@ -25,7 +25,7 @@ export function useSmoothScroll(options: SmoothScrollOptions = {}) {
           return
         }
         
-        // Use utility function for element scroll with enhanced smoothness
+        // Use utility function for element scroll with consistent smoothness
         smoothScrollToElement(targetId, offset, duration)
       }
     }

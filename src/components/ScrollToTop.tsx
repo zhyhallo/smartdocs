@@ -36,10 +36,10 @@ export default function ScrollToTop() {
 
   const scrollToTop = () => {
     setIsScrolling(true)
-    smoothScrollToTop(1500)
+    smoothScrollToTop(800)
     setTimeout(() => {
       setIsScrolling(false)
-    }, 1600)
+    }, 900)
   }
 
   // Calculate position
@@ -119,16 +119,16 @@ export default function ScrollToTop() {
               className="relative"
               animate={
                 isScrolling ? {
-                  y: [0, -20, -40, -60, -80],
-                  scale: [1, 1.2, 1.1, 1.3, 1],
+                  y: [0, -15, -30, -45, -60],
+                  scale: [1, 1.15, 1.1, 1.25, 1],
                   transition: {
-                    duration: 1.2,
+                    duration: 0.8,
                     ease: "easeOut",
                     times: [0, 0.25, 0.5, 0.75, 1]
                   }
                 } : isHovered ? {
                   scale: 1.1,
-                  y: [-2, -8, -2],
+                  y: [-2, -6, -2],
                   transition: { duration: 0.6, ease: "easeOut" }
                 } : {}
               }
@@ -150,7 +150,7 @@ export default function ScrollToTop() {
                   }}
                   exit={{ opacity: 0, scale: 0 }}
                   transition={{
-                    duration: 1.5,
+                    duration: 1.2,
                     repeat: Infinity,
                     ease: "easeOut"
                   }}

@@ -8,17 +8,23 @@
   
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 100px; /* Збільшено offset для кращого позиціонування */
+    scroll-padding-top: 80px; /* Уніфікований offset для кращого позиціонування */
     font-display: swap;
   }
   
   body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     font-display: swap;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+  }
+  
+  /* Unified scroll behavior for all scrollable elements */
+  * {
+    scroll-behavior: smooth;
   }
   
   /* Optimize for reduced motion users */
-  @media (prefers-reduced-motion: reduce) {\n    html {
+  @media (prefers-reduced-motion: reduce) {\n    html, * {
       scroll-behavior: auto;
     }
     \n    *, *::before, *::after {
@@ -29,7 +35,7 @@
   }
   
   @media (prefers-reduced-motion: no-preference) {
-    html {
+    html, * {
       scroll-behavior: smooth;
     }
   }
@@ -37,13 +43,12 @@
   /* Essential cursor styles with mobile optimization */
   button, a, [role="button"], .cursor-pointer,
   .card, .feature-card, .pricing-card, .faq-item,
-  .icon-button, .hover-scale {
-    cursor: pointer;
+  .icon-button, .hover-scale {\n    cursor: pointer;
   }
   
   /* Mobile-optimized touch targets */
   @media (max-width: 768px) {
-    button, a, [role="button"], .cursor-pointer {
+    button, a, [role=\"button\"], .cursor-pointer {
       min-height: 44px;
       min-width: 44px;
       padding: 8px 16px;
@@ -63,9 +68,15 @@
     .container {
       padding: 0 1rem;
     }
+    
+    /* Prevent modal overflow on mobile */
+    .modal-content {
+      max-height: 85vh !important;
+      overflow-y: auto;
+    }
   }
   
-  /* Optimized scrollbar with minimal repaints */
+  /* Optimized unified scrollbar with consistent behavior */
   ::-webkit-scrollbar {
     width: 6px;
   }
@@ -77,10 +88,25 @@
   ::-webkit-scrollbar-thumb {
     background: oklch(0.55 0.22 240);
     border-radius: 3px;
+    transition: background-color 0.2s ease;
   }
   
   ::-webkit-scrollbar-thumb:hover {
     background: oklch(0.45 0.22 240);
+  }
+  
+  /* Consistent scrollbar for modal content */
+  .modal-content::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .modal-content::-webkit-scrollbar-thumb {
+    background: oklch(0.65 0.18 220);
+    border-radius: 2px;
+  }
+  
+  .modal-content::-webkit-scrollbar-thumb:hover {
+    background: oklch(0.55 0.22 240);
   }
   
   /* Performance-optimized container */
@@ -198,15 +224,16 @@
     }
   }
   
-  /* SEO-friendly content structures */
+  /* SEO-friendly content structures with unified scroll offset */
   .seo-content {
-    scroll-margin-top: 100px;
+    scroll-margin-top: 80px;
   }
   
   .seo-heading {
     font-weight: 600;
     line-height: 1.2;
     margin-bottom: 1rem;
+    scroll-margin-top: 80px;
   }
   
   .seo-heading.h1 {
@@ -293,7 +320,7 @@
     top: 6px;
   }
   
-  /* Zadarma widget mobile positioning */
+  /* Unified widget positioning with modal-aware spacing */
   @media (max-width: 768px) {
     [id*="zcallback"], 
     [id*="callback"],
@@ -303,7 +330,7 @@
       z-index: 30 !important;
     }
     
-    /* Scroll to top button mobile sizing */
+    /* Scroll to top button mobile sizing and positioning */
     .scroll-to-top {
       width: 2.5rem !important;
       height: 2.5rem !important;
@@ -311,22 +338,36 @@
       right: 16px !important;
     }
     
-    /* Ensure widgets don't overlap */
+    /* Ensure widgets don't overlap and work with modals */
     [id*="zcallback"] + .scroll-to-top,
     [id*="callback"] + .scroll-to-top {
       right: 16px !important;
       z-index: 40 !important;
     }
     
+    /* Modal-specific mobile improvements */
+    [data-state="open"] [id*="zcallback"],
+    [data-state="open"] [id*="callback"] {
+      z-index: 25 !important; /* Below modal overlay */
+    }
+    
     /* Mobile navigation improvements */
     .mobile-menu {
       max-height: 70vh;
       overflow-y: auto;
+      scroll-behavior: smooth;
     }
     
-    /* Mobile modal positioning */
+    /* Mobile modal positioning and scrolling */
     .modal-overlay {
       padding: 16px;
+    }
+    
+    /* Prevent scroll issues on mobile when modal is open */
+    body:has([data-state="open"]) {
+      overflow: hidden;
+      position: fixed;
+      width: 100%;
     }
     
     /* Mobile hero adjustments */
@@ -338,6 +379,11 @@
     .grid-mobile-single {
       grid-template-columns: 1fr;
       gap: 24px;
+    }
+    
+    /* Ensure consistent scrolling on mobile */
+    * {
+      -webkit-overflow-scrolling: touch;
     }
   }
   
