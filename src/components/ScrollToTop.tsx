@@ -36,10 +36,10 @@ export default function ScrollToTop() {
 
   const scrollToTop = () => {
     setIsScrolling(true)
-    smoothScrollToTop(1500)
+    smoothScrollToTop()
     setTimeout(() => {
       setIsScrolling(false)
-    }, 1600)
+    }, 800) // Зменшуємо timeout, оскільки нативний скрол швидший
   }
 
   // Calculate position

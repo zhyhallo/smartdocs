@@ -100,7 +100,7 @@ function AppContent() {
   }, [])
 
   // Optimized smooth scrolling with consistent duration for better UX
-  useSmoothScroll({ offset: 80, duration: 800 })
+  useSmoothScroll({ offset: 80 })
 
   const openContactModal = (service: string = "") => {
     setContactService(service || t('contact.title'))

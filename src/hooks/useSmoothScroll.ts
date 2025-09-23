@@ -3,11 +3,10 @@ import { smoothScrollToElement, smoothScrollToTop } from '@/lib/smoothScroll'
 
 interface SmoothScrollOptions {
   offset?: number
-  duration?: number
 }
 
 export function useSmoothScroll(options: SmoothScrollOptions = {}) {
-  const { offset = 80, duration = 800 } = options
+  const { offset = 80 } = options
 
   useEffect(() => {
     const handleAnchorClick = (event: Event) => {
@@ -21,12 +20,12 @@ export function useSmoothScroll(options: SmoothScrollOptions = {}) {
         
         // Handle home link specially
         if (targetId === '' || targetId === 'home') {
-          smoothScrollToTop(duration)
+          smoothScrollToTop()
           return
         }
         
-        // Use utility function for element scroll with consistent smoothness
-        smoothScrollToElement(targetId, offset, duration)
+        // Use utility function for element scroll
+        smoothScrollToElement(targetId, offset)
       }
     }
 
@@ -41,7 +40,5 @@ export function useSmoothScroll(options: SmoothScrollOptions = {}) {
         link.removeEventListener('click', handleAnchorClick)
       })
     }
-  }, [offset, duration])
+  }, [offset])
 }
-
-export default useSmoothScroll

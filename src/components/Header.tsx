@@ -99,40 +99,21 @@ export default function Header({ onContactClick, onContactsClick }: HeaderProps)
   // Функція для більш плавного скролу з оптимізованою анімацією
   const handleSmoothScroll = (href: string, e: React.MouseEvent) => {
     e.preventDefault();
+    // Використовуємо уніфіковану бібліотеку smooth scroll замість власної реалізації
     const elementId = href.replace('#', '');
+    
+    if (elementId === '' || elementId === 'home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    
     const element = document.getElementById(elementId);
     if (element) {
       const rect = element.getBoundingClientRect();
       const elementPosition = window.pageYOffset + rect.top;
       const offsetPosition = elementPosition - 100; // Offset для фіксованого хедера
       
-      // Використовуємо більш плавну анімацію
-      const startPosition = window.pageYOffset;
-      const distance = offsetPosition - startPosition;
-      const duration = 1000; // Збільшена тривалість для більш плавної анімації
-      let startTime: number | null = null;
-
-      // Покращена функція easing для природніших переходів
-      const easeInOutCubic = (t: number): number => {
-        return t < 0.5 
-          ? 4 * t * t * t 
-          : 1 - Math.pow(-2 * t + 2, 3) / 2;
-      };
-
-      const animation = (currentTime: number) => {
-        if (startTime === null) startTime = currentTime;
-        const timeElapsed = currentTime - startTime;
-        const progress = Math.min(timeElapsed / duration, 1);
-        const run = easeInOutCubic(progress);
-        
-        window.scrollTo(0, startPosition + distance * run);
-        
-        if (progress < 1) {
-          requestAnimationFrame(animation);
-        }
-      };
-
-      requestAnimationFrame(animation);
+      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
     }
   }
 

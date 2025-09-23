@@ -118,7 +118,8 @@ export default function ContactModal({ open, onOpenChange, defaultService = "", 
       <Dialog open={open} onOpenChange={onOpenChange}>
         <DialogContent className="w-[90vw] max-w-sm mx-auto p-4 
                                  fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
-                                 max-h-[70vh] overflow-hidden border-0 shadow-2xl rounded-lg">
+                                 border-0 shadow-2xl rounded-lg
+                                 overflow-visible max-h-none">
           <motion.div 
             className="text-center py-4 sm:py-6"
             initial={{ opacity: 0, scale: 0.9 }}
@@ -143,28 +144,25 @@ export default function ContactModal({ open, onOpenChange, defaultService = "", 
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="w-[95vw] max-w-md mx-auto p-0 
+      <DialogContent className="w-[95vw] max-w-md mx-auto p-4 sm:p-6
                                fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
-                               max-h-[85vh] overflow-hidden border-0 shadow-2xl
-                               flex flex-col rounded-lg">
+                               border-0 shadow-2xl rounded-lg
+                               overflow-visible max-h-none">
         
-        {/* Fixed Header */}
-        <DialogHeader className="flex-shrink-0 p-4 sm:p-6 pb-2">
+        <DialogHeader className="mb-4">
           <DialogTitle className="text-lg sm:text-xl font-bold text-foreground 
                                  flex items-center justify-center text-center">
             <OwlMascot variant="loader" size="sm" className="mr-2 flex-shrink-0" />
             <span className="truncate">{defaultService || t('contact.title')}</span>
           </DialogTitle>
-          <DialogDescription className="text-xs sm:text-sm text-muted-foreground text-center px-2">
+          <DialogDescription className="text-xs sm:text-sm text-muted-foreground text-center">
             {t('contact.description')}
           </DialogDescription>
         </DialogHeader>
 
-        {/* Scrollable Content */}
-        <div className="flex-1 overflow-y-auto scroll-smooth px-4 pb-4 sm:px-6 sm:pb-6">
-          <Card className="border-border/50 shadow-none">
-            <CardContent className="p-3 sm:p-4">
-              <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
+        <Card className="border-border/50 shadow-none">
+          <CardContent className="p-3 sm:p-4">
+            <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
                 
                 {/* Phone and Email Row - Stack on mobile */}
                 <div className="grid grid-cols-1 gap-3 sm:gap-4">
@@ -330,7 +328,6 @@ export default function ContactModal({ open, onOpenChange, defaultService = "", 
               </div>
             </CardContent>
           </Card>
-        </div>
       </DialogContent>
     </Dialog>
   )

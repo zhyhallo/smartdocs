@@ -34,7 +34,7 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
                 <button 
                   onClick={() => {
                     onHomeClick?.();
-                    smoothScrollToTop(1200);
+                    smoothScrollToTop();
                   }}
                   className="text-background/80 hover:text-accent transition-colors duration-200 text-sm px-2 py-1"
                 >
@@ -51,7 +51,7 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
                 <button 
                   onClick={(e) => {
                     e.preventDefault();
-                    smoothScrollToElement('product', 100, 1200);
+                    smoothScrollToElement('product', 100);
                   }}
                   className="text-background/80 hover:text-accent transition-colors duration-200 text-sm px-2 py-1"
                 >
@@ -61,7 +61,7 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
                 <button 
                   onClick={(e) => {
                     e.preventDefault();
-                    smoothScrollToElement('pricing', 100, 1200);
+                    smoothScrollToElement('pricing', 100);
                   }}
                   className="text-background/80 hover:text-accent transition-colors duration-200 text-sm px-2 py-1"
                 >
@@ -71,7 +71,7 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
                 <button 
                   onClick={(e) => {
                     e.preventDefault();
-                    smoothScrollToElement('faq', 100, 1200);
+                    smoothScrollToElement('faq', 100);
                   }}
                   className="text-background/80 hover:text-accent transition-colors duration-200 text-sm px-2 py-1"
                 >
