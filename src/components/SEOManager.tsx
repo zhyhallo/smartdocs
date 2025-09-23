@@ -16,26 +16,25 @@ export default function SEOManager() {
     const title = t('meta.title')
     const description = t('meta.description')
     
-    updateMetaTags(language, title, description)
+    updateMetaTags(title, description, language)
     
     // Add structured data for current language
-    const structuredData = createStructuredData(language)
+    const structuredData = createStructuredData('WebPage', {
+      name: title,
+      description: description,
+      inLanguage: language
+    })
     addStructuredData(structuredData)
 
     // Perform SEO health check in development
     if (process.env.NODE_ENV === 'development') {
       setTimeout(() => {
-        const healthCheck = performSEOHealthCheck()
-        if (healthCheck && healthCheck.score < 80) {
-          console.warn(`SEO Score: ${Math.round(healthCheck.score)}% - Consider improvements`, healthCheck.checks)
-        } else if (healthCheck) {
-          console.info(`SEO Score: ${Math.round(healthCheck.score)}% - Good!`)
-        }
+        performSEOHealthCheck()
       }, 2000)
     }
 
     // Track page view for analytics
-    trackUserInteraction('page_view', 'Navigation', `landing_${language}`)
+    trackUserInteraction('page_view', 'Navigation')
     
   }, [language, t])
 
@@ -52,7 +51,7 @@ export default function SEOManager() {
       scrollDepths.forEach(depth => {
         if (scrollPercent >= depth && !tracked.has(depth)) {
           tracked.add(depth)
-          trackUserInteraction('scroll_depth', 'Engagement', `${depth}_percent`)
+          trackUserInteraction('scroll_depth', 'Engagement')
         }
       })
     }
@@ -68,7 +67,7 @@ export default function SEOManager() {
     const trackTimeOnPage = () => {
       const timeSpent = Math.round((Date.now() - startTime) / 1000)
       if (timeSpent > 30) { // Only track if user spent more than 30 seconds
-        trackUserInteraction('time_on_page', 'Engagement', `${timeSpent}_seconds`)
+        trackUserInteraction('time_on_page', 'Engagement')
       }
     }
 
