@@ -179,14 +179,14 @@ const Features = memo(function Features() {
         </motion.div>
 
         <motion.div 
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 place-items-center max-w-6xl mx-auto"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
           {features.map((feature, index) => (
-            <motion.div key={index} variants={cardVariants} className="h-full">
-              <Card className="h-full card feature-card cursor-pointer transition-all duration-300 relative overflow-hidden flex flex-col hover:shadow-xl">
+            <motion.div key={index} variants={cardVariants} className="h-full w-full max-w-sm">
+              <Card className="h-full card feature-card cursor-pointer transition-all duration-300 relative overflow-hidden flex flex-col hover:shadow-xl min-h-[280px] w-full">
                 {/* Card background parallax effect */}
                 <div className="absolute inset-0 opacity-5">
                   <motion.div
@@ -203,9 +203,9 @@ const Features = memo(function Features() {
                   />
                 </div>
                 
-                <CardContent className="p-6 relative z-10 flex flex-col h-full justify-between min-h-[200px]">
+                <CardContent className="p-6 relative z-10 flex flex-col h-full justify-between text-center items-center">
                   <motion.div 
-                    className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mb-4 icon-hover cursor-pointer"
+                    className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mb-4 icon-hover cursor-pointer mx-auto"
                     variants={iconVariants}
                     initial="hidden"
                     animate={isInView ? "visible" : "hidden"}
@@ -220,10 +220,10 @@ const Features = memo(function Features() {
                       {feature.icon}
                     </div>
                   </motion.div>
-                  <h3 className="text-xl font-semibold mb-3 transition-colors duration-300 min-h-[3.5rem] flex items-start cursor-pointer">
+                  <h3 className="text-xl font-semibold mb-3 transition-colors duration-300 min-h-[3.5rem] flex items-center justify-center cursor-pointer text-center">
                     {feature.title}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed flex-1 cursor-pointer">
+                  <p className="text-muted-foreground leading-relaxed flex-1 cursor-pointer text-center max-w-xs">
                     {feature.description}
                   </p>
                 </CardContent>

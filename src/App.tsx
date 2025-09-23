@@ -44,22 +44,60 @@ function AppContent() {
   const [contactService, setContactService] = useState("")
   const [currentView, setCurrentView] = useState<CurrentView>("home")
 
-  // Optimized initialization
+  // Optimized initialization with better error handling
   useEffect(() => {
     const initializeApp = async () => {
-      // Preload critical resources
-      preloadCriticalResources()
-      
-      // Setup performance monitoring
-      measureWebVitals()
-      
-      // Optimize images with lazy loading
-      setTimeout(() => {
-        optimizeImages()
-      }, 1000)
+      try {
+        // Preload critical resources
+        preloadCriticalResources()
+        
+        // Setup performance monitoring
+        measureWebVitals()
+        
+        // Optimize images with lazy loading (deferred for better performance)
+        setTimeout(() => {
+          optimizeImages()
+        }, 2000)
+        
+        // Apply device-specific optimizations
+        const applyOptimizations = () => {
+          document.documentElement.classList.add('app-initialized')
+          
+          // Mobile-specific optimizations
+          if (window.innerWidth <= 768) {
+            document.documentElement.classList.add('reduce-motion')
+          }
+          
+          // High-performance device optimizations
+          if (window.devicePixelRatio > 2) {
+            document.documentElement.classList.add('high-dpi')
+          }
+        }
+        
+        // Use requestIdleCallback if available, otherwise setTimeout
+        if ('requestIdleCallback' in window) {
+          (window as any).requestIdleCallback(applyOptimizations, { timeout: 1000 })
+        } else {
+          setTimeout(applyOptimizations, 100)
+        }
+        
+      } catch (error) {
+        console.warn('App initialization failed:', error)
+      }
     }
     
     initializeApp()
+    
+    // Cleanup function
+    return () => {
+      // Clean up any performance observers
+      if (typeof PerformanceObserver !== 'undefined') {
+        const observers = (window as any)._performanceObservers || []
+        observers.forEach((observer: PerformanceObserver) => {
+          observer.disconnect()
+        })
+      }
+    }
   }, [])
 
   // Optimized smooth scrolling with consistent duration for better UX

@@ -156,81 +156,85 @@ export default function Header({ onContactClick, onContactsClick }: HeaderProps)
           </motion.div>
           
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            {menuItems.map((item, index) => (
-              item.href ? (
-                <motion.a 
-                  key={index}
-                  href={item.href} 
-                  className="text-foreground font-medium cursor-pointer relative overflow-hidden"
-                  variants={menuItemVariants}
-                  whileHover="hover"
-                  whileTap="tap"
-                  onClick={(e) => handleSmoothScroll(item.href, e)}
-                  style={{
-                    textDecoration: "none",
-                    background: "none",
-                    border: "none",
-                    outline: "none"
-                  }}
-                >
-                  {item.label}
-                </motion.a>
-              ) : (
-                <motion.button
-                  key={index}
-                  onClick={item.onClick}
-                  className="text-foreground font-medium cursor-pointer relative overflow-hidden bg-transparent border-none outline-none"
-                  variants={menuItemVariants}
-                  whileHover="hover"
-                  whileTap="tap"
-                  style={{
-                    background: "none",
-                    border: "none",
-                    outline: "none",
-                    textDecoration: "none"
-                  }}
-                >
-                  {item.label}
-                </motion.button>
-              )
-            ))}
-            <div className="flex items-center space-x-4">
-              <LanguageSwitcher />
-              <motion.a 
-                href="tel:+380931776504" 
-                className="text-muted-foreground cursor-pointer hidden lg:block"
-                whileHover={{ 
-                  scale: 1.05, 
-                  color: "oklch(0.65 0.18 220)",
-                  transition: { duration: 0.3 } 
-                }}
-              >
-                +38 (093) 177-65-04
-              </motion.a>
-              <motion.div
-                variants={buttonVariants}
-                whileHover="hover"
-                whileTap="tap"
-              >
-                <Button 
-                  onClick={() => onContactClick(t('nav.call'))} 
-                  variant="outline" 
-                  size="sm"
-                  className="cursor-pointer hidden sm:flex"
-                >
-                  {t('nav.call')}
-                </Button>
-              </motion.div>
+          <nav className="hidden md:flex items-center justify-center space-x-8 flex-1">
+            <div className="flex items-center space-x-8">
+              {menuItems.map((item, index) => (
+                item.href ? (
+                  <motion.a 
+                    key={index}
+                    href={item.href} 
+                    className="text-foreground font-medium cursor-pointer relative overflow-hidden flex items-center justify-center"
+                    variants={menuItemVariants}
+                    whileHover="hover"
+                    whileTap="tap"
+                    onClick={(e) => handleSmoothScroll(item.href, e)}
+                    style={{
+                      textDecoration: "none",
+                      background: "none",
+                      border: "none",
+                      outline: "none"
+                    }}
+                  >
+                    {item.label}
+                  </motion.a>
+                ) : (
+                  <motion.button
+                    key={index}
+                    onClick={item.onClick}
+                    className="text-foreground font-medium cursor-pointer relative overflow-hidden bg-transparent border-none outline-none flex items-center justify-center"
+                    variants={menuItemVariants}
+                    whileHover="hover"
+                    whileTap="tap"
+                    style={{
+                      background: "none",
+                      border: "none",
+                      outline: "none",
+                      textDecoration: "none"
+                    }}
+                  >
+                    {item.label}
+                  </motion.button>
+                )
+              ))}
             </div>
           </nav>
+
+          {/* Desktop Actions */}
+          <div className="hidden md:flex items-center space-x-4">
+            <LanguageSwitcher />
+            <motion.a 
+              href="tel:+380931776504" 
+              className="text-muted-foreground cursor-pointer hidden lg:block flex items-center justify-center"
+              whileHover={{ 
+                scale: 1.05, 
+                color: "oklch(0.65 0.18 220)",
+                transition: { duration: 0.3 } 
+              }}
+            >
+              +38 (093) 177-65-04
+            </motion.a>
+            <motion.div
+              variants={buttonVariants}
+              whileHover="hover"
+              whileTap="tap"
+            >
+              <Button 
+                onClick={() => onContactClick(t('nav.call'))} 
+                variant="outline" 
+                size="sm"
+                className="cursor-pointer hidden sm:flex items-center justify-center"
+              >
+                {t('nav.call')}
+              </Button>
+            </motion.div>
+          </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-2">
             <LanguageSwitcher />
             <motion.button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 cursor-pointer relative"
+              className="p-2 cursor-pointer relative flex items-center justify-center"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -275,19 +279,19 @@ export default function Header({ onContactClick, onContactsClick }: HeaderProps)
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.nav 
-              className="md:hidden mt-4 pb-4 border-t border-border pt-4 overflow-hidden"
+              className="md:hidden mt-4 pb-4 border-t border-border pt-4 overflow-hidden mobile-menu"
               variants={mobileMenuVariants}
               initial="hidden"
               animate="visible"
               exit="hidden"
             >
-              <div className="flex flex-col space-y-3">
+              <div className="flex flex-col space-y-3 items-center text-center">
                 {menuItems.map((item, index) => (
                   item.href ? (
                     <motion.a 
                       key={index}
                       href={item.href} 
-                      className="text-foreground font-medium cursor-pointer block py-2"
+                      className="text-foreground font-medium cursor-pointer block py-2 w-full text-center flex items-center justify-center"
                       custom={index}
                       variants={mobileItemVariants}
                       initial="hidden"
@@ -320,7 +324,7 @@ export default function Header({ onContactClick, onContactsClick }: HeaderProps)
                         item.onClick?.()
                         setIsMobileMenuOpen(false)
                       }}
-                      className="text-foreground font-medium cursor-pointer block py-2 bg-transparent border-none text-left outline-none"
+                      className="text-foreground font-medium cursor-pointer block py-2 bg-transparent border-none text-center outline-none w-full flex items-center justify-center"
                       custom={index}
                       variants={mobileItemVariants}
                       initial="hidden"
@@ -349,12 +353,13 @@ export default function Header({ onContactClick, onContactsClick }: HeaderProps)
                   variants={mobileItemVariants}
                   initial="hidden"
                   animate="visible"
+                  className="w-full"
                 >
                   <Separator />
                 </motion.div>
                 <motion.a 
                   href="tel:+380931776504" 
-                  className="text-muted-foreground cursor-pointer"
+                  className="text-muted-foreground cursor-pointer flex items-center justify-center"
                   custom={6}
                   variants={mobileItemVariants}
                   initial="hidden"
@@ -367,6 +372,7 @@ export default function Header({ onContactClick, onContactsClick }: HeaderProps)
                   variants={mobileItemVariants}
                   initial="hidden"
                   animate="visible"
+                  className="flex justify-center w-full"
                 >
                   <Button 
                     onClick={() => {
@@ -375,7 +381,7 @@ export default function Header({ onContactClick, onContactsClick }: HeaderProps)
                     }} 
                     variant="outline" 
                     size="sm" 
-                    className="w-fit cursor-pointer"
+                    className="cursor-pointer flex items-center justify-center max-w-xs w-full"
                   >
                     {t('nav.call')}
                   </Button>
