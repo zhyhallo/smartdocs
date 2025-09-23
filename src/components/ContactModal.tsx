@@ -116,23 +116,23 @@ export default function ContactModal({ open, onOpenChange, defaultService = "", 
   if (isSubmitted) {
     return (
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent className="w-[90vw] max-w-sm mx-auto p-4 sm:p-6 
+        <DialogContent className="w-[90vw] max-w-sm mx-auto p-4 
                                  fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
-                                 max-h-[80vh] overflow-hidden border-0 shadow-2xl">
+                                 max-h-[70vh] overflow-hidden border-0 shadow-2xl rounded-lg">
           <motion.div 
-            className="text-center py-6 sm:py-8"
+            className="text-center py-4 sm:py-6"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-green-100 rounded-full 
-                           flex items-center justify-center mx-auto mb-4">
-              <CheckCircle size={28} className="sm:size-32 text-green-600" />
+            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-green-100 rounded-full 
+                           flex items-center justify-center mx-auto mb-3">
+              <CheckCircle size={24} className="sm:size-28 text-green-600" />
             </div>
-            <DialogTitle className="text-xl sm:text-2xl font-bold text-green-700 mb-2 text-center">
+            <DialogTitle className="text-lg sm:text-xl font-bold text-green-700 mb-2 px-2">
               {t('contact.success.title')}
             </DialogTitle>
-            <DialogDescription className="text-sm sm:text-base text-muted-foreground text-center">
+            <DialogDescription className="text-sm text-muted-foreground px-4 leading-relaxed">
               {t('contact.success.description')}
             </DialogDescription>
           </motion.div>
@@ -143,34 +143,34 @@ export default function ContactModal({ open, onOpenChange, defaultService = "", 
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="w-[90vw] max-w-lg mx-auto p-0 
+      <DialogContent className="w-[95vw] max-w-md mx-auto p-0 
                                fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
-                               max-h-[90vh] overflow-hidden border-0 shadow-2xl
-                               flex flex-col">
+                               max-h-[85vh] overflow-hidden border-0 shadow-2xl
+                               flex flex-col rounded-lg">
         
         {/* Fixed Header */}
-        <DialogHeader className="flex-shrink-0 p-4 sm:p-6 pb-0">
+        <DialogHeader className="flex-shrink-0 p-4 sm:p-6 pb-2">
           <DialogTitle className="text-lg sm:text-xl font-bold text-foreground 
                                  flex items-center justify-center text-center">
-            <OwlMascot variant="loader" size="sm" className="mr-3 flex-shrink-0" />
+            <OwlMascot variant="loader" size="sm" className="mr-2 flex-shrink-0" />
             <span className="truncate">{defaultService || t('contact.title')}</span>
           </DialogTitle>
-          <DialogDescription className="text-sm text-muted-foreground text-center">
+          <DialogDescription className="text-xs sm:text-sm text-muted-foreground text-center px-2">
             {t('contact.description')}
           </DialogDescription>
         </DialogHeader>
 
         {/* Scrollable Content */}
-        <div className="flex-1 overflow-y-auto scroll-smooth p-4 sm:p-6 pt-2">
-          <Card className="border-border/50">
-            <CardContent className="p-4 sm:p-6">
-              <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="flex-1 overflow-y-auto scroll-smooth px-4 pb-4 sm:px-6 sm:pb-6">
+          <Card className="border-border/50 shadow-none">
+            <CardContent className="p-3 sm:p-4">
+              <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
                 
-                {/* Phone and Email Row */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="phone" className="text-sm font-medium flex items-center justify-center sm:justify-start">
-                      <Phone size={16} className="mr-2 text-primary flex-shrink-0" />
+                {/* Phone and Email Row - Stack on mobile */}
+                <div className="grid grid-cols-1 gap-3 sm:gap-4">
+                  <div className="space-y-1.5">
+                    <Label htmlFor="phone" className="text-sm font-medium flex items-center">
+                      <Phone size={14} className="mr-2 text-primary flex-shrink-0" />
                       <span>{t('contact.phone')} *</span>
                     </Label>
                     <Input
@@ -181,19 +181,19 @@ export default function ContactModal({ open, onOpenChange, defaultService = "", 
                       onChange={(e) => handleInputChange("phone", e.target.value)}
                       className={`border-border/50 focus:border-primary 
                                hover:border-primary/70 transition-colors duration-300 
-                               text-center sm:text-left ${
+                               h-10 sm:h-11 ${
                                  errors.phone ? 'border-destructive focus:border-destructive' : ''
                                }`}
                       required
                     />
                     {errors.phone && (
-                      <p className="text-xs text-destructive text-center sm:text-left">{errors.phone}</p>
+                      <p className="text-xs text-destructive">{errors.phone}</p>
                     )}
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="email" className="text-sm font-medium flex items-center justify-center sm:justify-start">
-                      <Envelope size={16} className="mr-2 text-primary flex-shrink-0" />
+                  <div className="space-y-1.5">
+                    <Label htmlFor="email" className="text-sm font-medium flex items-center">
+                      <Envelope size={14} className="mr-2 text-primary flex-shrink-0" />
                       <span>{t('contact.email')} *</span>
                     </Label>
                     <Input
@@ -204,21 +204,21 @@ export default function ContactModal({ open, onOpenChange, defaultService = "", 
                       onChange={(e) => handleInputChange("email", e.target.value)}
                       className={`border-border/50 focus:border-primary 
                                hover:border-primary/70 transition-colors duration-300 
-                               text-center sm:text-left ${
+                               h-10 sm:h-11 ${
                                  errors.email ? 'border-destructive focus:border-destructive' : ''
                                }`}
                       required
                     />
                     {errors.email && (
-                      <p className="text-xs text-destructive text-center sm:text-left">{errors.email}</p>
+                      <p className="text-xs text-destructive">{errors.email}</p>
                     )}
                   </div>
                 </div>
 
                 {/* Full Name */}
-                <div className="space-y-2">
-                  <Label htmlFor="fullName" className="text-sm font-medium flex items-center justify-center sm:justify-start">
-                    <User size={16} className="mr-2 text-primary flex-shrink-0" />
+                <div className="space-y-1.5">
+                  <Label htmlFor="fullName" className="text-sm font-medium flex items-center">
+                    <User size={14} className="mr-2 text-primary flex-shrink-0" />
                     <span>{t('contact.name')}</span>
                   </Label>
                   <Input
@@ -229,14 +229,14 @@ export default function ContactModal({ open, onOpenChange, defaultService = "", 
                     onChange={(e) => handleInputChange("fullName", e.target.value)}
                     className="border-border/50 focus:border-primary 
                              hover:border-primary/70 transition-colors duration-300 
-                             text-center sm:text-left"
+                             h-10 sm:h-11"
                   />
                 </div>
 
                 {/* Company */}
-                <div className="space-y-2">
-                  <Label htmlFor="company" className="text-sm font-medium flex items-center justify-center sm:justify-start">
-                    <Building size={16} className="mr-2 text-primary flex-shrink-0" />
+                <div className="space-y-1.5">
+                  <Label htmlFor="company" className="text-sm font-medium flex items-center">
+                    <Building size={14} className="mr-2 text-primary flex-shrink-0" />
                     <span>{t('contact.company')}</span>
                   </Label>
                   <Input
@@ -247,21 +247,22 @@ export default function ContactModal({ open, onOpenChange, defaultService = "", 
                     onChange={(e) => handleInputChange("company", e.target.value)}
                     className="border-border/50 focus:border-primary 
                              hover:border-primary/70 transition-colors duration-300 
-                             text-center sm:text-left"
+                             h-10 sm:h-11"
                   />
                 </div>
 
                 {/* Privacy Agreement */}
-                <div className="flex items-start space-x-3 pt-4">
+                <div className="flex items-start space-x-2 pt-2">
                   <Checkbox 
                     id="privacy-agreement"
                     checked={agreedToPrivacy}
                     onCheckedChange={(checked) => setAgreedToPrivacy(checked as boolean)}
-                    className="mt-1 flex-shrink-0 hover:border-primary transition-colors duration-300"
+                    className="mt-0.5 flex-shrink-0 hover:border-primary transition-colors duration-300 
+                             data-[state=checked]:bg-primary data-[state=checked]:border-primary"
                   />
-                  <div className="text-xs sm:text-sm leading-relaxed">
-                    <Label htmlFor="privacy-agreement" className="flex items-start transition-all duration-300">
-                      <Shield size={14} className="mr-2 text-primary flex-shrink-0 mt-0.5" />
+                  <div className="text-xs leading-relaxed">
+                    <Label htmlFor="privacy-agreement" className="flex items-start transition-all duration-300 cursor-pointer">
+                      <Shield size={12} className="mr-1.5 text-primary flex-shrink-0 mt-0.5" />
                       <span className="hover:text-primary transition-colors duration-300">
                         {t('contact.privacy.text')}{" "}
                         <button
@@ -278,12 +279,13 @@ export default function ContactModal({ open, onOpenChange, defaultService = "", 
                 </div>
 
                 {/* Action Buttons */}
-                <div className="pt-4 flex flex-col gap-3">
+                <div className="pt-3 flex flex-col gap-2.5">
                   <Button
                     type="submit"
                     className="w-full font-medium tracking-wide 
                              hover:shadow-lg transition-all duration-300 
-                             text-base py-3"
+                             text-sm sm:text-base py-2.5 sm:py-3 h-10 sm:h-11
+                             disabled:opacity-50 disabled:cursor-not-allowed"
                     disabled={isSubmitting || !agreedToPrivacy}
                   >
                     {isSubmitting ? (
@@ -306,7 +308,7 @@ export default function ContactModal({ open, onOpenChange, defaultService = "", 
                     onClick={() => onOpenChange(false)}
                     className="w-full font-medium 
                              hover:border-primary hover:text-primary 
-                             transition-all duration-300 text-base py-3"
+                             transition-all duration-300 text-sm sm:text-base py-2.5 sm:py-3 h-10 sm:h-11"
                     disabled={isSubmitting}
                   >
                     {t('contact.cancel')}
@@ -315,7 +317,7 @@ export default function ContactModal({ open, onOpenChange, defaultService = "", 
               </form>
 
               {/* Footer Note */}
-              <div className="mt-4 pt-4 border-t border-border/30">
+              <div className="mt-3 pt-3 border-t border-border/30">
                 <p className="text-xs text-muted-foreground text-center">
                   * - {t('contact.required')}
                 </p>
