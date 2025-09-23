@@ -36,10 +36,10 @@ export default function ScrollToTop() {
 
   const scrollToTop = () => {
     setIsScrolling(true)
-    smoothScrollToTop(800)
+    smoothScrollToTop(1500)
     setTimeout(() => {
       setIsScrolling(false)
-    }, 900)
+    }, 1600)
   }
 
   // Calculate position
@@ -102,14 +102,13 @@ export default function ScrollToTop() {
           exit="hidden"
           whileHover="hover"
           whileTap="tap"
-          className="scroll-to-top fixed right-6 z-40 rounded-full 
+          className="scroll-to-top fixed right-6 z-40 p-3 rounded-full 
                      backdrop-blur-sm border border-border/30
                      shadow-lg hover:shadow-xl transition-shadow duration-300
-                     focus:outline-none focus:ring-2 focus:ring-primary/50
-                     p-2 sm:p-3"
+                     focus:outline-none focus:ring-2 focus:ring-primary/50"
           style={{
             bottom: getBottomPosition(),
-            background: "oklch(0.98 0.02 240 / 0.9)"
+            background: "transparent"
           }}
           aria-label="Scroll to top"
           disabled={isScrolling}
@@ -119,16 +118,16 @@ export default function ScrollToTop() {
               className="relative"
               animate={
                 isScrolling ? {
-                  y: [0, -15, -30, -45, -60],
-                  scale: [1, 1.15, 1.1, 1.25, 1],
+                  y: [0, -20, -40, -60, -80],
+                  scale: [1, 1.2, 1.1, 1.3, 1],
                   transition: {
-                    duration: 0.8,
+                    duration: 1.2,
                     ease: "easeOut",
                     times: [0, 0.25, 0.5, 0.75, 1]
                   }
                 } : isHovered ? {
                   scale: 1.1,
-                  y: [-2, -6, -2],
+                  y: [-2, -8, -2],
                   transition: { duration: 0.6, ease: "easeOut" }
                 } : {}
               }
@@ -140,8 +139,8 @@ export default function ScrollToTop() {
             <AnimatePresence>
               {isHovered && !isScrolling && (
                 <motion.div
-                  className="absolute -top-6 sm:-top-8 left-1/2 transform -translate-x-1/2 
-                             text-primary text-base sm:text-lg font-bold pointer-events-none"
+                  className="absolute -top-8 left-1/2 transform -translate-x-1/2 
+                             text-primary text-lg font-bold pointer-events-none"
                   initial={{ opacity: 0, y: 10, scale: 0 }}
                   animate={{
                     opacity: [0, 1, 0],
@@ -150,7 +149,7 @@ export default function ScrollToTop() {
                   }}
                   exit={{ opacity: 0, scale: 0 }}
                   transition={{
-                    duration: 1.2,
+                    duration: 1.5,
                     repeat: Infinity,
                     ease: "easeOut"
                   }}
