@@ -103,6 +103,9 @@ const translations = {
     'cta.title': 'Готові почати?',
     'cta.subtitle': 'Отримайте професійну консультацію та замовте рішення',
     'cta.button': 'Отримати консультацію',
+    'cta.features.implementation': 'Швидке впровадження',
+    'cta.features.support': 'Безкоштовна підтримка',
+    'cta.features.quality': 'Гарантія якості',
     
     // Footer
     'footer.navigation': 'Навігація',
@@ -306,6 +309,9 @@ const translations = {
     'cta.title': 'Gotowy do rozpoczęcia?',
     'cta.subtitle': 'Uzyskaj profesjonalną konsultację i zamów rozwiązanie',
     'cta.button': 'Uzyskaj konsultację',
+    'cta.features.implementation': 'Szybkie wdrożenie',
+    'cta.features.support': 'Bezpłatne wsparcie',
+    'cta.features.quality': 'Gwarancja jakości',
     
     // Footer
     'footer.navigation': 'Nawigacja',
@@ -509,6 +515,9 @@ const translations = {
     'cta.title': 'Готовы начать?',
     'cta.subtitle': 'Получите профессиональную консультацию и закажите решение',
     'cta.button': 'Получить консультацию',
+    'cta.features.implementation': 'Быстрое внедрение',
+    'cta.features.support': 'Бесплатная поддержка',
+    'cta.features.quality': 'Гарантия качества',
     
     // Footer
     'footer.navigation': 'Навигация',
