@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { motion, AnimatePresence } from "framer-motion"
 import { useTranslation } from "@/hooks/useTranslation"
-import { OwlMascot } from "@/components"
 import LanguageSwitcher from "./LanguageSwitcher"
 
 interface HeaderProps {
@@ -391,37 +390,6 @@ export default function Header({ onContactClick, onContactsClick }: HeaderProps)
             </motion.nav>
           )}
         </AnimatePresence>
-      </div>
-      
-      {/* Header Banner with Owl - Desktop/Tablet Only */}
-      <div className="hidden lg:block border-t border-border/50 bg-secondary/30">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center justify-between">
-            
-            {/* Left: Experience Text */}
-            <motion.div
-              className="flex flex-col space-y-1"
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-            >
-              <div className="text-2xl font-bold text-primary">16+</div>
-              <div className="text-sm text-muted-foreground">
-                {t('hero.experience')}
-              </div>
-            </motion.div>
-            
-            {/* Right: Owl Mascot */}
-            <motion.div
-              className="flex-shrink-0"
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-            >
-              <OwlMascot variant="analyst" size="md" animated={true} />
-            </motion.div>
-          </div>
-        </div>
       </div>
     </motion.header>
   )
