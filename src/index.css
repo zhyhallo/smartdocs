@@ -159,10 +159,10 @@
     transition: all 0.2s ease;
   }
   
-  /* FAQ item hover */
+  /* FAQ item hover - reduced scale for subtle effect */
   .faq-item:hover {
     background-color: oklch(0.96 0.02 240);
-    transform: translateY(-1px);
+    transform: translateY(-1px) scale(1.01);
     transition: all 0.2s ease;
   }
   
