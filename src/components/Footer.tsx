@@ -11,17 +11,17 @@ interface FooterProps {
 export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }: FooterProps) {
   const { t } = useTranslation()
   return (
-    <footer className="py-8 sm:py-12 bg-foreground text-background">
+    <footer className="py-6 sm:py-8 bg-foreground text-background">
       <div className="container mx-auto px-4">
         {/* Mobile-First Layout - Everything centered and stacked */}
-        <div className="flex flex-col items-center justify-center text-center space-y-8 md:space-y-10 mb-8">
+        <div className="flex flex-col items-center justify-center text-center space-y-6 md:space-y-8 mb-6">
           
           {/* Company Info - Always centered on mobile */}
           <div className="w-full max-w-md text-center">
-            <div className="flex items-center justify-center space-x-3 mb-4">
+            <div className="flex items-center justify-center space-x-3 mb-3">
               <div className="text-2xl sm:text-3xl font-bold tracking-tight">ModulSoft</div>
             </div>
-            <p className="text-background/80 mb-4 text-base sm:text-lg leading-relaxed">
+            <p className="text-background/80 mb-3 text-base sm:text-lg leading-relaxed">
               {t('hero.description')}
             </p>
             <p className="text-background/70 text-sm leading-relaxed">
@@ -33,12 +33,12 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
           {/* Desktop Layout - Side by side navigation and contacts */}
           <div className="w-full flex flex-col md:flex-row items-center justify-center 
                          md:justify-between md:items-start text-center md:text-left 
-                         space-y-8 md:space-y-0 md:space-x-12 max-w-4xl">
+                         space-y-6 md:space-y-0 md:space-x-12 max-w-4xl">
           
             {/* Navigation Section */}
             <div className="w-full md:w-auto">
-              <h3 className="text-lg font-bold text-background mb-4">{t('footer.navigation')}</h3>
-              <nav className="flex flex-col items-center md:items-start space-y-3">
+              <h3 className="text-lg font-bold text-background mb-3">{t('footer.navigation')}</h3>
+              <nav className="flex flex-col items-center md:items-start space-y-2">
                 <button 
                   onClick={() => {
                     onHomeClick?.();
@@ -107,8 +107,8 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
             
             {/* Contact Info Section */}
             <div className="w-full md:w-auto">
-              <h3 className="text-lg font-bold text-background mb-4">{t('footer.contacts')}</h3>
-              <div className="flex flex-col items-center md:items-start space-y-4 text-sm leading-relaxed">
+              <h3 className="text-lg font-bold text-background mb-3">{t('footer.contacts')}</h3>
+              <div className="flex flex-col items-center md:items-start space-y-3 text-sm leading-relaxed">
                 <div className="space-y-2 text-center md:text-left">
                   <a 
                     href="tel:+380931776504"
@@ -126,8 +126,8 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
                   </a>
                 </div>
                 
-                <div className="pt-2 text-center md:text-left">
-                  <p className="text-background/70 mb-2 font-medium hover:text-background transition-colors duration-300">
+                <div className="pt-1 text-center md:text-left">
+                  <p className="text-background/70 mb-1 font-medium hover:text-background transition-colors duration-300">
                     {t('contacts.schedule.title')}:
                   </p>
                   <p className="text-background/70 hover:text-background/90 transition-colors duration-300">
@@ -136,8 +136,8 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
                   </p>
                 </div>
                 
-                <div className="pt-2 text-center md:text-left">
-                  <p className="text-background/70 mb-2 font-medium hover:text-background transition-colors duration-300">
+                <div className="pt-1 text-center md:text-left">
+                  <p className="text-background/70 mb-1 font-medium hover:text-background transition-colors duration-300">
                     {t('contacts.address.title')}:
                   </p>
                   <p className="text-background/70 hover:text-background/90 transition-colors duration-300">
@@ -149,14 +149,14 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
           </div>
         </div>
         
-        <Separator className="bg-background/20 mb-6" />
+        <Separator className="bg-background/20 mb-4" />
         
         {/* Bottom Section - Always centered and responsive */}
-        <div className="text-center space-y-3">
+        <div className="text-center space-y-2">
           <div className="text-sm sm:text-base">
             {t('footer.rights')}
           </div>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center">
             <button 
               onClick={onPrivacyClick}
               className="text-background/80 hover:text-accent transition-all duration-300 
@@ -166,23 +166,6 @@ export default function Footer({ onContactsClick, onPrivacyClick, onHomeClick }:
             >
               {t('footer.privacy')}
             </button>
-            
-            {/* Development only - Cookie reset button */}
-            {process.env.NODE_ENV === 'development' && (
-              <button 
-                onClick={() => {
-                  localStorage.removeItem('cookie-consent')
-                  console.log('Cookie consent reset - page will reload')
-                  window.location.reload()
-                }}
-                className="text-background/60 hover:text-background/80 transition-colors 
-                         text-xs px-3 py-1 border border-background/30 rounded-md
-                         hover:border-background/50"
-                title="Reset Cookie Consent (Dev only) - Ctrl+Shift+C"
-              >
-                🍪 Reset
-              </button>
-            )}
           </div>
         </div>
       </div>
