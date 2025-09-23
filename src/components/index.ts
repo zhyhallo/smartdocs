@@ -25,9 +25,5 @@ export { default as LanguageSwitcher } from './LanguageSwitcher'
 export { default as SEOManager } from './SEOManager'
 
 
-export { 
-  SEOSchemas,
-  DynamicMetaTags,
-
-// Interactive components
+export { SEOSchemas, DynamicMetaTags, BreadcrumbSchema, ProductSchema, FAQSchema, LocalBusinessSchema } from './SEOComponents'
 export { InteractiveSection } from './InteractiveSection'
