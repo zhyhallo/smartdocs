@@ -32,10 +32,12 @@
   }
   
   /* Optimize for reduced motion users */
-  @media (prefers-reduced-motion: reduce) {\n    html, * {
+  @media (prefers-reduced-motion: reduce) {
+    html, * {
       scroll-behavior: auto;
     }
-    \n    *, *::before, *::after {
+    
+    *, *::before, *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
@@ -48,372 +50,98 @@
     }
   }
   
-  /* Essential cursor styles with mobile optimization */
-  button, a, [role="button"], .cursor-pointer,
-  .card, .feature-card, .pricing-card, .faq-item,
-  .icon-button, .hover-scale {\n    cursor: pointer;
+  /* Essential cursor styles */
+  button, a, [role="button"], .cursor-pointer {
+    cursor: pointer;
   }
   
-  /* Mobile-first responsive design with universal centering */
+  /* Clean mobile-first responsive design */
   @media (max-width: 768px) {
-    /* Universal container centering */
     .container {
-      padding: 0 16px !important;
-      max-width: 100% !important;
-      margin: 0 auto !important;
-      display: flex !important;
-      flex-direction: column !important;
-      align-items: center !important;
-      text-align: center !important;
+      padding: 0 1rem;
+      max-width: 100%;
     }
     
-    /* Hero section perfect centering */
     .hero-section {
-      text-align: center !important;
-      padding: 60px 0 !important;
+      padding: 3rem 0;
+      text-align: center;
     }
     
-    .hero-section .container,
-    .hero-section > div,
-    .hero-section .grid {
-      display: flex !important;
-      flex-direction: column !important;
-      align-items: center !important;
-      justify-content: center !important;
-      text-align: center !important;
-      width: 100% !important;
-    }
-    
-    /* Universal grid system for mobile */
     .grid {
-      display: flex !important;
-      flex-direction: column !important;
-      align-items: center !important;
-      justify-content: center !important;
-      text-align: center !important;
-      gap: 24px !important;
-      width: 100% !important;
+      gap: 1.5rem;
     }
     
-    .grid-cols-1,
     .grid-cols-2,
     .grid-cols-3 {
-      grid-template-columns: 1fr !important;
-      display: flex !important;
-      flex-direction: column !important;
-      align-items: center !important;
-      text-align: center !important;
-      gap: 20px !important;
-      width: 100% !important;
+      grid-template-columns: 1fr;
     }
     
-    .grid > *,
-    .grid-cols-1 > *,
-    .grid-cols-2 > *,
-    .grid-cols-3 > * {
-      width: 100% !important;
-      max-width: 340px !important;
-      margin: 0 auto !important;
-      display: flex !important;
-      flex-direction: column !important;
-      align-items: center !important;
-      text-align: center !important;
-      justify-content: center !important;
+    /* Typography scaling */
+    .text-6xl { font-size: 2.5rem; line-height: 1.1; }
+    .text-5xl { font-size: 2.25rem; line-height: 1.1; }
+    .text-4xl { font-size: 2rem; line-height: 1.1; }
+    .text-3xl { font-size: 1.75rem; line-height: 1.2; }
+    .text-2xl { font-size: 1.5rem; line-height: 1.3; }
+    .text-xl { font-size: 1.25rem; line-height: 1.4; }
+    
+    /* Section spacing */
+    section {
+      padding: 3rem 0;
     }
     
-    /* Card centering and sizing */
-    .card,
-    .feature-card,
-    .pricing-card {
-      width: 100% !important;
-      max-width: 320px !important;
-      margin: 0 auto !important;
-      display: flex !important;
-      flex-direction: column !important;
-      align-items: center !important;
-      text-align: center !important;
-      padding: 20px !important;
+    /* Modal responsive design */
+    [data-radix-dialog-content] {
+      width: 95vw;
+      max-width: 400px;
+      max-height: 85vh;
+      margin: 1rem;
     }
     
-    .card > *,
-    .feature-card > *,
-    .pricing-card > * {
-      text-align: center !important;
-      width: 100% !important;
-    }
-    
-    /* Button universal centering */
-    button,
-    .w-full,
-    .w-auto,
-    a[role="button"] {
-      width: 100% !important;
-      max-width: 280px !important;
-      margin: 0 auto !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      text-align: center !important;
-      min-height: 44px !important;
-      padding: 12px 20px !important;
-    }
-    
-    /* Typography responsive scaling */
-    .text-6xl { font-size: 2.5rem !important; line-height: 2.75rem !important; }
-    .text-5xl { font-size: 2.25rem !important; line-height: 2.5rem !important; }
-    .text-4xl { font-size: 2rem !important; line-height: 2.25rem !important; }
-    .text-3xl { font-size: 1.75rem !important; line-height: 2rem !important; }
-    .text-2xl { font-size: 1.5rem !important; line-height: 1.75rem !important; }
-    .text-xl { font-size: 1.25rem !important; line-height: 1.5rem !important; }
-    .text-lg { font-size: 1.125rem !important; line-height: 1.375rem !important; }
-    
-    /* Section universal centering */
-    section,
-    .section {
-      padding: 40px 0 !important;
-      text-align: center !important;
-    }
-    
-    section > div,
-    .section > div {
-      display: flex !important;
-      flex-direction: column !important;
-      align-items: center !important;
-      text-align: center !important;
-      width: 100% !important;
-    }
-    
-    /* Form centering */
-    form {
-      display: flex !important;
-      flex-direction: column !important;
-      align-items: center !important;
-      text-align: center !important;
-      width: 100% !important;
-      max-width: 320px !important;
-      margin: 0 auto !important;
-    }
-    
-    form > *,
-    .form-field,
-    .form-group {
-      width: 100% !important;
-      margin: 0 auto 12px auto !important;
-      text-align: center !important;
-    }
-    
-    form input,
-    form textarea,
-    form select {
-      text-align: center !important;
-      width: 100% !important;
-    }
-    
-    /* Navigation mobile centering */
-    nav,
-    .mobile-menu {
-      text-align: center !important;
-      display: flex !important;
-      flex-direction: column !important;
-      align-items: center !important;
-      width: 100% !important;
-    }
-    
-    nav a,
-    nav button,
-    .mobile-menu a,
-    .mobile-menu button {
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      text-align: center !important;
-      margin: 0 auto !important;
-      width: 100% !important;
-      max-width: 250px !important;
-      padding: 8px 16px !important;
-    }
-    
-    /* Modal optimization - perfect centering without scroll issues */
-    [data-radix-dialog-content],
-    .modal-content,
-    [role="dialog"] {
-      position: fixed !important;
-      top: 50% !important;
-      left: 50% !important;
-      transform: translate(-50%, -50%) !important;
-      width: 92vw !important;
-      max-width: 380px !important;
-      max-height: 80vh !important;
-      overflow: hidden !important;
-      margin: 0 !important;
-      padding: 20px !important;
-      border-radius: 12px !important;
-      z-index: 50 !important;
-      background: white !important;
-    }
-    
-    /* Modal content scrolling */
-    .modal-content > *,
-    [role="dialog"] > * {
-      overflow-y: auto !important;
-      max-height: calc(80vh - 40px) !important;
-      scroll-behavior: smooth !important;
-    }
-    
-    /* Prevent body scroll when modal is open */
-    body:has([data-state="open"]) {
-      overflow: hidden !important;
-      position: fixed !important;
-      width: 100% !important;
-      height: 100% !important;
-    }
-    
-    /* FAQ section mobile optimization */
-    #faq .grid {
-      grid-template-columns: 1fr !important;
-      gap: 30px !important;
-    }
-    
-    #faq .container {
-      max-width: 100% !important;
-      padding: 0 20px !important;
-    }
-    
-    /* FAQ owl and question mark positioning */
-    .faq-owl-container {
-      order: -1 !important;
-      margin-bottom: 20px !important;
-      display: flex !important;
-      justify-content: center !important;
-      align-items: center !important;
-    }
-    
-    /* Widget positioning fixes */
-    [id*="zcallback"], 
-    [id*="callback"],
-    .zadarma-widget {
-      bottom: 20px !important;
-      right: 16px !important;
-      z-index: 30 !important;
-      width: 50px !important;
-      height: 50px !important;
-    }
-    
-    /* Scroll to top button positioning */
+    /* Widget positioning */
     .scroll-to-top {
-      width: 40px !important;
-      height: 40px !important;
-      padding: 8px !important;
-      bottom: 80px !important;
-      right: 16px !important;
-      transform: none !important;
-      z-index: 40 !important;
+      bottom: 5rem;
+      right: 1rem;
+      width: 2.5rem;
+      height: 2.5rem;
     }
     
-    /* Footer centering */
+    /* Footer spacing */
     footer {
-      text-align: center !important;
-      padding: 40px 0 20px 0 !important;
-    }
-    
-    footer .container {
-      display: flex !important;
-      flex-direction: column !important;
-      align-items: center !important;
-      text-align: center !important;
-      gap: 30px !important;
+      padding: 2.5rem 0 1.5rem;
     }
     
     footer .grid {
-      gap: 30px !important;
-      justify-items: center !important;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      text-align: center;
     }
     
-    footer .flex {
-      justify-content: center !important;
-      align-items: center !important;
-      text-align: center !important;
-      flex-wrap: wrap !important;
-      gap: 12px !important;
+    /* Cards responsive */
+    .card,
+    .feature-card,
+    .pricing-card {
+      max-width: none;
+      margin: 0;
     }
     
-    /* Header mobile centering */
-    header {
-      padding: 16px 0 !important;
+    /* Buttons */
+    button {
+      min-height: 44px;
+      padding: 0.75rem 1.5rem;
     }
     
-    header .container {
-      justify-content: space-between !important;
-      align-items: center !important;
+    /* Navigation */
+    .mobile-menu {
+      max-height: 70vh;
+      overflow-y: auto;
     }
     
-    /* Language switcher mobile */
-    .language-switcher {
-      display: flex !important;
-      justify-content: center !important;
-      align-items: center !important;
-      margin: 0 auto !important;
-      gap: 8px !important;
-    }
-    
-    /* Icon centering */
-    .icon-hover {
-      margin: 0 auto !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-    }
-    
-    /* Prevent horizontal scroll */
-    body, html {
-      overflow-x: hidden !important;
-      width: 100% !important;
-      max-width: 100vw !important;
-    }
-    
-    /* Enhanced touch performance */
-    * {
-      -webkit-tap-highlight-color: transparent;
-      -webkit-touch-callout: none;
-      touch-action: manipulation;
-    }
-    
-    button, a, input, textarea, select {
-      touch-action: manipulation;
-    }
-    
-    /* Image optimization */
-    img, svg {
-      max-width: 100% !important;
-      height: auto !important;
-      margin: 0 auto !important;
-      display: block !important;
-    }
-    
-    /* Owl mascot mobile sizing */
-    .owl-mascot {
-      max-width: 200px !important;
-      margin: 0 auto !important;
-    }
-    
-    /* Performance optimizations */
-    .parallax-element,
-    .float-gentle {
-      animation-duration: 4s !important;
-      will-change: auto !important;
-      transform: none !important;
-    }
-    
-    /* Reduce motion for better performance */
-    .reduce-motion * {
-      animation-duration: 0.2s !important;
-      transition-duration: 0.2s !important;
-    }
-    
-    .reduce-motion .parallax-element,
-    .reduce-motion .float-gentle {
-      animation: none !important;
-      transform: none !important;
+    /* Form inputs */
+    input,
+    textarea,
+    select {
+      min-height: 44px;
+      padding: 0.75rem;
     }
   }
   
@@ -557,8 +285,7 @@
   }
   
 
-  
-  /* GPU acceleration for smooth animations with mobile optimization */
+  /* GPU acceleration for smooth animations */
   .parallax-element,
   .float-gentle,
   .animate-spin,
@@ -569,47 +296,19 @@
     backface-visibility: hidden;
   }
   
-  /* Reduce motion for mobile devices with lower performance */
+  /* Mobile performance optimizations */
   @media (max-width: 768px) {
     .parallax-element {
       will-change: auto;
       transform: none;
     }
     
-    /* Simplified animations on mobile for better performance */
     .float-gentle {
       animation-duration: 4s;
       animation-timing-function: ease-in-out;
     }
     
-    /* Enhanced mobile performance optimizations */
-    .reduce-motion * {
-      animation-duration: 0.2s !important;
-      transition-duration: 0.2s !important;
-    }
-    
-    .reduce-motion .parallax-element,
-    .reduce-motion .float-gentle {
-      animation: none !important;
-      transform: none !important;
-    }
-    
-    /* Optimize images on mobile */
-    img {
-      image-rendering: optimizeQuality;
-      image-rendering: -webkit-optimize-contrast;
-    }
-    
     /* Better touch performance */
-    * {
-      -webkit-tap-highlight-color: transparent;
-      -webkit-touch-callout: none;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-    
     input, textarea, button, select, a {
       -webkit-user-select: auto;
       -moz-user-select: auto;
@@ -714,72 +413,36 @@
     top: 6px;
   }
   
-  /* Enhanced responsive design with perfect centering */
+  /* Enhanced responsive design */
   @media (max-width: 768px) {
+    /* Zadarma widget positioning */
     [id*="zcallback"], 
     [id*="callback"],
     .zadarma-widget {
-      bottom: 20px !important;
-      right: 16px !important;
-      z-index: 30 !important;
-      transform: translateX(-50%);
-      right: 50% !important;
+      bottom: 1.25rem;
+      right: 1rem;
+      z-index: 30;
     }
     
-    /* Scroll to top button mobile sizing and positioning */
+    /* Scroll to top button proper positioning */
     .scroll-to-top {
-      width: 2.5rem !important;
-      height: 2.5rem !important;
-      padding: 0.375rem !important;
-      bottom: 100px !important;
-      right: 16px !important;
-      transform: none;
-      z-index: 40 !important;
+      bottom: 5rem;
+      right: 1rem;
+      z-index: 40;
     }
     
-    /* Enhanced modal centering and responsiveness */
+    /* Modal enhancements for mobile */
     [data-state="open"] [id*="zcallback"],
     [data-state="open"] [id*="callback"] {
-      z-index: 25 !important;
-      display: none !important; /* Hide widgets when modal is open */
+      z-index: 25;
+      display: none; /* Hide widgets when modal is open */
     }
     
-    /* Mobile navigation improvements with centering */
+    /* Mobile navigation improvements */
     .mobile-menu {
       max-height: 70vh;
       overflow-y: auto;
       scroll-behavior: smooth;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    
-    .mobile-menu a, .mobile-menu button {
-      width: 100%;
-      text-align: center;
-      justify-content: center;
-      align-items: center;
-      display: flex;
-    }
-    
-    /* Perfect modal centering */
-    .modal-overlay {
-      padding: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-    }
-    
-    /* Modal content centering */
-    [role="dialog"] {
-      margin: auto;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      width: 90vw;
-      max-width: 400px;
     }
     
     /* Prevent scroll issues on mobile when modal is open */
@@ -789,207 +452,127 @@
       width: 100%;
     }
     
-    /* Enhanced hero section centering */
-    .hero-section {
-      padding: 60px 0 40px 0;
-      text-align: center;
+    /* Touch performance enhancements */
+    * {
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
+      touch-action: manipulation;
     }
     
-    .hero-section .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
+    button, a, input, textarea, select {
+      touch-action: manipulation;
     }
     
-    .hero-section .grid {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-    
-    /* Mobile grid improvements with perfect centering */
-    .grid {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 24px;
-    }
-    
-    .grid-cols-1, .grid-cols-2, .grid-cols-3 {
-      grid-template-columns: 1fr;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 24px;
-    }
-    
-    /* Card centering on mobile */
-    .card, .feature-card, .pricing-card {
-      width: 100%;
-      max-width: 320px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-    
-    /* Ensure consistent scrolling on mobile */
+    /* Consistent scrolling on mobile */
     * {
       -webkit-overflow-scrolling: touch;
     }
     
-    /* Perfect icon centering */
-    .icon-hover {
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    /* Performance optimizations for mobile */
+    .parallax-element,
+    .float-gentle {
+      animation-duration: 4s;
+      will-change: auto;
+      transform: none;
     }
     
-    /* Center language switcher on mobile */
-    .language-switcher {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 0 auto;
+    /* Reduce motion for better performance on lower-end devices */
+    .reduce-motion * {
+      animation-duration: 0.2s !important;
+      transition-duration: 0.2s !important;
     }
     
-    /* Enhanced button centering */
-    .btn, button {
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .reduce-motion .parallax-element,
+    .reduce-motion .float-gentle {
+      animation: none !important;
+      transform: none !important;
+    }
+    
+    /* Image optimization */
+    img {
+      image-rendering: optimizeQuality;
+      image-rendering: -webkit-optimize-contrast;
     }
   }
   
-  /* Enhanced mobile layout for extra small screens */
+  /* Small mobile screens */
   @media (max-width: 480px) {
     .container {
-      padding: 0 12px !important;
+      padding: 0 0.75rem;
     }
     
     .hero-section {
-      padding: 40px 0 !important;
+      padding: 2.5rem 0;
     }
     
-    /* Extra small typography */
-    .text-6xl { font-size: 2.25rem !important; line-height: 2.5rem !important; }
-    .text-5xl { font-size: 2rem !important; line-height: 2.25rem !important; }
-    .text-4xl { font-size: 1.875rem !important; line-height: 2.125rem !important; }
-    .text-3xl { font-size: 1.625rem !important; line-height: 1.875rem !important; }
-    .text-2xl { font-size: 1.375rem !important; line-height: 1.625rem !important; }
+    /* Typography for small screens */
+    .text-6xl { font-size: 2.25rem; }
+    .text-5xl { font-size: 2rem; }
+    .text-4xl { font-size: 1.875rem; }
+    .text-3xl { font-size: 1.625rem; }
+    .text-2xl { font-size: 1.375rem; }
     
-    /* Button sizing for small screens */
+    /* Button adjustments */
     button {
-      padding: 10px 16px !important;
-      min-height: 40px !important;
-      max-width: 260px !important;
+      padding: 0.625rem 1rem;
+      min-height: 40px;
     }
     
-    /* Card padding adjustments */
+    /* Card adjustments */
     .card, .feature-card, .pricing-card {
-      padding: 16px !important;
-      max-width: 280px !important;
+      padding: 1rem;
     }
     
-    /* Modal sizing for small screens */
-    [data-radix-dialog-content],
-    .modal-content,
-    [role="dialog"] {
-      width: 95vw !important;
-      max-width: 320px !important;
-      padding: 16px !important;
+    /* Modal for small screens */
+    [data-radix-dialog-content] {
+      width: 95vw;
+      max-width: 320px;
+      padding: 1rem;
     }
     
-    /* Smaller widget positioning */
+    /* Widget positioning */
     .scroll-to-top {
-      width: 36px !important;
-      height: 36px !important;
-      bottom: 70px !important;
-      right: 12px !important;
+      width: 2.25rem;
+      height: 2.25rem;
+      bottom: 4.375rem;
+      right: 0.75rem;
     }
     
-    [id*="zcallback"], 
-    [id*="callback"],
-    .zadarma-widget {
-      bottom: 16px !important;
-      right: 12px !important;
-    }
-    
-    /* Tighter spacing for small screens */
+    /* Spacing adjustments */
     .grid {
-      gap: 16px !important;
+      gap: 1rem;
     }
     
-    section, .section {
-      padding: 30px 0 !important;
+    section {
+      padding: 1.875rem 0;
     }
   }
   
-  /* Enhanced tablet positioning with centering */
+  /* Tablet responsive design */
   @media (min-width: 769px) and (max-width: 1024px) {
-    /* Tablet optimizations */
     .container {
       max-width: 720px;
-      margin: 0 auto;
       padding: 0 2rem;
     }
     
     .hero-section {
-      text-align: center;
-      padding: 80px 0;
+      padding: 5rem 0;
     }
     
     .scroll-to-top {
-      bottom: 32px !important;
-      right: 32px !important;
-    }
-    
-    [id*="zcallback"], 
-    [id*="callback"],
-    .zadarma-widget {
-      bottom: 24px !important;
-      right: 32px !important;
-    }
-    
-    .grid {
-      display: grid;
-      place-items: center;
-      text-align: center;
-    }
-    
-    .grid-cols-2 {
-      gap: 32px;
-      justify-items: center;
+      bottom: 2rem;
+      right: 2rem;
     }
     
     .grid-cols-3 {
       grid-template-columns: repeat(2, 1fr);
-      justify-items: center;
-      gap: 32px;
     }
     
-    .card, .feature-card {
-      max-width: 300px;
-      margin: 0 auto;
-    }
-    
-    .hero-section .grid {
-      align-items: center;
-      justify-items: center;
-    }
-    
-    /* Typography scaling for tablets */
-    .text-6xl { font-size: 3.5rem !important; line-height: 4rem !important; }
-    .text-5xl { font-size: 3rem !important; line-height: 3.5rem !important; }
-    .text-4xl { font-size: 2.5rem !important; line-height: 3rem !important; }
-    .text-3xl { font-size: 2rem !important; line-height: 2.5rem !important; }
+    /* Typography for tablets */
+    .text-6xl { font-size: 3.5rem; }
+    .text-5xl { font-size: 3rem; }
+    .text-4xl { font-size: 2.5rem; }
+    .text-3xl { font-size: 2rem; }
   }
 }
 
