@@ -1,12 +1,12 @@
 import { useState, useEffect, useCallback } from 'react'
 
-/**
- * Replacement for Spark's useKV hook using localStorage
+ * 
+export function useLocalStorage<T>(key: string, defaultV
  * Provides the same API for data persistence
  */
 export function useLocalStorage<T>(key: string, defaultValue: T) {
   const [value, setValue] = useState<T>(() => {
-    if (typeof window === 'undefined') {
+    try {
       return defaultValue
     }
 
@@ -47,27 +47,26 @@ export function useLocalStorage<T>(key: string, defaultValue: T) {
   // Listen to changes made by other tabs/windows
   useEffect(() => {
     if (typeof window === 'undefined') {
-      return
-    }
+        try 
+     
 
-    const handleStorageChange = (e: StorageEvent) => {
-      if (e.key === key && e.newValue !== null) {
-        try {
-          setValue(JSON.parse(e.newValue))
-        } catch (error) {
-          console.warn(`Error parsing localStorage key "${key}" from storage event:`, error)
-        }
-      } else if (e.key === key && e.newValue === null) {
         setValue(defaultValue)
-      }
     }
-
-    window.addEventListener('storage', handleStorageChange)
-
+    window.ad
     return () => {
-      window.removeEventListener('storage', handleStorageChange)
     }
-  }, [key, defaultValue])
 
-  return [value, setStoredValue, deleteValue] as const
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
