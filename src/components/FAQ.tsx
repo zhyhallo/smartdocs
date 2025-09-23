@@ -1,13 +1,14 @@
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { motion } from "framer-motion"
 import { useInView } from "@/hooks/useInView"
 import { OwlMascot } from "@/components"
 import { useTranslation } from "@/hooks/useTranslation"
-import { memo } from "react"
+import { memo, useState, useCallback } from "react"
+import { CaretDown } from "@phosphor-icons/react"
 
 const FAQ = memo(function FAQ() {
   const [ref, isInView] = useInView({ threshold: 0.1 })
   const { t } = useTranslation()
+  const [openItems, setOpenItems] = useState<Set<number>>(new Set())
 
   const faqItems = [
     {
@@ -27,6 +28,18 @@ const FAQ = memo(function FAQ() {
       answer: t('faq.a4')
     }
   ]
+
+  const toggleItem = useCallback((index: number) => {
+    setOpenItems(prev => {
+      const newSet = new Set(prev)
+      if (newSet.has(index)) {
+        newSet.delete(index)
+      } else {
+        newSet.add(index)
+      }
+      return newSet
+    })
+  }, [])
 
   const headerVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -181,37 +194,50 @@ const FAQ = memo(function FAQ() {
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
             >
-              <Accordion type="single" collapsible className="space-y-3 sm:space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 {faqItems.map((item, index) => (
                   <motion.div key={index} variants={itemVariants}>
-                    <AccordionItem 
-                      value={`item-${index}`} 
-                      className="faq-item border border-border/50 bg-card/80 backdrop-blur-sm 
-                                rounded-lg px-4 sm:px-6 shadow-sm hover:shadow-md 
-                                transition-all duration-300"
-                    >
-                      <AccordionTrigger className="faq-trigger text-left font-medium py-4 sm:py-5 
-                                                  hover:no-underline focus:no-underline">
+                    <div className="faq-item border border-border/50 bg-card/80 backdrop-blur-sm 
+                                   rounded-lg px-4 sm:px-6 shadow-sm hover:shadow-md 
+                                   transition-all duration-300">
+                      <button
+                        onClick={() => toggleItem(index)}
+                        className="faq-trigger w-full text-left font-medium py-4 sm:py-5 
+                                   hover:no-underline focus:no-underline flex items-center justify-between
+                                   focus:outline-none cursor-pointer bg-transparent border-none"
+                        type="button"
+                      >
                         <span className="faq-text text-sm sm:text-base pr-2 leading-relaxed
-                                      hover:text-primary transition-colors duration-300">
+                                       hover:text-primary transition-colors duration-300 flex-1 text-left">
                           {item.question}
                         </span>
-                      </AccordionTrigger>
-                      <AccordionContent className="text-muted-foreground pb-4 sm:pb-5 
-                                                  text-sm sm:text-base leading-relaxed">
                         <motion.div
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ duration: 0.3 }}
-                          className="pt-2"
+                          animate={{ rotate: openItems.has(index) ? 180 : 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="text-muted-foreground flex-shrink-0"
                         >
-                          {item.answer}
+                          <CaretDown size={16} />
                         </motion.div>
-                      </AccordionContent>
-                    </AccordionItem>
+                      </button>
+                      
+                      <motion.div
+                        initial={false}
+                        animate={{
+                          height: openItems.has(index) ? "auto" : 0,
+                          opacity: openItems.has(index) ? 1 : 0
+                        }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        style={{ overflow: "hidden" }}
+                      >
+                        <div className="text-muted-foreground pb-4 sm:pb-5 
+                                       text-sm sm:text-base leading-relaxed pt-2">
+                          {item.answer}
+                        </div>
+                      </motion.div>
+                    </div>
                   </motion.div>
                 ))}
-              </Accordion>
+              </div>
             </motion.div>
           </div>
         </div>

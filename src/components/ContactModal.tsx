@@ -251,29 +251,35 @@ export default function ContactModal({ open, onOpenChange, defaultService = "", 
                   />
                 </div>
 
-                {/* Privacy Agreement */}
-                <div className="flex items-start space-x-2 pt-2">
+                {/* Privacy Agreement - Optimized for mobile */}
+                <div className="flex items-start space-x-2.5 pt-2 privacy-agreement">
                   <Checkbox 
                     id="privacy-agreement"
                     checked={agreedToPrivacy}
                     onCheckedChange={(checked) => setAgreedToPrivacy(checked as boolean)}
-                    className="mt-0.5 flex-shrink-0 hover:border-primary transition-colors duration-300 
-                             data-[state=checked]:bg-primary data-[state=checked]:border-primary"
+                    className="mt-1 flex-shrink-0 w-4 h-4 hover:border-primary transition-colors duration-300 
+                             data-[state=checked]:bg-primary data-[state=checked]:border-primary
+                             checkbox-root"
                   />
-                  <div className="text-xs leading-relaxed">
-                    <Label htmlFor="privacy-agreement" className="flex items-start transition-all duration-300 cursor-pointer">
-                      <Shield size={12} className="mr-1.5 text-primary flex-shrink-0 mt-0.5" />
-                      <span className="hover:text-primary transition-colors duration-300">
-                        {t('contact.privacy.text')}{" "}
-                        <button
-                          type="button"
-                          onClick={onPrivacyClick}
-                          className="text-primary hover:text-accent underline font-medium 
-                                   transition-all duration-300 hover:scale-105 inline-block"
-                        >
-                          {t('contact.privacy.link')}
-                        </button>
-                      </span>
+                  <div className="flex-1 min-w-0">
+                    <Label 
+                      htmlFor="privacy-agreement" 
+                      className="text-xs leading-relaxed cursor-pointer block text-left checkbox-label"
+                    >
+                      <div className="flex items-start">
+                        <Shield size={12} className="mr-1.5 text-primary flex-shrink-0 mt-0.5" />
+                        <span className="hover:text-primary transition-colors duration-300 text-left privacy-text">
+                          {t('contact.privacy.text')}{" "}
+                          <button
+                            type="button"
+                            onClick={onPrivacyClick}
+                            className="text-primary hover:text-accent underline font-medium 
+                                     transition-all duration-300 inline"
+                          >
+                            {t('contact.privacy.link')}
+                          </button>
+                        </span>
+                      </div>
                     </Label>
                   </div>
                 </div>
