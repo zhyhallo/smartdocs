@@ -51,7 +51,7 @@
   }
   
   /* Essential cursor styles */
-  button, a, [role="button"], .cursor-pointer {
+  button, a, [role="button"], .cursor-pointer, .card, .feature-card, .pricing-card, .icon-hover, .button-hover, .faq-item, .faq-text, .hover-lift, .hover-scale {
     cursor: pointer;
   }
   
@@ -230,6 +230,7 @@
     transform: scale(1.02) translateY(-2px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
+    cursor: pointer;
   }
   
   /* Feature card hover */
@@ -237,6 +238,7 @@
     transform: scale(1.03) translateY(-4px);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
+    cursor: pointer;
   }
   
   /* Pricing card hover */
@@ -244,12 +246,14 @@
     transform: scale(1.02) translateY(-4px);
     box-shadow: 0 16px 32px rgba(37, 99, 235, 0.15);
     transition: all 0.3s ease;
+    cursor: pointer;
   }
   
   /* Icon hover effects */
   .icon-hover:hover {
     transform: scale(1.1);
     transition: all 0.2s ease;
+    cursor: pointer;
   }
   
   /* Button hover effects */
@@ -257,6 +261,7 @@
   .button-hover:hover {
     transform: scale(1.02);
     transition: all 0.2s ease;
+    cursor: pointer;
   }
   
   /* FAQ item hover - reduced scale for subtle effect */
@@ -264,12 +269,14 @@
     background-color: oklch(0.96 0.02 240);
     transform: translateY(-1px) scale(1.005);
     transition: all 0.2s ease;
+    cursor: pointer;
   }
   
   /* FAQ text hover - only affect text, not arrow icons - more subtle */
   .faq-text:hover {
     color: oklch(0.55 0.22 240);
     transition: color 0.2s ease;
+    cursor: pointer;
   }
   
   /* Remove default trigger hover underline and ensure icon stays neutral */
@@ -289,12 +296,14 @@
   .hover-lift:hover {
     transform: translateY(-2px);
     transition: all 0.2s ease;
+    cursor: pointer;
   }
   
   /* Image and logo hover scale */
   .hover-scale:hover {
     transform: scale(1.05);
     transition: all 0.3s ease;
+    cursor: pointer;
   }
   
   /* Essential animations only */
