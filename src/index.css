@@ -298,14 +298,14 @@
     [id*="zcallback"], 
     [id*="callback"],
     .zadarma-widget {
-      bottom: 80px !important;
+      bottom: 20px !important;
       right: 16px !important;
       z-index: 30 !important;
     }
     
-    /* Scroll to top button mobile positioning */
-    .scroll-to-top {
-      bottom: 20px !important;
+    /* Ensure widgets don't overlap */
+    [id*="zcallback"] + .scroll-to-top,
+    [id*="callback"] + .scroll-to-top {
       right: 16px !important;
       z-index: 40 !important;
     }
@@ -330,6 +330,21 @@
     .grid-mobile-single {
       grid-template-columns: 1fr;
       gap: 24px;
+    }
+  }
+  
+  /* Tablet positioning */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .scroll-to-top {
+      bottom: 32px !important;
+      right: 24px !important;
+    }
+    
+    [id*="zcallback"], 
+    [id*="callback"],
+    .zadarma-widget {
+      bottom: 24px !important;
+      right: 24px !important;
     }
   }
   

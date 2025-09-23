@@ -7,6 +7,8 @@ export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false)
   const [isScrolling, setIsScrolling] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+  const [screenHeight, setScreenHeight] = useState(0)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,8 +16,22 @@ export default function ScrollToTop() {
       setIsVisible(scrollTop > 200)
     }
 
+    const handleResize = () => {
+      const width = window.innerWidth
+      const height = window.innerHeight
+      setIsMobile(width <= 768)
+      setScreenHeight(height)
+    }
+
+    // Initialize values
+    handleResize()
+
     window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
+    window.addEventListener('resize', handleResize, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleResize)
+    }
   }, [])
 
   const scrollToTop = () => {
@@ -24,6 +40,24 @@ export default function ScrollToTop() {
     setTimeout(() => {
       setIsScrolling(false)
     }, 1600)
+  }
+
+  // Calculate position
+  const getBottomPosition = () => {
+    if (typeof window === 'undefined') return '24px'
+    
+    const width = window.innerWidth
+    const height = screenHeight || window.innerHeight
+    
+    if (width <= 768) {
+      // Мобільні пристрої: 3/4 від висоти екрану
+      return `${Math.max(height * 0.25, 80)}px` // Мінімум 80px знизу
+    } else if (width <= 1024) {
+      // Планшети: трохи вище
+      return `${Math.max(height * 0.15, 60)}px`
+    }
+    
+    return '24px' // Десктоп
   }
 
   const buttonVariants = {
@@ -68,12 +102,12 @@ export default function ScrollToTop() {
           exit="hidden"
           whileHover="hover"
           whileTap="tap"
-          className="scroll-to-top fixed bottom-6 right-6 md:bottom-6 md:right-6 
-                     sm:bottom-20 sm:right-4 z-40 p-3 rounded-full 
+          className="scroll-to-top fixed right-6 z-40 p-3 rounded-full 
                      backdrop-blur-sm border border-border/30
                      shadow-lg hover:shadow-xl transition-shadow duration-300
                      focus:outline-none focus:ring-2 focus:ring-primary/50"
           style={{
+            bottom: getBottomPosition(),
             background: "oklch(0.98 0.02 240 / 0.9)"
           }}
           aria-label="Scroll to top"
