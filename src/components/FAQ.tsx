@@ -64,76 +64,32 @@ const FAQ = memo(function FAQ() {
   }
 
   return (
-    <section id="faq" className="py-20 bg-muted/30">
+    <section id="faq" className="py-12 sm:py-16 md:py-20 bg-muted/30">
       <div ref={ref as any} className="container mx-auto px-4 max-w-7xl">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-          {/* Left side - FAQ content */}
-          <div>
-            <motion.div 
-              className="mb-12"
-              variants={headerVariants}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-            >
-              <h2 className="text-3xl font-bold text-foreground mb-4">
-                {t('faq.title')}
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                {t('faq.subtitle')}
-              </p>
-            </motion.div>
-
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-            >
-              <Accordion type="single" collapsible className="space-y-2">
-                {faqItems.map((item, index) => (
-                  <motion.div key={index} variants={itemVariants}>
-                    <AccordionItem 
-                      value={`item-${index}`} 
-                      className="faq-item border-border/50 bg-card rounded-lg px-4 shadow-sm hover:shadow-md transition-all duration-300"
-                    >
-                      <AccordionTrigger className="faq-trigger text-left font-medium py-4">
-                        <span className="faq-text cursor-pointer transition-colors duration-300">
-                          {item.question}
-                        </span>
-                      </AccordionTrigger>
-                      <AccordionContent className="text-muted-foreground pb-4">
-                        <motion.div
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ duration: 0.3 }}
-                        >
-                          {item.answer}
-                        </motion.div>
-                      </AccordionContent>
-                    </AccordionItem>
-                  </motion.div>
-                ))}
-              </Accordion>
-            </motion.div>
-          </div>
-
-          {/* Right side - Owl with Question mark */}
+        
+        {/* Mobile-First Layout: Stack vertically */}
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center lg:items-start">
+          
+          {/* Owl with Question mark - Show first on mobile */}
           <motion.div 
-            className="flex justify-center lg:justify-start xl:justify-center mt-8 lg:mt-0 relative"
+            className="order-1 lg:order-2 flex justify-center items-center w-full mb-8 lg:mb-0"
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <div className="relative flex items-center justify-center w-full max-w-md mx-auto lg:mx-0">
-              {/* Question Mark moved to the left */}
+            <div className="relative flex items-center justify-center w-full max-w-sm mx-auto">
+              
+              {/* Question Mark positioned to the left */}
               <motion.div
-                className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-primary/25 select-none relative mr-6 sm:mr-8 lg:mr-12"
-                initial={{ opacity: 0, scale: 0.8, x: -30 }}
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold 
+                          text-primary/30 select-none relative mr-4 sm:mr-6 lg:mr-8"
+                initial={{ opacity: 0, scale: 0.8, x: -20 }}
                 animate={isInView ? { 
                   opacity: 1, 
                   scale: 1,
                   x: 0,
                   rotate: [0, 2, -2, 0],
-                } : { opacity: 0, scale: 0.8, x: -30 }}
+                } : { opacity: 0, scale: 0.8, x: -20 }}
                 transition={{
                   opacity: { duration: 0.8, delay: 0.5 },
                   scale: { duration: 0.8, delay: 0.5 },
@@ -148,7 +104,7 @@ const FAQ = memo(function FAQ() {
               >
                 ?
                 
-                {/* Enhanced glowing effect */}
+                {/* Glowing effects */}
                 <motion.div 
                   className="absolute inset-0 text-primary/15 blur-md -z-10"
                   animate={{
@@ -164,41 +120,23 @@ const FAQ = memo(function FAQ() {
                 >
                   ?
                 </motion.div>
-                
-                {/* Additional subtle pulse effect */}
-                <motion.div 
-                  className="absolute inset-0 text-accent/20 blur-sm -z-10"
-                  animate={{
-                    scale: [0.9, 1.2, 0.9],
-                    opacity: [0, 0.3, 0]
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 0.5
-                  }}
-                >
-                  ?
-                </motion.div>
               </motion.div>
 
-              {/* Owl positioned to the right of question mark */}
+              {/* Owl positioned to the right */}
               <motion.div
-                className="flex-shrink-0 relative z-10 scale-90 sm:scale-100"
-                initial={{ opacity: 0, scale: 0.8, x: 20 }}
-                animate={isInView ? { opacity: 1, scale: 1, x: 0 } : { opacity: 0, scale: 0.8, x: 20 }}
+                className="flex-shrink-0 relative z-10 scale-100 sm:scale-110 md:scale-125 lg:scale-100"
+                initial={{ opacity: 0, scale: 0.8, x: 15 }}
+                animate={isInView ? { opacity: 1, scale: 1, x: 0 } : { opacity: 0, scale: 0.8, x: 15 }}
                 transition={{ duration: 0.6, delay: 0.7 }}
               >
                 <OwlMascot variant="analyst" size="xl" animated={true} />
                 
-                {/* Thought bubbles connecting question mark to owl */}
+                {/* Floating decorative elements */}
                 <motion.div
-                  className="absolute -top-1 -left-2 w-2 h-2 bg-accent/30 rounded-full"
+                  className="absolute -top-2 -left-2 w-2 h-2 bg-accent/30 rounded-full"
                   animate={{
                     scale: [1, 1.4, 1],
-                    opacity: [0.2, 0.6, 0.2],
-                    x: [-2, 2, -2]
+                    opacity: [0.2, 0.6, 0.2]
                   }}
                   transition={{
                     duration: 2.5,
@@ -207,20 +145,7 @@ const FAQ = memo(function FAQ() {
                   }}
                 />
                 <motion.div
-                  className="absolute -top-3 -left-4 w-3 h-3 bg-accent/25 rounded-full"
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    opacity: [0.3, 0.7, 0.3],
-                    y: [-1, 1, -1]
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    delay: 1.8
-                  }}
-                />
-                <motion.div
-                  className="absolute -top-5 -left-6 w-1.5 h-1.5 bg-primary/40 rounded-full"
+                  className="absolute -bottom-1 right-2 w-1.5 h-1.5 bg-primary/40 rounded-full"
                   animate={{
                     scale: [1, 1.3, 1],
                     opacity: [0.4, 0.8, 0.4]
@@ -232,102 +157,63 @@ const FAQ = memo(function FAQ() {
                   }}
                 />
               </motion.div>
-                            
-              {/* Enhanced floating decorative elements with better spacing */}
-              <motion.div
-                className="absolute -top-8 left-8 w-2 h-2 bg-accent/40 rounded-full"
-                animate={{
-                  y: [-3, -10, -3],
-                  opacity: [0.4, 0.8, 0.4],
-                  scale: [1, 1.3, 1],
-                  rotate: [0, 90, 180, 270, 360]
-                }}
-                transition={{
-                  duration: 3.5,
-                  repeat: Infinity,
-                  delay: 0.3,
-                  ease: "easeInOut"
-                }}
-              />
-              <motion.div
-                className="absolute bottom-4 right-2 w-3 h-3 bg-primary/30 rounded-full"
-                animate={{
-                  y: [0, 8, 0],
-                  opacity: [0.3, 0.7, 0.3],
-                  scale: [1, 1.4, 1],
-                  x: [0, 3, 0]
-                }}
-                transition={{
-                  duration: 2.8,
-                  repeat: Infinity,
-                  delay: 1.1,
-                  ease: "easeInOut"
-                }}
-              />
-              <motion.div
-                className="absolute top-12 -left-6 w-1.5 h-1.5 bg-accent/60 rounded-full"
-                animate={{
-                  rotate: [0, 360],
-                  opacity: [0.2, 0.8, 0.2],
-                  scale: [0.8, 1.2, 0.8]
-                }}
-                transition={{
-                  duration: 4.5,
-                  repeat: Infinity,
-                  delay: 2.5,
-                  ease: "linear"
-                }}
-              />
-              <motion.div
-                className="absolute -bottom-2 left-2 w-2.5 h-2.5 bg-primary/25 rounded-full"
-                animate={{
-                  scale: [1, 1.5, 1],
-                  opacity: [0.2, 0.5, 0.2],
-                  rotate: [0, -180, 0]
-                }}
-                transition={{
-                  duration: 3.2,
-                  repeat: Infinity,
-                  delay: 1.8,
-                  ease: "easeInOut"
-                }}
-              />
-              
-              {/* Additional floating question marks */}
-              <motion.div
-                className="absolute -top-12 right-4 text-lg font-bold text-primary/15 select-none"
-                animate={{
-                  y: [-2, -6, -2],
-                  opacity: [0.15, 0.4, 0.15],
-                  rotate: [5, -5, 5]
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  delay: 0.8,
-                  ease: "easeInOut"
-                }}
-              >
-                ?
-              </motion.div>
-              <motion.div
-                className="absolute bottom-8 -left-8 text-sm font-bold text-accent/20 select-none"
-                animate={{
-                  y: [0, 4, 0],
-                  opacity: [0.2, 0.5, 0.2],
-                  rotate: [-3, 3, -3]
-                }}
-                transition={{
-                  duration: 3.6,
-                  repeat: Infinity,
-                  delay: 2.1,
-                  ease: "easeInOut"
-                }}
-              >
-                ?
-              </motion.div>
             </div>
           </motion.div>
+
+          {/* FAQ content */}
+          <div className="order-2 lg:order-1 w-full">
+            <motion.div 
+              className="mb-8 sm:mb-12 text-center lg:text-left"
+              variants={headerVariants}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+            >
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
+                {t('faq.title')}
+              </h2>
+              <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto lg:mx-0">
+                {t('faq.subtitle')}
+              </p>
+            </motion.div>
+
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+            >
+              <Accordion type="single" collapsible className="space-y-3 sm:space-y-4">
+                {faqItems.map((item, index) => (
+                  <motion.div key={index} variants={itemVariants}>
+                    <AccordionItem 
+                      value={`item-${index}`} 
+                      className="faq-item border border-border/50 bg-card/80 backdrop-blur-sm 
+                                rounded-lg px-4 sm:px-6 shadow-sm hover:shadow-md 
+                                transition-all duration-300"
+                    >
+                      <AccordionTrigger className="faq-trigger text-left font-medium py-4 sm:py-5 
+                                                  hover:no-underline focus:no-underline">
+                        <span className="faq-text text-sm sm:text-base pr-2 leading-relaxed
+                                      hover:text-primary transition-colors duration-300">
+                          {item.question}
+                        </span>
+                      </AccordionTrigger>
+                      <AccordionContent className="text-muted-foreground pb-4 sm:pb-5 
+                                                  text-sm sm:text-base leading-relaxed">
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ duration: 0.3 }}
+                          className="pt-2"
+                        >
+                          {item.answer}
+                        </motion.div>
+                      </AccordionContent>
+                    </AccordionItem>
+                  </motion.div>
+                ))}
+              </Accordion>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>

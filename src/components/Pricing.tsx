@@ -96,13 +96,13 @@ export default function Pricing({ onContactClick }: PricingProps) {
   ]
 
   return (
-    <section id="pricing" className="py-20 relative overflow-hidden" ref={ref}>
+    <section id="pricing" className="py-12 sm:py-16 md:py-20 relative overflow-hidden" ref={ref}>
       {/* Parallax Background Elements */}
       <ParallaxBackground variant="subtle" />
       <FloatingElements density="low" theme="business" />
       
-      {/* Additional floating currency symbols with enhanced parallax */}
-      <div className="absolute inset-0 pointer-events-none">
+      {/* Floating currency symbols - Hidden on mobile for better performance */}
+      <div className="absolute inset-0 pointer-events-none hidden md:block">
         <motion.div
           className="absolute top-20 left-20 text-6xl text-primary/10 font-bold"
           animate={{
@@ -135,57 +135,52 @@ export default function Pricing({ onContactClick }: PricingProps) {
         >
           1500
         </motion.div>
-        
-        <motion.div
-          className="absolute top-1/2 right-20 opacity-5"
-          animate={{
-            rotate: [0, 360],
-            scale: [1, 1.3, 1]
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        >
-          <div className="w-16 h-16 border-4 border-primary rounded-full flex items-center justify-center">
-            <Check size={24} className="text-primary" />
-          </div>
-        </motion.div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
+        
+        {/* Header Section - Centered */}
         <motion.div 
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-12 md:mb-16"
           variants={headerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          <h2 className="text-3xl font-bold text-foreground mb-4">{t('pricing.title')}</h2>
-          <p className="text-lg text-muted-foreground">{t('pricing.subtitle')}</p>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
+            {t('pricing.title')}
+          </h2>
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
+            {t('pricing.subtitle')}
+          </p>
         </motion.div>
 
-        <div className="max-w-md mx-auto">
+        {/* Pricing Card - Centered and Mobile Optimized */}
+        <div className="max-w-sm sm:max-w-md mx-auto">
           <motion.div
             variants={cardVariants}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
           >
-            <Card className="pricing-card cursor-pointer border-primary/50 shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden">
-              {/* Card background effect */}
+            <Card className="pricing-card border-primary/50 shadow-xl hover:shadow-2xl 
+                            transition-all duration-300 relative overflow-hidden
+                            w-full mx-auto">
+              
+              {/* Card background effects */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5"></div>
               <div className="absolute -top-20 -right-20 w-40 h-40 bg-primary/5 rounded-full"></div>
               <div className="absolute -bottom-16 -left-16 w-32 h-32 bg-accent/5 rounded-full"></div>
               
-              <CardContent className="p-8 text-center relative z-10">
+              <CardContent className="p-6 sm:p-8 text-center relative z-10">
+                
+                {/* Price Section */}
                 <motion.div 
-                  className="mb-6 cursor-pointer"
+                  className="mb-6 sm:mb-8"
                   variants={priceVariants}
                   initial="hidden"
                   animate={isInView ? "visible" : "hidden"}
                 >
                   <motion.div 
-                    className="text-4xl font-bold text-primary mb-2 cursor-pointer hover-scale"
+                    className="text-3xl sm:text-4xl font-bold text-primary mb-2 hover-scale"
                     animate={{
                       scale: [1, 1.02, 1]
                     }}
@@ -198,14 +193,17 @@ export default function Pricing({ onContactClick }: PricingProps) {
                   >
                     {t('pricing.price')}
                   </motion.div>
-                  <div className="text-muted-foreground cursor-pointer">{t('pricing.currency')}</div>
+                  <div className="text-sm sm:text-base text-muted-foreground">
+                    {t('pricing.currency')}
+                  </div>
                 </motion.div>
 
-                <div className="space-y-4 mb-8">
+                {/* Features List */}
+                <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
                   {features.map((feature, index) => (
                     <motion.div 
                       key={index}
-                      className="flex items-center hover-lift cursor-pointer"
+                      className="flex items-center justify-center sm:justify-start hover-lift"
                       custom={index}
                       variants={listItemVariants}
                       initial="hidden"
@@ -213,14 +211,13 @@ export default function Pricing({ onContactClick }: PricingProps) {
                       whileHover={{ x: 4 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <div className="cursor-pointer">
-                        <Check className="text-primary mr-3 cursor-pointer" size={20} />
-                      </div>
-                      <span className="cursor-pointer">{feature}</span>
+                      <Check className="text-primary mr-3 flex-shrink-0" size={18} />
+                      <span className="text-sm sm:text-base text-left">{feature}</span>
                     </motion.div>
                   ))}
                 </div>
 
+                {/* CTA Button */}
                 <motion.div
                   variants={buttonVariants}
                   initial="hidden"
@@ -229,10 +226,12 @@ export default function Pricing({ onContactClick }: PricingProps) {
                   whileTap="tap"
                 >
                   <Button 
-                    className="w-full text-lg py-6 cursor-pointer relative overflow-hidden" 
+                    className="w-full text-base sm:text-lg py-4 sm:py-6 relative overflow-hidden
+                             hover:shadow-xl transition-all duration-300" 
                     size="lg"
                     onClick={() => onContactClick(t('pricing.cta'))}
                   >
+                    {/* Button highlight effect */}
                     <motion.div
                       className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
                       initial={{ x: '-100%' }}
@@ -245,8 +244,9 @@ export default function Pricing({ onContactClick }: PricingProps) {
                   </Button>
                 </motion.div>
 
+                {/* Activation Note */}
                 <motion.p 
-                  className="text-xs text-muted-foreground mt-4"
+                  className="text-xs sm:text-sm text-muted-foreground mt-4 px-2"
                   initial={{ opacity: 0 }}
                   animate={isInView ? { 
                     opacity: 1,
