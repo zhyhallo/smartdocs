@@ -210,73 +210,78 @@ export default function CTA({ onContactClick }: CTAProps) {
             </Button>
           </motion.div>
           
-          {/* Additional subtle call-to-action hints */}
+          {/* CTA Feature blocks */}
           <motion.div 
-            className="mt-8 flex justify-center space-x-8 opacity-30"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? {
-              opacity: 0.3,
-              y: 0,
-              transition: { delay: 1, duration: 0.6 }
-            } : { opacity: 0, y: 20 }}
+            className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto"
+            variants={containerVariants}
           >
-            <motion.div
-              className="text-xs text-muted-foreground cursor-pointer hover-lift"
-              animate={{
-                scale: [1, 1.1, 1],
-                opacity: [0.3, 0.6, 0.3]
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                delay: 0
-              }}
-              whileHover={{
-                scale: 1.1,
-                opacity: 0.8,
-                color: "var(--primary)"
-              }}
-            >
-              ✓ {t('cta.features.implementation')}
-            </motion.div>
-            <motion.div
-              className="text-xs text-muted-foreground cursor-pointer hover-lift"
-              animate={{
-                scale: [1, 1.1, 1],
-                opacity: [0.3, 0.6, 0.3]
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                delay: 1
-              }}
-              whileHover={{
-                scale: 1.1,
-                opacity: 0.8,
-                color: "var(--primary)"
-              }}
-            >
-              ✓ {t('cta.features.support')}
-            </motion.div>
-            <motion.div
-              className="text-xs text-muted-foreground cursor-pointer hover-lift"
-              animate={{
-                scale: [1, 1.1, 1],
-                opacity: [0.3, 0.6, 0.3]
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                delay: 2
-              }}
-              whileHover={{
-                scale: 1.1,
-                opacity: 0.8,
-                color: "var(--primary)"
-              }}
-            >
-              ✓ {t('cta.features.quality')}
-            </motion.div>
+            {[
+              {
+                key: 'implementation',
+                title: t('cta.features.implementation'),
+                icon: '🚀'
+              },
+              {
+                key: 'support',
+                title: t('cta.features.support'),
+                icon: '🛠️'
+              },
+              {
+                key: 'quality',
+                title: t('cta.features.quality'),
+                icon: '⭐'
+              }
+            ].map((feature, index) => (
+              <motion.div
+                key={feature.key}
+                className="feature-card bg-card border border-border/50 rounded-lg p-6 text-center hover:shadow-lg transition-all duration-300 cursor-pointer group relative"
+                variants={itemVariants}
+                whileHover={{
+                  scale: 1.02,
+                  y: -4,
+                  boxShadow: "0 12px 24px rgba(0, 0, 0, 0.1)",
+                  transition: { duration: 0.2 }
+                }}
+              >
+                <motion.div
+                  className="text-2xl mb-3"
+                  whileHover={{
+                    scale: 1.2,
+                    rotate: [0, -10, 10, 0],
+                    transition: { duration: 0.3 }
+                  }}
+                >
+                  {feature.icon}
+                </motion.div>
+                
+                <div className="flex items-center justify-center mb-2">
+                  <motion.div
+                    className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center mr-2"
+                    whileHover={{
+                      scale: 1.1,
+                      backgroundColor: "#22c55e"
+                    }}
+                  >
+                    <motion.span 
+                      className="text-green-600 text-sm font-bold"
+                      whileHover={{ color: "#ffffff" }}
+                    >
+                      ✓
+                    </motion.span>
+                  </motion.div>
+                  <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors duration-300">
+                    {feature.title}
+                  </p>
+                </div>
+                
+                {/* Hover effect overlay */}
+                <motion.div
+                  className="absolute inset-0 bg-primary/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  initial={{ opacity: 0 }}
+                  whileHover={{ opacity: 1 }}
+                />
+              </motion.div>
+            ))}
           </motion.div>
         </motion.div>
       </div>
