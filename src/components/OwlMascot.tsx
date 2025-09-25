@@ -179,52 +179,103 @@ export default function OwlMascot({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* Sparkles Effect */}
+      {/* Document/Paper animation for new theme */}
       <AnimatePresence>
         {showSparkles && (
           <>
-            {[...Array(8)].map((_, i) => (
-              <motion.circle
-                key={`sparkle-${i}`}
-                cx={60 + (i * 15)}
-                cy={30 + (i % 3) * 20}
-                r="2"
-                fill="oklch(0.85 0.15 220)"
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{
-                  opacity: [0, 1, 0],
-                  scale: [0, 1.5, 0],
-                  y: [0, -10, -20]
-                }}
-                exit={{ opacity: 0, scale: 0 }}
-                transition={{
-                  duration: 1.5,
-                  delay: i * 0.1,
-                  ease: "easeOut"
-                }}
-              />
+            {[...Array(6)].map((_, i) => (
+              <motion.g key={`doc-${i}`}>
+                <motion.rect
+                  x={50 + (i * 20)}
+                  y={20 + (i % 2) * 15}
+                  width="8"
+                  height="12"
+                  rx="1"
+                  fill="oklch(0.85 0.15 220)"
+                  initial={{ opacity: 0, scale: 0, rotate: -45 }}
+                  animate={{
+                    opacity: [0, 1, 0],
+                    scale: [0, 1.2, 0],
+                    rotate: [-45, 0, 45],
+                    y: [0, -15, -30]
+                  }}
+                  exit={{ opacity: 0, scale: 0 }}
+                  transition={{
+                    duration: 2,
+                    delay: i * 0.15,
+                    ease: "easeOut"
+                  }}
+                />
+                <motion.line
+                  x1={52 + (i * 20)}
+                  y1={24 + (i % 2) * 15}
+                  x2={56 + (i * 20)}
+                  y2={24 + (i % 2) * 15}
+                  stroke="oklch(0.75 0.12 240)"
+                  strokeWidth="0.5"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: [0, 1, 0] }}
+                  transition={{ duration: 2, delay: i * 0.15 }}
+                />
+              </motion.g>
             ))}
           </>
         )}
       </AnimatePresence>
 
-      {/* Owl Body */}
+      {/* Shadow/Glow behind owl */}
+      <motion.ellipse
+        cx="100"
+        cy="140"
+        rx="60"
+        ry="70"
+        fill="url(#owlGlow)"
+        opacity="0.3"
+        animate={isHovered ? { scale: [1, 1.1, 1] } : {}}
+        transition={{ duration: 1, ease: "easeInOut" }}
+      />
+
+      {/* Gradient definitions */}
+      <defs>
+        <radialGradient id="owlGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="oklch(0.75 0.15 240)" stopOpacity="0.4"/>
+          <stop offset="100%" stopColor="oklch(0.65 0.18 220)" stopOpacity="0"/>
+        </radialGradient>
+        <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="oklch(0.60 0.20 240)"/>
+          <stop offset="100%" stopColor="oklch(0.50 0.24 240)"/>
+        </linearGradient>
+        <linearGradient id="headGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="oklch(0.70 0.16 220)"/>
+          <stop offset="100%" stopColor="oklch(0.60 0.20 220)"/>
+        </linearGradient>
+      </defs>
+
+      {/* Owl Body with gradient and modern styling */}
       <ellipse
         cx="100"
         cy="130"
         rx="45"
         ry="55"
-        fill="oklch(0.55 0.22 240)"
-        className="drop-shadow-md"
+        fill="url(#bodyGrad)"
+        className="drop-shadow-lg filter"
       />
       
-      {/* Owl Head */}
+      {/* Subtle body pattern - tech inspired */}
+      <motion.g opacity="0.2">
+        <path d="M75 110 L125 110" stroke="oklch(0.85 0.10 240)" strokeWidth="1" />
+        <path d="M80 120 L120 120" stroke="oklch(0.85 0.10 240)" strokeWidth="0.5" />
+        <path d="M85 140 L115 140" stroke="oklch(0.85 0.10 240)" strokeWidth="0.5" />
+        <path d="M80 155 L120 155" stroke="oklch(0.85 0.10 240)" strokeWidth="0.5" />
+      </motion.g>
+      
+      {/* Owl Head with gradient */}
       <motion.circle
         cx="100"
         cy="80"
         r="50"
-        fill="oklch(0.65 0.18 220)"
-        className="drop-shadow-md"
+        fill="url(#headGrad)"
+        className="drop-shadow-lg filter"
         animate={
           isLookingAround || isHovered ? {
             rotate: [0, -8, 8, -5, 0],
@@ -233,25 +284,31 @@ export default function OwlMascot({
         transition={{ duration: 2, ease: "easeInOut" }}
       />
       
-      {/* Ear Tufts */}
+      {/* Modern Ear Tufts - more tech-like */}
       <motion.path
         d="M70 45 L75 25 L85 40 Z"
         fill="oklch(0.55 0.22 240)"
         animate={isHovered ? { rotate: [-2, 2, -2] } : {}}
         transition={{ duration: 0.6, ease: "easeInOut" }}
+        className="drop-shadow-sm"
       />
       <motion.path
         d="M130 45 L125 25 L115 40 Z"
         fill="oklch(0.55 0.22 240)"
         animate={isHovered ? { rotate: [2, -2, 2] } : {}}
         transition={{ duration: 0.6, ease: "easeInOut", delay: 0.1 }}
+        className="drop-shadow-sm"
       />
       
-      {/* Eyes Background */}
-      <circle cx="85" cy="75" r="18" fill="white" />
-      <circle cx="115" cy="75" r="18" fill="white" />
+      {/* Eye Background with subtle glow */}
+      <circle cx="85" cy="75" r="18" fill="white" className="drop-shadow-sm" />
+      <circle cx="115" cy="75" r="18" fill="white" className="drop-shadow-sm" />
       
-      {/* Pupils with blink */}
+      {/* Eye outer rings for depth */}
+      <circle cx="85" cy="75" r="16" fill="none" stroke="oklch(0.90 0.05 240)" strokeWidth="1" opacity="0.3" />
+      <circle cx="115" cy="75" r="16" fill="none" stroke="oklch(0.90 0.05 240)" strokeWidth="1" opacity="0.3" />
+      
+      {/* Enhanced Pupils with blink and expressions */}
       <motion.circle 
         cx="85" 
         cy="75" 
@@ -259,9 +316,14 @@ export default function OwlMascot({
         fill="oklch(0.15 0.08 240)"
         animate={
           isBlinking ? { scaleY: 0.1 } : 
-          isHovered ? { scaleY: [1, 0.8, 1.2, 1], scaleX: [1, 1.1, 0.9, 1] } : {}
+          isHovered ? { 
+            scaleY: [1, 0.8, 1.2, 1], 
+            scaleX: [1, 1.1, 0.9, 1],
+            fill: ["oklch(0.15 0.08 240)", "oklch(0.25 0.15 240)", "oklch(0.15 0.08 240)"]
+          } : {}
         }
-        transition={{ duration: isBlinking ? 0.1 : 0.4 }}
+        transition={{ duration: isBlinking ? 0.1 : 0.6 }}
+        className="drop-shadow-sm"
       />
       <motion.circle 
         cx="115" 
@@ -270,22 +332,35 @@ export default function OwlMascot({
         fill="oklch(0.15 0.08 240)"
         animate={
           isBlinking ? { scaleY: 0.1 } : 
-          isHovered ? { scaleY: [1, 0.8, 1.2, 1], scaleX: [1, 1.1, 0.9, 1] } : {}
+          isHovered ? { 
+            scaleY: [1, 0.8, 1.2, 1], 
+            scaleX: [1, 1.1, 0.9, 1],
+            fill: ["oklch(0.15 0.08 240)", "oklch(0.25 0.15 240)", "oklch(0.15 0.08 240)"]
+          } : {}
         }
-        transition={{ duration: isBlinking ? 0.1 : 0.4 }}
+        transition={{ duration: isBlinking ? 0.1 : 0.6 }}
+        className="drop-shadow-sm"
       />
       
-      {/* Eye shine */}
+      {/* Enhanced eye shine with multiple reflections */}
       <circle cx="88" cy="72" r="3" fill="white" />
       <circle cx="118" cy="72" r="3" fill="white" />
+      <circle cx="82" cy="78" r="1.5" fill="white" opacity="0.6" />
+      <circle cx="112" cy="78" r="1.5" fill="white" opacity="0.6" />
       
-      {/* Beak */}
+      {/* Modern Beak with gradient */}
       <path
         d="M100 85 L90 95 L110 95 Z"
         fill="oklch(0.75 0.15 60)"
+        className="drop-shadow-sm"
+      />
+      <path
+        d="M100 85 L95 90 L105 90 Z"
+        fill="oklch(0.85 0.10 60)"
+        opacity="0.7"
       />
       
-      {/* Wings */}
+      {/* Enhanced Wings with better animation */}
       <motion.ellipse
         cx="75"
         cy="125"
@@ -295,11 +370,13 @@ export default function OwlMascot({
         animate={
           isHovered ? {
             rotate: [0, -25, 15, -20, 10, -15, 5, 0],
-            y: [0, -2, -1, -3, -1, -2, 0, 0]
+            y: [0, -2, -1, -3, -1, -2, 0, 0],
+            scale: [1, 1.05, 1]
           } : {}
         }
         transition={{ duration: 1.2, ease: "easeInOut" }}
         style={{ transformOrigin: "75px 120px" }}
+        className="drop-shadow-md"
       />
       <motion.ellipse
         cx="125"
@@ -310,42 +387,142 @@ export default function OwlMascot({
         animate={
           isHovered ? {
             rotate: [0, 25, -15, 20, -10, 15, -5, 0],
-            y: [0, -2, -1, -3, -1, -2, 0, 0]
+            y: [0, -2, -1, -3, -1, -2, 0, 0],
+            scale: [1, 1.05, 1]
           } : {}
         }
         transition={{ duration: 1.2, ease: "easeInOut" }}
         style={{ transformOrigin: "125px 120px" }}
+        className="drop-shadow-md"
       />
       
-      {/* Chest Pattern */}
+      {/* Wing details - feather patterns */}
+      <motion.ellipse
+        cx="75"
+        cy="120"
+        rx="8"
+        ry="15"
+        fill="oklch(0.40 0.22 240)"
+        opacity="0.6"
+        animate={isHovered ? { scale: [1, 1.1, 1] } : {}}
+        transition={{ duration: 1.2 }}
+      />
+      <motion.ellipse
+        cx="125"
+        cy="120"
+        rx="8"
+        ry="15"
+        fill="oklch(0.40 0.22 240)"
+        opacity="0.6"
+        animate={isHovered ? { scale: [1, 1.1, 1] } : {}}
+        transition={{ duration: 1.2 }}
+      />
+      
+      {/* Enhanced Chest Pattern - more detailed */}
       <ellipse
         cx="100"
         cy="120"
-        rx="20"
-        ry="15"
+        rx="25"
+        ry="18"
         fill="oklch(0.75 0.12 220)"
-        opacity="0.7"
+        opacity="0.5"
+      />
+      <ellipse
+        cx="100"
+        cy="125"
+        rx="18"
+        ry="12"
+        fill="oklch(0.80 0.08 220)"
+        opacity="0.4"
       />
       
-      {/* Feet */}
-      <ellipse cx="90" cy="175" rx="8" ry="4" fill="oklch(0.75 0.15 60)" />
-      <ellipse cx="110" cy="175" rx="8" ry="4" fill="oklch(0.75 0.15 60)" />
+      {/* Tech-inspired chest pattern */}
+      <motion.g opacity="0.3">
+        <rect x="92" y="115" width="16" height="1" rx="0.5" fill="oklch(0.85 0.10 240)" />
+        <rect x="95" y="120" width="10" height="1" rx="0.5" fill="oklch(0.85 0.10 240)" />
+        <rect x="97" y="125" width="6" height="1" rx="0.5" fill="oklch(0.85 0.10 240)" />
+      </motion.g>
       
-      {/* Glasses for analyst variant */}
+      {/* Enhanced Feet with better detail */}
+      <ellipse cx="90" cy="175" rx="10" ry="5" fill="oklch(0.75 0.15 60)" className="drop-shadow-sm" />
+      <ellipse cx="110" cy="175" rx="10" ry="5" fill="oklch(0.75 0.15 60)" className="drop-shadow-sm" />
+      
+      {/* Toe details */}
+      <ellipse cx="85" cy="174" rx="2" ry="3" fill="oklch(0.70 0.18 60)" />
+      <ellipse cx="95" cy="174" rx="2" ry="3" fill="oklch(0.70 0.18 60)" />
+      <ellipse cx="105" cy="174" rx="2" ry="3" fill="oklch(0.70 0.18 60)" />
+      <ellipse cx="115" cy="174" rx="2" ry="3" fill="oklch(0.70 0.18 60)" />
+      
+      {/* Enhanced glasses for analyst variant - more modern tech look */}
       {variant === "analyst" && (
         <motion.g 
-          opacity="0.7"
+          opacity="0.8"
           animate={
             isHovered ? { 
-              opacity: [0.7, 1, 0.7],
+              opacity: [0.8, 1, 0.8],
               scale: [1, 1.05, 1]
             } : {}
           }
           transition={{ duration: 1.5, repeat: Infinity }}
         >
-          <circle cx="85" cy="75" r="20" fill="none" stroke="oklch(0.25 0.08 240)" strokeWidth="2" />
-          <circle cx="115" cy="75" r="20" fill="none" stroke="oklch(0.25 0.08 240)" strokeWidth="2" />
-          <line x1="105" y1="75" x2="95" y2="75" stroke="oklch(0.25 0.08 240)" strokeWidth="2" />
+          {/* Main lens frames */}
+          <circle cx="85" cy="75" r="20" fill="none" stroke="oklch(0.25 0.08 240)" strokeWidth="2.5" />
+          <circle cx="115" cy="75" r="20" fill="none" stroke="oklch(0.25 0.08 240)" strokeWidth="2.5" />
+          
+          {/* Bridge */}
+          <line x1="105" y1="75" x2="95" y2="75" stroke="oklch(0.25 0.08 240)" strokeWidth="2.5" />
+          
+          {/* Lens reflections for tech look */}
+          <circle cx="85" cy="75" r="18" fill="none" stroke="oklch(0.85 0.10 220)" strokeWidth="0.5" opacity="0.6" />
+          <circle cx="115" cy="75" r="18" fill="none" stroke="oklch(0.85 0.10 220)" strokeWidth="0.5" opacity="0.6" />
+          
+          {/* Tech-inspired HUD elements */}
+          <motion.g opacity="0.4">
+            <line x1="75" y1="65" x2="80" y2="65" stroke="oklch(0.60 0.15 200)" strokeWidth="0.5" />
+            <line x1="120" y1="65" x2="125" y2="65" stroke="oklch(0.60 0.15 200)" strokeWidth="0.5" />
+            <circle cx="85" cy="85" r="1" fill="oklch(0.60 0.15 200)" />
+            <circle cx="115" cy="85" r="1" fill="oklch(0.60 0.15 200)" />
+          </motion.g>
+        </motion.g>
+      )}
+
+      {/* Document processing indicators for new invoice theme */}
+      {variant === "default" && isHovered && (
+        <motion.g>
+          {/* Floating document icons */}
+          <motion.rect
+            x="130"
+            y="60"
+            width="12"
+            height="16"
+            rx="1"
+            fill="oklch(0.80 0.12 220)"
+            opacity="0.7"
+            animate={{
+              y: [60, 45, 60],
+              opacity: [0.7, 1, 0.7],
+              rotate: [0, 10, 0]
+            }}
+            transition={{ duration: 2, repeat: Infinity }}
+          />
+          <motion.g>
+            <motion.line x1="132" y1="64" x2="140" y2="64" stroke="oklch(0.50 0.18 240)" strokeWidth="0.5" />
+            <motion.line x1="132" y1="67" x2="138" y2="67" stroke="oklch(0.50 0.18 240)" strokeWidth="0.5" />
+            <motion.line x1="132" y1="70" x2="140" y2="70" stroke="oklch(0.50 0.18 240)" strokeWidth="0.5" />
+          </motion.g>
+          
+          {/* Processing arrow */}
+          <motion.path
+            d="M145 68 L155 68 M150 63 L155 68 L150 73"
+            stroke="oklch(0.60 0.20 120)"
+            strokeWidth="1.5"
+            fill="none"
+            animate={{
+              x: [0, 10, 0],
+              opacity: [0.5, 1, 0.5]
+            }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+          />
         </motion.g>
       )}
     </svg>
@@ -369,14 +546,52 @@ export default function OwlMascot({
         <OwlSVG />
       </div>
       
-      {/* Interactive sparkles */}
+      {/* Enhanced interactive elements */}
       <AnimatePresence>
         {isHovered && (
           <>
-            {[...Array(5)].map((_, i) => (
+            {/* Document/Invoice themed particles */}
+            {[...Array(6)].map((_, i) => (
               <motion.div
-                key={`heart-${i}`}
-                className="absolute text-accent pointer-events-none"
+                key={`invoice-${i}`}
+                className="absolute pointer-events-none"
+                initial={{ 
+                  opacity: 0, 
+                  scale: 0,
+                  x: Math.random() * 80 - 40,
+                  y: Math.random() * 60 - 30
+                }}
+                animate={{
+                  opacity: [0, 1, 0],
+                  scale: [0, 1, 0],
+                  y: [0, -40, -80],
+                  rotate: [0, Math.random() * 360]
+                }}
+                exit={{ opacity: 0, scale: 0 }}
+                transition={{
+                  duration: 2.5,
+                  delay: i * 0.3,
+                  ease: "easeOut"
+                }}
+                style={{
+                  left: `${50 + Math.random() * 30 - 15}%`,
+                  top: `${50 + Math.random() * 30 - 15}%`,
+                  position: 'absolute'
+                }}
+              >
+                <div className="w-4 h-5 bg-primary/20 rounded-sm border border-primary/40 flex flex-col justify-center items-center">
+                  <div className="w-2.5 h-0.5 bg-primary/60 rounded mb-0.5"></div>
+                  <div className="w-2 h-0.5 bg-primary/40 rounded mb-0.5"></div>
+                  <div className="w-2.5 h-0.5 bg-primary/60 rounded"></div>
+                </div>
+              </motion.div>
+            ))}
+            
+            {/* Success checkmarks for automation theme */}
+            {[...Array(3)].map((_, i) => (
+              <motion.div
+                key={`check-${i}`}
+                className="absolute text-green-500 font-bold pointer-events-none"
                 initial={{ 
                   opacity: 0, 
                   scale: 0,
@@ -385,25 +600,57 @@ export default function OwlMascot({
                 }}
                 animate={{
                   opacity: [0, 1, 0],
-                  scale: [0, 1.2, 0],
-                  y: [0, -30, -60],
-                  rotate: [0, 180, 360]
+                  scale: [0, 1.5, 0],
+                  y: [0, -20, -40],
+                  rotate: [0, 180]
                 }}
                 exit={{ opacity: 0, scale: 0 }}
                 transition={{
                   duration: 2,
-                  delay: i * 0.2,
+                  delay: i * 0.4 + 1,
                   ease: "easeOut"
                 }}
                 style={{
-                  fontSize: `${8 + i * 2}px`,
+                  fontSize: `${12 + i * 2}px`,
                   left: `${50 + Math.random() * 20 - 10}%`,
                   top: `${50 + Math.random() * 20 - 10}%`,
-                  position: 'absolute',
-                  pointerEvents: 'none'
+                  position: 'absolute'
                 }}
               >
-                💙
+                ✓
+              </motion.div>
+            ))}
+            
+            {/* Tech particles */}
+            {[...Array(4)].map((_, i) => (
+              <motion.div
+                key={`tech-${i}`}
+                className="absolute text-accent/70 font-mono text-xs pointer-events-none"
+                initial={{ 
+                  opacity: 0, 
+                  scale: 0,
+                  x: Math.random() * 50 - 25,
+                  y: Math.random() * 30 - 15
+                }}
+                animate={{
+                  opacity: [0, 1, 0],
+                  scale: [0, 1, 0],
+                  y: [0, -30, -60],
+                  rotate: [0, Math.random() * 90 - 45]
+                }}
+                exit={{ opacity: 0, scale: 0 }}
+                transition={{
+                  duration: 3,
+                  delay: i * 0.2 + 0.5,
+                  ease: "easeOut"
+                }}
+                style={{
+                  left: `${50 + Math.random() * 40 - 20}%`,
+                  top: `${50 + Math.random() * 40 - 20}%`,
+                  position: 'absolute'
+                }}
+              >
+                {['{ }', '</>', 'AI', '1C'][i]}
               </motion.div>
             ))}
           </>
