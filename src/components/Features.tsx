@@ -132,9 +132,9 @@ const Features = memo(function Features() {
             ease: "easeInOut"
           }}
         >
-          <OwlMascot variant="analyst" 
+          <OwlMascot variant="tech" 
             size="sm" 
-            animated={false} 
+            animated={true} 
           />
         </motion.div>
         

@@ -92,16 +92,16 @@ const Hero = memo(function Hero({ onContactClick }: HeroProps) {
               
               {/* Enhanced Typography */}
               <motion.h1 
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 
-                          font-bold text-foreground 
-                          tracking-tight leading-[1.1]"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 
+                          font-bold text-foreground mb-4 sm:mb-6 
+                          tracking-tight leading-tight"
                 variants={itemVariants}
               >
                 <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                   {t('hero.title')}
                 </span>
                 <motion.span 
-                  className="block text-foreground/90 mt-2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold"
+                  className="block text-primary mt-2"
                   variants={itemVariants}
                 >
                   {t('hero.subtitle')}
@@ -109,8 +109,8 @@ const Hero = memo(function Hero({ onContactClick }: HeroProps) {
               </motion.h1>
               
               <motion.p 
-                className="text-lg sm:text-xl md:text-2xl text-muted-foreground 
-                          leading-relaxed max-w-2xl font-medium"
+                className="text-base sm:text-lg md:text-xl text-muted-foreground 
+                          leading-relaxed max-w-xl"
                 variants={itemVariants}
               >
                 {t('hero.description')}

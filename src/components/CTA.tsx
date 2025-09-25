@@ -123,7 +123,7 @@ export default function CTA({ onContactClick }: CTAProps) {
             delay: 2
           }}
         >
-          <OwlMascot variant="analyst" size="sm" animated={false} />
+          <OwlMascot variant="party" size="sm" animated={true} />
         </motion.div>
         
         {/* Additional floating elements */}

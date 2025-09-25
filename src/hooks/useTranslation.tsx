@@ -106,6 +106,17 @@ const translations = {
     'cta.features.support': 'Підтримка інтеграції',
     'cta.features.quality': 'Гарантія якості',
 
+    // Product
+    'product.title': 'Опис рішення',
+    'product.subtitle': 'Детальний опис функціональності та переваг автоматизації',
+
+    // Social Proof  
+    'social.title': 'Довіряють професіонали',
+    'social.subtitle': 'Наші клієнти економлять час та збільшують точність обліку',
+    'social.experience': 'років досвіду',
+    'social.projects': 'проектів',
+    'social.specialists': 'спеціалістів',
+
     // Meta SEO
     'meta.title': 'Автоматичне розпізнавання накладних | Завантаження у 1С та BAS',
     'meta.description': 'Модуль для BAS і 1С: автоматичне розпізнавання накладних, актів, рахунків. Завантаження документів у базу з підбором контрагентів та ПДВ.',
@@ -231,6 +242,17 @@ const translations = {
     'cta.features.support': 'Wsparcie integracji',
     'cta.features.quality': 'Gwarancja jakości',
 
+    // Product
+    'product.title': 'Opis rozwiązania',
+    'product.subtitle': 'Szczegółowy opis funkcjonalności i korzyści automatyzacji',
+
+    // Social Proof  
+    'social.title': 'Zaufali nam profesjonaliści',
+    'social.subtitle': 'Nasi klienci oszczędzają czas i zwiększają dokładność księgowości',
+    'social.experience': 'lat doświadczenia',
+    'social.projects': 'projektów',
+    'social.specialists': 'specjalistów',
+
     // Meta SEO
     'meta.title': 'Automatyczne rozpoznawanie faktur | Ładowanie do 1С i BAS',
     'meta.description': 'Moduł dla BAS i 1С: automatyczne rozpoznawanie faktur, aktów, rachunków. Ładowanie dokumentów do bazy z doborem kontrahentów i VAT.',
@@ -334,6 +356,17 @@ const translations = {
     'cta.features.implementation': 'Лёгкое внедрение',
     'cta.features.support': 'Поддержка интеграции',
     'cta.features.quality': 'Гарантия качества',
+
+    // Product
+    'product.title': 'Описание решения',
+    'product.subtitle': 'Подробное описание функциональности и преимуществ автоматизации',
+
+    // Social Proof  
+    'social.title': 'Нам доверяют профессионалы',
+    'social.subtitle': 'Наши клиенты экономят время и увеличивают точность учёта',
+    'social.experience': 'лет опыта',
+    'social.projects': 'проектов',
+    'social.specialists': 'специалистов',
 
     // Meta SEO
     'meta.title': 'Автоматическое распознавание накладных | Загрузка в 1С и BAS',
