@@ -262,7 +262,71 @@ const translations = {
     'ads.desc3': 'Інтеграція з BAS та 1С за кілька хвилин.',
     'ads.desc4': 'Завантаження PDF і сканів одним кліком.',
     'ads.desc5': 'Рішення для бухгалтерів та бізнесу.',
-    'ads.desc6': 'Автоматизація документообігу без зайвих зусиль.'
+    'ads.desc6': 'Автоматизація документообігу без зайвих зусиль.',
+
+    // Додаткові Hero секції
+    'hero.experience': '5+ років досвіду',
+    'hero.projects': '1000+ проєктів',
+    'hero.specialists': '50+ спеціалістів',
+
+    // Загальне pricing
+    'pricing.price': 'Ціна',
+
+    // Тарифні плани (розширені)
+    'pricing.basic.title': 'Базовий',
+    'pricing.basic.price': '290 грн/міс',
+    'pricing.basic.description': 'Для початківців',
+    'pricing.basic.feature1': 'До 50 документів/міс',
+    'pricing.basic.feature2': 'Базове OCR',
+    'pricing.basic.feature3': 'Email підтримка',
+    'pricing.basic.feature4': '1С Базовий',
+
+    'pricing.standard.title': 'Стандартний',
+    'pricing.standard.price': '790 грн/міс',
+    'pricing.standard.description': 'Найпопулярніший',
+    'pricing.standard.popular': 'Рекомендуємо',
+    'pricing.standard.feature1': 'До 500 документів/міс',
+    'pricing.standard.feature2': 'Розширене OCR',
+    'pricing.standard.feature3': 'Пріоритетна підтримка',
+    'pricing.standard.feature4': '1С + BAS інтеграція',
+    'pricing.standard.feature5': 'API доступ',
+
+    'pricing.enterprise.title': 'Корпоративний',
+    'pricing.enterprise.price': 'від 1590 грн/міс',
+    'pricing.enterprise.description': 'Для великих компаній',
+    'pricing.enterprise.feature1': 'Безлімітні документи',
+    'pricing.enterprise.feature2': 'AI розпізнавання',
+    'pricing.enterprise.feature3': 'Персональний менеджер',
+    'pricing.enterprise.feature4': 'Повна інтеграція',
+    'pricing.enterprise.feature5': '24/7 підтримка',
+    'pricing.enterprise.feature6': 'Кастомізація',
+
+    // Footer секції
+    'footer.contacts': 'Контакти',
+    'footer.address': 'Адреса',
+    'footer.navigation': 'Навігація',
+    'footer.company': 'Компанія',
+    'footer.support': 'Підтримка',
+    'footer.legal': 'Правові питання',
+
+    // Contact секції
+    'contact.privacy.text': 'Натискаючи кнопку, ви погоджуєтесь з обробкою персональних даних згідно з політикою конфіденційності',
+    'contact.consultation.title': '🎯 Готові розпочати',
+    'contact.consultation.free': 'Безкоштовна консультація',
+    'contact.consultation.obligations': 'Без зобов\'язань',
+    'contact.consultation.response': 'Відповідь за 1 годину',
+    'contact.consultation.question': 'Потрібна консультація?',
+    'contact.consultation.description': 'Наші експерти готові відповісти на всі ваші питання та допомогти підібрати оптимальне рішення',
+    'contact.consultation.cta': 'Отримати консультацію',
+
+    // Додаткові CTA тексти
+    'cta.ready': 'Готові розпочати',
+    'cta.free.consultation': 'Безкоштовна консультація',
+    'cta.no.obligations': 'Без зобов\'язань',
+    'cta.response.time': 'Відповідь за 1 годину',
+    'cta.need.consultation': 'Потрібна консультація?',
+    'cta.experts.ready': 'Наші експерти готові відповісти на всі ваші питання та допомогти підібрати оптимальне рішення',
+    'cta.get.consultation': 'Отримати консультацію'
   },
   
   pl: {
@@ -497,6 +561,70 @@ const translations = {
     'meta.keywords': 'automatyczne rozpoznawanie faktur, OCR dla dokumentów księgowych, ładowanie dokumentów do 1С, BAS ERP, automatyzacja księgowości, import faktur BAS, integracja 1С, automatyczne pobieranie kontrahentów, automatyzacja obiegu dokumentów, skanowanie faktur, rozpoznawanie VAT, BAS księgowość',
     'meta.og.title': 'Automatyczne rozpoznawanie faktur | Ładowanie do 1С i BAS',
     'meta.og.description': 'Automatyczne rozpoznawanie i ładowanie faktur, aktów, rachunków do BAS i 1С. OCR dla dokumentów księgowych. Integracja z systemem księgowym.',
+
+    // Dodatkowe sekcje Hero
+    'hero.experience': '5+ lat doświadczenia',
+    'hero.projects': '1000+ projektów',
+    'hero.specialists': '50+ specjalistów',
+
+    // Ogólne pricing
+    'pricing.price': 'Cena',
+
+    // Plany taryfowe (rozszerzone)
+    'pricing.basic.title': 'Podstawowy',
+    'pricing.basic.price': '290 grn/mies',
+    'pricing.basic.description': 'Dla początkujących',
+    'pricing.basic.feature1': 'Do 50 dokumentów/mies',
+    'pricing.basic.feature2': 'Podstawowe OCR',
+    'pricing.basic.feature3': 'Wsparcie email',
+    'pricing.basic.feature4': '1С Podstawowy',
+
+    'pricing.standard.title': 'Standardowy',
+    'pricing.standard.price': '790 grn/mies',
+    'pricing.standard.description': 'Najpopularniejszy',
+    'pricing.standard.popular': 'Polecamy',
+    'pricing.standard.feature1': 'Do 500 dokumentów/mies',
+    'pricing.standard.feature2': 'Rozszerzone OCR',
+    'pricing.standard.feature3': 'Priorytetowe wsparcie',
+    'pricing.standard.feature4': '1С + BAS integracja',
+    'pricing.standard.feature5': 'Dostęp do API',
+
+    'pricing.enterprise.title': 'Korporacyjny',
+    'pricing.enterprise.price': 'od 1590 grn/mies',
+    'pricing.enterprise.description': 'Dla dużych firm',
+    'pricing.enterprise.feature1': 'Nieograniczone dokumenty',
+    'pricing.enterprise.feature2': 'AI rozpoznawanie',
+    'pricing.enterprise.feature3': 'Osobisty menedżer',
+    'pricing.enterprise.feature4': 'Pełna integracja',
+    'pricing.enterprise.feature5': 'Wsparcie 24/7',
+    'pricing.enterprise.feature6': 'Dostosowanie',
+
+    // Sekcje Footer
+    'footer.contacts': 'Kontakty',
+    'footer.address': 'Adres',
+    'footer.navigation': 'Nawigacja',
+    'footer.company': 'Firma',
+    'footer.support': 'Wsparcie',
+    'footer.legal': 'Sprawy prawne',
+
+    // Sekcje Contact
+    'contact.privacy.text': 'Klikając przycisk, zgadzasz się na przetwarzanie danych osobowych zgodnie z polityką prywatności',
+    'contact.consultation.title': '🎯 Gotowi zacząć',
+    'contact.consultation.free': 'Bezpłatna konsultacja',
+    'contact.consultation.obligations': 'Bez zobowiązań',
+    'contact.consultation.response': 'Odpowiedź w ciągu 1 godziny',
+    'contact.consultation.question': 'Potrzebujesz konsultacji?',
+    'contact.consultation.description': 'Nasi eksperci są gotowi odpowiedzieć na wszystkie twoje pytania i pomóc wybrać optymalne rozwiązanie',
+    'contact.consultation.cta': 'Uzyskać konsultację',
+
+    // Dodatkowe teksty CTA
+    'cta.ready': 'Gotowi zacząć',
+    'cta.free.consultation': 'Bezpłatna konsultacja',
+    'cta.no.obligations': 'Bez zobowiązań',
+    'cta.response.time': 'Odpowiedź w ciągu 1 godziny',
+    'cta.need.consultation': 'Potrzebujesz konsultacji?',
+    'cta.experts.ready': 'Nasi eksperci są gotowi odpowiedzieć na wszystkie twoje pytania i pomóc wybrać optymalne rozwiązanie',
+    'cta.get.consultation': 'Uzyskać konsultację'
   },
   
   ru: {
@@ -731,6 +859,70 @@ const translations = {
     'meta.keywords': 'автоматическое распознавание накладных, OCR для бухгалтерских документов, загрузка документов в 1С, BAS ERP, автоматизация бухгалтерии, импорт накладных BAS, интеграция 1С, автоматическая подгрузка контрагентов, автоматизация документооборота, сканирование накладных, распознавание НДС, BAS бухгалтерия',
     'meta.og.title': 'Автоматическое распознавание накладных | Загрузка в 1С и BAS',
     'meta.og.description': 'Автоматическое распознавание и загрузка накладных, актов, счетов в BAS и 1С. OCR для бухгалтерских документов. Интеграция с учётной системой.',
+
+    // Дополнительные секции Hero
+    'hero.experience': '5+ лет опыта',
+    'hero.projects': '1000+ проектов',
+    'hero.specialists': '50+ специалистов',
+
+    // Общее pricing
+    'pricing.price': 'Цена',
+
+    // Тарифные планы (расширенные)
+    'pricing.basic.title': 'Базовый',
+    'pricing.basic.price': '290 грн/мес',
+    'pricing.basic.description': 'Для начинающих',
+    'pricing.basic.feature1': 'До 50 документов/мес',
+    'pricing.basic.feature2': 'Базовое OCR',
+    'pricing.basic.feature3': 'Email поддержка',
+    'pricing.basic.feature4': '1С Базовый',
+
+    'pricing.standard.title': 'Стандартный',
+    'pricing.standard.price': '790 грн/мес',
+    'pricing.standard.description': 'Самый популярный',
+    'pricing.standard.popular': 'Рекомендуем',
+    'pricing.standard.feature1': 'До 500 документов/мес',
+    'pricing.standard.feature2': 'Расширенное OCR',
+    'pricing.standard.feature3': 'Приоритетная поддержка',
+    'pricing.standard.feature4': '1С + BAS интеграция',
+    'pricing.standard.feature5': 'API доступ',
+
+    'pricing.enterprise.title': 'Корпоративный',
+    'pricing.enterprise.price': 'от 1590 грн/мес',
+    'pricing.enterprise.description': 'Для крупных компаний',
+    'pricing.enterprise.feature1': 'Безлимитные документы',
+    'pricing.enterprise.feature2': 'AI распознавание',
+    'pricing.enterprise.feature3': 'Персональный менеджер',
+    'pricing.enterprise.feature4': 'Полная интеграция',
+    'pricing.enterprise.feature5': 'Поддержка 24/7',
+    'pricing.enterprise.feature6': 'Настройка под заказ',
+
+    // Секции Footer
+    'footer.contacts': 'Контакты',
+    'footer.address': 'Адрес',
+    'footer.navigation': 'Навигация',
+    'footer.company': 'Компания',
+    'footer.support': 'Поддержка',
+    'footer.legal': 'Правовые вопросы',
+
+    // Секции Contact
+    'contact.privacy.text': 'Нажимая кнопку, вы соглашаетесь с обработкой персональных данных согласно политике конфиденциальности',
+    'contact.consultation.title': '🎯 Готовы начать',
+    'contact.consultation.free': 'Бесплатная консультация',
+    'contact.consultation.obligations': 'Без обязательств',
+    'contact.consultation.response': 'Ответ в течение 1 часа',
+    'contact.consultation.question': 'Нужна консультация?',
+    'contact.consultation.description': 'Наши эксперты готовы ответить на все ваши вопросы и помочь подобрать оптимальное решение',
+    'contact.consultation.cta': 'Получить консультацию',
+
+    // Дополнительные тексты CTA
+    'cta.ready': 'Готовы начать',
+    'cta.free.consultation': 'Бесплатная консультация',
+    'cta.no.obligations': 'Без обязательств',
+    'cta.response.time': 'Ответ в течение 1 часа',
+    'cta.need.consultation': 'Нужна консультация?',
+    'cta.experts.ready': 'Наши эксперты готовы ответить на все ваши вопросы и помочь подобрать оптимальное решение',
+    'cta.get.consultation': 'Получить консультацию'
   },
 }
 

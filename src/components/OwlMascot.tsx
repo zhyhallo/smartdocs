@@ -5,7 +5,7 @@ interface OwlMascotProps {
   size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
   className?: string
   animated?: boolean
-  variant?: "default" | "analyst" | "loader" | "tech" | "party" | "wizard" | "ninja"
+  variant?: "default" | "analyst" | "loader"
 }
 
 export default function OwlMascot({ 
@@ -140,504 +140,6 @@ export default function OwlMascot({
     )
   }
 
-  // Tech variant - для технічних розділів з цифровими ефектами
-  if (variant === "tech") {
-    return (
-      <motion.div
-        className={`relative ${sizeClasses[size]} ${className} cursor-pointer`}
-        animate={{
-          rotate: [0, -2, 2, -1, 1, 0],
-          scale: [1, 1.02, 0.98, 1.01, 1],
-        }}
-        transition={{
-          duration: 4,
-          ease: "easeInOut",
-          repeat: Infinity,
-        }}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        {/* Цифрові частинки навколо сови */}
-        <AnimatePresence>
-          {(isHovered || showSparkles) && (
-            <>
-              {['01', '10', '11', '00', '01'].map((binary, i) => (
-                <motion.div
-                  key={`binary-${i}`}
-                  className="absolute text-primary/70 text-xs font-mono font-bold"
-                  style={{
-                    left: `${20 + i * 30}%`,
-                    top: `${10 + (i % 2) * 60}%`,
-                  }}
-                  initial={{ opacity: 0, scale: 0, y: 0 }}
-                  animate={{
-                    opacity: [0, 1, 1, 0],
-                    scale: [0, 1.2, 1, 0],
-                    y: [0, -20, -40, -60],
-                  }}
-                  exit={{ opacity: 0, scale: 0 }}
-                  transition={{
-                    duration: 2,
-                    delay: i * 0.2,
-                    ease: "easeOut"
-                  }}
-                >
-                  {binary}
-                </motion.div>
-              ))}
-            </>
-          )}
-        </AnimatePresence>
-
-        {/* Основне тіло сови з tech стилем */}
-        <motion.div
-          className="w-full h-full bg-gradient-to-br from-primary/90 via-primary to-primary/80 rounded-full shadow-lg border-2 border-accent/30"
-          animate={{
-            boxShadow: [
-              "0 4px 20px rgba(37, 99, 235, 0.3)",
-              "0 4px 30px rgba(37, 99, 235, 0.5)",
-              "0 4px 20px rgba(37, 99, 235, 0.3)"
-            ],
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        >
-          {/* Очі сови з tech ефектом */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="flex space-x-2">
-              {[0, 1].map((i) => (
-                <motion.div
-                  key={i}
-                  className="w-3 h-3 bg-gradient-to-br from-accent to-accent/80 rounded-full shadow-inner relative"
-                  animate={{
-                    scale: isBlinking ? [1, 0.1, 1] : 1,
-                    boxShadow: [
-                      "0 0 5px rgba(147, 51, 234, 0.5)",
-                      "0 0 15px rgba(147, 51, 234, 0.8)",
-                      "0 0 5px rgba(147, 51, 234, 0.5)"
-                    ]
-                  }}
-                  transition={{
-                    duration: isBlinking ? 0.3 : 1.5,
-                    repeat: isBlinking ? 0 : Infinity,
-                    ease: "easeInOut"
-                  }}
-                >
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <motion.div 
-                      className="w-1 h-1 bg-white rounded-full"
-                      animate={{
-                        opacity: [0.8, 1, 0.8],
-                      }}
-                      transition={{
-                        duration: 1,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                      }}
-                    />
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-      </motion.div>
-    )
-  }
-
-  // Party variant - святковий варіант з конфеті
-  if (variant === "party") {
-    return (
-      <motion.div
-        className={`relative ${sizeClasses[size]} ${className} cursor-pointer`}
-        animate={{
-          rotate: [0, -5, 5, -3, 3, 0],
-          y: [0, -3, 0, -2, 0],
-        }}
-        transition={{
-          duration: 3,
-          ease: "easeInOut",
-          repeat: Infinity,
-        }}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        {/* Конфеті ефект */}
-        <AnimatePresence>
-          {(isHovered || showSparkles) && (
-            <>
-              {['🎉', '🎊', '✨', '🎈', '🎁', '🎂'].map((emoji, i) => (
-                <motion.div
-                  key={`confetti-${i}`}
-                  className="absolute text-lg"
-                  style={{
-                    left: `${Math.random() * 100}%`,
-                    top: `${Math.random() * 100}%`,
-                  }}
-                  initial={{ opacity: 0, scale: 0, rotate: 0 }}
-                  animate={{
-                    opacity: [0, 1, 1, 0],
-                    scale: [0, 1.3, 1.1, 0],
-                    rotate: [0, 180, 360],
-                    y: [0, -30, -50, -80],
-                    x: [0, Math.random() * 40 - 20],
-                  }}
-                  exit={{ opacity: 0, scale: 0 }}
-                  transition={{
-                    duration: 2.5,
-                    delay: i * 0.15,
-                    ease: "easeOut"
-                  }}
-                >
-                  {emoji}
-                </motion.div>
-              ))}
-            </>
-          )}
-        </AnimatePresence>
-
-        {/* Основне тіло сови зі святковим стилем */}
-        <motion.div
-          className="w-full h-full bg-gradient-to-br from-yellow-400 via-orange-500 to-red-500 rounded-full shadow-lg border-2 border-yellow-300"
-          animate={{
-            background: [
-              "linear-gradient(to bottom right, #fbbf24, #f97316, #ef4444)",
-              "linear-gradient(to bottom right, #f97316, #ef4444, #ec4899)",
-              "linear-gradient(to bottom right, #ef4444, #ec4899, #a855f7)",
-              "linear-gradient(to bottom right, #fbbf24, #f97316, #ef4444)"
-            ],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        >
-          {/* Очі сови зі святковим ефектом */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="flex space-x-2">
-              {[0, 1].map((i) => (
-                <motion.div
-                  key={i}
-                  className="w-3 h-3 bg-gradient-to-br from-white to-yellow-200 rounded-full shadow-inner relative"
-                  animate={{
-                    scale: isBlinking ? [1, 0.1, 1] : [1, 1.1, 1],
-                  }}
-                  transition={{
-                    duration: isBlinking ? 0.3 : 0.8,
-                    repeat: isBlinking ? 0 : Infinity,
-                    ease: "easeInOut"
-                  }}
-                >
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <motion.div 
-                      className="w-1 h-1 bg-purple-600 rounded-full"
-                      animate={{
-                        scale: [1, 0.8, 1],
-                      }}
-                      transition={{
-                        duration: 1,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                      }}
-                    />
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-      </motion.div>
-    )
-  }
-
-  // Wizard variant - магічний варіант з чарівними ефектами
-  if (variant === "wizard") {
-    return (
-      <motion.div
-        className={`relative ${sizeClasses[size]} ${className} cursor-pointer`}
-        animate={{
-          rotate: [0, -3, 3, -2, 2, 0],
-          y: [0, -4, 0, -2, 0],
-          scale: [1, 1.02, 1, 1.01, 1],
-        }}
-        transition={{
-          duration: 5,
-          ease: "easeInOut",
-          repeat: Infinity,
-        }}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        {/* Магічні частинки навколо сови */}
-        <AnimatePresence>
-          {(isHovered || showSparkles) && (
-            <>
-              {['✨', '🔮', '🌟', '⭐', '💫', '🪄'].map((magic, i) => (
-                <motion.div
-                  key={`magic-${i}`}
-                  className="absolute text-lg"
-                  style={{
-                    left: `${15 + i * 15}%`,
-                    top: `${5 + (i % 3) * 30}%`,
-                  }}
-                  initial={{ opacity: 0, scale: 0, rotate: 0 }}
-                  animate={{
-                    opacity: [0, 1, 1, 0],
-                    scale: [0, 1.4, 1.2, 0],
-                    rotate: [0, 360, 720],
-                    y: [0, -25, -45, -70],
-                    x: [0, Math.sin(i * 1.5) * 20],
-                  }}
-                  exit={{ opacity: 0, scale: 0 }}
-                  transition={{
-                    duration: 3,
-                    delay: i * 0.25,
-                    ease: "easeOut"
-                  }}
-                >
-                  {magic}
-                </motion.div>
-              ))}
-            </>
-          )}
-        </AnimatePresence>
-
-        {/* Магічна аура навколо сови */}
-        <motion.div
-          className="absolute inset-0 rounded-full"
-          animate={{
-            boxShadow: [
-              "0 0 20px rgba(139, 92, 246, 0.3)",
-              "0 0 40px rgba(139, 92, 246, 0.6)",
-              "0 0 60px rgba(139, 92, 246, 0.4)",
-              "0 0 20px rgba(139, 92, 246, 0.3)"
-            ],
-          }}
-          transition={{
-            duration: 2.5,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-
-        {/* Основне тіло сови з магічним стилем */}
-        <motion.div
-          className="w-full h-full bg-gradient-to-br from-purple-500 via-violet-600 to-indigo-700 rounded-full shadow-lg border-2 border-purple-300/50"
-          animate={{
-            background: [
-              "linear-gradient(to bottom right, #8b5cf6, #7c3aed, #6366f1)",
-              "linear-gradient(to bottom right, #7c3aed, #6366f1, #3b82f6)",
-              "linear-gradient(to bottom right, #6366f1, #3b82f6, #8b5cf6)",
-              "linear-gradient(to bottom right, #8b5cf6, #7c3aed, #6366f1)"
-            ],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        >
-          {/* Магічна шапка */}
-          <motion.div
-            className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-6 bg-gradient-to-t from-purple-800 to-purple-600 rounded-t-full"
-            animate={{
-              rotate: [0, -5, 5, 0],
-              y: [0, -1, 0],
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          >
-            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-yellow-400 rounded-full animate-pulse" />
-          </motion.div>
-
-          {/* Очі сови з магічним ефектом */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="flex space-x-2">
-              {[0, 1].map((i) => (
-                <motion.div
-                  key={i}
-                  className="w-3 h-3 bg-gradient-to-br from-cyan-200 to-purple-300 rounded-full shadow-inner relative"
-                  animate={{
-                    scale: isBlinking ? [1, 0.1, 1] : [1, 1.1, 1],
-                    boxShadow: [
-                      "0 0 8px rgba(34, 211, 238, 0.5)",
-                      "0 0 16px rgba(34, 211, 238, 0.8)",
-                      "0 0 8px rgba(34, 211, 238, 0.5)"
-                    ]
-                  }}
-                  transition={{
-                    duration: isBlinking ? 0.3 : 2,
-                    repeat: isBlinking ? 0 : Infinity,
-                    ease: "easeInOut"
-                  }}
-                >
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <motion.div 
-                      className="w-1 h-1 bg-white rounded-full"
-                      animate={{
-                        opacity: [0.6, 1, 0.6],
-                        scale: [0.8, 1.2, 0.8],
-                      }}
-                      transition={{
-                        duration: 1.5,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                      }}
-                    />
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-      </motion.div>
-    )
-  }
-
-  // Ninja variant - стелс варіант з тінями
-  if (variant === "ninja") {
-    return (
-      <motion.div
-        className={`relative ${sizeClasses[size]} ${className} cursor-pointer`}
-        animate={{
-          opacity: [0.8, 1, 0.9, 1],
-          scale: [1, 0.98, 1.01, 1],
-        }}
-        transition={{
-          duration: 4,
-          ease: "easeInOut",
-          repeat: Infinity,
-        }}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        {/* Ниндзя-зірочки */}
-        <AnimatePresence>
-          {(isHovered || showSparkles) && (
-            <>
-              {['⚡', '🥷', '⚔️', '🌙', '💨', '🔥'].map((ninja, i) => (
-                <motion.div
-                  key={`ninja-${i}`}
-                  className="absolute text-sm opacity-80"
-                  style={{
-                    left: `${10 + i * 15}%`,
-                    top: `${5 + (i % 2) * 50}%`,
-                  }}
-                  initial={{ opacity: 0, scale: 0, x: 0, y: 0 }}
-                  animate={{
-                    opacity: [0, 1, 0.8, 0],
-                    scale: [0, 1.2, 1, 0],
-                    x: [0, (i % 2 ? 1 : -1) * 30, (i % 2 ? 1 : -1) * 50],
-                    y: [0, -15, -25, -40],
-                    rotate: [0, 180, 360],
-                  }}
-                  exit={{ opacity: 0, scale: 0 }}
-                  transition={{
-                    duration: 2,
-                    delay: i * 0.1,
-                    ease: "easeOut"
-                  }}
-                >
-                  {ninja}
-                </motion.div>
-              ))}
-            </>
-          )}
-        </AnimatePresence>
-
-        {/* Тінь ефект */}
-        <motion.div
-          className="absolute inset-0 rounded-full bg-gray-800/40"
-          animate={{
-            scale: [1, 1.1, 0.9, 1],
-            opacity: [0.4, 0.6, 0.3, 0.4],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-
-        {/* Основне тіло ниндзя сови */}
-        <motion.div
-          className="w-full h-full bg-gradient-to-br from-gray-700 via-gray-800 to-black rounded-full shadow-2xl border-2 border-gray-600/50"
-          animate={{
-            boxShadow: [
-              "0 4px 20px rgba(0, 0, 0, 0.6)",
-              "0 4px 30px rgba(0, 0, 0, 0.8)",
-              "0 4px 20px rgba(0, 0, 0, 0.6)"
-            ],
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        >
-          {/* Ніндзя маска */}
-          <motion.div
-            className="absolute top-1 left-0 right-0 h-2 bg-black/80 rounded-full"
-            animate={{
-              opacity: [0.8, 1, 0.8],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-
-          {/* Очі ниндзя сови */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="flex space-x-2">
-              {[0, 1].map((i) => (
-                <motion.div
-                  key={i}
-                  className="w-2 h-3 bg-gradient-to-b from-red-500 to-red-700 rounded-full shadow-inner relative"
-                  animate={{
-                    scale: isBlinking ? [1, 0.1, 1] : 1,
-                    boxShadow: [
-                      "0 0 5px rgba(239, 68, 68, 0.5)",
-                      "0 0 10px rgba(239, 68, 68, 0.8)",
-                      "0 0 5px rgba(239, 68, 68, 0.5)"
-                    ]
-                  }}
-                  transition={{
-                    duration: isBlinking ? 0.3 : 1.5,
-                    repeat: isBlinking ? 0 : Infinity,
-                    ease: "easeInOut"
-                  }}
-                >
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <motion.div 
-                      className="w-0.5 h-1 bg-red-200 rounded-full"
-                      animate={{
-                        opacity: [0.8, 1, 0.8],
-                      }}
-                      transition={{
-                        duration: 1,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                      }}
-                    />
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-      </motion.div>
-    )
-  }
-
   // Main owl variants
   const owlVariants = {
     initial: { opacity: 0, scale: 0.8, rotate: -10 },
@@ -677,51 +179,430 @@ export default function OwlMascot({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* Document/Paper animation for new theme */}
+      {/* Sparkles animation for interactive elements */}
       <AnimatePresence>
         {showSparkles && (
           <>
             {[...Array(6)].map((_, i) => (
-              <motion.g key={`doc-${i}`}>
-                <motion.rect
-                  x={50 + (i * 20)}
-                  y={20 + (i % 2) * 15}
-                  width="8"
-                  height="12"
-                  rx="1"
-                  fill="oklch(0.85 0.15 220)"
-                  initial={{ opacity: 0, scale: 0, rotate: -45 }}
-                  animate={{
-                    opacity: [0, 1, 0],
-                    scale: [0, 1.2, 0],
-                    rotate: [-45, 0, 45],
-                    y: [0, -15, -30]
-                  }}
-                  exit={{ opacity: 0, scale: 0 }}
-                  transition={{
-                    duration: 2,
-                    delay: i * 0.15,
-                    ease: "easeOut"
-                  }}
-                />
-                <motion.line
-                  x1={52 + (i * 20)}
-                  y1={24 + (i % 2) * 15}
-                  x2={56 + (i * 20)}
-                  y2={24 + (i % 2) * 15}
-                  stroke="oklch(0.75 0.12 240)"
-                  strokeWidth="0.5"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: [0, 1, 0] }}
-                  transition={{ duration: 2, delay: i * 0.15 }}
-                />
-              </motion.g>
+              <motion.circle
+                key={`sparkle-${i}`}
+                cx={30 + (i * 30) + Math.sin(i) * 20}
+                cy={30 + (i % 3) * 50}
+                r="2"
+                fill="url(#sparkleGradient)"
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{
+                  opacity: [0, 1, 0],
+                  scale: [0, 1.5, 0],
+                  rotate: [0, 360],
+                  y: [0, -20, -40]
+                }}
+                exit={{ opacity: 0, scale: 0 }}
+                transition={{
+                  duration: 2,
+                  delay: i * 0.2,
+                  ease: "easeOut",
+                  repeat: 1
+                }}
+              />
             ))}
           </>
         )}
       </AnimatePresence>
 
-      {/* Shadow/Glow behind owl */}
+      <defs>
+        {/* Owl body gradient */}
+        <radialGradient id="owlBodyGradient" cx="0.5" cy="0.4" r="0.8">
+          <stop offset="0%" stopColor="oklch(0.85 0.08 260)" />
+          <stop offset="50%" stopColor="oklch(0.75 0.12 250)" />
+          <stop offset="100%" stopColor="oklch(0.65 0.15 240)" />
+        </radialGradient>
+
+        {/* Wing gradient */}
+        <linearGradient id="wingGradient" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="oklch(0.7 0.15 250)" />
+          <stop offset="100%" stopColor="oklch(0.6 0.18 240)" />
+        </linearGradient>
+
+        {/* Eye gradient */}
+        <radialGradient id="eyeGradient" cx="0.3" cy="0.3" r="0.8">
+          <stop offset="0%" stopColor="oklch(0.95 0.02 180)" />
+          <stop offset="70%" stopColor="oklch(0.90 0.05 200)" />
+          <stop offset="100%" stopColor="oklch(0.80 0.08 220)" />
+        </radialGradient>
+
+        {/* Beak gradient */}
+        <linearGradient id="beakGradient" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="oklch(0.75 0.15 70)" />
+          <stop offset="100%" stopColor="oklch(0.65 0.20 60)" />
+        </linearGradient>
+
+        {/* Sparkle gradient */}
+        <radialGradient id="sparkleGradient" cx="0.5" cy="0.5" r="0.5">
+          <stop offset="0%" stopColor="oklch(0.85 0.15 280)" />
+          <stop offset="100%" stopColor="oklch(0.70 0.20 270)" />
+        </radialGradient>
+
+        {/* Shadow filter */}
+        <filter id="owlShadow" x="-50%" y="-30%" width="200%" height="160%">
+          <feDropShadow dx="0" dy="8" stdDeviation="12" floodOpacity="0.15"/>
+        </filter>
+      </defs>
+
+      {/* Shadow behind owl */}
+      <motion.ellipse
+        cx="100"
+        cy="165"
+        rx="45"
+        ry="8"
+        fill="oklch(0.3 0.05 260)"
+        opacity="0.2"
+        animate={{
+          rx: [40, 50, 40],
+          opacity: [0.1, 0.25, 0.1]
+        }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+
+      {/* Main owl body */}
+      <motion.ellipse
+        cx="100"
+        cy="120"
+        rx="50"
+        ry="45"
+        fill="url(#owlBodyGradient)"
+        filter="url(#owlShadow)"
+        animate={{
+          ry: [44, 46, 44],
+          rx: [49, 51, 49]
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+
+      {/* Owl head (slightly overlapping body) */}
+      <motion.circle
+        cx="100"
+        cy="85"
+        r="42"
+        fill="url(#owlBodyGradient)"
+        animate={{
+          r: [41, 43, 41]
+        }}
+        transition={{
+          duration: 4.5,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+
+      {/* Left wing */}
+      <motion.ellipse
+        cx="70"
+        cy="125"
+        rx="18"
+        ry="35"
+        fill="url(#wingGradient)"
+        animate={
+          variant === "happy" ? {
+            rotate: [-5, -15, -5],
+            rx: [18, 20, 18]
+          } : {
+            rotate: [-8, -5, -8]
+          }
+        }
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+
+      {/* Right wing */}
+      <motion.ellipse
+        cx="130"
+        cy="125"
+        rx="18"
+        ry="35"
+        fill="url(#wingGradient)"
+        animate={
+          variant === "happy" ? {
+            rotate: [5, 15, 5],
+            rx: [18, 20, 18]
+          } : {
+            rotate: [8, 5, 8]
+          }
+        }
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+
+      {/* Ear tufts */}
+      <motion.ellipse
+        cx="82"
+        cy="55"
+        rx="6"
+        ry="15"
+        fill="url(#wingGradient)"
+        transform="rotate(-20 82 55)"
+        animate={{
+          ry: [14, 16, 14],
+          rotate: [-22, -18, -22]
+        }}
+        transition={{
+          duration: 2.5,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+      
+      <motion.ellipse
+        cx="118"
+        cy="55"
+        rx="6"
+        ry="15"
+        fill="url(#wingGradient)"
+        transform="rotate(20 118 55)"
+        animate={{
+          ry: [14, 16, 14],
+          rotate: [22, 18, 22]
+        }}
+        transition={{
+          duration: 2.5,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+
+      {/* Large owl eyes */}
+      <motion.circle
+        cx="88"
+        cy="80"
+        r="16"
+        fill="url(#eyeGradient)"
+        stroke="oklch(0.6 0.15 240)"
+        strokeWidth="1"
+        animate={{
+          r: isBlinking ? [16, 2, 16] : [15.5, 16.5, 15.5]
+        }}
+        transition={{
+          duration: isBlinking ? 0.3 : 3,
+          repeat: isBlinking ? 0 : Infinity,
+          ease: "easeInOut"
+        }}
+      />
+
+      <motion.circle
+        cx="112"
+        cy="80"
+        r="16"
+        fill="url(#eyeGradient)"
+        stroke="oklch(0.6 0.15 240)"
+        strokeWidth="1"
+        animate={{
+          r: isBlinking ? [16, 2, 16] : [15.5, 16.5, 15.5]
+        }}
+        transition={{
+          duration: isBlinking ? 0.3 : 3,
+          repeat: isBlinking ? 0 : Infinity,
+          ease: "easeInOut"
+        }}
+      />
+
+      {/* Pupils */}
+      <motion.circle
+        cx={88 + lookDirection.x * 2}
+        cy={80 + lookDirection.y * 2}
+        r="6"
+        fill="oklch(0.2 0.1 260)"
+        animate={{
+          r: isBlinking ? [6, 0, 6] : [5.5, 6.5, 5.5]
+        }}
+        transition={{
+          duration: isBlinking ? 0.3 : 2,
+          repeat: isBlinking ? 0 : Infinity,
+          ease: "easeInOut"
+        }}
+      />
+
+      <motion.circle
+        cx={112 + lookDirection.x * 2}
+        cy={80 + lookDirection.y * 2}
+        r="6"
+        fill="oklch(0.2 0.1 260)"
+        animate={{
+          r: isBlinking ? [6, 0, 6] : [5.5, 6.5, 5.5]
+        }}
+        transition={{
+          duration: isBlinking ? 0.3 : 2,
+          repeat: isBlinking ? 0 : Infinity,
+          ease: "easeInOut"
+        }}
+      />
+
+      {/* Eye highlights */}
+      <motion.circle
+        cx={90 + lookDirection.x}
+        cy={78 + lookDirection.y}
+        r="2"
+        fill="oklch(0.95 0.02 180)"
+        animate={{
+          opacity: isBlinking ? [1, 0, 1] : [0.8, 1, 0.8],
+          r: [1.5, 2.5, 1.5]
+        }}
+        transition={{
+          duration: isBlinking ? 0.3 : 2.5,
+          repeat: isBlinking ? 0 : Infinity,
+          ease: "easeInOut"
+        }}
+      />
+
+      <motion.circle
+        cx={114 + lookDirection.x}
+        cy={78 + lookDirection.y}
+        r="2"
+        fill="oklch(0.95 0.02 180)"
+        animate={{
+          opacity: isBlinking ? [1, 0, 1] : [0.8, 1, 0.8],
+          r: [1.5, 2.5, 1.5]
+        }}
+        transition={{
+          duration: isBlinking ? 0.3 : 2.5,
+          repeat: isBlinking ? 0 : Infinity,
+          ease: "easeInOut"
+        }}
+      />
+
+      {/* Beak */}
+      <motion.path
+        d="M100 95 L95 105 L105 105 Z"
+        fill="url(#beakGradient)"
+        animate={
+          variant === "happy" ? {
+            d: [
+              "M100 95 L95 105 L105 105 Z",
+              "M100 95 L94 106 L106 106 Z", 
+              "M100 95 L95 105 L105 105 Z"
+            ]
+          } : {
+            scale: [1, 1.05, 1]
+          }
+        }
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+
+      {/* Chest pattern */}
+      <motion.ellipse
+        cx="100"
+        cy="135"
+        rx="25"
+        ry="20"
+        fill="oklch(0.80 0.06 250)"
+        opacity="0.6"
+        animate={{
+          ry: [19, 21, 19],
+          opacity: [0.5, 0.7, 0.5]
+        }}
+        transition={{
+          duration: 3.5,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+
+      {/* Chest feather lines */}
+      {[...Array(3)].map((_, i) => (
+        <motion.line
+          key={`feather-${i}`}
+          x1="100"
+          y1={125 + i * 8}
+          x2="100"
+          y2={132 + i * 8}
+          stroke="oklch(0.70 0.10 240)"
+          strokeWidth="1.5"
+          opacity="0.4"
+          animate={{
+            opacity: [0.3, 0.5, 0.3],
+            y1: [125 + i * 8, 124 + i * 8, 125 + i * 8]
+          }}
+          transition={{
+            duration: 2 + i * 0.5,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+      ))}
+
+      {/* Feet */}
+      <motion.ellipse
+        cx="85"
+        cy="160"
+        rx="8"
+        ry="4"
+        fill="url(#beakGradient)"
+        animate={{
+          ry: [3.5, 4.5, 3.5]
+        }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+
+      <motion.ellipse
+        cx="115"
+        cy="160"
+        rx="8"
+        ry="4"
+        fill="url(#beakGradient)"
+        animate={{
+          ry: [3.5, 4.5, 3.5]
+        }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+
+      {/* Claws */}
+      {[...Array(6)].map((_, i) => (
+        <motion.line
+          key={`claw-${i}`}
+          x1={80 + (i % 3) * 3 + (i >= 3 ? 32 : 0)}
+          y1="162"
+          x2={80 + (i % 3) * 3 + (i >= 3 ? 32 : 0)}
+          y2="167"
+          stroke="oklch(0.4 0.15 50)"
+          strokeWidth="1"
+          animate={{
+            y2: [166, 168, 166]
+          }}
+          transition={{
+            duration: 2.5,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: i * 0.1
+          }}
+        />
+      ))}
+    </svg>
+  )
       <motion.ellipse
         cx="100"
         cy="140"
