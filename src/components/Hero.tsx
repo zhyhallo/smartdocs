@@ -191,6 +191,7 @@ const Hero = memo(function Hero({ onContactClick }: HeroProps) {
                 <OwlMascot 
                   size="2xl" 
                   className="drop-shadow-2xl relative z-10" 
+                  variant="wizard"
                 />
                 
                 {/* Enhanced floating tech elements with better positioning */}

@@ -68,7 +68,33 @@ const translations = {
     // Pricing
     'pricing.title': 'Доступно для будь-якого бізнесу',
     'pricing.subtitle': 'Старт — для малого бізнесу. Бізнес — для компаній з активним документообігом. Преміум — для корпоративних клієнтів з інтеграціями.',
-    'pricing.price': 'від 990 грн/міс',
+    
+    // Pricing Plans
+    'pricing.start.title': 'Старт',
+    'pricing.start.price': 'від 490 грн/міс',
+    'pricing.start.description': 'Для малого бізнесу',
+    'pricing.start.feature1': 'До 100 документів/міс',
+    'pricing.start.feature2': 'Базове розпізнавання OCR',
+    'pricing.start.feature3': 'Email підтримка',
+    
+    'pricing.business.title': 'Бізнес',
+    'pricing.business.price': 'від 990 грн/міс',
+    'pricing.business.description': 'Для активного документообігу',
+    'pricing.business.popular': 'Популярний вибір',
+    'pricing.business.feature1': 'До 1000 документів/міс',
+    'pricing.business.feature2': 'Розширене OCR',
+    'pricing.business.feature3': 'Пріоритетна підтримка',
+    'pricing.business.feature4': 'API інтеграція',
+    
+    'pricing.premium.title': 'Преміум',
+    'pricing.premium.price': 'індивідуально',
+    'pricing.premium.description': 'Для корпоративних клієнтів',
+    'pricing.premium.feature1': 'Безлімітні документи',
+    'pricing.premium.feature2': 'AI розпізнавання',
+    'pricing.premium.feature3': 'Персональний менеджер',
+    'pricing.premium.feature4': 'Кастомна інтеграція',
+    'pricing.premium.feature5': 'SLA підтримка 24/7',
+
     'pricing.currency': 'або індивідуально',
     'pricing.symbol': '₴',
     'pricing.features.license': 'Безстрокова ліцензія',
@@ -109,6 +135,99 @@ const translations = {
     // Product
     'product.title': 'Опис рішення',
     'product.subtitle': 'Детальний опис функціональності та переваг автоматизації',
+    'product.description': 'Наш модуль дозволяє автоматично розпізнавати та завантажувати прихідні документи у BAS та 1С без ручного вводу даних.',
+    'product.benefits.integration': 'Легка інтеграція',
+    'product.benefits.integration.desc': 'Швидке підключення до існуючих конфігурацій BAS та 1С',
+    'product.benefits.reliability': 'Надійність',
+    'product.benefits.reliability.desc': 'Стабільна робота та точне розпізнавання документів',
+    'product.benefits.support': 'Підтримка',
+    'product.benefits.support.desc': 'Повна технічна підтримка та супровід проекту',
+
+    // Contacts
+    'contacts.title': 'Контакти',
+    'contact.description': 'Зв\'яжіться з нами для отримання демо або технічної консультації',
+    'contacts.address.title': 'Адреса',
+    'contacts.address.value': '43025, м. Луцьк, вул. Святовасилівська 4/3',
+    'contacts.sales.title': 'Відділ продажів',
+    'contacts.support.title': 'Технічна підтримка', 
+    'contacts.accounting.title': 'Бухгалтерія',
+    'contacts.schedule.title': 'Графік роботи',
+    'contacts.back': 'Назад',
+    
+    // Contact Form
+    'contact.name': 'Ім\'я та прізвище',
+    'contact.company': 'Назва компанії',
+    'contact.email': 'Email адреса',
+    'contact.phone': 'Номер телефону',
+    'contact.message': 'Повідомлення',
+    'contact.submit': 'Надіслати заявку',
+    'contact.cancel': 'Скасувати',
+    'contact.required': 'обов\'язкові поля',
+
+    // Footer
+    'footer.rights': '© 2024 ModulSoft. Всі права захищені.',
+    'footer.privacy': 'Політика конфіденційності',
+
+    // Privacy Policy
+    'privacy.back': 'Назад',
+    'privacy.title': 'Політика конфіденційності',
+    'privacy.last-updated': '25.09.2025',
+    
+    'privacy.general.title': 'Загальні положення',
+    'privacy.general.content1': 'Ця Політика конфіденційності описує, як ModulSoft збирає, використовує та захищає вашу персональну інформацію.',
+    'privacy.general.content2': 'Користуючись нашими послугами, ви погоджуєтеся з умовами цієї політики.',
+    
+    'privacy.data.title': 'Які дані ми збираємо',
+    'privacy.data.intro': 'Ми можемо збирати наступні типи інформації:',
+    'privacy.data.contact': 'Контактні дані (ім\'я, email, телефон)',
+    'privacy.data.technical': 'Технічні дані (IP-адреса, браузер, операційна система)',
+    'privacy.data.cookies': 'Cookies та аналогічні технології',
+    'privacy.data.commercial': 'Комерційна інформація про ваші потреби',
+    
+    'privacy.usage.title': 'Як ми використовуємо дані',
+    'privacy.usage.intro': 'Зібрані дані використовуються для:',
+    'privacy.usage.services': 'Надання наших послуг',
+    'privacy.usage.orders': 'Обробки замовлень та запитів',
+    'privacy.usage.contact': 'Зв\'язку з вами',
+    'privacy.usage.improve': 'Покращення наших сервісів',
+    'privacy.usage.marketing': 'Маркетингових цілей (за згодою)',
+    'privacy.usage.legal': 'Дотримання правових зобов\'язань',
+    'privacy.usage.protection': 'Захисту наших прав',
+    
+    'privacy.cookies.title': 'Cookies',
+    'privacy.cookies.description': 'Ми використовуємо cookies для покращення функціональності сайту.',
+    'privacy.cookies.types': 'Типи cookies:',
+    'privacy.cookies.essential': 'Необхідні для роботи сайту',
+    'privacy.cookies.functional': 'Функціональні для зручності',
+    'privacy.cookies.analytics': 'Аналітичні для статистики',
+    'privacy.cookies.marketing': 'Маркетингові для реклами',
+    
+    'privacy.rights.title': 'Ваші права',
+    'privacy.rights.intro': 'Відповідно до GDPR, ви маєте право на:',
+    'privacy.rights.access': 'Доступ до ваших даних',
+    'privacy.rights.rectification': 'Виправлення неточних даних',
+    'privacy.rights.erasure': 'Видалення ваших даних',
+    'privacy.rights.restriction': 'Обмеження обробки',
+    'privacy.rights.portability': 'Портативність даних',
+    'privacy.rights.objection': 'Заперечення проти обробки',
+    'privacy.rights.withdraw': 'Відкликання згоди',
+    'privacy.rights.contact': 'Для реалізації прав звертайтесь: info@modulsoft.eu',
+    
+    'privacy.security.title': 'Безпека',
+    'privacy.security.protection': 'Ми вживаємо відповідних технічних та організаційних заходів для захисту ваших даних.',
+    'privacy.security.retention': 'Дані зберігаються не довше, ніж необхідно для досягнення цілей обробки.',
+    
+    'privacy.contact.title': 'Контакти',
+    'privacy.contact.intro': 'З питань конфіденційності звертайтесь до нас:',
+    'privacy.contact.response': 'Ми відповімо на ваш запит протягом 30 днів.',
+
+    // Cookies Consent
+    'cookies.title': 'Використання cookies',
+    'cookies.message': 'Ми використовуємо cookies для покращення функціональності сайту та аналізу відвідувань.',
+    'contact.privacy.link': 'Детальніше в Політиці конфіденційності',
+    'cookies.accept': 'Прийняти всі',
+    'cookies.learn': 'Налаштувати',
+    'cookies.decline': 'Відхилити',
 
     // Social Proof  
     'social.title': 'Довіряють професіонали',
@@ -204,7 +323,33 @@ const translations = {
     // Pricing
     'pricing.title': 'Dostępne dla każdej firmy',
     'pricing.subtitle': 'Start — dla małych firm. Biznes — dla firm z aktywnym obiegiem dokumentów. Premium — dla klientów korporacyjnych z integracjami.',
-    'pricing.price': 'od 120 zł/mies.',
+    
+    // Pricing Plans
+    'pricing.start.title': 'Start',
+    'pricing.start.price': 'od 60 zł/mies.',
+    'pricing.start.description': 'Dla małych firm',
+    'pricing.start.feature1': 'Do 100 dokumentów/mies.',
+    'pricing.start.feature2': 'Podstawowe OCR',
+    'pricing.start.feature3': 'Wsparcie email',
+    
+    'pricing.business.title': 'Biznes',
+    'pricing.business.price': 'od 120 zł/mies.',
+    'pricing.business.description': 'Dla aktywnego obiegu dokumentów',
+    'pricing.business.popular': 'Popularny wybór',
+    'pricing.business.feature1': 'Do 1000 dokumentów/mies.',
+    'pricing.business.feature2': 'Zaawansowane OCR',
+    'pricing.business.feature3': 'Priorytetowe wsparcie',
+    'pricing.business.feature4': 'Integracja API',
+    
+    'pricing.premium.title': 'Premium',
+    'pricing.premium.price': 'indywidualnie',
+    'pricing.premium.description': 'Dla klientów korporacyjnych',
+    'pricing.premium.feature1': 'Nieograniczone dokumenty',
+    'pricing.premium.feature2': 'AI rozpoznawanie',
+    'pricing.premium.feature3': 'Osobisty manager',
+    'pricing.premium.feature4': 'Niestandardowa integracja',
+    'pricing.premium.feature5': 'SLA wsparcie 24/7',
+
     'pricing.currency': 'lub indywidualnie',
     'pricing.symbol': 'zł',
     'pricing.features.license': 'Licencja bezterminowa',
@@ -245,6 +390,99 @@ const translations = {
     // Product
     'product.title': 'Opis rozwiązania',
     'product.subtitle': 'Szczegółowy opis funkcjonalności i korzyści automatyzacji',
+    'product.description': 'Nasz moduł pozwala automatycznie rozpoznawać i ładować dokumenty przychodzące do BAS i 1С bez ręcznego wprowadzania danych.',
+    'product.benefits.integration': 'Łatwa integracja',
+    'product.benefits.integration.desc': 'Szybkie podłączenie do istniejących konfiguracji BAS i 1С',
+    'product.benefits.reliability': 'Niezawodność',
+    'product.benefits.reliability.desc': 'Stabilna praca i precyzyjne rozpoznawanie dokumentów',
+    'product.benefits.support': 'Wsparcie',
+    'product.benefits.support.desc': 'Pełne wsparcie techniczne i obsługa projektu',
+
+    // Contacts
+    'contacts.title': 'Kontakt',
+    'contact.description': 'Skontaktuj się z nami, aby uzyskać demo lub konsultację techniczną',
+    'contacts.address.title': 'Adres',
+    'contacts.address.value': '43025, Łuck, ul. Świętowasylijska 4/3',
+    'contacts.sales.title': 'Dział sprzedaży',
+    'contacts.support.title': 'Wsparcie techniczne',
+    'contacts.accounting.title': 'Księgowość',
+    'contacts.schedule.title': 'Godziny pracy',
+    'contacts.back': 'Wstecz',
+    
+    // Contact Form
+    'contact.name': 'Imię i nazwisko',
+    'contact.company': 'Nazwa firmy',
+    'contact.email': 'Adres email',
+    'contact.phone': 'Numer telefonu',
+    'contact.message': 'Wiadomość',
+    'contact.submit': 'Wyślij zapytanie',
+    'contact.cancel': 'Anuluj',
+    'contact.required': 'pola wymagane',
+
+    // Footer
+    'footer.rights': '© 2024 ModulSoft. Wszelkie prawa zastrzeżone.',
+    'footer.privacy': 'Polityka prywatności',
+
+    // Privacy Policy
+    'privacy.back': 'Wstecz',
+    'privacy.title': 'Polityka prywatności',
+    'privacy.last-updated': '25.09.2025',
+    
+    'privacy.general.title': 'Postanowienia ogólne',
+    'privacy.general.content1': 'Ta Polityka prywatności opisuje, jak ModulSoft zbiera, używa i chroni Twoje dane osobowe.',
+    'privacy.general.content2': 'Korzystając z naszych usług, wyrażasz zgodę na warunki tej polityki.',
+    
+    'privacy.data.title': 'Jakie dane zbieramy',
+    'privacy.data.intro': 'Możemy zbierać następujące typy informacji:',
+    'privacy.data.contact': 'Dane kontaktowe (imię, email, telefon)',
+    'privacy.data.technical': 'Dane techniczne (adres IP, przeglądarka, system operacyjny)',
+    'privacy.data.cookies': 'Cookies i podobne technologie',
+    'privacy.data.commercial': 'Informacje komercyjne o Twoich potrzebach',
+    
+    'privacy.usage.title': 'Jak używamy danych',
+    'privacy.usage.intro': 'Zebrane dane są używane do:',
+    'privacy.usage.services': 'Świadczenia naszych usług',
+    'privacy.usage.orders': 'Przetwarzania zamówień i zapytań',
+    'privacy.usage.contact': 'Kontaktu z Tobą',
+    'privacy.usage.improve': 'Ulepszania naszych serwisów',
+    'privacy.usage.marketing': 'Celów marketingowych (za zgodą)',
+    'privacy.usage.legal': 'Przestrzegania zobowiązań prawnych',
+    'privacy.usage.protection': 'Ochrony naszych praw',
+    
+    'privacy.cookies.title': 'Cookies',
+    'privacy.cookies.description': 'Używamy cookies, aby ulepszyć funkcjonalność strony.',
+    'privacy.cookies.types': 'Typy cookies:',
+    'privacy.cookies.essential': 'Niezbędne dla działania strony',
+    'privacy.cookies.functional': 'Funkcjonalne dla wygody',
+    'privacy.cookies.analytics': 'Analityczne do statystyk',
+    'privacy.cookies.marketing': 'Marketingowe do reklam',
+    
+    'privacy.rights.title': 'Twoje prawa',
+    'privacy.rights.intro': 'Zgodnie z RODO masz prawo do:',
+    'privacy.rights.access': 'Dostępu do Twoich danych',
+    'privacy.rights.rectification': 'Sprostowania nieprawidłowych danych',
+    'privacy.rights.erasure': 'Usunięcia Twoich danych',
+    'privacy.rights.restriction': 'Ograniczenia przetwarzania',
+    'privacy.rights.portability': 'Przenoszenia danych',
+    'privacy.rights.objection': 'Sprzeciwu wobec przetwarzania',
+    'privacy.rights.withdraw': 'Cofnięcia zgody',
+    'privacy.rights.contact': 'W celu realizacji praw skontaktuj się: info@modulsoft.eu',
+    
+    'privacy.security.title': 'Bezpieczeństwo',
+    'privacy.security.protection': 'Podejmujemy odpowiednie środki techniczne i organizacyjne w celu ochrony Twoich danych.',
+    'privacy.security.retention': 'Dane przechowywane są nie dłużej niż jest to konieczne do osiągnięcia celów przetwarzania.',
+    
+    'privacy.contact.title': 'Kontakt',
+    'privacy.contact.intro': 'W sprawach prywatności skontaktuj się z nami:',
+    'privacy.contact.response': 'Odpowiemy na Twoje zapytanie w ciągu 30 dni.',
+
+    // Cookies Consent
+    'cookies.title': 'Używamy cookies',
+    'cookies.message': 'Używamy cookies, aby ulepszyć funkcjonalność strony i analizować odwiedziny.',
+    'contact.privacy.link': 'Więcej w Polityce prywatności',
+    'cookies.accept': 'Akceptuj wszystkie',
+    'cookies.learn': 'Ustawienia',
+    'cookies.decline': 'Odrzuć',
 
     // Social Proof  
     'social.title': 'Zaufali nam profesjonaliści',
@@ -319,7 +557,33 @@ const translations = {
     // Pricing
     'pricing.title': 'Доступно для любого бизнеса',
     'pricing.subtitle': 'Старт — для малого бизнеса. Бизнес — для компаний с активным документооборотом. Премиум — для корпоративных клиентов с интеграциями.',
-    'pricing.price': 'от 2500 руб/мес',
+    
+    // Pricing Plans
+    'pricing.start.title': 'Старт',
+    'pricing.start.price': 'от 1200 руб/мес',
+    'pricing.start.description': 'Для малого бизнеса',
+    'pricing.start.feature1': 'До 100 документов/мес',
+    'pricing.start.feature2': 'Базовое OCR',
+    'pricing.start.feature3': 'Поддержка email',
+    
+    'pricing.business.title': 'Бизнес',
+    'pricing.business.price': 'от 2500 руб/мес',
+    'pricing.business.description': 'Для активного документооборота',
+    'pricing.business.popular': 'Популярный выбор',
+    'pricing.business.feature1': 'До 1000 документов/мес',
+    'pricing.business.feature2': 'Расширенное OCR',
+    'pricing.business.feature3': 'Приоритетная поддержка',
+    'pricing.business.feature4': 'API интеграция',
+    
+    'pricing.premium.title': 'Премиум',
+    'pricing.premium.price': 'индивидуально',
+    'pricing.premium.description': 'Для корпоративных клиентов',
+    'pricing.premium.feature1': 'Безлимитные документы',
+    'pricing.premium.feature2': 'AI распознавание',
+    'pricing.premium.feature3': 'Персональный менеджер',
+    'pricing.premium.feature4': 'Кастомная интеграция',
+    'pricing.premium.feature5': 'SLA поддержка 24/7',
+
     'pricing.currency': 'или индивидуально',
     'pricing.symbol': '₽',
     'pricing.features.license': 'Бессрочная лицензия',
@@ -360,6 +624,99 @@ const translations = {
     // Product
     'product.title': 'Описание решения',
     'product.subtitle': 'Подробное описание функциональности и преимуществ автоматизации',
+    'product.description': 'Наш модуль позволяет автоматически распознавать и загружать входящие документы в BAS и 1С без ручного ввода данных.',
+    'product.benefits.integration': 'Лёгкая интеграция',
+    'product.benefits.integration.desc': 'Быстрое подключение к существующим конфигурациям BAS и 1С',
+    'product.benefits.reliability': 'Надёжность',
+    'product.benefits.reliability.desc': 'Стабильная работа и точное распознавание документов',
+    'product.benefits.support': 'Поддержка',
+    'product.benefits.support.desc': 'Полная техническая поддержка и сопровождение проекта',
+
+    // Contacts
+    'contacts.title': 'Контакты',
+    'contact.description': 'Свяжитесь с нами для получения демо или технической консультации',
+    'contacts.address.title': 'Адрес',
+    'contacts.address.value': '43025, г. Луцк, ул. Святовасильевская 4/3',
+    'contacts.sales.title': 'Отдел продаж',
+    'contacts.support.title': 'Техническая поддержка',
+    'contacts.accounting.title': 'Бухгалтерия',
+    'contacts.schedule.title': 'График работы',
+    'contacts.back': 'Назад',
+    
+    // Contact Form
+    'contact.name': 'Имя и фамилия',
+    'contact.company': 'Название компании',
+    'contact.email': 'Email адрес',
+    'contact.phone': 'Номер телефона',
+    'contact.message': 'Сообщение',
+    'contact.submit': 'Отправить заявку',
+    'contact.cancel': 'Отменить',
+    'contact.required': 'обязательные поля',
+
+    // Footer
+    'footer.rights': '© 2024 ModulSoft. Все права защищены.',
+    'footer.privacy': 'Политика конфиденциальности',
+
+    // Privacy Policy
+    'privacy.back': 'Назад',
+    'privacy.title': 'Политика конфиденциальности',
+    'privacy.last-updated': '25.09.2025',
+    
+    'privacy.general.title': 'Общие положения',
+    'privacy.general.content1': 'Данная Политика конфиденциальности описывает, как ModulSoft собирает, использует и защищает вашу персональную информацию.',
+    'privacy.general.content2': 'Пользуясь нашими услугами, вы соглашаетесь с условиями данной политики.',
+    
+    'privacy.data.title': 'Какие данные мы собираем',
+    'privacy.data.intro': 'Мы можем собирать следующие типы информации:',
+    'privacy.data.contact': 'Контактные данные (имя, email, телефон)',
+    'privacy.data.technical': 'Технические данные (IP-адрес, браузер, операционная система)',
+    'privacy.data.cookies': 'Cookies и аналогичные технологии',
+    'privacy.data.commercial': 'Коммерческая информация о ваших потребностях',
+    
+    'privacy.usage.title': 'Как мы используем данные',
+    'privacy.usage.intro': 'Собранные данные используются для:',
+    'privacy.usage.services': 'Предоставления наших услуг',
+    'privacy.usage.orders': 'Обработки заказов и запросов',
+    'privacy.usage.contact': 'Связи с вами',
+    'privacy.usage.improve': 'Улучшения наших сервисов',
+    'privacy.usage.marketing': 'Маркетинговых целей (с согласия)',
+    'privacy.usage.legal': 'Соблюдения правовых обязательств',
+    'privacy.usage.protection': 'Защиты наших прав',
+    
+    'privacy.cookies.title': 'Cookies',
+    'privacy.cookies.description': 'Мы используем cookies для улучшения функциональности сайта.',
+    'privacy.cookies.types': 'Типы cookies:',
+    'privacy.cookies.essential': 'Необходимые для работы сайта',
+    'privacy.cookies.functional': 'Функциональные для удобства',
+    'privacy.cookies.analytics': 'Аналитические для статистики',
+    'privacy.cookies.marketing': 'Маркетинговые для рекламы',
+    
+    'privacy.rights.title': 'Ваши права',
+    'privacy.rights.intro': 'В соответствии с GDPR, вы имеете право на:',
+    'privacy.rights.access': 'Доступ к вашим данным',
+    'privacy.rights.rectification': 'Исправление неточных данных',
+    'privacy.rights.erasure': 'Удаление ваших данных',
+    'privacy.rights.restriction': 'Ограничение обработки',
+    'privacy.rights.portability': 'Портируемость данных',
+    'privacy.rights.objection': 'Возражение против обработки',
+    'privacy.rights.withdraw': 'Отзыв согласия',
+    'privacy.rights.contact': 'Для реализации прав обращайтесь: info@modulsoft.eu',
+    
+    'privacy.security.title': 'Безопасность',
+    'privacy.security.protection': 'Мы принимаем соответствующие технические и организационные меры для защиты ваших данных.',
+    'privacy.security.retention': 'Данные хранятся не дольше, чем необходимо для достижения целей обработки.',
+    
+    'privacy.contact.title': 'Контакты',
+    'privacy.contact.intro': 'По вопросам конфиденциальности обращайтесь к нам:',
+    'privacy.contact.response': 'Мы ответим на ваш запрос в течение 30 дней.',
+
+    // Cookies Consent
+    'cookies.title': 'Использование cookies',
+    'cookies.message': 'Мы используем cookies для улучшения функциональности сайта и анализа посещений.',
+    'contact.privacy.link': 'Подробнее в Политике конфиденциальности',
+    'cookies.accept': 'Принять все',
+    'cookies.learn': 'Настройки',
+    'cookies.decline': 'Отклонить',
 
     // Social Proof  
     'social.title': 'Нам доверяют профессионалы',

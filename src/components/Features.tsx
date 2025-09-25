@@ -193,12 +193,12 @@ const Features = memo(function Features() {
             </span>
           </motion.div>
           
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-6 leading-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-6 leading-tight">
             <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               {t('features.title')}
             </span>
           </h2>
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4">
+          <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4">
             {t('features.subtitle')}
           </p>
         </motion.div>
@@ -250,11 +250,11 @@ const Features = memo(function Features() {
                   
                   {/* Enhanced Content Section */}
                   <div className="flex-1 flex flex-col justify-center items-center text-center">
-                    <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-4 
+                    <h3 className="text-lg sm:text-xl font-bold text-foreground mb-4 
                                   text-center leading-tight group-hover:text-primary transition-colors duration-300">
                       {feature.title}
                     </h3>
-                    <p className="text-base sm:text-lg text-muted-foreground leading-relaxed 
+                    <p className="text-sm sm:text-base text-muted-foreground leading-relaxed 
                                 text-center max-w-sm group-hover:text-foreground/80 transition-colors duration-300">
                       {feature.description}
                     </p>

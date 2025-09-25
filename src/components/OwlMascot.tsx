@@ -5,7 +5,7 @@ interface OwlMascotProps {
   size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
   className?: string
   animated?: boolean
-  variant?: "default" | "analyst" | "loader" | "tech" | "party"
+  variant?: "default" | "analyst" | "loader" | "tech" | "party" | "wizard" | "ninja"
 }
 
 export default function OwlMascot({ 
@@ -337,6 +337,290 @@ export default function OwlMascot({
                       className="w-1 h-1 bg-purple-600 rounded-full"
                       animate={{
                         scale: [1, 0.8, 1],
+                      }}
+                      transition={{
+                        duration: 1,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                    />
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      </motion.div>
+    )
+  }
+
+  // Wizard variant - магічний варіант з чарівними ефектами
+  if (variant === "wizard") {
+    return (
+      <motion.div
+        className={`relative ${sizeClasses[size]} ${className} cursor-pointer`}
+        animate={{
+          rotate: [0, -3, 3, -2, 2, 0],
+          y: [0, -4, 0, -2, 0],
+          scale: [1, 1.02, 1, 1.01, 1],
+        }}
+        transition={{
+          duration: 5,
+          ease: "easeInOut",
+          repeat: Infinity,
+        }}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        {/* Магічні частинки навколо сови */}
+        <AnimatePresence>
+          {(isHovered || showSparkles) && (
+            <>
+              {['✨', '🔮', '🌟', '⭐', '💫', '🪄'].map((magic, i) => (
+                <motion.div
+                  key={`magic-${i}`}
+                  className="absolute text-lg"
+                  style={{
+                    left: `${15 + i * 15}%`,
+                    top: `${5 + (i % 3) * 30}%`,
+                  }}
+                  initial={{ opacity: 0, scale: 0, rotate: 0 }}
+                  animate={{
+                    opacity: [0, 1, 1, 0],
+                    scale: [0, 1.4, 1.2, 0],
+                    rotate: [0, 360, 720],
+                    y: [0, -25, -45, -70],
+                    x: [0, Math.sin(i * 1.5) * 20],
+                  }}
+                  exit={{ opacity: 0, scale: 0 }}
+                  transition={{
+                    duration: 3,
+                    delay: i * 0.25,
+                    ease: "easeOut"
+                  }}
+                >
+                  {magic}
+                </motion.div>
+              ))}
+            </>
+          )}
+        </AnimatePresence>
+
+        {/* Магічна аура навколо сови */}
+        <motion.div
+          className="absolute inset-0 rounded-full"
+          animate={{
+            boxShadow: [
+              "0 0 20px rgba(139, 92, 246, 0.3)",
+              "0 0 40px rgba(139, 92, 246, 0.6)",
+              "0 0 60px rgba(139, 92, 246, 0.4)",
+              "0 0 20px rgba(139, 92, 246, 0.3)"
+            ],
+          }}
+          transition={{
+            duration: 2.5,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+
+        {/* Основне тіло сови з магічним стилем */}
+        <motion.div
+          className="w-full h-full bg-gradient-to-br from-purple-500 via-violet-600 to-indigo-700 rounded-full shadow-lg border-2 border-purple-300/50"
+          animate={{
+            background: [
+              "linear-gradient(to bottom right, #8b5cf6, #7c3aed, #6366f1)",
+              "linear-gradient(to bottom right, #7c3aed, #6366f1, #3b82f6)",
+              "linear-gradient(to bottom right, #6366f1, #3b82f6, #8b5cf6)",
+              "linear-gradient(to bottom right, #8b5cf6, #7c3aed, #6366f1)"
+            ],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        >
+          {/* Магічна шапка */}
+          <motion.div
+            className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-6 bg-gradient-to-t from-purple-800 to-purple-600 rounded-t-full"
+            animate={{
+              rotate: [0, -5, 5, 0],
+              y: [0, -1, 0],
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-yellow-400 rounded-full animate-pulse" />
+          </motion.div>
+
+          {/* Очі сови з магічним ефектом */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="flex space-x-2">
+              {[0, 1].map((i) => (
+                <motion.div
+                  key={i}
+                  className="w-3 h-3 bg-gradient-to-br from-cyan-200 to-purple-300 rounded-full shadow-inner relative"
+                  animate={{
+                    scale: isBlinking ? [1, 0.1, 1] : [1, 1.1, 1],
+                    boxShadow: [
+                      "0 0 8px rgba(34, 211, 238, 0.5)",
+                      "0 0 16px rgba(34, 211, 238, 0.8)",
+                      "0 0 8px rgba(34, 211, 238, 0.5)"
+                    ]
+                  }}
+                  transition={{
+                    duration: isBlinking ? 0.3 : 2,
+                    repeat: isBlinking ? 0 : Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <motion.div 
+                      className="w-1 h-1 bg-white rounded-full"
+                      animate={{
+                        opacity: [0.6, 1, 0.6],
+                        scale: [0.8, 1.2, 0.8],
+                      }}
+                      transition={{
+                        duration: 1.5,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                    />
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      </motion.div>
+    )
+  }
+
+  // Ninja variant - стелс варіант з тінями
+  if (variant === "ninja") {
+    return (
+      <motion.div
+        className={`relative ${sizeClasses[size]} ${className} cursor-pointer`}
+        animate={{
+          opacity: [0.8, 1, 0.9, 1],
+          scale: [1, 0.98, 1.01, 1],
+        }}
+        transition={{
+          duration: 4,
+          ease: "easeInOut",
+          repeat: Infinity,
+        }}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        {/* Ниндзя-зірочки */}
+        <AnimatePresence>
+          {(isHovered || showSparkles) && (
+            <>
+              {['⚡', '🥷', '⚔️', '🌙', '💨', '🔥'].map((ninja, i) => (
+                <motion.div
+                  key={`ninja-${i}`}
+                  className="absolute text-sm opacity-80"
+                  style={{
+                    left: `${10 + i * 15}%`,
+                    top: `${5 + (i % 2) * 50}%`,
+                  }}
+                  initial={{ opacity: 0, scale: 0, x: 0, y: 0 }}
+                  animate={{
+                    opacity: [0, 1, 0.8, 0],
+                    scale: [0, 1.2, 1, 0],
+                    x: [0, (i % 2 ? 1 : -1) * 30, (i % 2 ? 1 : -1) * 50],
+                    y: [0, -15, -25, -40],
+                    rotate: [0, 180, 360],
+                  }}
+                  exit={{ opacity: 0, scale: 0 }}
+                  transition={{
+                    duration: 2,
+                    delay: i * 0.1,
+                    ease: "easeOut"
+                  }}
+                >
+                  {ninja}
+                </motion.div>
+              ))}
+            </>
+          )}
+        </AnimatePresence>
+
+        {/* Тінь ефект */}
+        <motion.div
+          className="absolute inset-0 rounded-full bg-gray-800/40"
+          animate={{
+            scale: [1, 1.1, 0.9, 1],
+            opacity: [0.4, 0.6, 0.3, 0.4],
+          }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+
+        {/* Основне тіло ниндзя сови */}
+        <motion.div
+          className="w-full h-full bg-gradient-to-br from-gray-700 via-gray-800 to-black rounded-full shadow-2xl border-2 border-gray-600/50"
+          animate={{
+            boxShadow: [
+              "0 4px 20px rgba(0, 0, 0, 0.6)",
+              "0 4px 30px rgba(0, 0, 0, 0.8)",
+              "0 4px 20px rgba(0, 0, 0, 0.6)"
+            ],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        >
+          {/* Ніндзя маска */}
+          <motion.div
+            className="absolute top-1 left-0 right-0 h-2 bg-black/80 rounded-full"
+            animate={{
+              opacity: [0.8, 1, 0.8],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+
+          {/* Очі ниндзя сови */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="flex space-x-2">
+              {[0, 1].map((i) => (
+                <motion.div
+                  key={i}
+                  className="w-2 h-3 bg-gradient-to-b from-red-500 to-red-700 rounded-full shadow-inner relative"
+                  animate={{
+                    scale: isBlinking ? [1, 0.1, 1] : 1,
+                    boxShadow: [
+                      "0 0 5px rgba(239, 68, 68, 0.5)",
+                      "0 0 10px rgba(239, 68, 68, 0.8)",
+                      "0 0 5px rgba(239, 68, 68, 0.5)"
+                    ]
+                  }}
+                  transition={{
+                    duration: isBlinking ? 0.3 : 1.5,
+                    repeat: isBlinking ? 0 : Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <motion.div 
+                      className="w-0.5 h-1 bg-red-200 rounded-full"
+                      animate={{
+                        opacity: [0.8, 1, 0.8],
                       }}
                       transition={{
                         duration: 1,

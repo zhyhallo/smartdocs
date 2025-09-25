@@ -163,7 +163,7 @@ export default function CTA({ onContactClick }: CTAProps) {
           </motion.div>
           
           <motion.h2 
-            className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-6"
+            className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-6"
             variants={itemVariants}
           >
             <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
@@ -172,7 +172,7 @@ export default function CTA({ onContactClick }: CTAProps) {
           </motion.h2>
           
           <motion.p 
-            className="text-lg sm:text-xl text-muted-foreground mb-12 sm:mb-16 max-w-3xl mx-auto leading-relaxed"
+            className="text-base sm:text-lg text-muted-foreground mb-12 sm:mb-16 max-w-3xl mx-auto leading-relaxed"
             variants={itemVariants}
           >
             {t('cta.subtitle')}

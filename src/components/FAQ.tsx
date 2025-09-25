@@ -183,7 +183,7 @@ const FAQ = memo(function FAQ() {
                 animate={isInView ? { opacity: 1, scale: 1, x: 0 } : { opacity: 0, scale: 0.8, x: 15 }}
                 transition={{ duration: 0.6, delay: 0.7 }}
               >
-                <OwlMascot variant="analyst" size="xl" animated={true} />
+                <OwlMascot variant="ninja" size="xl" animated={true} />
                 
                 {/* Enhanced floating decorative elements */}
                 <motion.div
@@ -254,7 +254,7 @@ const FAQ = memo(function FAQ() {
                 </span>
               </motion.div>
               
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-4">
                 <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                   {t('faq.title')}
                 </span>
